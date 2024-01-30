@@ -1,6 +1,10 @@
 import Image from "next/image";
+import { useTranslations } from 'next-intl';
+import LocaleSwitcher from "@/components/locale-switcher";
 
 export default function Home() {
+  const t = useTranslations('Meta');
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -25,6 +29,7 @@ export default function Home() {
               priority
             />
           </a>
+          <LocaleSwitcher />
         </div>
       </div>
 
@@ -47,13 +52,10 @@ export default function Home() {
           rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
+            {t("title")}
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
+            {t("description")}
           </p>
         </a>
 
