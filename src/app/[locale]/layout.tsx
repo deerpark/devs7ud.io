@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { notFound } from 'next/navigation';
 import { AppConfig } from "@/utils/AppConfig";
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { ThemeProvider } from "@/components/providers"
+import { useMessages } from 'next-intl';
+
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
 
 import "@/styles/global.css";
 
@@ -33,6 +38,7 @@ export const metadata: Metadata = {
       url: '/favicon.ico',
     },
   ],
+  manifest: '/manifest.json'
 };
 
 type RootLayoutProps = Readonly<{
@@ -53,10 +59,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextIntlClientProvider
-          locale={params.locale}
-          messages={messages}
-        >{children}</NextIntlClientProvider></body>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+            locale={params.locale}
+            messages={messages}
+          >
+            {children}
+        </ThemeProvider>
+        </body>
     </html>
   );
 }
