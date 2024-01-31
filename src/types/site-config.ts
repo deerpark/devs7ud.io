@@ -1,4 +1,4 @@
-import { PageUrlOverridesMap, NavigationStyle } from '@/types/notion.type'
+import type {NavigationStyle, PageUrlOverridesMap} from '@/types/notion.type'
 
 export interface SiteConfig {
   rootNotionPageId: string
@@ -15,8 +15,6 @@ export interface SiteConfig {
   linkedin?: string
   newsletter?: string
   youtube?: string
-  zhihu?: string
-  mastodon?: string;
 
   defaultPageIcon?: string | null
   defaultPageCover?: string | null

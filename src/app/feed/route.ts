@@ -1,4 +1,4 @@
-import { ExtendedRecordMap } from 'notion-types'
+import type {ExtendedRecordMap} from 'notion-types'
 import {
   getBlockParentPage,
   getBlockTitle,
@@ -8,9 +8,9 @@ import {
 import RSS from 'rss'
 
 import * as config from '@/lib/config'
-import { getSiteMap } from '@/lib/get-site-map'
-import { getSocialImageUrl } from '@/lib/get-social-image-url'
-import { getCanonicalPageUrl } from '@/lib/map-page-url'
+import {getSiteMap} from '@/lib/get-site-map'
+import {getSocialImageUrl} from '@/lib/get-social-image-url'
+import {getCanonicalPageUrl} from '@/lib/map-page-url'
 
 const ttlMinutes = 24 * 60 // 24 hours
 const ttlSeconds = ttlMinutes * 60
@@ -62,8 +62,8 @@ export async function GET() {
     const date = lastUpdatedTime
       ? new Date(lastUpdatedTime)
       : publishedTime
-      ? new Date(publishedTime)
-      : ''
+        ? new Date(publishedTime)
+        : ''
     const socialImageUrl = getSocialImageUrl(pageId)
 
     feed.item({
@@ -80,11 +80,11 @@ export async function GET() {
     })
   }
 
-  const feedText = feed.xml({ indent: true })
+  const feedText = feed.xml({indent: true})
 
   return new Response(feedText, {
     status: 200,
-    headers: { 'Content-Type': 'text/xml; charset=utf-8' },
+    headers: {'Content-Type': 'text/xml; charset=utf-8'}
   })
 }
 

@@ -1,14 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { defineConfig, devices } from '@playwright/test';
+import {defineConfig, devices} from '@playwright/test'
 
 // Use process.env.PORT by default and fallback to port 3000
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000
 
 // Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
-const baseURL = `http://localhost:${PORT}`;
+const baseURL = `http://localhost:${PORT}`
 
 // *.check.spec.ts files use ENVIRONMENT_URL instead of baseURL
-process.env.ENVIRONMENT_URL = baseURL;
+process.env.ENVIRONMENT_URL = baseURL
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -36,7 +36,7 @@ export default defineConfig({
     command: process.env.CI ? 'bun run start' : 'bun run dev',
     url: baseURL,
     timeout: 2 * 60 * 1000,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: !process.env.CI
   },
 
   // Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions.
@@ -46,25 +46,25 @@ export default defineConfig({
     baseURL,
 
     // Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer
-    trace: 'on-first-retry',
+    trace: 'on-first-retry'
   },
 
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {...devices['Desktop Chrome']}
     },
     ...(process.env.CI
       ? [
           {
             name: 'firefox',
-            use: { ...devices['Desktop Firefox'] },
+            use: {...devices['Desktop Firefox']}
           },
           {
             name: 'webkit',
-            use: { ...devices['Desktop Safari'] },
-          },
+            use: {...devices['Desktop Safari']}
+          }
         ]
-      : []),
-  ],
-});
+      : [])
+  ]
+})

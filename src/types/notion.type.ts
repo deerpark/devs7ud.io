@@ -1,6 +1,6 @@
-import { ExtendedRecordMap, PageMap } from 'notion-types'
-import { ParsedUrlQuery } from 'querystring'
-import { OptionsOfJSONResponseBody } from 'got';
+import type {OptionsOfJSONResponseBody} from 'got'
+import type {ExtendedRecordMap, PageMap} from 'notion-types'
+import type {ParsedUrlQuery} from 'querystring'
 
 export * from 'notion-types'
 
@@ -72,12 +72,12 @@ export interface NotionPageInfo {
   detail: string
 }
 
-export type GetPageArgs =  {
-  concurrency?: number;
-  fetchMissingBlocks?: boolean;
-  fetchCollections?: boolean;
-  signFileUrls?: boolean;
-  chunkLimit?: number;
-  chunkNumber?: number;
-  gotOptions?: OptionsOfJSONResponseBody;
+export type GetPageArgs = {
+  concurrency?: number
+  fetchMissingBlocks?: boolean
+  fetchCollections?: boolean
+  signFileUrls?: boolean
+  chunkLimit?: number
+  chunkNumber?: number
+  gotOptions?: OptionsOfJSONResponseBody
 }

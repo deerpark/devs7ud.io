@@ -1,7 +1,7 @@
-import { getPageTitle, parsePageId } from 'notion-utils'
+import {getPageTitle, parsePageId} from 'notion-utils'
 
 import * as config from './config'
-import { getPage } from './notion'
+import {getPage} from './notion'
 
 export const oembed = async ({
   url,
@@ -33,7 +33,7 @@ export const oembed = async ({
     .trim()
   if (name) authorName = name
 
-  const params: any = { lite: 'true' }
+  const params: any = {lite: 'true'}
   if (dark) {
     params.dark = 'true'
   }

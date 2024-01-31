@@ -1,13 +1,17 @@
 import got from 'got'
 import lqip from 'lqip-modern'
-import { ExtendedRecordMap, PreviewImage, PreviewImageMap } from 'notion-types'
-import { getPageImageUrls, normalizeUrl } from 'notion-utils'
+import type {
+  ExtendedRecordMap,
+  PreviewImage,
+  PreviewImageMap
+} from 'notion-types'
+import {getPageImageUrls, normalizeUrl} from 'notion-utils'
 import pMap from 'p-map'
 import pMemoize from 'p-memoize'
 
-import { defaultPageCover, defaultPageIcon } from './config'
-import { db } from './db'
-import { mapImageUrl } from './map-image-url'
+import {defaultPageCover, defaultPageIcon} from './config'
+import {db} from './db'
+import {mapImageUrl} from './map-image-url'
 
 export async function getPreviewImageMap(
   recordMap: ExtendedRecordMap
@@ -23,7 +27,7 @@ export async function getPreviewImageMap(
       urls,
       async (url) => {
         const cacheKey = normalizeUrl(url)
-        return [cacheKey, await getPreviewImage(url, { cacheKey })]
+        return [cacheKey, await getPreviewImage(url, {cacheKey})]
       },
       {
         concurrency: 8
@@ -36,7 +40,7 @@ export async function getPreviewImageMap(
 
 async function createPreviewImage(
   url: string,
-  { cacheKey }: { cacheKey: string }
+  {cacheKey}: {cacheKey: string}
 ): Promise<PreviewImage | null> {
   try {
     try {
@@ -50,9 +54,9 @@ async function createPreviewImage(
       console.warn(`redis error get "${cacheKey}"`, error.message)
     }
 
-    const { body } = await got(url, { responseType: 'buffer' })
+    const {body} = await got(url, {responseType: 'buffer'})
     const result = await lqip(body)
-    console.log('lqip', { ...result.metadata, url, cacheKey })
+    console.log('lqip', {...result.metadata, url, cacheKey})
 
     const previewImage = {
       originalWidth: result.metadata.originalWidth,

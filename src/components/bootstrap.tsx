@@ -1,4 +1,4 @@
-import { bootstrap } from '@/lib/bootstrap-client'
+import {bootstrap} from '@/lib/bootstrap-client'
 
 export function Bootstrap() {
   bootstrap()

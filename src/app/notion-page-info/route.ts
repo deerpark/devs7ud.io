@@ -1,5 +1,5 @@
 import got from 'got'
-import { PageBlock } from 'notion-types'
+import type {PageBlock} from 'notion-types'
 import {
   getBlockIcon,
   getBlockTitle,
@@ -9,14 +9,12 @@ import {
 } from 'notion-utils'
 
 import * as libConfig from '@/lib/config'
-import { mapImageUrl } from '@/lib/map-image-url'
-import { notion } from '@/lib/notion-api'
-import { NotionPageInfo } from '@/types/notion.type'
+import {mapImageUrl} from '@/lib/map-image-url'
+import {notion} from '@/lib/notion-api'
+import type {NotionPageInfo} from '@/types/notion.type'
 
 export async function POST(request: Request) {
-
-  const body: { pageId?: string } = await request.json();
-
+  const body: {pageId?: string} = await request.json()
 
   const pageId: string = parsePageId(body.pageId)
   if (!pageId) {
@@ -39,14 +37,17 @@ export async function POST(request: Request) {
     libConfig.rootNotionSpaceId &&
     blockSpaceId !== libConfig.rootNotionSpaceId
   ) {
-    return new Response(JSON.stringify({
-      error: `Notion page "${pageId}" belongs to a different workspace.`
-    }), {
-      status: 400, // Bad Request
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    return new Response(
+      JSON.stringify({
+        error: `Notion page "${pageId}" belongs to a different workspace.`
+      }),
+      {
+        status: 400, // Bad Request
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
   }
 
   const isBlogPost =
@@ -119,8 +120,9 @@ export async function POST(request: Request) {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'public, s-maxage=3600, max-age=3600, stale-while-revalidate=3600',
-    },
+      'Cache-Control':
+        'public, s-maxage=3600, max-age=3600, stale-while-revalidate=3600'
+    }
   })
 }
 

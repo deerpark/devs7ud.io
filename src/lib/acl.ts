@@ -1,4 +1,4 @@
-import { PageProps } from '@/types/notion.type'
+import type {PageProps} from '@/types/notion.type'
 
 export async function pageAcl({
   site,

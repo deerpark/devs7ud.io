@@ -1,13 +1,16 @@
+import {
+  faGithub,
+  faLinkedin,
+  faTwitter,
+  faYoutube
+} from '@fortawesome/free-brands-svg-icons'
+import {faNewspaper} from '@fortawesome/pro-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import * as React from 'react'
 
 import * as config from '@/lib/config'
-
-import styles from './PageSocial.module.css'
-import { cn } from '@/utils/cn'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faNewspaper } from '@fortawesome/pro-solid-svg-icons'
-import { faGithub, faLinkedin, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons'
+import styles from '@/styles/page-social.module.css'
+import {cn} from '@/utils/cn'
 
 interface SocialLink {
   name: string
@@ -17,40 +20,60 @@ interface SocialLink {
 }
 
 const socialLinks: SocialLink[] = [
-  ...(config.twitter ? [{
-    name: 'twitter',
-    href: `https://twitter.com/${config.twitter}`,
-    title: `Twitter @${config.twitter}`,
-    icon: <FontAwesomeIcon icon={faTwitter} />
-  }] : []),
+  ...(config.twitter
+    ? [
+        {
+          name: 'twitter',
+          href: `https://twitter.com/${config.twitter}`,
+          title: `Twitter @${config.twitter}`,
+          icon: <FontAwesomeIcon icon={faTwitter} />
+        }
+      ]
+    : []),
 
-  ...(config.twitter ? [{
-    name: 'github',
-    href: `https://github.com/${config.github}`,
-    title: `GitHub @${config.github}`,
-    icon: <FontAwesomeIcon icon={faGithub} />
-  }] : []),
+  ...(config.twitter
+    ? [
+        {
+          name: 'github',
+          href: `https://github.com/${config.github}`,
+          title: `GitHub @${config.github}`,
+          icon: <FontAwesomeIcon icon={faGithub} />
+        }
+      ]
+    : []),
 
-  ...(config.twitter ? [{
-    name: 'linkedin',
-    href: `https://www.linkedin.com/in/${config.linkedin}`,
-    title: `LinkedIn ${config.author}`,
-    icon: <FontAwesomeIcon icon={faLinkedin} />
-  }] : []),
+  ...(config.twitter
+    ? [
+        {
+          name: 'linkedin',
+          href: `https://www.linkedin.com/in/${config.linkedin}`,
+          title: `LinkedIn ${config.author}`,
+          icon: <FontAwesomeIcon icon={faLinkedin} />
+        }
+      ]
+    : []),
 
-  ...(config.twitter ? [{
-    name: 'newsletter',
-    href: `${config.newsletter}`,
-    title: `Newsletter ${config.author}`,
-    icon: <FontAwesomeIcon icon={faNewspaper} />
-  }] : []),
+  ...(config.twitter
+    ? [
+        {
+          name: 'newsletter',
+          href: `${config.newsletter}`,
+          title: `Newsletter ${config.author}`,
+          icon: <FontAwesomeIcon icon={faNewspaper} />
+        }
+      ]
+    : []),
 
-  ...(config.twitter ? [{
-    name: 'youtube',
-    href: `https://www.youtube.com/${config.youtube}`,
-    title: `YouTube ${config.youtube}`,
-    icon: <FontAwesomeIcon icon={faYoutube} />
-  }] : []),
+  ...(config.twitter
+    ? [
+        {
+          name: 'youtube',
+          href: `https://www.youtube.com/${config.youtube}`,
+          title: `YouTube ${config.youtube}`,
+          icon: <FontAwesomeIcon icon={faYoutube} />
+        }
+      ]
+    : [])
 ]
 
 export const NotionPageSocial: React.FC = () => {
@@ -63,8 +86,7 @@ export const NotionPageSocial: React.FC = () => {
           key={action.name}
           title={action.title}
           target='_blank'
-          rel='noopener noreferrer'
-        >
+          rel='noopener noreferrer'>
           <div className={styles.actionBg}>
             <div className={styles.actionBgPane} />
           </div>

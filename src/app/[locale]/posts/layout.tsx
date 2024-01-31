@@ -6,11 +6,9 @@ import '@/styles/notion.css'
 import '@/styles/prism-theme.css'
 
 type PostsLayoutProps = {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
-export default function PostsLayout({
-  children,
-}: PostsLayoutProps) {
+export default function PostsLayout({children}: PostsLayoutProps) {
   return children
 }

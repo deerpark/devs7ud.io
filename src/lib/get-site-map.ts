@@ -1,37 +1,22 @@
-import { getAllPagesInSpace, uuidToId, getPageProperty } from 'notion-utils'
+import {getAllPagesInSpace, getPageProperty /* uuidToId */} from 'notion-utils'
 import pMemoize from 'p-memoize'
 
+import type * as types from '@/types/notion.type'
+
 import * as config from './config'
-import * as types from '@/types/notion.type'
-import { includeNotionIdInUrls } from './config'
-import { getCanonicalPageId } from './get-canonical-page-id'
-import { notion } from './notion-api'
+import {includeNotionIdInUrls} from './config'
+import {getCanonicalPageId} from './get-canonical-page-id'
+import {notion} from './notion-api'
 
 const uuid = !!includeNotionIdInUrls
-
-export async function getSiteMap(): Promise<types.SiteMap> {
-  const partialSiteMap = await getAllPages(
-    config.rootNotionPageId,
-    config.rootNotionSpaceId!
-  )
-
-  return {
-    site: config.site,
-    ...partialSiteMap
-  } as types.SiteMap
-}
-
-const getAllPages = pMemoize(getAllPagesImpl, {
-  cacheKey: (...args) => JSON.stringify(args)
-})
 
 async function getAllPagesImpl(
   rootNotionPageId: string,
   rootNotionSpaceId: string
 ): Promise<Partial<types.SiteMap>> {
   const getPage = async (pageId: string, ...args: unknown[]) => {
-    console.log('\nnotion getPage', uuidToId(pageId))
-    return notion.getPage(pageId, ...args as any)
+    // console.log('\nnotion getPage', uuidToId(pageId))
+    return notion.getPage(pageId, ...(args as any))
   }
 
   const pageMap = await getAllPagesInSpace(
@@ -48,7 +33,9 @@ async function getAllPagesImpl(
       }
 
       const block = recordMap.block[pageId]?.value
-      if (!(getPageProperty<boolean|null>('Public', block!, recordMap) ?? true)) {
+      if (
+        !(getPageProperty<boolean | null>('Public', block!, recordMap) ?? true)
+      ) {
         return map
       }
 
@@ -59,18 +46,17 @@ async function getAllPagesImpl(
       if (map[canonicalPageId as keyof typeof map]) {
         // you can have multiple pages in different collections that have the same id
         // TODO: we may want to error if neither entry is a collection page
-        console.warn('error duplicate canonical page id', {
+        /* console.warn('error duplicate canonical page id', {
           canonicalPageId,
           pageId,
           existingPageId: map[canonicalPageId as keyof typeof map]
-        })
+        }) */
 
         return map
-      } else {
-        return {
-          ...map,
-          [canonicalPageId as keyof typeof map]: pageId
-        }
+      }
+      return {
+        ...map,
+        [canonicalPageId as keyof typeof map]: pageId
       }
     },
     {}
@@ -80,4 +66,20 @@ async function getAllPagesImpl(
     pageMap,
     canonicalPageMap
   }
+}
+
+const getAllPages = pMemoize(getAllPagesImpl, {
+  cacheKey: (...args) => JSON.stringify(args)
+})
+
+export async function getSiteMap(): Promise<types.SiteMap> {
+  const partialSiteMap = await getAllPages(
+    config.rootNotionPageId,
+    config.rootNotionSpaceId!
+  )
+
+  return {
+    site: config.site,
+    ...partialSiteMap
+  } as types.SiteMap
 }

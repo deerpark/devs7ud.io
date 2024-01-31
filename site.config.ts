@@ -1,4 +1,4 @@
-import { siteConfig } from '@/lib/site-config'
+import {siteConfig} from '@/lib/site-config'
 
 export default siteConfig({
   // the site's root Notion page (required)
@@ -14,15 +14,15 @@ export default siteConfig({
   author: 'Yonn Kim',
 
   // open graph metadata (optional)
-  description: 'Example Next.js Notion Starter Kit Site',
+  description: 'devs7ud.io official blog',
 
   // social usernames (optional)
   twitter: 'deerpark7',
   github: 'deerpark',
   linkedin: 'deerpark8210',
   // mastodon: '#', // optional mastodon profile URL, provides link verification
-  // newsletter: '#', // optional newsletter URL
-  // youtube: '#', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`
+  newsletter: 'https://www.gitbus.io', // optional newsletter URL
+  youtube: 'UCWiIVAVFD4IHv4lfhLS2jCQ', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`
 
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults

@@ -1,15 +1,14 @@
-import * as types from 'notion-types'
-import { Breadcrumbs, Header, Search, useNotionContext } from 'react-notion-x'
+import type * as types from 'notion-types'
+import {Breadcrumbs, Header, Search, useNotionContext} from 'react-notion-x'
 
-import { isSearchEnabled, navigationLinks, navigationStyle } from '@/lib/config'
-
-import styles from './styles.module.css'
-import { cn } from '@/utils/cn'
+import {isSearchEnabled, navigationLinks, navigationStyle} from '@/lib/config'
+import styles from '@/styles/styles.module.css'
+import {cn} from '@/utils/cn'
 
 export const NotionPageHeader: React.FC<{
   block: types.CollectionViewPageBlock | types.PageBlock
-}> = ({ block }) => {
-  const { components, mapPageUrl } = useNotionContext()
+}> = ({block}) => {
+  const {components, mapPageUrl} = useNotionContext()
 
   if (navigationStyle === 'default') {
     return <Header block={block} />
@@ -18,7 +17,7 @@ export const NotionPageHeader: React.FC<{
   return (
     <header className='notion-header'>
       <div className='notion-nav-header'>
-        <Breadcrumbs block={block} rootOnly={true} />
+        <Breadcrumbs block={block} rootOnly />
 
         <div className='notion-nav-header-rhs breadcrumbs'>
           {navigationLinks
@@ -32,22 +31,19 @@ export const NotionPageHeader: React.FC<{
                   <components.PageLink
                     href={mapPageUrl(link?.pageId)}
                     key={index}
-                    className={cn(styles.navLink, 'breadcrumb', 'button')}
-                  >
+                    className={cn(styles.navLink, 'breadcrumb', 'button')}>
                     {link?.title}
                   </components.PageLink>
                 )
-              } else {
-                return (
-                  <components.Link
-                    href={link?.url}
-                    key={index}
-                    className={cn(styles.navLink, 'breadcrumb', 'button')}
-                  >
-                    {link?.title}
-                  </components.Link>
-                )
               }
+              return (
+                <components.Link
+                  href={link?.url}
+                  key={index}
+                  className={cn(styles.navLink, 'breadcrumb', 'button')}>
+                  {link?.title}
+                </components.Link>
+              )
             })
             .filter(Boolean)}
 

@@ -1,9 +1,9 @@
-import * as React from 'react'
 import Head from 'next/head'
+import * as React from 'react'
 
 import * as config from '@/lib/config'
-import * as types from '@/types/notion.type'
-import { getSocialImageUrl } from '@/lib/get-social-image-url'
+import {getSocialImageUrl} from '@/lib/get-social-image-url'
+import type * as types from '@/types/notion.type'
 
 export const NotionPageHead: React.FC<
   types.PageProps & {
@@ -12,7 +12,7 @@ export const NotionPageHead: React.FC<
     image?: string
     url?: string
   }
-> = ({ site, title, description, pageId, image, url }) => {
+> = ({site, title, description, pageId, image, url}) => {
   const rssFeedUrl = `${config.host}/feed`
 
   title = title ?? site?.name
@@ -32,13 +32,20 @@ export const NotionPageHead: React.FC<
       />
 
       <meta name='apple-mobile-web-app-capable' content='yes' />
-      <meta
-        name='apple-mobile-web-app-status-bar-style'
-        content='black'
-      />
+      <meta name='apple-mobile-web-app-status-bar-style' content='black' />
 
-      <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fefffe" key="theme-color-light"/>
-      <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2d3439" key="theme-color-dark"/>
+      <meta
+        name='theme-color'
+        media='(prefers-color-scheme: light)'
+        content='#fefffe'
+        key='theme-color-light'
+      />
+      <meta
+        name='theme-color'
+        media='(prefers-color-scheme: dark)'
+        content='#2d3439'
+        key='theme-color-dark'
+      />
 
       <meta name='robots' content='index,follow' />
       <meta property='og:type' content='website' />

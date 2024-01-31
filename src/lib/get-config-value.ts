@@ -1,5 +1,5 @@
 import rawSiteConfig from '../../site.config'
-import { SiteConfig } from './site-config'
+import type {SiteConfig} from './site-config'
 
 if (!rawSiteConfig) {
   throw new Error(`Config error: invalid site.config.ts`)
@@ -22,7 +22,10 @@ const siteConfig: SiteConfig = {
   ...siteConfigOverrides
 }
 
-export function getSiteConfig<T extends keyof SiteConfig>(key: T, defaultValue?: SiteConfig[T]): SiteConfig[T] {
+export function getSiteConfig<T extends keyof SiteConfig>(
+  key: T,
+  defaultValue?: SiteConfig[T]
+): SiteConfig[T] {
   const value = siteConfig[key]
 
   if (value !== undefined) {

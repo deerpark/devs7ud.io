@@ -1,5 +1,5 @@
-import { ExtendedRecordMap, SearchParams, SearchResults } from 'notion-types'
-import { mergeRecordMaps } from 'notion-utils'
+import type {ExtendedRecordMap, SearchParams, SearchResults} from 'notion-types'
+import {mergeRecordMaps} from 'notion-utils'
 import pMap from 'p-map'
 import pMemoize from 'p-memoize'
 
@@ -8,8 +8,8 @@ import {
   navigationLinks,
   navigationStyle
 } from './config'
-import { notion } from './notion-api'
-import { getPreviewImageMap } from './preview-images'
+import {notion} from './notion-api'
+import {getPreviewImageMap} from './preview-images'
 
 const getNavigationLinkPages = pMemoize(
   async (): Promise<ExtendedRecordMap[]> => {
