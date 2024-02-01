@@ -1,78 +1,59 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/extensions */
-import './src/lib/Env.mjs';
-import withBundleAnalyzer from '@next/bundle-analyzer';
-import withNextIntl from 'next-intl/plugin';
+import withBundleAnalyzer from '@next/bundle-analyzer'
+import withNextIntl from 'next-intl/plugin'
 
-const withNextIntlConfig = withNextIntl('./src/lib/i18n.ts');
+const withNextIntlConfig = withNextIntl('./src/lib/i18n.ts')
 
 const bundleAnalyzer = withBundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
-});
+  enabled: process.env.ANALYZE === 'true'
+})
 
 /** @type {import('next').NextConfig} */
 const nextConfig = bundleAnalyzer(
   withNextIntlConfig({
     eslint: {
-      dirs: ['.'],
+      dirs: ['.']
     },
     staticPageGenerationTimeout: 300,
     images: {
       remotePatterns: [
         {
           protocol: 'https',
-          hostname: 'www.notion.so',
-          port: '',
-          pathname: '/**',
+          hostname: 'www.notion.so'
         },
         {
           protocol: 'https',
-          hostname: 'notion.so',
-          port: '',
-          pathname: '/**',
+          hostname: 'notion.so'
         },
         {
           protocol: 'https',
-          hostname: 'images.unsplash.com',
-          port: '',
-          pathname: '/**',
+          hostname: 'images.unsplash.com'
         },
         {
           protocol: 'https',
-          hostname: 'pbs.twimg.com',
-          port: '',
-          pathname: '/**',
+          hostname: 'pbs.twimg.com'
         },
         {
           protocol: 'https',
-          hostname: 'abs.twimg.com',
-          port: '',
-          pathname: '/**',
+          hostname: 'abs.twimg.com'
         },
         {
           protocol: 'https',
-          hostname: 's3.us-west-2.amazonaws.com',
-          port: '',
-          pathname: '/**',
+          hostname: 's3.us-west-2.amazonaws.com'
         },
         {
           protocol: 'https',
-          hostname: 'devs7ud.io',
-          port: '',
-          pathname: '/**',
+          hostname: 'devs7ud.io'
         },
+        {
+          protocol: 'https',
+          hostname: 'images.unsplash.com'
+        }
       ],
-      formats: ['image/avif', 'image/webp'],
-      dangerouslyAllowSVG: true,
-      contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    },
-    webpack: (config) => {
-      config.resolve.alias.unfetch = false;
-      config.resolve.alias.canvas = false;
-      config.resolve.alias.encoding = false;
-      return config;
-    },
-  }),
-);
+      dangerouslyAllowSVG: true
+    }
+  })
+)
 
-export default nextConfig;
+export default nextConfig

@@ -10,7 +10,7 @@ export default async function NotFound() {
       <h2>Not Found: {domain}</h2>
       <p>Could not find requested resource</p>
       <p>
-        View <Link href='/blog'>all posts</Link>
+        View <Link href='/posts'>all posts</Link>
       </p>
     </div>
   )

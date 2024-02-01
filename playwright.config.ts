@@ -5,7 +5,7 @@ import {defineConfig, devices} from '@playwright/test'
 const PORT = process.env.PORT || 3000
 
 // Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
-const baseURL = `http://localhost:${PORT}`
+const baseURL = `${process.env.NEXT_PUBLIC_HOST}:${PORT}`
 
 // *.check.spec.ts files use ENVIRONMENT_URL instead of baseURL
 process.env.ENVIRONMENT_URL = baseURL
