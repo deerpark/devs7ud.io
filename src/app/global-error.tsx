@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
-import Error from 'next/error';
-import { useEffect } from 'react';
+import Error from 'next/error'
+import {useEffect} from 'react'
 
 export default function GlobalError(props: {
-  error: Error & { digest?: string };
-  params: { locale: string };
+  error: Error & {digest?: string}
+  params: {locale: string}
 }) {
   useEffect(() => {
-    console.error(props.error);
-  }, [props.error]);
+    console.error(props.error)
+  }, [props.error])
 
   return (
     <html lang={props.params.locale}>
@@ -18,5 +18,5 @@ export default function GlobalError(props: {
         <Error statusCode={undefined as any} />
       </body>
     </html>
-  );
+  )
 }
