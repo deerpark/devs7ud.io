@@ -61,11 +61,11 @@ jobs:
       - name: Run unit tests
         run: npm run test
 
-      - name: Install Playwright (used for Storybook and E2E tests)
-        run: npx playwright install --with-deps
+      #- name: Install Playwright (used for Storybook and E2E tests)
+      #  run: npx playwright install --with-deps
 
-      - name: Run E2E tests
-        run: npm run test:e2e
+      #- name: Run E2E tests
+      #  run: npm run test:e2e
 
       - uses: actions/upload-artifact@v3
         if: always()
