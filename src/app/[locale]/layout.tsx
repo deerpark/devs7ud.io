@@ -6,6 +6,7 @@ import type {Metadata, Viewport} from 'next'
 import {Inter} from 'next/font/google'
 import {notFound} from 'next/navigation'
 import {useMessages} from 'next-intl'
+import {unstable_setRequestLocale} from 'next-intl/server'
 
 import LocaleSwitcher from '@/components/locale-switcher'
 import {ThemeProvider} from '@/components/providers'
@@ -83,12 +84,14 @@ export function generateStaticParams() {
   return AppConfig.locales.map((locale) => ({locale}))
 }
 
-type RootLayoutProps = Readonly<{
+type LocaleLayoutProps = Readonly<{
   children: React.ReactNode
   params: {locale: string}
 }>
 
-export default function RootLayout({children, params}: RootLayoutProps) {
+export default function LocaleLayout({children, params}: LocaleLayoutProps) {
+  unstable_setRequestLocale(params.locale)
+
   // Validate that the incoming `locale` parameter is valid
   if (!AppConfig.locales.includes(params.locale)) notFound()
 
