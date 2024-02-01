@@ -9,5 +9,6 @@ export const AppConfig = {
   authors: [{name: 'Yonn Kim', url: 'https://deerpark.github.io'}],
   locales: ['ko', 'en', 'fr'],
   defaultLocale: 'ko',
-  localePrefix
+  localePrefix,
+  twitter: 'deerpark7'
 }

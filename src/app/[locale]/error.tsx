@@ -5,9 +5,11 @@
 import {useEffect} from 'react'
 
 export default function Error({
+  children,
   error,
   reset
 }: {
+  children?: React.ReactNode
   error: Error & {digest?: string}
   reset: () => void
 }) {
@@ -26,6 +28,7 @@ export default function Error({
         }>
         Try again
       </button>
+      {children}
     </div>
   )
 }
