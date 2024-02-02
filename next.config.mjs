@@ -20,6 +20,10 @@ const nextConfig = bundleAnalyzer(
       remotePatterns: [
         {
           protocol: 'https',
+          hostname: 'img.icons8.com'
+        },
+        {
+          protocol: 'https',
           hostname: 'www.notion.so'
         },
         {

@@ -4,6 +4,8 @@
 
 import {useEffect} from 'react'
 
+import ErrorComponent from '@/components/ui/error'
+
 export default function Error({
   children,
   error,
@@ -18,18 +20,5 @@ export default function Error({
     console.error(error)
   }, [error])
 
-  return (
-    <div>
-      <h2>Something went wrong!</h2>
-      <button
-        type='button'
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }>
-        Try again
-      </button>
-      {children}
-    </div>
-  )
+  return <ErrorComponent reset={reset}>{children}</ErrorComponent>
 }
