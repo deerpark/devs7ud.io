@@ -5,8 +5,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
 import {useLocale} from 'next-intl'
 
+import {AppConfig} from '@/config/app'
 import {usePathname, useRouter} from '@/lib/i18nNavigation'
-import {AppConfig} from '@/utils/AppConfig'
 
 import {Button} from './ui/button'
 import {

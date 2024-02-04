@@ -7,7 +7,7 @@
   "bracketSpacing": false,
   "bracketSameLine": true,
   "arrowParens": "always",
-  "trailingComma": "none",
+  "trailingComma": "es5",
   "importOrder": [
     "^(react/(.*)$)|^(react$)|^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",

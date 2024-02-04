@@ -1,7 +1,7 @@
 import type {Metadata} from 'next/types'
 
+import {AppConfig} from '@/config/app'
 import {env} from '@/lib/env'
-import {AppConfig} from '@/utils/AppConfig'
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_HOST || 'https://devs7ud.io'),

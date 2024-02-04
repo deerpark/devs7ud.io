@@ -6,11 +6,10 @@ import {notFound} from 'next/navigation'
 import {useMessages} from 'next-intl'
 import {unstable_setRequestLocale} from 'next-intl/server'
 
-import LocaleSwitcher from '@/components/locale-switcher'
 import {ThemeProvider} from '@/components/providers'
-import {ThemeToggle} from '@/components/theme-toggle'
+import SkipToContent from '@/components/skip-to-content'
+import {AppConfig} from '@/config/app'
 import * as Fonts from '@/lib/fonts'
-import {AppConfig} from '@/utils/AppConfig'
 
 export {metadata} from '@/lib/metadata'
 export {viewport} from '@/lib/viewport'
@@ -38,6 +37,7 @@ export default function LocaleLayout({children, params}: LocaleLayoutProps) {
   return (
     <html lang='en'>
       <body className={Fonts.inter.className}>
+        <SkipToContent />
         <ThemeProvider
           attribute='class'
           defaultTheme='system'
@@ -45,23 +45,7 @@ export default function LocaleLayout({children, params}: LocaleLayoutProps) {
           disableTransitionOnChange
           locale={params.locale}
           messages={messages}>
-          <main className='flex min-h-screen flex-col items-center p-24'>
-            <div className='flex flex-none items-center'>
-              <p className='flex-none'>
-                Get started by editing&nbsp;
-                <code className='font-mono font-bold'>src/app/page.tsx</code>
-              </p>
-              <p className='flex-1' />
-              <div className='flex flex-none items-center space-x-2'>
-                <LocaleSwitcher />
-                <ThemeToggle />
-              </div>
-            </div>
-            {children}
-            <div className='flex-none'>
-              &copy; DEVS7UD.IO {new Date().getFullYear()}
-            </div>
-          </main>
+          {children}
         </ThemeProvider>
       </body>
     </html>

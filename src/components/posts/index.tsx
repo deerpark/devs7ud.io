@@ -13,7 +13,7 @@ export function Posts(props: PostsProps) {
       {data.map((post) => (
         <li key={post.id}>
           <Link
-            href={`/post/${(post.properties?.Slug as any)?.rich_text[0].plain_text}`}>
+            href={`/posts/${(post.properties?.Slug as any)?.rich_text[0].plain_text}`}>
             {(post.properties?.Title as any)?.title[0]?.plain_text}
           </Link>
         </li>

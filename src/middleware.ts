@@ -1,6 +1,6 @@
 import createMiddleware from 'next-intl/middleware'
 
-import {AppConfig} from './utils/AppConfig'
+import {AppConfig} from './config/app'
 
 const intlMiddleware = createMiddleware({
   locales: AppConfig.locales,
