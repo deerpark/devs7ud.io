@@ -6,9 +6,11 @@ type DefaultLayoutProps = Readonly<{
 
 export default function DefaultLayout({ children }: DefaultLayoutProps) {
   return (
-    <div className="relative flex size-full min-h-screen">
+    <div className="flex size-full h-screen">
       <Sidebar />
-      <div className="flex flex-1">{children}</div>
+      <div className="relative flex max-h-screen flex-1 overflow-y-auto">
+        {children}
+      </div>
     </div>
   )
 }

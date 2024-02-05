@@ -42,7 +42,7 @@ export default function GlobalError(props: GlobalErrorProps) {
           locale={props.params.locale}
           messages={messages}
         >
-          <ErrorComponent reset={props.reset}>
+          <ErrorComponent reset={props.reset} className="min-h-screen">
             {/* This is the default Next.js error component but it doesn't allow omitting the statusCode property yet. */}
             <NextError statusCode={undefined as any} />
           </ErrorComponent>

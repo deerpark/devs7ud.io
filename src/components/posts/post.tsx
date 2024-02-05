@@ -1,3 +1,4 @@
+import PostContainer from "./post-container"
 import Image from "next/image"
 
 interface Banner {
@@ -14,7 +15,7 @@ export function Post(props: PostProps) {
   const { title, content, banner } = props
 
   return (
-    <article className="mb-10 flex w-full flex-1 flex-col items-center pt-20">
+    <PostContainer title={title}>
       <h1 className="mb-8 text-6xl font-black">{title}</h1>
       {banner.url && (
         <Image
@@ -31,6 +32,6 @@ export function Post(props: PostProps) {
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: content }}
       />
-    </article>
+    </PostContainer>
   )
 }

@@ -19,7 +19,7 @@ interface Props {
   backButton?: boolean
   backButtonHref?: string
   magicTitle?: boolean
-  titleRef?: React.MutableRefObject<HTMLParagraphElement> | null
+  titleRef?: React.RefObject<HTMLParagraphElement> | null
   scrollContainerRef?: React.RefObject<HTMLElement> | null
   children?: React.ReactNode
   leadingAccessory?: React.ReactNode

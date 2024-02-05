@@ -5,7 +5,7 @@ import hljsPlugin from "@notion-render/hljs-plugin"
 import { notFound } from "next/navigation"
 
 import { getPageBySlug, getPageContent, notionClient } from "@/lib/notion"
-import { Post } from "@/components/post"
+import { Post } from "@/components/posts/post"
 
 export default async function Page({ params }: { params: { slug: string } }) {
   console.log("Slug: ", params)
