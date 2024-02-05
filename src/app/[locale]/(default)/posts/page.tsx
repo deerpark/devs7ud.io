@@ -1,7 +1,7 @@
-import type {PageObjectResponse} from '@notionhq/client/build/src/api-endpoints'
+import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 
-import {Posts} from '@/components/posts'
-import {getPages} from '@/lib/notion'
+import { Posts } from "@/components/posts"
+import { getPages } from "@/lib/notion"
 
 export default async function PostsPage() {
   const pages = await getPages()

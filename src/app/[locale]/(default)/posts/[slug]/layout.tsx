@@ -2,7 +2,7 @@ type PageLayoutProps = Readonly<{
   children: React.ReactNode
 }>
 
-export default function PageLayout({children}: PageLayoutProps) {
+export default function PageLayout({ children }: PageLayoutProps) {
   return children
 }
 

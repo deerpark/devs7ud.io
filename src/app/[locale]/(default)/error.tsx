@@ -1,18 +1,17 @@
-'use client'
+"use client"
 
 // Error components must be Client Components
+import { useEffect } from "react"
 
-import {useEffect} from 'react'
-
-import ErrorComponent from '@/components/ui/error'
+import ErrorComponent from "@/components/ui/error"
 
 export default function Error({
   children,
   error,
-  reset
+  reset,
 }: {
   children?: React.ReactNode
-  error: Error & {digest?: string}
+  error: Error & { digest?: string }
   reset: () => void
 }) {
   useEffect(() => {

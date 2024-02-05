@@ -1,13 +1,12 @@
-'use client'
+"use client"
 
-/* eslint-disable @typescript-eslint/naming-convention */
-import Link from 'next/link'
-import {useTheme} from 'next-themes'
-import * as React from 'react'
+import { useTheme } from "next-themes"
+import * as React from "react"
+import Link from "next/link"
 
-import {FaArrowLeft, FaBars, FaCircleXmark} from './icon'
-import {GlobalNavigationContext} from './providers'
-import {Button} from './ui/button'
+import { FaArrowLeft, FaBars, FaCircleXmark } from "./icon"
+import { GlobalNavigationContext } from "./providers"
+import { Button } from "./ui/button"
 
 type InitialTitleOffsets = {
   top: number
@@ -37,10 +36,10 @@ export function TitleBar({
   scrollContainerRef = null,
   leadingAccessory = null,
   trailingAccessory = null,
-  children
+  children,
 }: Props) {
-  const {isOpen, setIsOpen} = React.useContext(GlobalNavigationContext)
-  const {theme} = useTheme()
+  const { isOpen, setIsOpen } = React.useContext(GlobalNavigationContext)
+  const { theme } = useTheme()
   const [offset, setOffset] = React.useState(200)
   const [opacity, _setOpacity] = React.useState(0)
   const [currentScrollOffset, _setCurrentScrollOffset] = React.useState(0)
@@ -48,7 +47,7 @@ export function TitleBar({
   const [initialTitleOffsets, _setInitialTitleOffsets] =
     React.useState<InitialTitleOffsets>({
       top: 0,
-      bottom: 0
+      bottom: 0,
     })
 
   const initialTitleOffsetsRef = React.useRef(initialTitleOffsets)
@@ -89,32 +88,32 @@ export function TitleBar({
     setOpacity(opacityOffset)
   }, [titleRef, scrollContainerRef])
 
-  const backgroundColor = theme === 'dark' ? '50,50,50' : '255,255,255'
+  const backgroundColor = theme === "dark" ? "50,50,50" : "255,255,255"
   let backgroundColorOpacity
   if (currentScrollOffset === 0) {
     backgroundColorOpacity = currentScrollOffset
   } else {
     backgroundColorOpacity =
-      theme === 'dark' ? currentScrollOffset + 0.5 : currentScrollOffset + 0.8
+      theme === "dark" ? currentScrollOffset + 0.5 : currentScrollOffset + 0.8
   }
 
   React.useEffect(() => {
     // eslint-disable-next-line no-underscore-dangle
     const _scrollContainerRef = scrollContainerRef?.current
-    _scrollContainerRef?.addEventListener('scroll', handler)
-    return () => _scrollContainerRef?.removeEventListener('scroll', handler)
+    _scrollContainerRef?.addEventListener("scroll", handler)
+    return () => _scrollContainerRef?.removeEventListener("scroll", handler)
   }, [title, titleRef, scrollContainerRef, handler])
 
   React.useEffect(() => {
     if (!titleRef?.current || !scrollContainerRef?.current) return
-    if (scrollContainerRef && 'current' in scrollContainerRef) {
+    if (scrollContainerRef && "current" in scrollContainerRef) {
       // eslint-disable-next-line no-param-reassign
       scrollContainerRef.current.scrollTop = 0
     }
     setOpacity(0)
     setInitialTitleOffsets({
       bottom: titleRef.current.getBoundingClientRect().bottom - 56,
-      top: titleRef.current.getBoundingClientRect().top - 48
+      top: titleRef.current.getBoundingClientRect().top - 48,
     })
   }, [title, titleRef, scrollContainerRef])
 
@@ -123,20 +122,22 @@ export function TitleBar({
       style={{
         background: `rgba(${backgroundColor},${backgroundColorOpacity})`,
         boxShadow: `0 1px 3px rgba(0,0,0,${currentScrollOffset})`,
-        minHeight: '48px'
+        minHeight: "48px",
       }}
-      className='filter-blur sticky top-0 z-10 flex flex-col justify-center px-3 py-2 dark:border-b dark:border-gray-900'>
-      <div className='flex flex-none items-center justify-between'>
-        <span className='flex items-center space-x-3'>
+      className="filter-blur sticky top-0 z-10 flex flex-col justify-center px-3 py-2 dark:border-b dark:border-gray-900"
+    >
+      <div className="flex flex-none items-center justify-between">
+        <span className="flex items-center space-x-3">
           {globalMenu && (
             <Button
-              variant='ghost'
+              variant="ghost"
               onClick={() => setIsOpen(!isOpen)}
-              className='lg:hidden'>
+              className="lg:hidden"
+            >
               {isOpen ? (
-                <FaCircleXmark className='size-4 text-primary' />
+                <FaCircleXmark className="text-primary size-4" />
               ) : (
-                <FaBars className='size-4 text-primary' />
+                <FaBars className="text-primary size-4" />
               )}
             </Button>
           )}
@@ -144,8 +145,9 @@ export function TitleBar({
           {backButton && backButtonHref && (
             <Link
               href={backButtonHref}
-              className='flex items-center justify-center rounded-md p-2 text-primary hover:bg-gray-200 dark:hover:bg-gray-800 lg:hidden'>
-              <FaArrowLeft className='size-4 text-primary' />
+              className="text-primary flex items-center justify-center rounded-md p-2 hover:bg-gray-200 lg:hidden dark:hover:bg-gray-800"
+            >
+              <FaArrowLeft className="text-primary size-4" />
             </Link>
           )}
 
@@ -156,11 +158,12 @@ export function TitleBar({
               magicTitle
                 ? {
                     transform: `translateY(${offset}%)`,
-                    opacity: `${opacity}`
+                    opacity: `${opacity}`,
                   }
                 : {}
             }
-            className='line-clamp-1 transform-gpu text-sm font-bold text-primary'>
+            className="text-primary line-clamp-1 transform-gpu text-sm font-bold"
+          >
             {title}
           </h2>
         </span>

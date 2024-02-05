@@ -1,11 +1,11 @@
-import type {Viewport} from 'next'
+import type { Viewport } from "next"
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
-  viewportFit: 'cover',
+  viewportFit: "cover",
   themeColor: [
-    {media: '(prefers-color-scheme: light)', color: '#fefffe'},
-    {media: '(prefers-color-scheme: dark)', color: '#2d3439'}
-  ]
+    { media: "(prefers-color-scheme: light)", color: "#fefffe" },
+    { media: "(prefers-color-scheme: dark)", color: "#2d3439" },
+  ],
 }

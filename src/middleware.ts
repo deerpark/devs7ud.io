@@ -1,15 +1,15 @@
-import createMiddleware from 'next-intl/middleware'
+import createMiddleware from "next-intl/middleware"
 
-import {AppConfig} from './config/app'
+import { AppConfig } from "./config/app"
 
 const intlMiddleware = createMiddleware({
   locales: AppConfig.locales,
   localePrefix: AppConfig.localePrefix,
-  defaultLocale: AppConfig.defaultLocale
+  defaultLocale: AppConfig.defaultLocale,
 })
 
 export default intlMiddleware
 
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)']
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 }

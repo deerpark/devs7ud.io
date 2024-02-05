@@ -1,7 +1,7 @@
-import {faSpinnerThird} from '@fortawesome/pro-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { faSpinnerThird } from "@fortawesome/pro-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-import styles from '@/styles/styles.module.css'
+import styles from "@/styles/styles.module.css"
 
 export default function Loading() {
   return (

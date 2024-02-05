@@ -1,18 +1,18 @@
-import type {MetadataRoute} from 'next'
+import type { MetadataRoute } from "next"
 
 export default function robots(): MetadataRoute.Robots {
-  if (process.env.VERCEL_ENV === 'production') {
+  if (process.env.VERCEL_ENV === "production") {
     return {
       rules: {
-        userAgent: '*',
-        allow: '/'
-      }
+        userAgent: "*",
+        allow: "/",
+      },
     }
   }
   return {
     rules: {
-      userAgent: '*',
-      disallow: '/'
-    }
+      userAgent: "*",
+      disallow: "/",
+    },
   }
 }

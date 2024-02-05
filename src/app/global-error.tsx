@@ -1,21 +1,21 @@
-'use client'
+"use client"
 
-import '@fortawesome/fontawesome-svg-core/styles.css'
-import '@/styles/global.css'
+import "@fortawesome/fontawesome-svg-core/styles.css"
+import "@/styles/global.css"
 
-import NextError from 'next/error'
-import {useEffect} from 'react'
+import NextError from "next/error"
+import { useEffect } from "react"
 
-import ErrorComponent from '@/components/ui/error'
-import * as Fonts from '@/lib/fonts'
+import ErrorComponent from "@/components/ui/error"
+import * as Fonts from "@/lib/fonts"
 
-export {metadata} from '@/lib/metadata'
-export {viewport} from '@/lib/viewport'
+export { metadata } from "@/lib/metadata"
+export { viewport } from "@/lib/viewport"
 
 export default function GlobalError(props: {
-  error: Error & {digest?: string}
+  error: Error & { digest?: string }
   reset: () => void
-  params: {locale: string}
+  params: { locale: string }
 }) {
   useEffect(() => {
     console.error(props.error)

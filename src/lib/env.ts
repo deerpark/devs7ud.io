@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
-import {createEnv} from '@t3-oss/env-nextjs'
-import {z} from 'zod'
+import { createEnv } from "@t3-oss/env-nextjs"
+import { z } from "zod"
 
 // Don't add NODE_ENV into T3 Env, it changes the tree-shaking behavior
 export const env = createEnv({
@@ -9,10 +9,10 @@ export const env = createEnv({
     CROWDIN_PROJECT_ID: z.string().min(1),
     CROWDIN_PERSONAL_TOKEN: z.string().min(1),
     NOTION_TOKEN: z.string().min(1),
-    NOTION_DATABASE_ID: z.string().min(1)
+    NOTION_DATABASE_ID: z.string().min(1),
   },
   client: {
-    NEXT_PUBLIC_HOST: z.string().url('NEXT_PUBLIC_HOST is not a valid URL')
+    NEXT_PUBLIC_HOST: z.string().url("NEXT_PUBLIC_HOST is not a valid URL"),
   },
   // You need to destructure all the keys manually
   runtimeEnv: {
@@ -21,6 +21,6 @@ export const env = createEnv({
     CROWDIN_PROJECT_ID: process.env.CROWDIN_PROJECT_ID,
     CROWDIN_PERSONAL_TOKEN: process.env.CROWDIN_PERSONAL_TOKEN,
     NOTION_TOKEN: process.env.NOTION_TOKEN,
-    NOTION_DATABASE_ID: process.env.NOTION_DATABASE_ID
-  }
+    NOTION_DATABASE_ID: process.env.NOTION_DATABASE_ID,
+  },
 })

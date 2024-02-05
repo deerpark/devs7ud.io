@@ -1,5 +1,5 @@
-import {usePathname} from 'next/navigation'
-import * as React from 'react'
+import { usePathname } from "next/navigation"
+import * as React from "react"
 
 import {
   FaAddressCardIcon,
@@ -9,9 +9,9 @@ import {
   FaHouseIcon,
   FaSquareArrowUpRightIcon,
   FaTwitterSquareIcon,
-  FaWreathLaurelIcon
-} from '../icon'
-import {NavigationLink} from './navigation-link'
+  FaWreathLaurelIcon,
+} from "../icon"
+import { NavigationLink } from "./navigation-link"
 
 export function SidebarNavigation() {
   const pathname = usePathname()
@@ -20,98 +20,99 @@ export function SidebarNavigation() {
       label: null,
       items: [
         {
-          href: '/',
-          label: 'Home',
+          href: "/",
+          label: "Home",
           icon: FaHouseIcon,
           trailingAccessory: null,
-          isActive: pathname === '/',
+          isActive: pathname === "/",
           trailingAction: null,
-          isExternal: false
+          isExternal: false,
         },
 
         {
-          href: '/posts',
-          label: 'Posts',
+          href: "/posts",
+          label: "Posts",
           icon: FaBlogIcon,
           trailingAccessory: null,
-          isActive: pathname.indexOf('/posts') >= 0,
+          isActive: pathname.indexOf("/posts") >= 0,
           trailingAction: null,
-          isExternal: false
-        }
-      ]
+          isExternal: false,
+        },
+      ],
     },
     {
-      label: 'Me',
+      label: "Me",
       items: [
         {
-          href: '/bookmarks',
-          label: 'Bookmarks',
+          href: "/bookmarks",
+          label: "Bookmarks",
           icon: FaBoomarkIcon,
           trailingAccessory: null,
-          isActive: pathname.indexOf('/bookmarks') >= 0,
-          isExternal: false
+          isActive: pathname.indexOf("/bookmarks") >= 0,
+          isExternal: false,
         },
 
         {
-          href: '/about',
-          label: 'About',
+          href: "/about",
+          label: "About",
           icon: FaAddressCardIcon,
           trailingAccessory: null,
-          isActive: pathname.indexOf('/about') >= 0,
+          isActive: pathname.indexOf("/about") >= 0,
           trailingAction: null,
-          isExternal: false
-        }
-      ]
+          isExternal: false,
+        },
+      ],
     },
     {
-      label: 'Projects',
+      label: "Projects",
       items: [
         {
-          href: 'https://coni.gsretail.com',
-          label: 'Coni',
+          href: "https://coni.gsretail.com",
+          label: "Coni",
           icon: FaWreathLaurelIcon,
           trailingAccessory: FaSquareArrowUpRightIcon,
           isActive: false,
           trailingAction: null,
-          isExternal: true
-        }
-      ]
+          isExternal: true,
+        },
+      ],
     },
     {
-      label: 'Online',
+      label: "Online",
       items: [
         {
-          href: 'https://twitter.com/deerpark7',
-          label: 'Twitter',
+          href: "https://twitter.com/deerpark7",
+          label: "Twitter",
           icon: FaTwitterSquareIcon,
           trailingAccessory: FaSquareArrowUpRightIcon,
           isActive: false,
           trailingAction: null,
-          isExternal: true
+          isExternal: true,
         },
 
         {
-          href: 'https://github.com/deerpark',
-          label: 'GitHub',
+          href: "https://github.com/deerpark",
+          label: "GitHub",
           icon: FaGithubIcon,
           trailingAccessory: FaSquareArrowUpRightIcon,
           isActive: false,
           trailingAction: null,
-          isExternal: true
-        }
-      ]
-    }
+          isExternal: true,
+        },
+      ],
+    },
   ]
 
   return (
-    <div className='flex-1 space-y-1 p-3'>
+    <div className="flex-1 space-y-1 p-3">
       {sections.map((section) => {
         return (
-          <ul key={`${section?.label}`} className='space-y-1'>
+          <ul key={`${section?.label}`} className="space-y-1">
             {section.label && (
               <h4
                 key={section.label}
-                className='px-2 pb-2 pt-5 text-xs font-semibold text-opacity-40'>
+                className="px-2 pb-2 pt-5 text-xs font-semibold text-opacity-40"
+              >
                 {section.label}
               </h4>
             )}

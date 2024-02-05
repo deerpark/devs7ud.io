@@ -1,14 +1,14 @@
-import bookmarkPlugin from '@notion-render/bookmark-plugin'
-import {NotionRenderer} from '@notion-render/client'
+import bookmarkPlugin from "@notion-render/bookmark-plugin"
+import { NotionRenderer } from "@notion-render/client"
 // Plugins
-import hljsPlugin from '@notion-render/hljs-plugin'
-import {notFound} from 'next/navigation'
+import hljsPlugin from "@notion-render/hljs-plugin"
+import { notFound } from "next/navigation"
 
-import {Post} from '@/components/post'
-import {getPageBySlug, getPageContent, notionClient} from '@/lib/notion'
+import { getPageBySlug, getPageContent, notionClient } from "@/lib/notion"
+import { Post } from "@/components/post"
 
-export default async function Page({params}: {params: {slug: string}}) {
-  console.log('Slug: ', params)
+export default async function Page({ params }: { params: { slug: string } }) {
+  console.log("Slug: ", params)
   const post = await getPageBySlug(params.slug)
 
   // Redirect to not found page!
@@ -17,18 +17,18 @@ export default async function Page({params}: {params: {slug: string}}) {
   const content = await getPageContent(post.id)
 
   const notionRenderer = new NotionRenderer({
-    client: notionClient
+    client: notionClient,
   })
 
   notionRenderer.use(hljsPlugin({}))
   notionRenderer.use(bookmarkPlugin(undefined))
   const html = await notionRenderer.render(...content)
 
-  console.log('Post: ', post)
-  console.log('Html: ', html)
+  console.log("Post: ", post)
+  console.log("Html: ", html)
 
   const banner = {
-    url: (post.properties.Banner as any).url
+    url: (post.properties.Banner as any).url,
   }
 
   return (

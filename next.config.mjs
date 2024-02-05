@@ -6,57 +6,57 @@ import withNextIntl from 'next-intl/plugin'
 const withNextIntlConfig = withNextIntl('./src/lib/i18n.ts')
 
 const bundleAnalyzer = withBundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true'
+  enabled: process.env.ANALYZE === 'true',
 })
 
 /** @type {import('next').NextConfig} */
 const nextConfig = bundleAnalyzer(
   withNextIntlConfig({
     eslint: {
-      dirs: ['.']
+      dirs: ['.'],
     },
     staticPageGenerationTimeout: 300,
     images: {
       remotePatterns: [
         {
           protocol: 'https',
-          hostname: 'img.icons8.com'
+          hostname: 'img.icons8.com',
         },
         {
           protocol: 'https',
-          hostname: 'www.notion.so'
+          hostname: 'www.notion.so',
         },
         {
           protocol: 'https',
-          hostname: 'notion.so'
+          hostname: 'notion.so',
         },
         {
           protocol: 'https',
-          hostname: 'images.unsplash.com'
+          hostname: 'images.unsplash.com',
         },
         {
           protocol: 'https',
-          hostname: 'pbs.twimg.com'
+          hostname: 'pbs.twimg.com',
         },
         {
           protocol: 'https',
-          hostname: 'abs.twimg.com'
+          hostname: 'abs.twimg.com',
         },
         {
           protocol: 'https',
-          hostname: 's3.us-west-2.amazonaws.com'
+          hostname: 's3.us-west-2.amazonaws.com',
         },
         {
           protocol: 'https',
-          hostname: 'devs7ud.io'
+          hostname: 'devs7ud.io',
         },
         {
           protocol: 'https',
-          hostname: 'images.unsplash.com'
-        }
+          hostname: 'images.unsplash.com',
+        },
       ],
-      dangerouslyAllowSVG: true
-    }
+      dangerouslyAllowSVG: true,
+    },
   })
 )
 
