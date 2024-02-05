@@ -14,7 +14,7 @@ export default function PostContainer({ children, title }: PostContainerProps) {
     <div
       ref={scrollContainerRef}
       id="main"
-      className="bg-card relative flex max-h-screen w-full flex-col overflow-y-auto"
+      className="relative flex max-h-screen w-full flex-1 flex-col overflow-y-auto"
     >
       <TitleBar
         backButton
@@ -25,7 +25,7 @@ export default function PostContainer({ children, title }: PostContainerProps) {
         titleRef={titleRef}
         scrollContainerRef={scrollContainerRef}
       />
-      {children}
+      <div className="max-w-max p-8">{children}</div>
     </div>
   )
 }

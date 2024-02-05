@@ -16,7 +16,7 @@ export function Post(props: PostProps) {
 
   return (
     <PostContainer title={title}>
-      <h1 className="mb-8 text-6xl font-black">{title}</h1>
+      <h1 className="mb-8 text-center text-6xl font-black">{title}</h1>
       {banner.url && (
         <Image
           alt="Blog Image"
@@ -24,7 +24,7 @@ export function Post(props: PostProps) {
           // width={banner.width}
           width={800}
           height={400}
-          className="max-w-[800px] object-cover"
+          className="max-w-full object-cover"
         />
       )}
       <div

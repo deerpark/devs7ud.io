@@ -6,6 +6,7 @@ import { GlobalNavigationContext } from "../providers"
 import { SidebarNavigation } from "./navigation"
 import { SidebarOverlay } from "./overlay"
 import { TitleBar } from "../title-bar"
+import SidebarFooter from "./footer"
 
 export function Sidebar() {
   const navigationContext = React.useContext(GlobalNavigationContext)
@@ -27,6 +28,7 @@ export function Sidebar() {
           title="DEVS7UD.IO"
         />
         <SidebarNavigation />
+        <SidebarFooter />
       </nav>
 
       <SidebarOverlay />

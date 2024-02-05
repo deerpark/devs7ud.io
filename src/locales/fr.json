@@ -2,5 +2,40 @@
   "Meta": {
     "title": "DEVS7UD.IO",
     "description": "Nous pensons à des interfaces utilisateur pratiques et conviviales."
+  },
+  "SYSTEM": {
+    "theme": {
+      "label": "thème",
+      "system": "système",
+      "light": "clair",
+      "dark": "sombre"
+    },
+    "language": {
+      "label": "Langue",
+      "KO": "한국어",
+      "EN": "English",
+      "FR": "Français"
+    },
+    "navigation": {
+      "index": {
+        "label": " ",
+        "home": "Accueil",
+        "posts": "Publications"
+      },
+      "me": {
+        "label": "Moi",
+        "bookmarks": "Signets",
+        "about": "À propos"
+      },
+      "projects": {
+        "label": "Projets",
+        "coni": "CONI"
+      },
+      "online": {
+        "label": "En ligne",
+        "twitter": "Twitter",
+        "github": "Github"
+      }
+    }
   }
 }

@@ -6,35 +6,29 @@ import List from "@/components/list"
 
 type PageLayoutProps = Readonly<{
   children: React.ReactNode
-  params: { locale: string; slug: string }
 }>
 
-export default async function PageLayout({
-  children,
-  params,
-}: PageLayoutProps) {
+export default async function PageLayout({ children }: PageLayoutProps) {
   const pages = await getPages()
 
   return (
     <div className="flex w-full">
-      <div
-        id="list"
-        className={`bg-dots ${
-          params.slug ? "hidden lg:flex" : "min-h-screen w-full"
-        }`}
-      >
-        <List title="Posts">
-          {pages.results.length ? (
-            <Posts
-              data={pages.results as PageObjectResponse[]}
-              slug={params.slug}
-            />
+      <List
+        title="Posts"
+        contents={
+          pages.results.length ? (
+            <Posts data={pages.results as PageObjectResponse[]} />
           ) : (
-            <div>등록된 포스트가 없습니다.</div>
-          )}
-        </List>
-      </div>
-      {children}
+            <div id="list" className="bg-dots min-h-screen w-full">
+              <div className="bg-background lg:bg-card relative size-full max-h-screen min-h-screen flex-none overflow-y-auto border-r lg:w-80 xl:w-96">
+                등록된 포스트가 없습니다.
+              </div>
+            </div>
+          )
+        }
+      >
+        {children}
+      </List>
     </div>
   )
 }

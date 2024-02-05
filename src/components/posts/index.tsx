@@ -1,14 +1,14 @@
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import ListItemLink from "../list/list-link"
 import ListItem from "../list/list-item"
-import Link from "next/link"
 
-interface PostsProps {
+export interface PostsProps {
   data: PageObjectResponse[]
   onClick?: () => void
   leadingAccessory?: React.ReactElement | null
   byline?: boolean
-  slug?: string
+  slug?: string | string[] | undefined
 }
 
 export function Posts(props: PostsProps) {
@@ -22,13 +22,7 @@ export function Posts(props: PostsProps) {
       ?.plain_text
     return (
       <ListItem key={post.id} layoutKey={post.id}>
-        <Link
-          href={`/posts/${(post.properties?.Slug as any)?.rich_text[0].plain_text}`}
-          onClick={onClick && onClick}
-          className={`flex space-x-3 border-b px-3.5 py-3 text-sm lg:rounded-lg lg:border-none lg:py-2 ${
-            active ? "" : "sm:hover:bg-card"
-          }`}
-        >
+        <ListItemLink url={url} onClick={onClick && onClick}>
           {leadingAccessory}
           <div className="flex flex-col justify-center space-y-1">
             <div
@@ -62,7 +56,7 @@ export function Posts(props: PostsProps) {
               </div>
             )}
           </div>
-        </Link>
+        </ListItemLink>
       </ListItem>
     )
   })

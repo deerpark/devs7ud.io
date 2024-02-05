@@ -8,7 +8,6 @@ import { getPageBySlug, getPageContent, notionClient } from "@/lib/notion"
 import { Post } from "@/components/posts/post"
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  console.log("Slug: ", params)
   const post = await getPageBySlug(params.slug)
 
   // Redirect to not found page!
@@ -25,7 +24,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const html = await notionRenderer.render(...content)
 
   console.log("Post: ", post)
-  console.log("Html: ", html)
+  // console.log("Html: ", html)
 
   const banner = {
     url: (post.properties.Banner as any).url,

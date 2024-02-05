@@ -1,4 +1,5 @@
 import { unstable_setRequestLocale } from "next-intl/server"
+import MainContainer from "@/components/main"
 import { useTranslations } from "next-intl"
 
 export default function Home({
@@ -10,5 +11,9 @@ export default function Home({
 
   const t = useTranslations("Meta")
 
-  return <h1>{t("title")}</h1>
+  return (
+    <MainContainer title={t("title")}>
+      <p>{t("description")}</p>
+    </MainContainer>
+  )
 }

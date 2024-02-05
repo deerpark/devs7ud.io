@@ -40,8 +40,15 @@ const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
 )
 Heading.displayName = "Heading"
 
-function P({ children }: React.PropsWithChildren) {
-  return <p className="leading-7 [&:not(:first-child)]:mt-6">{children}</p>
+function P({
+  children,
+  className,
+}: { className?: string } & React.PropsWithChildren) {
+  return (
+    <p className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}>
+      {children}
+    </p>
+  )
 }
 
 function Blockquote({ children }: React.PropsWithChildren) {

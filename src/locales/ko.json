@@ -2,5 +2,40 @@
   "Meta": {
     "title": "DEVS7UD.IO",
     "description": "저희는 실용적이고 사용자 친화적인 사용자 인터페이스를 고민합니다."
+  },
+  "SYSTEM": {
+    "theme": {
+      "label": "테마",
+      "system": "시스템",
+      "light": "라이트",
+      "dark": "다크"
+    },
+    "language": {
+      "label": "언어",
+      "KO": "한국어",
+      "EN": "English",
+      "FR": "Français"
+    },
+    "navigation": {
+      "index": {
+        "label": " ",
+        "home": "홈",
+        "posts": "읽을거리"
+      },
+      "me": {
+        "label": "개인",
+        "bookmarks": "북마크",
+        "about": "소개"
+      },
+      "projects": {
+        "label": "프로젝트",
+        "coni": "코니"
+      },
+      "online": {
+        "label": "온라인",
+        "twitter": "트위터",
+        "github": "깃허브"
+      }
+    }
   }
 }

@@ -1,8 +1,6 @@
 "use client"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEarth } from "@fortawesome/pro-solid-svg-icons"
-import { useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import Image from "next/image"
 
 import { usePathname, useRouter } from "@/lib/i18nNavigation"
@@ -12,18 +10,21 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
+  DropdownMenuGroup,
+  DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu"
+import { Locale } from "@/types/common"
 import { Button } from "./ui/button"
+import { cn } from "@/lib/utils"
 
 const LocaleIcons = {
   en: (
     <Image
       width={20}
       height={20}
+      className="ring-foreground rounded-full ring-1"
       src="https://img.icons8.com/color/48/usa-circular.png"
       alt="belgium-circular"
     />
@@ -32,6 +33,7 @@ const LocaleIcons = {
     <Image
       width={20}
       height={20}
+      className="ring-foreground rounded-full ring-1"
       src="https://img.icons8.com/color/48/south-korea-circular.png"
       alt="south-korea-circular"
     />
@@ -40,6 +42,7 @@ const LocaleIcons = {
     <Image
       width={20}
       height={20}
+      className="ring-foreground rounded-full ring-1"
       src="https://img.icons8.com/color/48/france-circular.png"
       alt="france-circular"
     />
@@ -49,10 +52,12 @@ const LocaleIcons = {
 export default function LocaleSwitcher() {
   const router = useRouter()
   const pathname = usePathname()
-  const locale = useLocale()
+  const locale = (useLocale().toUpperCase() as Locale | undefined) || "label"
+  const t = useTranslations("SYSTEM.language")
 
-  const handleChange = (newLocale: string): void => {
-    if (!locale) return
+  const handleChange: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    const newLocale = e.currentTarget.dataset.locale
+    if (!newLocale) return
     router.push(pathname, { locale: newLocale })
     router.refresh()
   }
@@ -60,25 +65,30 @@ export default function LocaleSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="space-x-1">
-          <FontAwesomeIcon
-            icon={faEarth}
-            className="size-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-          />
-          <span>{locale.toUpperCase()}</span>
+        <Button variant="ghost" className="space-x-3 px-3">
+          {LocaleIcons[locale.toLowerCase() as keyof typeof LocaleIcons]}
+          <span>{t(locale)}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuLabel>Locale</DropdownMenuLabel>
+      <DropdownMenuContent align="start">
+        <DropdownMenuLabel>{t("label")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup value={locale} onValueChange={handleChange}>
+        <DropdownMenuGroup className="space-y-px">
           {AppConfig.locales.map((elt) => (
-            <DropdownMenuRadioItem key={elt} value={elt}>
+            <DropdownMenuItem
+              data-locale={elt}
+              key={elt}
+              onClick={handleChange}
+              className={cn(
+                "space-x-3",
+                elt === locale.toLocaleLowerCase() ? "bg-accent" : ""
+              )}
+            >
               {LocaleIcons[elt as keyof typeof LocaleIcons]}
-              <span>{elt.toUpperCase()}</span>
-            </DropdownMenuRadioItem>
+              <span>{t(elt.toUpperCase() as Locale)}</span>
+            </DropdownMenuItem>
           ))}
-        </DropdownMenuRadioGroup>
+        </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   )

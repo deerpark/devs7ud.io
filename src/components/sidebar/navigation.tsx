@@ -12,63 +12,66 @@ import {
   FaWreathLaurelIcon,
 } from "../icon"
 import { NavigationLink } from "./navigation-link"
+import { useTranslations } from "next-intl"
 
 export function SidebarNavigation() {
   const pathname = usePathname()
+  const t = useTranslations("SYSTEM.navigation")
   const sections = [
     {
       label: null,
       items: [
         {
           href: "/",
-          label: "Home",
+          label: t("index.home"),
           icon: FaHouseIcon,
           trailingAccessory: null,
-          isActive: pathname === "/",
+          isActive: pathname.replace(/en|ko|fr/g, "") === "/",
           trailingAction: null,
           isExternal: false,
         },
 
         {
           href: "/posts",
-          label: "Posts",
+          label: t("index.posts"),
           icon: FaBlogIcon,
           trailingAccessory: null,
-          isActive: pathname.indexOf("/posts") >= 0,
+          isActive: pathname.replace(/en|ko|fr/g, "").indexOf("/posts") >= 0,
           trailingAction: null,
           isExternal: false,
         },
       ],
     },
     {
-      label: "Me",
+      label: t("me.label"),
       items: [
         {
           href: "/bookmarks",
-          label: "Bookmarks",
+          label: t("me.bookmarks"),
           icon: FaBoomarkIcon,
           trailingAccessory: null,
-          isActive: pathname.indexOf("/bookmarks") >= 0,
+          isActive:
+            pathname.replace(/en|ko|fr/g, "").indexOf("/bookmarks") >= 0,
           isExternal: false,
         },
 
         {
           href: "/about",
-          label: "About",
+          label: t("me.about"),
           icon: FaAddressCardIcon,
           trailingAccessory: null,
-          isActive: pathname.indexOf("/about") >= 0,
+          isActive: pathname.replace(/en|ko|fr/g, "").indexOf("/about") >= 0,
           trailingAction: null,
           isExternal: false,
         },
       ],
     },
     {
-      label: "Projects",
+      label: t("projects.label"),
       items: [
         {
           href: "https://coni.gsretail.com",
-          label: "Coni",
+          label: t("projects.coni"),
           icon: FaWreathLaurelIcon,
           trailingAccessory: FaSquareArrowUpRightIcon,
           isActive: false,
@@ -78,11 +81,11 @@ export function SidebarNavigation() {
       ],
     },
     {
-      label: "Online",
+      label: t("online.label"),
       items: [
         {
           href: "https://twitter.com/deerpark7",
-          label: "Twitter",
+          label: t("online.twitter"),
           icon: FaTwitterSquareIcon,
           trailingAccessory: FaSquareArrowUpRightIcon,
           isActive: false,
@@ -92,7 +95,7 @@ export function SidebarNavigation() {
 
         {
           href: "https://github.com/deerpark",
-          label: "GitHub",
+          label: t("online.github"),
           icon: FaGithubIcon,
           trailingAccessory: FaSquareArrowUpRightIcon,
           isActive: false,
