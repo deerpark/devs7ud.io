@@ -11,6 +11,7 @@ import { ThemeProvider } from "@/components/providers"
 import ErrorComponent from "@/components/ui/error"
 import { useMessages } from "next-intl"
 import * as Fonts from "@/lib/fonts"
+import { cn } from "@/lib/utils"
 
 export { metadata } from "@/lib/metadata"
 export { viewport } from "@/lib/viewport"
@@ -32,13 +33,18 @@ export default function GlobalError(props: GlobalErrorProps) {
   }, [props.error])
 
   return (
-    <html lang={props.params.locale}>
-      <body className={Fonts.inter.className}>
+    <html
+      lang={props.params.locale}
+      className={cn(
+        Fonts.inter.variable,
+        props.params.locale === "ko" ? Fonts.oaGothic.variable : ""
+      )}
+    >
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
           locale={props.params.locale}
           messages={messages}
         >

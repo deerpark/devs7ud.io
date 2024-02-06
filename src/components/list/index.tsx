@@ -6,7 +6,7 @@ import { TitleBar } from "../title-bar"
 import * as React from "react"
 
 type ListProps = {
-  title: string
+  title: React.ReactNode
   contents: React.ReactNode
 } & React.PropsWithChildren
 

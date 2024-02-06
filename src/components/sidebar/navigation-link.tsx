@@ -37,7 +37,7 @@ export function NavigationLink({
         className={`flex flex-1 items-center space-x-3 rounded-md p-2 text-sm font-medium lg:py-1.5  ${
           isActive
             ? "text-primary-foreground bg-primary"
-            : "text-foreground/80 hover:bg-accent hover:text-foreground/100"
+            : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
         }`}
         onClick={() => setIsOpen(false)}
       >

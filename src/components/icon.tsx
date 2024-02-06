@@ -5,6 +5,7 @@ import {
   faBlog as faBlogIcon,
   faBookmark as faBookmarkIcon,
   faCircleXmark as faCircleXmarkIcon,
+  faXmark as faXmarkIcon,
   faHouse as faHouseIcon,
   faSquareArrowUpRight as faSquareArrowUpRightIcon,
   faWreathLaurel as faWreathLaurelIcon,
@@ -43,6 +44,9 @@ export const FaBars = (props: IconProps) => (
 )
 export const FaCircleXmark = (props: IconProps) => (
   <FaIcon icon={faCircleXmarkIcon} {...props} />
+)
+export const FaXmark = (props: IconProps) => (
+  <FaIcon icon={faXmarkIcon} {...props} />
 )
 export const FaHouseIcon = (props: IconProps) => (
   <FaIcon icon={faHouseIcon} {...props} />

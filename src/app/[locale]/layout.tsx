@@ -38,7 +38,13 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const messages = useMessages()
 
   return (
-    <html lang={params.locale} className={cn(Fonts.inter.variable)}>
+    <html
+      lang={params.locale}
+      className={cn(
+        Fonts.inter.variable,
+        params.locale === "ko" ? Fonts.oaGothic.variable : ""
+      )}
+    >
       <body>
         <SkipToContent />
         <ThemeProvider

@@ -26,7 +26,7 @@ export default function ListItemLink({
       className={cn(
         `border-border/50 flex space-x-3 border-b px-6 py-3 text-sm lg:rounded-lg lg:border-none lg:px-3 lg:py-2 ${
           active
-            ? "bg-primary text-primary-foreground"
+            ? "bg-primary text-primary-foreground active group"
             : "hover:bg-accent hover:text-accent-foreground"
         }`,
         className

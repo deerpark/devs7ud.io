@@ -2,6 +2,8 @@ import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoint
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import ListItemLink from "../list/list-link"
 import ListItem from "../list/list-item"
+import { appConfig } from "@/config/app"
+import { cn } from "@/lib/utils"
 
 export interface PostsProps {
   data: PageObjectResponse[]
@@ -17,6 +19,7 @@ export function Posts(props: PostsProps) {
   return data.map((post) => {
     const url = `/posts/${(post.properties?.Slug as any)?.rich_text[0].plain_text}`
     const active = `/posts/${slug}` === url
+    console.log(url, slug)
     const title = (post.properties?.Title as any)?.title[0]?.plain_text
     const description = (post.properties?.Description as any)?.rich_text[0]
       ?.plain_text
@@ -26,31 +29,41 @@ export function Posts(props: PostsProps) {
           {leadingAccessory}
           <div className="flex flex-col justify-center space-y-1">
             <div
-              className={`line-clamp-3 text-lg font-bold lg:text-base ${active ? "" : "opacity-80"}`}
+              className={`group-[.active]:text-primary-foreground line-clamp-3 text-lg/6 font-bold lg:text-base/5`}
             >
               {title}
             </div>
             {description && (
-              <div className={`line-clamp-2 ${active ? "" : "opacity-60"}`}>
+              <div
+                className={`text-muted-foreground group-[.active]:text-primary-foreground/70 line-clamp-2 text-base/5 lg:text-sm/4`}
+              >
                 {description}
               </div>
             )}
             {byline && (
               <div
-                className={`line-clamp-1 ${
+                className={`line-clamp-1 flex items-center space-x-2 py-2 pl-0.5 ${
                   active
-                    ? "text-white text-opacity-60"
-                    : "text-gray-1000 text-opacity-40 dark:text-white dark:text-opacity-60"
+                    ? "text-secondary-foreground"
+                    : "text-secondary-foreground/40"
                 }`}
               >
-                <Avatar>
+                <Avatar
+                  className={cn(
+                    "ring-foreground group-[.active]:ring-primary-foreground size-4 rounded-full ring-1"
+                  )}
+                >
                   <AvatarImage
                     src="https://github.com/shadcn.png"
-                    alt="@deerpark"
+                    alt={`"@${appConfig.twitter}"`}
                   />
-                  <AvatarFallback>YK</AvatarFallback>
+                  <AvatarFallback>
+                    {appConfig.authors[0]?.name.slice(0, 2)}
+                  </AvatarFallback>
                 </Avatar>
-                <span>Yoon Kim</span>
+                <span className="group-[.active]:text-primary-foreground text-xs">
+                  {appConfig.authors[0]?.name}
+                </span>
               </div>
             )}
           </div>

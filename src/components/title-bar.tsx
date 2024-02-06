@@ -3,10 +3,11 @@
 import { useTheme } from "next-themes"
 import * as React from "react"
 
-import { FaArrowLeft, FaBars, FaCircleXmark } from "./icon"
 import { GlobalNavigationContext } from "./providers"
+import { FaArrowLeft, FaBars, FaXmark } from "./icon"
 import { useRouter } from "next/navigation"
 import { Button } from "./ui/button"
+import { cn } from "@/lib/utils"
 
 type InitialTitleOffsets = {
   top: number
@@ -100,7 +101,6 @@ export function TitleBar({
     router.push(backButtonHref)
   }, [backButtonHref, router])
 
-  const backgroundColor = isDarkmode ? "50,50,50" : "255,255,255"
   let backgroundColorOpacity
   if (currentScrollOffset === 0) {
     backgroundColorOpacity = currentScrollOffset
@@ -109,6 +109,8 @@ export function TitleBar({
       ? currentScrollOffset + 0.5
       : currentScrollOffset + 0.8
   }
+
+  const isTitleCovered = typeof title === "string"
 
   React.useEffect(() => {
     // eslint-disable-next-line no-underscore-dangle
@@ -133,23 +135,27 @@ export function TitleBar({
   return (
     <div
       style={{
-        background: `rgba(${backgroundColor},${backgroundColorOpacity})`,
-        boxShadow: `0 1px 3px rgba(0,0,0,${currentScrollOffset})`,
-        minHeight: "48px",
+        background: `hsla(var(--card) / ${backgroundColorOpacity})`,
+        boxShadow: `0 1px 20px rgba(0,0,0,${currentScrollOffset})`,
       }}
-      className="filter-blur border-border/50 sticky top-0 z-10 flex flex-col justify-center border-b px-3 py-2 lg:border-0"
+      className={cn(
+        "border-border/50 sticky top-0 z-10 flex min-h-14 flex-col justify-center border-b px-3 py-2",
+        isTitleCovered || currentScrollOffset !== 0
+          ? "lg:border-0"
+          : "filter-blur"
+      )}
     >
       <div className="flex flex-none items-center justify-between">
-        <span className="flex items-center">
+        <span className="flex w-full items-center">
           {globalMenu && (
             <Button
-              variant="ghost"
+              variant="secondary"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
               className="text-foreground mr-3 lg:hidden"
             >
               {isOpen ? (
-                <FaCircleXmark className="size-4" />
+                <FaXmark className="size-4" />
               ) : (
                 <FaBars className="size-4" />
               )}
@@ -158,7 +164,7 @@ export function TitleBar({
 
           {backButton && backButtonHref && (
             <Button
-              variant="ghost"
+              variant="secondary"
               size="icon"
               onClick={handleNavToBack}
               className="text-foreground mr-3 flex items-center justify-center rounded-md p-2 lg:hidden"
@@ -171,7 +177,7 @@ export function TitleBar({
 
           <h2
             style={
-              magicTitle
+              magicTitle && isTitleCovered
                 ? {
                     transform: `translateY(${offset}%)`,
                     opacity: `${opacity}`,
@@ -179,7 +185,9 @@ export function TitleBar({
                 : {}
             }
             className={
-              "text-foreground line-clamp-1 transform-gpu text-sm font-bold"
+              isTitleCovered
+                ? "text-foreground line-clamp-1 transform-gpu text-sm font-bold"
+                : "w-full"
             }
           >
             {title}

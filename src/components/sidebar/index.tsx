@@ -30,7 +30,7 @@ export function Sidebar() {
           leadingAccessory={null}
           title={
             <LogoTypo
-              className="text-foreground w-32 lg:ml-2 lg:w-28"
+              className="text-muted-foreground/70 w-32 lg:ml-2 lg:w-28"
               viewBox="0 0 141 18"
               preserveAspectRatio="xMidYMid meet"
               title={t("title")}
