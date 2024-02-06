@@ -23,10 +23,10 @@ export default async function Image({
   // Font
   const font = isKo
     ? fetch(
-        new URL("@/public/assets/fonts/OAGothic-ExtraBold.ttf", import.meta.url)
+        new URL("../../../../../fonts/OAGothic-ExtraBold.ttf", import.meta.url)
       ).then((res) => res.arrayBuffer())
     : fetch(
-        new URL("@/public/assets/fonts/Inter-SemiBold.ttf", import.meta.url)
+        new URL("../../../../../fonts/Inter-SemiBold.ttf", import.meta.url)
       ).then((res) => res.arrayBuffer())
 
   return new ImageResponse(

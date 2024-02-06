@@ -1,3 +1,5 @@
+import * as Fonts from "@/lib/fonts"
+
 type PageLayoutProps = Readonly<{
   children: React.ReactNode
   params: { slug: string; locale: string }
@@ -5,7 +7,7 @@ type PageLayoutProps = Readonly<{
 
 export default function PageLayout({ children, params }: PageLayoutProps) {
   console.log("post params", params)
-  return children
+  return <div className={Fonts.oaGothic.variable}>{children}</div>
 }
 
 // export const runtime = 'edge';

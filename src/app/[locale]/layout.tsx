@@ -15,6 +15,7 @@ export { viewport } from "@/lib/viewport"
 import GoogleAnalytics from "@/components/google-analytics"
 import { Bootstrap } from "@/components/bootstrap"
 import { appConfig } from "@/config/app"
+import { cn } from "@/lib/utils"
 
 faConfig.autoAddCss = false
 
@@ -37,8 +38,8 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const messages = useMessages()
 
   return (
-    <html lang={params.locale}>
-      <body className={Fonts.inter.className}>
+    <html lang={params.locale} className={cn(Fonts.inter.variable)}>
+      <body>
         <SkipToContent />
         <ThemeProvider
           attribute="class"
