@@ -3,6 +3,7 @@
 import * as React from "react"
 
 import LogoTypo from "@/public/assets/icons/logo-typo-mono.svg"
+import Favicon from "@/public/assets/icons/favicon-mono.svg"
 import { GlobalNavigationContext } from "../providers"
 import { SidebarNavigation } from "./navigation"
 import { useTranslations } from "next-intl"
@@ -29,12 +30,19 @@ export function Sidebar() {
           scrollContainerRef={scrollContainerRef}
           leadingAccessory={null}
           title={
-            <LogoTypo
-              className="text-muted-foreground/70 w-32 lg:ml-2 lg:w-28"
-              viewBox="0 0 141 18"
-              preserveAspectRatio="xMidYMid meet"
-              title={t("title")}
-            />
+            <div className="flex items-center">
+              <Favicon
+                className="text-foreground/80 mr-1 size-5 lg:ml-2 lg:size-[18px]"
+                viewBox="0 0 140 138"
+                preserveAspectRatio="xMidYMid meet"
+              />
+              <LogoTypo
+                className="text-foreground/80 w-28 lg:ml-2 lg:w-24"
+                viewBox="0 0 141 18"
+                preserveAspectRatio="xMidYMid meet"
+                title={t("title")}
+              />
+            </div>
           }
         />
         <SidebarNavigation />
