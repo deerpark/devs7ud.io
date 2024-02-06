@@ -15,7 +15,7 @@ export default async function PageLayout({
   params,
 }: PageLayoutProps) {
   unstable_setRequestLocale(params.locale)
-  const pages = await getPages()
+  const pages = await getPages(params.locale)
   const t = await getTranslations()
 
   return (
