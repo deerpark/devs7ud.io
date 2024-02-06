@@ -11,6 +11,7 @@ import {
   faWreathLaurel as faWreathLaurelIcon,
   faMoonStars as faMoonStarsIcon,
   faSun as faSunIcon,
+  faBomb as faBombIcon,
   faDoNotEnter as faDoNotEnterIcon,
 } from "@fortawesome/pro-duotone-svg-icons"
 import {
@@ -80,4 +81,7 @@ export const FaSunIcon = (props: IconProps) => (
 )
 export const FaDoNotEnterIcon = (props: IconProps) => (
   <FaIcon icon={faDoNotEnterIcon} {...props} />
+)
+export const FaBombIcon = (props: IconProps) => (
+  <FaIcon icon={faBombIcon} {...props} />
 )

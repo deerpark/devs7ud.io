@@ -1,9 +1,7 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBomb } from "@fortawesome/pro-solid-svg-icons"
-
 import { Heading } from "@/components/ui/typography"
 import { Button } from "@/components/ui/button"
 import { useTranslations } from "next-intl"
+import { FaBombIcon } from "../icon"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 
@@ -22,7 +20,7 @@ export default function Error({ children, reset, className }: ErorProps) {
         className
       )}
     >
-      <FontAwesomeIcon icon={faBomb} className="my-10 size-12" />
+      <FaBombIcon className="my-10 size-12" />
       <div className="flex flex-col items-center space-y-3">
         <Heading tag="h1">{t("error.title")}</Heading>
         <div className="flex items-center justify-center space-x-3">

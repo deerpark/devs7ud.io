@@ -110,7 +110,7 @@ export function TitleBar({
       : currentScrollOffset + 0.8
   }
 
-  const isTitleCovered = typeof title === "string"
+  const isTitleString = typeof title === "string"
 
   React.useEffect(() => {
     // eslint-disable-next-line no-underscore-dangle
@@ -139,10 +139,12 @@ export function TitleBar({
         boxShadow: `0 1px 20px rgba(0,0,0,${currentScrollOffset})`,
       }}
       className={cn(
-        "border-border/50 sticky top-0 z-10 flex min-h-14 flex-col justify-center border-b px-3 py-2",
-        isTitleCovered || currentScrollOffset !== 0
-          ? "lg:border-0"
-          : "filter-blur"
+        "border-border/50 bg-background sticky top-0 z-10 flex min-h-14 flex-col justify-center border-b px-3 py-2",
+        currentScrollOffset !== 0
+          ? "border-0 backdrop-blur-sm backdrop-brightness-150"
+          : isTitleString && !title.trim()
+            ? "lg:border-0"
+            : ""
       )}
     >
       <div className="flex flex-none items-center justify-between">
@@ -177,7 +179,7 @@ export function TitleBar({
 
           <h2
             style={
-              magicTitle && isTitleCovered
+              magicTitle && isTitleString
                 ? {
                     transform: `translateY(${offset}%)`,
                     opacity: `${opacity}`,
@@ -185,7 +187,7 @@ export function TitleBar({
                 : {}
             }
             className={
-              isTitleCovered
+              isTitleString
                 ? "text-foreground line-clamp-1 transform-gpu text-sm font-bold"
                 : "w-full"
             }

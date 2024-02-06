@@ -1,6 +1,6 @@
+import Logo from "@/public/assets/icons/logo-background-white.svg"
 import LogoTypo from "@/public/assets/icons/logo-typo-mono.svg"
 import { unstable_setRequestLocale } from "next-intl/server"
-import Logo from "@/public/assets/icons/logo.svg"
 import MainContainer from "@/components/main"
 import { useTranslations } from "next-intl"
 
@@ -17,7 +17,7 @@ export default function Home({
     <MainContainer title="">
       <div className="my-20 flex flex-col items-center space-y-5">
         <Logo
-          className="h-32 w-[136.376px]"
+          className="dark:ring-foreground h-32 w-[136.376px] rounded-xl dark:ring"
           viewBox="0 0 521 489"
           preserveAspectRatio="xMidYMid meet"
         />
@@ -27,7 +27,7 @@ export default function Home({
           preserveAspectRatio="xMidYMid meet"
           title={t("title")}
         />
-        <p className="text-muted-foreground max-w-60 break-keep pt-20">
+        <p className="text-muted-foreground/50 max-w-60 break-keep pt-20 text-center">
           {t("description")}
         </p>
       </div>
