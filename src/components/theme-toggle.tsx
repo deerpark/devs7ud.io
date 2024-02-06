@@ -1,7 +1,5 @@
 "use client"
 
-import { faMoonStars, faSun } from "@fortawesome/pro-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useTranslations } from "next-intl"
 import { useTheme } from "next-themes"
 import * as React from "react"
@@ -16,6 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu"
+import { FaMoonStarsIcon, FaSunIcon } from "./icon"
 
 export function ThemeToggle() {
   const { setTheme } = useTheme()
@@ -25,27 +24,30 @@ export function ThemeToggle() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon">
-          <FontAwesomeIcon
-            icon={faSun}
-            className="size-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-          />
-          <FontAwesomeIcon
-            icon={faMoonStars}
-            className="absolute size-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
-          />
+          <FaSunIcon className="size-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <FaMoonStarsIcon className="absolute size-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">{t("toggle")}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
         <DropdownMenuLabel>{t("label")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => setTheme("light")}>
+        <DropdownMenuItem
+          onClick={() => setTheme("light")}
+          className="text-secondary-foreground"
+        >
           {t("light")}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
+        <DropdownMenuItem
+          onClick={() => setTheme("dark")}
+          className="text-secondary-foreground"
+        >
           {t("dark")}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
+        <DropdownMenuItem
+          onClick={() => setTheme("system")}
+          className="text-secondary-foreground"
+        >
           {t("system")}
         </DropdownMenuItem>
       </DropdownMenuContent>

@@ -27,7 +27,7 @@ export default async function PageLayout({
             <Posts data={pages.results as PageObjectResponse[]} />
           ) : (
             <div id="list" className="bg-dots min-h-screen w-full">
-              <div className="bg-background lg:bg-card relative size-full max-h-screen min-h-screen flex-none overflow-y-auto border-r lg:w-80 xl:w-96">
+              <div className="bg-background lg:bg-card relative size-full max-h-screen min-h-screen flex-none overflow-y-auto border-r px-6 py-3 lg:w-80 xl:w-96">
                 {t("POSTS.empty")}
               </div>
             </div>

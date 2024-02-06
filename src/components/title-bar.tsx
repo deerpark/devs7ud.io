@@ -137,7 +137,7 @@ export function TitleBar({
         boxShadow: `0 1px 3px rgba(0,0,0,${currentScrollOffset})`,
         minHeight: "48px",
       }}
-      className="filter-blur border-border/50 sticky top-0 z-10 flex flex-col justify-center border-b px-3 py-2 lg:border-0 dark:border-b"
+      className="filter-blur border-border/50 sticky top-0 z-10 flex flex-col justify-center border-b px-3 py-2 lg:border-0"
     >
       <div className="flex flex-none items-center justify-between">
         <span className="flex items-center">

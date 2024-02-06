@@ -3,12 +3,11 @@
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import "@/styles/global.css"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faDoNotEnter } from "@fortawesome/pro-solid-svg-icons"
 import { headers } from "next/headers"
 import Link from "next/link"
 
 import { Heading, P } from "@/components/ui/typography"
+import { FaDoNotEnterIcon } from "@/components/icon"
 import { getTranslations } from "next-intl/server"
 import { Button } from "@/components/ui/button"
 
@@ -21,7 +20,7 @@ export default async function NotFound() {
   const t = await getTranslations()
   return (
     <div className="container flex flex-col items-center space-y-5 py-10">
-      <FontAwesomeIcon icon={faDoNotEnter} className="my-10 size-8" />
+      <FaDoNotEnterIcon className="my-10 size-12" />
       <div className="flex flex-col items-center space-y-3">
         <Heading tag="h1">{t("SYSTEM.notfound.title")}</Heading>
         <P className="text-muted-foreground">

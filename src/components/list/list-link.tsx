@@ -24,7 +24,7 @@ export default function ListItemLink({
       href={url}
       onClick={onClick && onClick}
       className={cn(
-        `border-border/50 flex space-x-3 border-b px-3.5 py-3 text-sm lg:rounded-lg lg:border-none lg:py-2 ${
+        `border-border/50 flex space-x-3 border-b px-6 py-3 text-sm lg:rounded-lg lg:border-none lg:px-3 lg:py-2 ${
           active
             ? "bg-primary text-primary-foreground"
             : "hover:bg-accent hover:text-accent-foreground"

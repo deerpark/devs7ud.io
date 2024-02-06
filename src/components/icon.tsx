@@ -8,7 +8,10 @@ import {
   faHouse as faHouseIcon,
   faSquareArrowUpRight as faSquareArrowUpRightIcon,
   faWreathLaurel as faWreathLaurelIcon,
-} from "@fortawesome/pro-solid-svg-icons"
+  faMoonStars as faMoonStarsIcon,
+  faSun as faSunIcon,
+  faDoNotEnter as faDoNotEnterIcon,
+} from "@fortawesome/pro-duotone-svg-icons"
 import {
   faGithub as faGithubIcon,
   faTwitterSquare as faTwitterSquareIcon,
@@ -64,4 +67,13 @@ export const FaTwitterSquareIcon = (props: IconProps) => (
 )
 export const FaGithubIcon = (props: IconProps) => (
   <FaIcon icon={faGithubIcon} {...props} />
+)
+export const FaMoonStarsIcon = (props: IconProps) => (
+  <FaIcon icon={faMoonStarsIcon} {...props} />
+)
+export const FaSunIcon = (props: IconProps) => (
+  <FaIcon icon={faSunIcon} {...props} />
+)
+export const FaDoNotEnterIcon = (props: IconProps) => (
+  <FaIcon icon={faDoNotEnterIcon} {...props} />
 )

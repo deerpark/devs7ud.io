@@ -49,7 +49,11 @@ const LocaleIcons = {
   ),
 }
 
-export default function LocaleSwitcher() {
+type LocaleSwitcherProps = {
+  showLabel?: boolean
+}
+
+export default function LocaleSwitcher(props: LocaleSwitcherProps) {
   const router = useRouter()
   const pathname = usePathname()
   const locale = (useLocale().toUpperCase() as Locale | undefined) || "label"
@@ -67,7 +71,7 @@ export default function LocaleSwitcher() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="space-x-3 px-3">
           {LocaleIcons[locale.toLowerCase() as keyof typeof LocaleIcons]}
-          <span>{t(locale)}</span>
+          {props.showLabel && <span>{t(locale)}</span>}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">

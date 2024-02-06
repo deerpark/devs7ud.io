@@ -26,9 +26,7 @@ export function Posts(props: PostsProps) {
           {leadingAccessory}
           <div className="flex flex-col justify-center space-y-1">
             <div
-              className={`line-clamp-3 font-medium ${
-                active ? "" : "opacity-80"
-              }`}
+              className={`line-clamp-3 text-lg font-bold lg:text-base ${active ? "" : "opacity-80"}`}
             >
               {title}
             </div>
