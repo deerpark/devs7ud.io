@@ -8,7 +8,8 @@
       "label": "Theme",
       "system": "System",
       "light": "Light",
-      "dark": "Dark"
+      "dark": "Dark",
+      "toggle": "Screen Mode"
     },
     "language": {
       "label": "Language",
@@ -36,6 +37,31 @@
         "twitter": "Twitter",
         "github": "Github"
       }
+    },
+    "notfound": {
+      "title": "Not Found",
+      "message": "The requested resource could not be found.",
+      "view": "View",
+      "allposts": "all posts",
+      "domain": "domain"
+    },
+    "gohome": "Go to the front page",
+    "error": {
+      "title": "An unexpected error occurred.",
+      "message": "",
+      "action": "Retry"
+    },
+    "skipToContent": {
+      "label": "Skip to content",
+      "if": "if available",
+      "or": "or",
+      "jumpToList": "Jump to list"
     }
+  },
+  "SIDEBAR": {
+    "title": "DEVS7UD.IO"
+  },
+  "POSTS": {
+    "empty": "There are no registered posts."
   }
 }

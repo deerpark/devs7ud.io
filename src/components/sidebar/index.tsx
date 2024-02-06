@@ -2,8 +2,10 @@
 
 import * as React from "react"
 
+import LogoTypo from "@/public/assets/icons/logo-typo-mono.svg"
 import { GlobalNavigationContext } from "../providers"
 import { SidebarNavigation } from "./navigation"
+import { useTranslations } from "next-intl"
 import { SidebarOverlay } from "./overlay"
 import { TitleBar } from "../title-bar"
 import SidebarFooter from "./footer"
@@ -12,6 +14,7 @@ export function Sidebar() {
   const navigationContext = React.useContext(GlobalNavigationContext)
   const navIsOpen = navigationContext.isOpen
   const scrollContainerRef = React.useRef<HTMLElement>(null)
+  const t = useTranslations("SIDEBAR")
   return (
     <>
       <nav
@@ -25,7 +28,14 @@ export function Sidebar() {
         <TitleBar
           scrollContainerRef={scrollContainerRef}
           leadingAccessory={null}
-          title="DEVS7UD.IO"
+          title={
+            <LogoTypo
+              className="text-foreground h-4"
+              viewBox="0 0 141 18"
+              preserveAspectRatio="xMidYMid meet"
+              title={t("title")}
+            />
+          }
         />
         <SidebarNavigation />
         <SidebarFooter />

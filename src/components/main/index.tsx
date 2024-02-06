@@ -4,7 +4,7 @@ import { TitleBar } from "../title-bar"
 import * as React from "react"
 
 type MainContainerProps = {
-  title: string
+  title: React.ReactNode
 } & React.PropsWithChildren
 
 export default function MainContainer({ title, children }: MainContainerProps) {

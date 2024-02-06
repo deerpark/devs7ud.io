@@ -1,8 +1,8 @@
 import { createSharedPathnamesNavigation } from "next-intl/navigation"
 
-import { AppConfig } from "@/config/app"
+import { appConfig } from "@/config/app"
 
 export const { usePathname, useRouter } = createSharedPathnamesNavigation({
-  locales: AppConfig.locales,
-  localePrefix: AppConfig.localePrefix,
+  locales: appConfig.locales,
+  localePrefix: appConfig.localePrefix,
 })

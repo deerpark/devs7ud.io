@@ -13,11 +13,13 @@ export const env = createEnv({
   },
   client: {
     NEXT_PUBLIC_HOST: z.string().url("NEXT_PUBLIC_HOST is not a valid URL"),
+    NEXT_PUBLIC_GOOGLE_ANALYTICS: z.string().min(1),
   },
   // You need to destructure all the keys manually
   runtimeEnv: {
     PORT: 3000,
     NEXT_PUBLIC_HOST: process.env.NEXT_PUBLIC_HOST,
+    NEXT_PUBLIC_GOOGLE_ANALYTICS: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS,
     CROWDIN_PROJECT_ID: process.env.CROWDIN_PROJECT_ID,
     CROWDIN_PERSONAL_TOKEN: process.env.CROWDIN_PERSONAL_TOKEN,
     NOTION_TOKEN: process.env.NOTION_TOKEN,

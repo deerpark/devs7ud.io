@@ -8,16 +8,18 @@ import { useMessages } from "next-intl"
 
 import SkipToContent from "@/components/skip-to-content"
 import { ThemeProvider } from "@/components/providers"
-import { AppConfig } from "@/config/app"
 import * as Fonts from "@/lib/fonts"
 
 export { metadata } from "@/lib/metadata"
 export { viewport } from "@/lib/viewport"
+import GoogleAnalytics from "@/components/google-analytics"
+import { Bootstrap } from "@/components/bootstrap"
+import { appConfig } from "@/config/app"
 
 faConfig.autoAddCss = false
 
 export function generateStaticParams() {
-  return AppConfig.locales.map((locale) => ({ locale }))
+  return appConfig.locales.map((locale) => ({ locale }))
 }
 
 type LocaleLayoutProps = Readonly<{
@@ -29,13 +31,13 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
   unstable_setRequestLocale(params.locale)
 
   // Validate that the incoming `locale` parameter is valid
-  if (!AppConfig.locales.includes(params.locale)) notFound()
+  if (!appConfig.locales.includes(params.locale)) notFound()
 
   // Using internationalization in Client Components
   const messages = useMessages()
 
   return (
-    <html lang="en">
+    <html lang={params.locale}>
       <body className={Fonts.inter.className}>
         <SkipToContent />
         <ThemeProvider
@@ -48,6 +50,8 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
         >
           {children}
         </ThemeProvider>
+        <Bootstrap />
+        <GoogleAnalytics />
       </body>
     </html>
   )

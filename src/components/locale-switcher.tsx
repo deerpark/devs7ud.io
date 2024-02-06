@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from "next-intl"
 import Image from "next/image"
 
 import { usePathname, useRouter } from "@/lib/i18nNavigation"
-import { AppConfig } from "@/config/app"
+import { appConfig } from "@/config/app"
 
 import {
   DropdownMenu,
@@ -74,7 +74,7 @@ export default function LocaleSwitcher() {
         <DropdownMenuLabel>{t("label")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup className="space-y-px">
-          {AppConfig.locales.map((elt) => (
+          {appConfig.locales.map((elt) => (
             <DropdownMenuItem
               data-locale={elt}
               key={elt}

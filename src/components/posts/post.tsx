@@ -19,7 +19,7 @@ export function Post(props: PostProps) {
       <h1 className="mb-8 text-center text-6xl font-black">{title}</h1>
       {banner.url && (
         <Image
-          alt="Blog Image"
+          alt="Image"
           src={banner.url}
           // width={banner.width}
           width={800}

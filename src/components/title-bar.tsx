@@ -14,7 +14,7 @@ type InitialTitleOffsets = {
 }
 
 interface Props {
-  title: string
+  title: React.ReactNode
   globalMenu?: boolean
   backButton?: boolean
   backButtonHref?: string
@@ -140,13 +140,13 @@ export function TitleBar({
       className="filter-blur border-border/50 sticky top-0 z-10 flex flex-col justify-center border-b px-3 py-2 lg:border-0 dark:border-b"
     >
       <div className="flex flex-none items-center justify-between">
-        <span className="flex items-center space-x-3">
+        <span className="flex items-center">
           {globalMenu && (
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-foreground lg:hidden"
+              className="text-foreground mr-3 lg:hidden"
             >
               {isOpen ? (
                 <FaCircleXmark className="size-4" />
@@ -161,7 +161,7 @@ export function TitleBar({
               variant="ghost"
               size="icon"
               onClick={handleNavToBack}
-              className="text-foreground flex items-center justify-center rounded-md p-2 lg:hidden"
+              className="text-foreground mr-3 flex items-center justify-center rounded-md p-2 lg:hidden"
             >
               <FaArrowLeft className="size-4" />
             </Button>
@@ -178,7 +178,9 @@ export function TitleBar({
                   }
                 : {}
             }
-            className="text-foreground line-clamp-1 transform-gpu text-sm font-bold"
+            className={
+              "text-foreground line-clamp-1 transform-gpu text-sm font-bold"
+            }
           >
             {title}
           </h2>

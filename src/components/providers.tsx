@@ -8,7 +8,6 @@ import { NextIntlClientProvider } from "next-intl"
 import * as React from "react"
 
 import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { Bootstrap } from "@/components/bootstrap"
 import { Toaster } from "@/components/ui/sonner"
 
 const globalNavigationContext = {
@@ -47,7 +46,6 @@ export function ThemeProvider({
           </GlobalNavigationContext.Provider>
           <TailwindIndicator />
           <Toaster />
-          <Bootstrap />
         </NextIntlClientProvider>
       </TooltipProvider>
     </NextThemesProvider>
