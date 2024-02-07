@@ -15,4 +15,17 @@ export const oaGothic = localFont({
   variable: "--font-oa-gothic",
 })
 
+export function getFontBinary(isKo: boolean): Promise<ArrayBuffer | Buffer> {
+  return isKo
+    ? fetch(
+        new URL(
+          "../../public/assets/fonts/OAGothic-ExtraBold.ttf",
+          import.meta.url
+        )
+      ).then((res) => res.arrayBuffer())
+    : fetch(
+        new URL("../../public/assets/fonts/Inter-SemiBold.ttf", import.meta.url)
+      ).then((res) => res.arrayBuffer())
+}
+
 faConfig.autoAddCss = false

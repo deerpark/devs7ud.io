@@ -1,3 +1,4 @@
+import { getFontBinary } from "@/lib/fonts"
 import { appConfig } from "@/config/app"
 import { ImageResponse } from "next/og"
 
@@ -19,21 +20,9 @@ export default async function Image({
 }: {
   params: { locale: string; slug: string }
 }) {
-  const isKo = params.locale !== "ko"
+  const isKo = !params.locale || params.locale !== "ko"
   // Font
-  const font = isKo
-    ? fetch(
-        new URL(
-          "https://www.devs7ud.io/assets/fonts/OAGothic-ExtraBold.ttf",
-          import.meta.url
-        )
-      ).then((res) => res.arrayBuffer())
-    : fetch(
-        new URL(
-          "https://www.devs7ud.io/assets/fonts/Inter-SemiBold.ttf",
-          import.meta.url
-        )
-      ).then((res) => res.arrayBuffer())
+  const font = getFontBinary(isKo)
 
   return new ImageResponse(
     (
