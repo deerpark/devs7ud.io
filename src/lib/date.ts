@@ -1,29 +1,32 @@
-import "server-only"
-
 import {
   FormatDistanceOptions,
   formatDistance as formatDistanceFn,
   format as formatFn,
 } from "date-fns"
 import { enUS, fr, ko } from "date-fns/locale"
-import { getLocale } from "next-intl/server"
+import { Locale } from "@/types/common"
 
-export async function formatDistance(
+export function formatDistance(
   date: string | number | Date,
   baseDate: string | number | Date,
+  localeCode: string,
   options?: FormatDistanceOptions | undefined
 ) {
-  const localeCode = await getLocale()
-  const locale = localeCode === "en" ? enUS : localeCode === "fr" ? fr : ko
+  const _localeCode = localeCode.toUpperCase() as Locale
+  const locale = _localeCode === "EN" ? enUS : _localeCode === "FR" ? fr : ko
   return formatDistanceFn(date, baseDate, {
-    locale,
     ...options,
+    locale,
   })
 }
 
-export async function format(date: string | number | Date, formatStr = "PP") {
-  const localeCode = await getLocale()
-  const locale = localeCode === "en" ? enUS : localeCode === "fr" ? fr : ko
+export function format(
+  date: string | number | Date,
+  formatStr: string = "PP",
+  localeCode: string
+) {
+  const _localeCode = localeCode.toUpperCase() as Locale
+  const locale = _localeCode === "EN" ? enUS : _localeCode === "FR" ? fr : ko
   return formatFn(date, formatStr, {
     locale,
   })

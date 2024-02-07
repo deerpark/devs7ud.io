@@ -1,8 +1,8 @@
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { useLocale, useTranslations } from "next-intl"
 import ListItemLink from "../list/list-link"
 import { formatDistance } from "@/lib/date"
-import { useTranslations } from "next-intl"
 import ListItem from "../list/list-item"
 import { appConfig } from "@/config/app"
 import { Category } from "@/types/post"
@@ -20,17 +20,19 @@ export interface PostsProps {
 export function Posts(props: PostsProps) {
   const { data, onClick, leadingAccessory = null, byline } = props
   const t = useTranslations("POSTS.category")
+  const locale = useLocale()
 
-  return data.map(async (post) => {
+  return data.map((post) => {
     const url = `/posts/${(post.properties?.Slug as any)?.rich_text[0].plain_text}`
     const title = (post.properties?.Title as any)?.title[0]?.plain_text
     const description = (post.properties?.Description as any)?.rich_text[0]
       ?.plain_text
     const tags: Category[] = (post.properties?.Tags as any)?.multi_select || []
     const lastEditedTime = post.last_edited_time
-    const lastEditedTimeFormat = await formatDistance(
+    const lastEditedTimeFormat = formatDistance(
       new Date(lastEditedTime),
       new Date(),
+      locale,
       { addSuffix: true }
     )
     return (

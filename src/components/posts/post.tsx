@@ -1,7 +1,7 @@
+import { useLocale, useTranslations } from "next-intl"
 import { format, formatDistance } from "@/lib/date"
 import PostContainer from "./post-container"
 import { Separator } from "../ui/separator"
-import { useTranslations } from "next-intl"
 import { P } from "../ui/typography"
 import Image from "next/image"
 
@@ -17,13 +17,14 @@ interface PostProps {
   lastEditDateTime: string
 }
 
-export async function Post(props: PostProps) {
+export function Post(props: PostProps) {
   const { title, content, banner, dateTime, lastEditDateTime } = props
   const t = useTranslations()
-  const createAt = await formatDistance(new Date(dateTime), new Date(), {
+  const locale = useLocale()
+  const createAt = formatDistance(new Date(dateTime), new Date(), locale, {
     addSuffix: true,
   })
-  const updateAt = await format(lastEditDateTime)
+  const updateAt = format(lastEditDateTime, "PP", locale)
   return (
     <PostContainer title={title}>
       <P className="text-muted-foreground mb-8 flex items-center justify-center space-x-2 text-xs">

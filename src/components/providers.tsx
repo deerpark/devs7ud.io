@@ -40,7 +40,11 @@ export function ThemeProvider({
   return (
     <NextThemesProvider {...props}>
       <TooltipProvider>
-        <NextIntlClientProvider locale={props.locale} messages={props.messages}>
+        <NextIntlClientProvider
+          locale={props.locale}
+          messages={props.messages}
+          timeZone="Asia/Seoul"
+        >
           <GlobalNavigationContext.Provider value={state}>
             {children}
           </GlobalNavigationContext.Provider>
