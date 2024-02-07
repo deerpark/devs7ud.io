@@ -9,7 +9,7 @@ type PostContainerProps = {
 
 export default function PostContainer({ children, title }: PostContainerProps) {
   const scrollContainerRef = React.useRef(null)
-  const titleRef = React.useRef<HTMLParagraphElement>(null)
+  const titleRef = React.useRef<HTMLHeadingElement>(null)
   return (
     <div
       ref={scrollContainerRef}
@@ -25,7 +25,15 @@ export default function PostContainer({ children, title }: PostContainerProps) {
         titleRef={titleRef}
         scrollContainerRef={scrollContainerRef}
       />
-      <div className="max-w-max p-8">{children}</div>
+      <div className="max-w-max p-8">
+        <h1
+          ref={titleRef}
+          className="font-heading from-foreground to-card-foreground bg-gradient-to-r bg-clip-text text-center text-6xl/[1.05] text-transparent"
+        >
+          {title}
+        </h1>
+        {children}
+      </div>
     </div>
   )
 }

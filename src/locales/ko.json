@@ -62,7 +62,14 @@
     "title": "DEVS7UD.IO"
   },
   "POSTS": {
-    "title": "등록된 포스트가 없습니다.",
-    "empty": "등록된 포스트가 없습니다."
+    "empty": "등록된 포스트가 없습니다.",
+    "updated": "업데이트 됨",
+    "category": {
+      "Technology": "기술",
+      "Fashion": "패션",
+      "Food": "음식",
+      "Travel": "여행",
+      "Sports": "스포츠"
+    }
   }
 }

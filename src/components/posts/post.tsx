@@ -1,4 +1,8 @@
+import { format, formatDistance } from "@/lib/date"
 import PostContainer from "./post-container"
+import { Separator } from "../ui/separator"
+import { useTranslations } from "next-intl"
+import { P } from "../ui/typography"
 import Image from "next/image"
 
 interface Banner {
@@ -9,14 +13,33 @@ interface PostProps {
   title: string
   banner: Banner
   content: string
+  dateTime: string
+  lastEditDateTime: string
 }
 
-export function Post(props: PostProps) {
-  const { title, content, banner } = props
-
+export async function Post(props: PostProps) {
+  const { title, content, banner, dateTime, lastEditDateTime } = props
+  const t = useTranslations()
+  const createAt = await formatDistance(new Date(dateTime), new Date(), {
+    addSuffix: true,
+  })
+  const updateAt = await format(lastEditDateTime)
   return (
     <PostContainer title={title}>
-      <h1 className="font-heading mb-8 text-center text-6xl">{title}</h1>
+      <P className="text-muted-foreground mb-8 flex items-center justify-center space-x-2 text-xs">
+        <span>{createAt}</span>
+        {lastEditDateTime ? (
+          <>
+            <Separator
+              orientation="vertical"
+              className="size-0.5 rounded-full"
+            />
+            <span>
+              {lastEditDateTime ? `${t("POSTS.updated")} - ${updateAt}` : null}
+            </span>
+          </>
+        ) : null}
+      </P>
       {banner.url && (
         <Image
           alt="Image"

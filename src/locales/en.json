@@ -62,6 +62,14 @@
     "title": "DEVS7UD.IO"
   },
   "POSTS": {
-    "empty": "There are no registered posts."
+    "empty": "There are no registered posts.",
+    "updated": "Updated",
+    "category": {
+      "Technology": "Technology",
+      "Fashion": "Fashion",
+      "Food": "Food",
+      "Travel": "Travel",
+      "Sports": "Sports"
+    }
   }
 }

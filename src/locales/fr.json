@@ -62,6 +62,14 @@
     "title": "DEVS7UD.IO"
   },
   "POSTS": {
-    "empty": "Il n'y a pas de messages enregistrés."
+    "empty": "Il n'y a pas de messages enregistrés.",
+    "updated": "Mise à jour",
+    "category": {
+      "Technology": "Technologie",
+      "Fashion": "Mode",
+      "Food": "Nourriture",
+      "Travel": "Voyage",
+      "Sports": "Sports"
+    }
   }
 }

@@ -20,7 +20,7 @@ interface Props {
   backButton?: boolean
   backButtonHref?: string
   magicTitle?: boolean
-  titleRef?: React.RefObject<HTMLParagraphElement> | null
+  titleRef?: React.RefObject<HTMLHeadingElement> | null
   scrollContainerRef?: React.RefObject<HTMLElement> | null
   children?: React.ReactNode
   leadingAccessory?: React.ReactNode
@@ -179,18 +179,19 @@ export function TitleBar({
 
           <h2
             style={
-              magicTitle && isTitleString
+              magicTitle && isTitleString && !!title?.trim()
                 ? {
                     transform: `translateY(${offset}%)`,
                     opacity: `${opacity}`,
                   }
                 : {}
             }
-            className={
+            className={cn(
               isTitleString
-                ? "text-foreground line-clamp-1 transform-gpu text-sm font-bold"
-                : "w-full"
-            }
+                ? "text-foreground line-clamp-1 transform-gpu text-base font-bold"
+                : "w-full",
+              magicTitle && isTitleString ? "lg:px-6" : ""
+            )}
           >
             {title}
           </h2>
