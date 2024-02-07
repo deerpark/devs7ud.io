@@ -38,7 +38,7 @@ export function Post(props: PostProps) {
   const updateAt = format(lastEditDateTime, "PP", locale)
   return (
     <PostContainer title={title}>
-      <P className="text-muted-foreground mb-20 flex items-center justify-center space-x-2 text-xs">
+      <P className="text-muted-foreground mb-20 flex items-center justify-center space-x-2 text-xs 2xl:justify-start 2xl:px-1">
         <span>{updateAt}</span>
         {lastEditDateTime ? (
           <>
@@ -55,7 +55,9 @@ export function Post(props: PostProps) {
           </>
         ) : null}
       </P>
-      <P className="mb-20 text-center text-sm">{description}</P>
+      <P className="mb-20 text-center text-sm 2xl:px-1 2xl:text-left">
+        {description}
+      </P>
       {banner.url && (
         <Image
           alt="Image"

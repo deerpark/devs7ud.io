@@ -20,7 +20,7 @@ export default function List({
   const scrollContainerRef = React.useRef(null)
 
   return (
-    <div className="flex flex-1">
+    <div className="flex max-w-full flex-1">
       <div
         id="list"
         className={`flex-none ${params.slug ? "hidden lg:flex" : "min-h-screen w-full"}`}
