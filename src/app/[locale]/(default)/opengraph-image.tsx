@@ -1,9 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import { getFontBinary } from "@/lib/fonts"
 import { appConfig } from "@/config/app"
 import { ImageResponse } from "next/og"
 
 // Route segment config
-// export const runtime = "edge"
+export const runtime = "edge"
 
 // Image metadata
 export const alt = appConfig.name
@@ -38,7 +39,39 @@ export default async function Image({
           justifyContent: "center",
         }}
       >
-        {appConfig.name}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <img
+            src="https://devs7ud.io/assets/icons/logo-background-white.svg"
+            width={140}
+            height={138}
+            alt=""
+          />
+          <h2
+            className="font-heading"
+            style={{
+              fontSize: 128,
+              fontFamily: isKo ? "OAGothic-ExtraBold" : "Inter",
+              fontWeight: 900,
+              letterSpacing: -10,
+            }}
+          >
+            {appConfig.name}
+          </h2>
+          <div
+            style={{
+              fontSize: 48,
+            }}
+          >
+            {appConfig.description}
+          </div>
+        </div>
       </div>
     ),
     // ImageResponse options

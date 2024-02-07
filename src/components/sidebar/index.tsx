@@ -37,7 +37,7 @@ export function Sidebar() {
                 preserveAspectRatio="xMidYMid meet"
               />
               <LogoTypo
-                className="text-foreground/80 w-28 lg:ml-2 lg:w-24"
+                className="text-foreground/80 w-28 lg:ml-1.5 lg:w-24"
                 viewBox="0 0 141 18"
                 preserveAspectRatio="xMidYMid meet"
                 title={t("title")}

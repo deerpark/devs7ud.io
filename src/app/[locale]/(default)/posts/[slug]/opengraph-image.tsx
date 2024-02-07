@@ -1,9 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
+import { getPageBySlug } from "@/lib/notion"
 import { getFontBinary } from "@/lib/fonts"
 import { appConfig } from "@/config/app"
 import { ImageResponse } from "next/og"
 
 // Route segment config
-// export const runtime = "edge"
+export const runtime = "edge"
 
 // Image metadata
 export const alt = appConfig.name
@@ -24,13 +26,15 @@ export default async function Image({
   // Font
   const font = getFontBinary(isKo)
 
+  const post = await getPageBySlug(params.slug)
+  const imageUrl = (post?.properties.Banner as any).url
+
   return new ImageResponse(
     (
       // ImageResponse JSX element
       <div
         style={{
-          fontSize: 128,
-          background: "white",
+          background: "#2656C5",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -38,7 +42,51 @@ export default async function Image({
           justifyContent: "center",
         }}
       >
-        {params.slug || appConfig.name}
+        {imageUrl ? (
+          <img
+            alt="Image"
+            src={imageUrl}
+            width="100%"
+            height="100%"
+            style={{ objectFit: "cover" }}
+          />
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <img
+              src="https://devs7ud.io/assets/icons/logo-background-white.svg"
+              width={140}
+              height={138}
+              alt=""
+            />
+            <h2
+              className="font-heading"
+              style={{
+                fontSize: 128,
+                fontFamily: isKo ? "OAGothic-ExtraBold" : "Inter",
+                fontWeight: 900,
+                letterSpacing: -10,
+              }}
+            >
+              {(post?.properties.Title as any).title[0].plain_text ||
+                appConfig.name}
+            </h2>
+            <div
+              style={{
+                fontSize: 48,
+              }}
+            >
+              {(post?.properties.Description as any)?.rich_text[0]
+                ?.plain_text || appConfig.description}
+            </div>
+          </div>
+        )}
       </div>
     ),
     // ImageResponse options
@@ -51,7 +99,7 @@ export default async function Image({
           name: isKo ? "OAGothic-ExtraBold" : "Inter",
           data: await font,
           style: "normal",
-          weight: 400,
+          weight: 800,
         },
       ],
     }
