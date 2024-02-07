@@ -19,15 +19,21 @@ export default async function Image({
 }: {
   params: { locale: string; slug: string }
 }) {
-  /* const isKo = params.locale !== "ko"
+  const isKo = params.locale !== "ko"
   // Font
   const font = isKo
     ? fetch(
-        new URL("../../../../../fonts/OAGothic-ExtraBold.ttf", import.meta.url)
+        new URL(
+          "https://www.devs7ud.io/assets/fonts/OAGothic-ExtraBold.ttf",
+          import.meta.url
+        )
       ).then((res) => res.arrayBuffer())
     : fetch(
-        new URL("../../../../../fonts/Inter-SemiBold.ttf", import.meta.url)
-      ).then((res) => res.arrayBuffer()) */
+        new URL(
+          "https://www.devs7ud.io/assets/fonts/Inter-SemiBold.ttf",
+          import.meta.url
+        )
+      ).then((res) => res.arrayBuffer())
 
   return new ImageResponse(
     (
@@ -51,14 +57,14 @@ export default async function Image({
       // For convenience, we can re-use the exported opengraph-image
       // size config to also set the ImageResponse's width and height.
       ...size,
-      /* fonts: [
+      fonts: [
         {
           name: isKo ? "OAGothic-ExtraBold" : "Inter",
           data: await font,
           style: "normal",
-          weight: isKo ? 800 : 400,
+          weight: 400,
         },
-      ], */
+      ],
     }
   )
 }

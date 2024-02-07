@@ -18,26 +18,34 @@ interface PostProps {
 }
 
 export function Post(props: PostProps) {
-  const { title, content, banner, dateTime, lastEditDateTime } = props
+  const { title, content, banner, lastEditDateTime } = props
   const t = useTranslations()
   const locale = useLocale()
-  const createAt = formatDistance(new Date(dateTime), new Date(), locale, {
-    addSuffix: true,
-  })
+  const updateDateTime = formatDistance(
+    new Date(lastEditDateTime),
+    new Date(),
+    locale,
+    {
+      addSuffix: true,
+    }
+  )
   const updateAt = format(lastEditDateTime, "PP", locale)
   return (
     <PostContainer title={title}>
-      <P className="text-muted-foreground mb-8 flex items-center justify-center space-x-2 text-xs">
-        <span>{createAt}</span>
+      <P className="text-muted-foreground mb-20 flex items-center justify-center space-x-2 text-xs">
+        <span>{updateAt}</span>
         {lastEditDateTime ? (
           <>
             <Separator
               orientation="vertical"
               className="size-0.5 rounded-full"
             />
-            <span>
-              {lastEditDateTime ? `${t("POSTS.updated")} - ${updateAt}` : null}
-            </span>
+            <span>{t("POSTS.updated")}</span>
+            <Separator
+              orientation="vertical"
+              className="size-0.5 rounded-full"
+            />
+            <span>{updateDateTime}</span>
           </>
         ) : null}
       </P>

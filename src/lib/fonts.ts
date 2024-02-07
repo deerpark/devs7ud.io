@@ -10,7 +10,7 @@ export const inter = Inter({
 
 // Font files can be colocated inside of `app`
 export const oaGothic = localFont({
-  src: "../fonts/OAGothic-ExtraBold.woff2",
+  src: "../../public/assets/fonts/OAGothic-ExtraBold.woff2",
   display: "swap",
   variable: "--font-oa-gothic",
 })
