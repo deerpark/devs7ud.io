@@ -147,10 +147,10 @@ export function TitleBar({
         <span className="flex w-full items-center">
           {globalMenu && (
             <Button
-              variant="secondary"
+              variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-foreground mr-3 lg:hidden"
+              className="text-foreground mr-1 lg:hidden"
             >
               {isOpen ? (
                 <FaXmark className="size-4" />
@@ -162,7 +162,7 @@ export function TitleBar({
 
           {backButton && backButtonHref && (
             <Button
-              variant="secondary"
+              variant="ghost"
               size="icon"
               onClick={handleNavToBack}
               className="text-foreground mr-3 flex items-center justify-center rounded-md p-2 lg:hidden"

@@ -1,3 +1,4 @@
+import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 import { useLocale, useTranslations } from "next-intl"
 import { format, formatDistance } from "@/lib/date"
 import PostContainer from "./post-container"
@@ -10,15 +11,20 @@ interface Banner {
 }
 
 interface PostProps {
-  title: string
-  banner: Banner
+  post: PageObjectResponse
   content: string
-  dateTime: string
-  lastEditDateTime: string
 }
 
 export function Post(props: PostProps) {
-  const { title, content, banner, lastEditDateTime } = props
+  const { post, content } = props
+  const title = (post.properties.Title as any).title[0].plain_text
+  const description = (post.properties?.Description as any)?.rich_text[0]
+    ?.plain_text
+  const banner: Banner = {
+    url: (post.properties.Banner as any).url,
+  }
+  // const dateTime = post.created_time
+  const lastEditDateTime = post.last_edited_time
   const t = useTranslations()
   const locale = useLocale()
   const updateDateTime = formatDistance(
@@ -49,6 +55,7 @@ export function Post(props: PostProps) {
           </>
         ) : null}
       </P>
+      <P className="mb-20 text-center text-sm">{description}</P>
       {banner.url && (
         <Image
           alt="Image"

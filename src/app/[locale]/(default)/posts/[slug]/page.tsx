@@ -26,17 +26,5 @@ export default async function Page({ params }: { params: { slug: string } }) {
   console.log("Post: ", post)
   // console.log("Html: ", html)
 
-  const banner = {
-    url: (post.properties.Banner as any).url,
-  }
-
-  return (
-    <Post
-      title={(post.properties.Title as any).title[0].plain_text}
-      banner={banner}
-      content={html}
-      dateTime={post.created_time}
-      lastEditDateTime={post.last_edited_time}
-    />
-  )
+  return <Post post={post} content={html} />
 }
