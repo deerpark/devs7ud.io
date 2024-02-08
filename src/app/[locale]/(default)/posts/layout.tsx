@@ -39,8 +39,8 @@ export default async function PageLayout({
               users={"results" in users ? users.results : []}
             />
           ) : (
-            <div id="list" className="bg-dots min-h-screen w-full">
-              <div className="bg-background lg:bg-card relative size-full max-h-screen min-h-screen flex-none overflow-y-auto border-r px-6 py-3 lg:w-80 xl:w-96">
+            <div id="list" className="min-h-screen w-full">
+              <div className="bg-background relative size-full max-h-screen min-h-screen flex-none overflow-y-auto border-r px-6 py-3 lg:w-80 xl:w-96">
                 <span className="text-muted-foreground">
                   {t("POSTS.empty")}
                 </span>

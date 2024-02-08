@@ -11,7 +11,7 @@ export function SidebarOverlay() {
 
   return (
     <div
-      className={`fixed inset-0 z-20 bg-black/10 transition duration-200 ease-in-out dark:bg-black/50 ${
+      className={`bg-secondary/20 dark:bg-secondary/60 fixed inset-0 z-20 transition duration-200 ease-in-out ${
         isOpen
           ? "pointer-events-auto opacity-100 lg:opacity-0"
           : "pointer-events-none opacity-0"

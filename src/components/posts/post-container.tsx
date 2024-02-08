@@ -31,17 +31,19 @@ export default function PostContainer({
         titleRef={titleRef}
         scrollContainerRef={scrollContainerRef}
       />
-      <div className="max-w-full p-8">
-        <h1
-          ref={titleRef}
-          className="font-heading from-foreground to-card-foreground bg-gradient-to-r bg-clip-text text-center text-6xl/[1.05] text-transparent 2xl:text-left"
-        >
-          {title}
-        </h1>
-        <P className="text-muted-foreground !mt-3 mb-20 text-center text-sm 2xl:px-1 2xl:text-left">
-          {description}
-        </P>
-        {children}
+      <div className="max-w-7xl">
+        <div className="max-w-full p-8">
+          <h1
+            ref={titleRef}
+            className="font-heading from-foreground to-card-foreground bg-gradient-to-r bg-clip-text text-center text-6xl/[1.05] text-transparent 2xl:text-left"
+          >
+            {title}
+          </h1>
+          <P className="text-muted-foreground !mt-3 mb-20 text-center text-sm 2xl:px-1 2xl:text-left">
+            {description}
+          </P>
+          {children}
+        </div>
       </div>
     </div>
   )
