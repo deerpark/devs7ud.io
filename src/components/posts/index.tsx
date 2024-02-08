@@ -5,13 +5,14 @@ import type {
   UserObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
-import { useLocale, useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import ListItemLink from "../list/list-link"
 import { FaSpinnerThirdIcon } from "../icon"
 import { formatDistance } from "@/lib/date"
 import CommentCount from "./comment-count"
 import ListItem from "../list/list-item"
 import { Category } from "@/types/post"
+import { useLocale } from "next-intl"
 import { Badge } from "../ui/badge"
 import { cn } from "@/lib/utils"
 
@@ -26,7 +27,7 @@ export interface PostsProps {
 
 export async function Posts(props: PostsProps) {
   const { data, onClick, leadingAccessory = null, byline, users } = props
-  const t = useTranslations("POSTS.category")
+  const t = await getTranslations("POSTS.category")
   const locale = useLocale()
 
   return data.map((post) => {
