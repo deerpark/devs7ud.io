@@ -80,10 +80,10 @@ export async function Posts(props: PostsProps) {
                         {user?.name?.slice(0, 1)}
                       </AvatarFallback>
                     </Avatar>
-                    <span className="group-[.active]:text-primary-foreground text-xs">
+                    <span className="group-[.active]:text-primary-foreground truncate text-xs">
                       {user?.name}
                     </span>
-                    <span className="group-[.active]:text-primary-foreground text-xs">
+                    <span className="group-[.active]:text-primary-foreground truncate text-xs">
                       {lastEditedTimeFormat}
                     </span>
                   </div>
@@ -91,25 +91,19 @@ export async function Posts(props: PostsProps) {
 
                 <React.Suspense
                   fallback={
-                    <FaSpinnerThirdIcon className="text-primary size-6 animate-spin" />
+                    <FaSpinnerThirdIcon className="text-primary size-4 animate-spin" />
                   }
                 >
                   <CommentCount id={post.id} />
                 </React.Suspense>
               </div>
               <div className="flex items-center space-x-2">
-                <ul className="flex items-center space-x-2">
-                  {tags.map((tag) => (
-                    <li key={tag.id}>
-                      <Badge
-                        variant="outline"
-                        className="group-[.active]:text-primary-foreground"
-                      >
-                        {t(tag.name)}
-                      </Badge>
-                    </li>
-                  ))}
-                </ul>
+                <Badge
+                  variant="outline"
+                  className="text-muted-foreground group-[.active]:text-primary-foreground block max-w-16 truncate"
+                >
+                  {tags.map((tag) => t(tag.name)).join(", ")}
+                </Badge>
               </div>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { GlobalNavigationContext } from "./providers"
 import { FaArrowLeft, FaBars, FaXmark } from "./icon"
 import { useRouter } from "next/navigation"
 import { Button } from "./ui/button"
+import { Badge } from "./ui/badge"
 import { cn } from "@/lib/utils"
 
 type InitialTitleOffsets = {
@@ -16,6 +17,7 @@ type InitialTitleOffsets = {
 
 interface Props {
   title: React.ReactNode
+  tag?: React.ReactNode
   globalMenu?: boolean
   backButton?: boolean
   backButtonHref?: string
@@ -29,6 +31,7 @@ interface Props {
 
 export function TitleBar({
   title,
+  tag,
   globalMenu = true,
   backButton = false,
   backButtonHref,
@@ -186,10 +189,13 @@ export function TitleBar({
               isTitleString
                 ? "text-foreground line-clamp-1 transform-gpu text-base font-bold"
                 : "w-full",
-              magicTitle && isTitleString ? "lg:px-6" : ""
+              magicTitle && isTitleString
+                ? "flex items-center space-x-2 lg:px-6"
+                : ""
             )}
           >
-            {title}
+            {tag && <Badge>{tag}</Badge>}
+            <span>{title}</span>
           </h2>
         </span>
 

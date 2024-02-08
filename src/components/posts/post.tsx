@@ -9,6 +9,7 @@ import { format, formatDistance } from "@/lib/date"
 import PostContainer from "./post-container"
 import { Separator } from "../ui/separator"
 import { FaMessagesIcon } from "../icon"
+import { Category } from "@/types/post"
 import { P } from "../ui/typography"
 import Empty from "../ui/empty"
 import Comment from "./comment"
@@ -46,9 +47,10 @@ export function Post(props: PostProps) {
     }
   )
   const updateAt = format(lastEditDateTime, "PP", locale)
+  const tags: Category[] = (post.properties?.Tags as any)?.multi_select || []
   return (
-    <PostContainer title={title} description={description}>
-      <P className="text-muted-foreground mb-20 flex items-center justify-center space-x-2 text-xs 2xl:justify-start 2xl:px-1">
+    <PostContainer title={title} description={description} tags={tags}>
+      <P className="text-muted-foreground mb-60 flex items-center justify-center space-x-2 text-xs">
         {createdBy && (
           <div className="flex items-center space-x-2">
             <Avatar className="ring-foreground group-[.active]:ring-primary-foreground border-1 size-5 rounded-full ring-1">
@@ -94,12 +96,15 @@ export function Post(props: PostProps) {
         />
       )}
       <div
-        className="prose prose-p:text-white prose-headings:text-white mt-4 max-w-3xl text-lg/6"
+        className="prose prose-p:text-secondary-foreground prose-headings:text-foreground mt-4 max-w-3xl text-lg/7"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: content }}
       />
       <div className="bg-card -mx-8 -mb-8 mt-20">
-        <Separator orientation="horizontal" />
+        <Separator
+          orientation="horizontal"
+          className="2xl:from-border/20 2xl:via-border 2xl:to-border/20 2xl:bg-transparent 2xl:bg-gradient-to-r"
+        />
         <div className="p-8">
           <div className="text-card-foreground divide-border space-y-5 divide-y">
             {comments?.map((comment) => (

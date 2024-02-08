@@ -34,20 +34,20 @@ export function NavigationLink({
         href={href}
         target={isExternal ? "_blank" : undefined}
         rel={isExternal ? "noopener noreferrer" : undefined}
-        className={`flex flex-1 items-center space-x-3 rounded-md p-2 text-sm font-medium lg:py-1.5  ${
+        className={`group flex flex-1 items-center space-x-3 rounded-md p-2 text-sm font-medium lg:py-1.5  ${
           isActive
-            ? "text-primary-foreground bg-primary"
+            ? "text-primary-foreground bg-primary fa-light"
             : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
         }`}
         onClick={() => setIsOpen(false)}
       >
         <span className="flex w-5 items-center justify-center lg:w-4">
-          <NavIcon className="size-5 lg:size-4" />
+          <NavIcon className="text-tertiary size-5 lg:size-4" />
         </span>
         <span className="flex-1 text-base/5 lg:text-sm/5">{label}</span>
         {Accessory && (
-          <span className="flex w-5 items-center justify-center opacity-40 lg:w-4">
-            <Accessory className="size-4 lg:size-3" />
+          <span className="flex w-5 items-center justify-center opacity-40 group-hover:opacity-100 lg:w-4">
+            <Accessory className="fa-dark dark:fa-light size-4 lg:size-3" />
           </span>
         )}
       </Link>

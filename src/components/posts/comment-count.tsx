@@ -1,5 +1,5 @@
 import { getComments } from "@/lib/notion"
-import { FaMessagesIcon } from "../icon"
+import { FaCommentIcon } from "../icon"
 import { Badge } from "../ui/badge"
 import { cn } from "@/lib/utils"
 
@@ -12,17 +12,25 @@ export default async function CommentCount({
   const comments = await getComments({ parent: id })
   const commentCounts = "results" in comments ? comments.results.length : 0
   return (
-    <div className={cn("", className)}>
+    <>
       <Badge
         variant="outline"
         className={cn(
-          "group-[.active]:text-primary-foreground space-x-2 !border-0 px-1 py-0",
-          commentCounts ? "" : "opacity-20"
+          "space-x-1.5 !border-0 px-1 py-0",
+          commentCounts
+            ? "group-[.active]:text-primary-foreground"
+            : "group-[.active]:fa-light opacity-0",
+          className
         )}
       >
-        <FaMessagesIcon className="size-4" />
-        <span>{commentCounts}</span>
+        <FaCommentIcon
+          className="size-4"
+          style={{ transform: "rotateY(180deg)" }}
+        />
+        <span className="text-tertiary group-[.active]:text-primary-foreground leading-4">
+          {commentCounts}
+        </span>
       </Badge>
-    </div>
+    </>
   )
 }

@@ -32,7 +32,7 @@ export function Sidebar() {
           title={
             <div className="flex items-center">
               <Favicon
-                className="text-foreground/80 ml-1 mr-1.5 size-5 lg:size-[18px]"
+                className="text-foreground/80 ml-1 mr-2 size-5 lg:ml-1.5 lg:mr-3.5 lg:size-[18px]"
                 viewBox="0 0 140 138"
                 preserveAspectRatio="xMidYMid meet"
               />
