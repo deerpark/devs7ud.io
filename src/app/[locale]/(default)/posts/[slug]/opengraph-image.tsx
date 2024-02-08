@@ -27,11 +27,11 @@ export default async function Image({
   const font = getFontBinary(isKo)
 
   const post = await getPageBySlug(params.slug)
-  const imageUrl = (post?.properties.Banner as any).url
+  const imageUrl = (post?.properties?.OpenGraph as any)?.files[0]?.file?.url
 
   return new ImageResponse(
     (
-      // ImageResponse JSX element
+      // ImageResponse JSX elementㅅ
       <div
         style={{
           background: "#2656C5",

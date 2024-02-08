@@ -65,6 +65,7 @@
     "empty": "Il n'y a pas de messages enregistrés.",
     "updated": "Mise à jour",
     "category": {
+      "General": "Général",
       "Technology": "Technologie",
       "Fashion": "Mode",
       "Food": "Nourriture",

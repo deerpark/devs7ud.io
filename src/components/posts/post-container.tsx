@@ -35,7 +35,7 @@ export default function PostContainer({
         <div className="max-w-full p-8">
           <h1
             ref={titleRef}
-            className="font-heading from-foreground to-card-foreground bg-gradient-to-r bg-clip-text text-center text-6xl/[1.05] text-transparent 2xl:text-left"
+            className="font-heading from-foreground to-card-foreground bg-gradient-to-r bg-clip-text text-center text-6xl/[1.05] font-black text-transparent 2xl:text-left"
           >
             {title}
           </h1>

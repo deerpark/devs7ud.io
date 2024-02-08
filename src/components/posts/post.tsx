@@ -31,7 +31,7 @@ export function Post(props: PostProps) {
   const description = (post.properties?.Description as any)?.rich_text[0]
     ?.plain_text
   const banner: Banner = {
-    url: (post.properties.Banner as any).url,
+    url: (post.properties.Banner as any)?.files[0]?.file?.url,
   }
   // const dateTime = post.created_time
   const lastEditDateTime = post.last_edited_time

@@ -65,6 +65,7 @@
     "empty": "There are no registered posts.",
     "updated": "Updated",
     "category": {
+      "General": "General",
       "Technology": "Technology",
       "Fashion": "Fashion",
       "Food": "Food",

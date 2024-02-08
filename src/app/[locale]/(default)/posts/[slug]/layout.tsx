@@ -25,7 +25,7 @@ export async function generateMetadata(
     ?.plain_text
   // optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || []
-  const image = (post.properties.Banner as any).url
+  const image = (post.properties.Banner as any)?.files[0]?.file?.url
 
   return {
     ...metaOrigin,
