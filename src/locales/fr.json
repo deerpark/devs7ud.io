@@ -71,5 +71,10 @@
       "Travel": "Voyage",
       "Sports": "Sports"
     }
+  },
+  "COMMENT": {
+    "empty": {
+      "message": "Aucun commentaire n'a été enregistré."
+    }
   }
 }

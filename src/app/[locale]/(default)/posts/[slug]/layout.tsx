@@ -37,8 +37,8 @@ export async function generateMetadata(
   }
 }
 
-export default function PageLayout({ children, params }: PageLayoutProps) {
-  console.log("post params", params)
+export default function PageLayout({ children /* params */ }: PageLayoutProps) {
+  // console.log("post params", params)
   return children
 }
 

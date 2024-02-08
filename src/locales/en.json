@@ -71,5 +71,10 @@
       "Travel": "Travel",
       "Sports": "Sports"
     }
+  },
+  "COMMENT": {
+    "empty": {
+      "message": "There are no comments registered."
+    }
   }
 }

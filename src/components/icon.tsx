@@ -13,6 +13,9 @@ import {
   faSun as faSunIcon,
   faBomb as faBombIcon,
   faDoNotEnter as faDoNotEnterIcon,
+  faComments as faCommentsIcon,
+  faMessages as faMessagesIcon,
+  faSpinnerThird as faSpinnerThirdIcon,
 } from "@fortawesome/pro-duotone-svg-icons"
 import {
   faGithub as faGithubIcon,
@@ -84,4 +87,13 @@ export const FaDoNotEnterIcon = (props: IconProps) => (
 )
 export const FaBombIcon = (props: IconProps) => (
   <FaIcon icon={faBombIcon} {...props} />
+)
+export const FaCommentsIcon = (props: IconProps) => (
+  <FaIcon icon={faCommentsIcon} {...props} />
+)
+export const FaSpinnerThirdIcon = (props: IconProps) => (
+  <FaIcon icon={faSpinnerThirdIcon} {...props} />
+)
+export const FaMessagesIcon = (props: IconProps) => (
+  <FaIcon icon={faMessagesIcon} {...props} />
 )

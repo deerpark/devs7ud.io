@@ -1,10 +1,16 @@
-import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
+import * as React from "react"
+
+import type {
+  PageObjectResponse,
+  UserObjectResponse,
+} from "@notionhq/client/build/src/api-endpoints"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { useLocale, useTranslations } from "next-intl"
 import ListItemLink from "../list/list-link"
+import { FaSpinnerThirdIcon } from "../icon"
 import { formatDistance } from "@/lib/date"
+import CommentCount from "./comment-count"
 import ListItem from "../list/list-item"
-import { appConfig } from "@/config/app"
 import { Category } from "@/types/post"
 import { Badge } from "../ui/badge"
 import { cn } from "@/lib/utils"
@@ -15,14 +21,16 @@ export interface PostsProps {
   leadingAccessory?: React.ReactElement | null
   byline?: boolean
   slug?: string | string[] | undefined
+  users: UserObjectResponse[]
 }
 
-export function Posts(props: PostsProps) {
-  const { data, onClick, leadingAccessory = null, byline } = props
+export async function Posts(props: PostsProps) {
+  const { data, onClick, leadingAccessory = null, byline, users } = props
   const t = useTranslations("POSTS.category")
   const locale = useLocale()
 
   return data.map((post) => {
+    const user = users.find((u) => u.id === post.created_by.id)
     const url = `/posts/${(post.properties?.Slug as any)?.rich_text[0].plain_text}`
     const title = (post.properties?.Title as any)?.title[0]?.plain_text
     const description = (post.properties?.Description as any)?.rich_text[0]
@@ -55,41 +63,53 @@ export function Posts(props: PostsProps) {
             <div
               className={`text-secondary-foreground/40 group-[.active]:text-secondary-foreground flex items-center justify-between space-x-2 py-2 pl-0.5`}
             >
-              {byline && (
-                <div className="flex items-center space-x-2">
-                  <Avatar
-                    className={cn(
-                      "ring-foreground group-[.active]:ring-primary-foreground border-1 size-5 rounded-full ring-1"
-                    )}
-                  >
-                    <AvatarImage
-                      src="/assets/images/yonn-kim.jpg"
-                      alt={`"@${appConfig.twitter}"`}
-                    />
-                    <AvatarFallback>
-                      {appConfig.authors[0]?.name.slice(0, 2)}
-                    </AvatarFallback>
-                  </Avatar>
-                  <span className="group-[.active]:text-primary-foreground text-xs">
-                    {appConfig.authors[0]?.name}
-                  </span>
-                  <span className="group-[.active]:text-primary-foreground text-xs">
-                    {lastEditedTimeFormat}
-                  </span>
-                </div>
-              )}
-              <ul className="flex items-center space-x-2">
-                {tags.map((tag) => (
-                  <li key={tag.id}>
-                    <Badge
-                      variant="outline"
-                      className="group-[.active]:text-primary-foreground"
+              <div className="flex items-center space-x-2">
+                {byline && (
+                  <div className="flex items-center space-x-2">
+                    <Avatar
+                      className={cn(
+                        "ring-foreground group-[.active]:ring-primary-foreground border-1 size-5 rounded-full ring-1"
+                      )}
                     >
-                      {t(tag.name)}
-                    </Badge>
-                  </li>
-                ))}
-              </ul>
+                      <AvatarImage
+                        src="/assets/images/yonn-kim.jpg"
+                        alt={`@${user?.name} avatar image`}
+                      />
+                      <AvatarFallback className="text-xs font-bold">
+                        {user?.name?.slice(0, 1)}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="group-[.active]:text-primary-foreground text-xs">
+                      {user?.name}
+                    </span>
+                    <span className="group-[.active]:text-primary-foreground text-xs">
+                      {lastEditedTimeFormat}
+                    </span>
+                  </div>
+                )}
+
+                <React.Suspense
+                  fallback={
+                    <FaSpinnerThirdIcon className="text-primary size-6 animate-spin" />
+                  }
+                >
+                  <CommentCount id={post.id} />
+                </React.Suspense>
+              </div>
+              <div className="flex items-center space-x-2">
+                <ul className="flex items-center space-x-2">
+                  {tags.map((tag) => (
+                    <li key={tag.id}>
+                      <Badge
+                        variant="outline"
+                        className="group-[.active]:text-primary-foreground"
+                      >
+                        {t(tag.name)}
+                      </Badge>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </ListItemLink>

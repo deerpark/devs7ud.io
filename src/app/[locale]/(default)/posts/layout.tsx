@@ -1,9 +1,9 @@
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
+import { getPages, getUsers } from "@/lib/notion"
 import { FaBlogIcon } from "@/components/icon"
 import { Posts } from "@/components/posts"
-import { getPages } from "@/lib/notion"
 import List from "@/components/list"
 
 type PageLayoutProps = Readonly<{
@@ -17,6 +17,7 @@ export default async function PageLayout({
 }: PageLayoutProps) {
   unstable_setRequestLocale(params.locale)
   const pages = await getPages(params.locale)
+  const users = await getUsers()
   const t = await getTranslations()
 
   return (
@@ -32,7 +33,11 @@ export default async function PageLayout({
         }
         contents={
           pages.results.length ? (
-            <Posts data={pages.results as PageObjectResponse[]} byline />
+            <Posts
+              data={pages.results as PageObjectResponse[]}
+              byline
+              users={"results" in users ? users.results : []}
+            />
           ) : (
             <div id="list" className="bg-dots min-h-screen w-full">
               <div className="bg-background lg:bg-card relative size-full max-h-screen min-h-screen flex-none overflow-y-auto border-r px-6 py-3 lg:w-80 xl:w-96">

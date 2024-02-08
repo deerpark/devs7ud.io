@@ -1,13 +1,19 @@
 "use client"
 
 import { TitleBar } from "../title-bar"
+import { P } from "../ui/typography"
 import * as React from "react"
 
 type PostContainerProps = {
   title: string
+  description: string
 } & React.PropsWithChildren
 
-export default function PostContainer({ children, title }: PostContainerProps) {
+export default function PostContainer({
+  children,
+  title,
+  description,
+}: PostContainerProps) {
   const scrollContainerRef = React.useRef(null)
   const titleRef = React.useRef<HTMLHeadingElement>(null)
   return (
@@ -32,6 +38,9 @@ export default function PostContainer({ children, title }: PostContainerProps) {
         >
           {title}
         </h1>
+        <P className="text-muted-foreground !mt-3 mb-20 text-center text-sm 2xl:px-1 2xl:text-left">
+          {description}
+        </P>
         {children}
       </div>
     </div>

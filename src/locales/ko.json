@@ -71,5 +71,10 @@
       "Travel": "여행",
       "Sports": "스포츠"
     }
+  },
+  "COMMENT": {
+    "empty": {
+      "message": "등록된 코멘트가 없습니다."
+    }
   }
 }

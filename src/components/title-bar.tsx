@@ -135,11 +135,11 @@ export function TitleBar({
   return (
     <div
       style={{
-        background: `hsla(var(--card) / ${backgroundColorOpacity})`,
+        background: `hsla(var(--background) / ${backgroundColorOpacity})`,
         boxShadow: `0 1px 20px rgba(0,0,0,${currentScrollOffset})`,
       }}
       className={cn(
-        "border-border/50 bg-background dark: sticky top-0 z-10 flex min-h-14 flex-col justify-center border-b px-3 py-2 backdrop-blur-sm backdrop-brightness-150 dark:backdrop-brightness-100",
+        "border-border/50 sticky top-0 z-10 flex min-h-14 flex-col justify-center border-b px-3 py-2 backdrop-blur-sm backdrop-brightness-150 dark:backdrop-brightness-100",
         currentScrollOffset !== 0 ? "" : isTitleString ? "lg:border-0" : ""
       )}
     >

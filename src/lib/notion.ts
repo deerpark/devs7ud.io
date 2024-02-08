@@ -18,6 +18,56 @@ export const notionClient = new Client({
   auth: env.NOTION_TOKEN,
 })
 
+export const getUsers = cache(async () => {
+  try {
+    return await notionClient.users.list({})
+  } catch (error) {
+    resolveError(error)
+    return []
+  }
+})
+
+export const getComments = cache(
+  async ({
+    discussion_id,
+    parent,
+  }: {
+    discussion_id?: string
+    parent?: string
+  }) => {
+    try {
+      if (!discussion_id && !parent) return []
+      const block_id = (discussion_id || parent)!
+      const response = await notionClient.comments.list({
+        block_id,
+      })
+      return response
+    } catch (error) {
+      resolveError(error)
+      return []
+    }
+  }
+)
+
+function resolveError(error: unknown) {
+  if (isNotionClientError(error)) {
+    // error is now strongly typed to NotionClientError
+    switch (error.code) {
+      case ClientErrorCode.RequestTimeout:
+        console.error(ClientErrorCode.RequestTimeout)
+        break
+      case APIErrorCode.ObjectNotFound:
+        console.error(APIErrorCode.ObjectNotFound)
+        break
+      case APIErrorCode.Unauthorized:
+        console.error(APIErrorCode.Unauthorized)
+        break
+      default:
+        console.error(error.code)
+    }
+  }
+}
+
 export const getPages = cache(async (_locale?: string) => {
   const locale = _locale || "ko"
   try {
@@ -41,22 +91,7 @@ export const getPages = cache(async (_locale?: string) => {
       database_id: env.NOTION_DATABASE_ID!,
     })
   } catch (error: unknown) {
-    if (isNotionClientError(error)) {
-      // error is now strongly typed to NotionClientError
-      switch (error.code) {
-        case ClientErrorCode.RequestTimeout:
-          console.error(ClientErrorCode.RequestTimeout)
-          break
-        case APIErrorCode.ObjectNotFound:
-          console.error(APIErrorCode.ObjectNotFound)
-          break
-        case APIErrorCode.Unauthorized:
-          console.error(APIErrorCode.Unauthorized)
-          break
-        default:
-          console.error(error.code)
-      }
-    }
+    resolveError(error)
     return {
       type: "page",
       page_or_database: {},
