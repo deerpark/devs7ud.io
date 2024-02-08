@@ -5,13 +5,19 @@ import * as React from "react"
 import LogoTypo from "@/public/assets/icons/logo-typo-mono.svg"
 import Favicon from "@/public/assets/icons/favicon-mono.svg"
 import { GlobalNavigationContext } from "../providers"
+import { ThemeSwitcher } from "../theme-switcher"
 import { SidebarNavigation } from "./navigation"
+import LocaleSwitcher from "../locale-switcher"
 import { useTranslations } from "next-intl"
 import { SidebarOverlay } from "./overlay"
 import { TitleBar } from "../title-bar"
 import SidebarFooter from "./footer"
 
-export function Sidebar() {
+type SidebarProps = {
+  postCount: number
+}
+
+export function Sidebar({ postCount }: SidebarProps) {
   const navigationContext = React.useContext(GlobalNavigationContext)
   const navIsOpen = navigationContext.isOpen
   const scrollContainerRef = React.useRef<HTMLElement>(null)
@@ -45,7 +51,14 @@ export function Sidebar() {
             </div>
           }
         />
-        <SidebarNavigation />
+        <SidebarNavigation postCount={postCount} />
+        <div className="space-y-1 p-3">
+          <h4 className="text-muted-foreground/50 px-2 pb-2 pt-5 text-xs font-semibold">
+            설정
+          </h4>
+          <LocaleSwitcher />
+          <ThemeSwitcher />
+        </div>
         <SidebarFooter />
       </nav>
 

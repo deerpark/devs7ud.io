@@ -14,7 +14,11 @@ import {
 import { NavigationLink } from "./navigation-link"
 import { useTranslations } from "next-intl"
 
-export function SidebarNavigation() {
+type SidebarNavigationProps = {
+  postCount: number
+}
+
+export function SidebarNavigation({ postCount }: SidebarNavigationProps) {
   const pathname = usePathname()
   const t = useTranslations("SYSTEM.navigation")
   const sections = [
@@ -39,6 +43,7 @@ export function SidebarNavigation() {
           isActive: pathname.replace(/en|ko|fr/g, "").indexOf("/posts") >= 0,
           trailingAction: null,
           isExternal: false,
+          count: postCount,
         },
       ],
     },

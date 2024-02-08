@@ -4,6 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 
 import { GlobalNavigationContext } from "../providers"
+import { Badge } from "../ui/badge"
 import type { Icon } from "../icon"
 
 interface NavigationLinkProps {
@@ -14,6 +15,7 @@ interface NavigationLinkProps {
     isActive: boolean
     trailingAccessory: Icon | null
     isExternal: boolean
+    count?: number
   }
 }
 
@@ -25,6 +27,7 @@ export function NavigationLink({
     trailingAccessory: Accessory,
     isActive,
     isExternal,
+    count,
   },
 }: NavigationLinkProps) {
   const { setIsOpen } = React.useContext(GlobalNavigationContext)
@@ -36,7 +39,7 @@ export function NavigationLink({
         rel={isExternal ? "noopener noreferrer" : undefined}
         className={`group flex flex-1 items-center space-x-3 rounded-md p-2 text-sm font-medium lg:py-1.5  ${
           isActive
-            ? "text-primary-foreground bg-primary fa-light"
+            ? "text-primary-foreground bg-primary fa-light dark:fa-dark"
             : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
         }`}
         onClick={() => setIsOpen(false)}
@@ -49,6 +52,16 @@ export function NavigationLink({
           <span className="flex w-5 items-center justify-center opacity-40 group-hover:opacity-100 lg:w-4">
             <Accessory className="fa-dark dark:fa-light size-4 lg:size-3" />
           </span>
+        )}
+        {typeof count === "number" && (
+          <Badge
+            variant="outline"
+            className={
+              isActive ? "text-primary-foreground" : "text-muted-foreground"
+            }
+          >
+            {count}
+          </Badge>
         )}
       </Link>
     </li>

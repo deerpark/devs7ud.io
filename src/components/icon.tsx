@@ -16,6 +16,10 @@ import {
   faComment as faCommentIcon,
   faMessages as faMessagesIcon,
   faSpinnerThird as faSpinnerThirdIcon,
+  faAnglesUpDown as faAnglesUpDownIcon,
+  faCheck as faCheckIcon,
+  faLanguage as faLanguageIcon,
+  faUserTie as faUserTieIcon,
 } from "@fortawesome/pro-duotone-svg-icons"
 import {
   faGithub as faGithubIcon,
@@ -96,4 +100,16 @@ export const FaSpinnerThirdIcon = (props: IconProps) => (
 )
 export const FaMessagesIcon = (props: IconProps) => (
   <FaIcon icon={faMessagesIcon} {...props} />
+)
+export const FaAnglesUpDownIcon = (props: IconProps) => (
+  <FaIcon icon={faAnglesUpDownIcon} {...props} />
+)
+export const FaCheckIcon = (props: IconProps) => (
+  <FaIcon icon={faCheckIcon} {...props} />
+)
+export const FaLanguageIcon = (props: IconProps) => (
+  <FaIcon icon={faLanguageIcon} {...props} />
+)
+export const FaUserTieIcon = (props: IconProps) => (
+  <FaIcon icon={faUserTieIcon} {...props} />
 )

@@ -2,6 +2,7 @@ import type { LocalePrefix } from "node_modules/next-intl/dist/types/src/shared/
 
 const localePrefix: LocalePrefix = "as-needed"
 const locales = ["ko", "en", "fr"]
+const themes = ["light", "dark", "system"]
 const defaultLocale = locales[0]!
 
 export const defaultAppConfig = {
@@ -17,4 +18,5 @@ export const appConfig = {
   keywords: ["UX", "UI", "사용자경험", "프로토타입", "design engineer"],
   authors: [{ name: "Yonn Kim", url: "https://deerpark.github.io" }],
   twitter: "deerpark7",
+  themes,
 }

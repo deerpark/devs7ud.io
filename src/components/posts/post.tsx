@@ -50,10 +50,10 @@ export function Post(props: PostProps) {
   const tags: Category[] = (post.properties?.Tags as any)?.multi_select || []
   return (
     <PostContainer title={title} description={description} tags={tags}>
-      <P className="text-muted-foreground mb-60 flex flex-wrap items-center justify-center space-x-2 text-xs/5">
+      <P className="text-muted-foreground mb-60 flex flex-col items-center justify-center space-y-20 text-xs/5">
         {createdBy && (
-          <div className="flex items-center space-x-2">
-            <Avatar className="ring-foreground group-[.active]:ring-primary-foreground border-1 size-5 rounded-full ring-1">
+          <div className="flex flex-col items-center space-y-2">
+            <Avatar className="ring-foreground group-[.active]:ring-primary-foreground border-1 size-16 rounded-full ring-1">
               <AvatarImage
                 src="/assets/images/yonn-kim.jpg"
                 alt={`${createdBy.name} avatar image`}
@@ -63,27 +63,25 @@ export function Post(props: PostProps) {
               </AvatarFallback>
             </Avatar>
             <div className="truncate">{createdBy.name}</div>
-            <Separator
-              orientation="vertical"
-              className="size-0.5 rounded-full"
-            />
           </div>
         )}
-        <span className="truncate">{updateAt}</span>
-        {lastEditDateTime ? (
-          <>
-            <Separator
-              orientation="vertical"
-              className="size-0.5 rounded-full"
-            />
-            <span className="truncate">{t("POSTS.updated")}</span>
-            <Separator
-              orientation="vertical"
-              className="size-0.5 rounded-full"
-            />
-            <span className="truncate">{updateDateTime}</span>
-          </>
-        ) : null}
+        <div className="flex flex-wrap items-center space-x-2">
+          <span className="truncate">{updateAt}</span>
+          {lastEditDateTime ? (
+            <>
+              <Separator
+                orientation="vertical"
+                className="size-0.5 rounded-full"
+              />
+              <span className="truncate">{t("POSTS.updated")}</span>
+              <Separator
+                orientation="vertical"
+                className="size-0.5 rounded-full"
+              />
+              <span className="truncate">{updateDateTime}</span>
+            </>
+          ) : null}
+        </div>
       </P>
       {banner.url && (
         <Image
@@ -96,7 +94,7 @@ export function Post(props: PostProps) {
         />
       )}
       <div
-        className="prose prose-p:text-secondary-foreground prose-headings:text-foreground mt-4 max-w-3xl text-lg/7"
+        className="prose prose-p:text-secondary-foreground prose-headings:text-foreground mx-auto mt-4 max-w-3xl text-lg/7"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: content }}
       />

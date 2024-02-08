@@ -1,99 +1,82 @@
 "use client"
 
 import { useLocale, useTranslations } from "next-intl"
-import Image from "next/image"
+import * as React from "react"
 
 import { usePathname, useRouter } from "@/lib/i18nNavigation"
 import { appConfig } from "@/config/app"
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu"
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "./ui/command"
+import { FaAnglesUpDownIcon, FaCheckIcon, FaLanguageIcon } from "./icon"
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { Locale } from "@/types/common"
 import { Button } from "./ui/button"
 import { cn } from "@/lib/utils"
 
-const LocaleIcons = {
-  en: (
-    <Image
-      width={20}
-      height={20}
-      className="ring-foreground rounded-full ring-1"
-      src="https://img.icons8.com/color/48/usa-circular.png"
-      alt="belgium-circular"
-    />
-  ),
-  ko: (
-    <Image
-      width={20}
-      height={20}
-      className="ring-foreground rounded-full ring-1"
-      src="https://img.icons8.com/color/48/south-korea-circular.png"
-      alt="south-korea-circular"
-    />
-  ),
-  fr: (
-    <Image
-      width={20}
-      height={20}
-      className="ring-foreground rounded-full ring-1"
-      src="https://img.icons8.com/color/48/france-circular.png"
-      alt="france-circular"
-    />
-  ),
-}
-
-type LocaleSwitcherProps = {
-  showLabel?: boolean
-}
-
-export default function LocaleSwitcher(props: LocaleSwitcherProps) {
+export default function LocaleSwitcher() {
   const router = useRouter()
   const pathname = usePathname()
-  const locale = (useLocale().toUpperCase() as Locale | undefined) || "label"
+  const locale = (useLocale().toUpperCase() as Locale | undefined) || "KO"
   const t = useTranslations("SYSTEM.language")
+  const [open, setOpen] = React.useState(false)
+  const [value] = React.useState<Locale>(locale)
 
-  const handleChange: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    const newLocale = e.currentTarget.dataset.locale
+  const handleSelect: (v: string) => void = (v) => {
+    const newLocale = v as Locale
     if (!newLocale) return
-    router.push(pathname, { locale: newLocale })
+    // setValue(newLocale)
+    setOpen(false)
+    router.push(pathname, { locale: newLocale.toLowerCase() })
     router.refresh()
   }
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="secondary" className="space-x-3 px-3">
-          {LocaleIcons[locale.toLowerCase() as keyof typeof LocaleIcons]}
-          {props.showLabel && <span>{t(locale)}</span>}
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          variant="ghost"
+          role="combobox"
+          aria-expanded={open}
+          className="h-auto w-full items-center space-x-3 rounded-md p-2 lg:py-1.5"
+        >
+          <span className="flex w-5 items-center justify-center lg:w-4">
+            <FaLanguageIcon className="text-tertiary size-5 lg:size-4" />
+          </span>
+          <span className="text-muted-foreground flex-1 text-left text-base/5 lg:text-sm/5">
+            {t("label")}
+          </span>
+          <FaAnglesUpDownIcon className="fa-dark dark:fa-light size-4 shrink-0 lg:size-3" />
         </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="start">
-        <DropdownMenuLabel>{t("label")}</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup className="space-y-px">
-          {appConfig.locales.map((elt) => (
-            <DropdownMenuItem
-              data-locale={elt}
-              key={elt}
-              onClick={handleChange}
-              className={cn(
-                "space-x-3",
-                elt === locale.toLocaleLowerCase() ? "bg-accent" : ""
-              )}
-            >
-              {LocaleIcons[elt as keyof typeof LocaleIcons]}
-              <span>{t(elt.toUpperCase() as Locale)}</span>
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </PopoverTrigger>
+      <PopoverContent className="max-w-[200px] p-0" align="start">
+        <Command>
+          <CommandInput placeholder={t("placeholder")} />
+          <CommandEmpty>{t("empty")}</CommandEmpty>
+          <CommandGroup>
+            {appConfig.locales.map((code) => (
+              <CommandItem
+                key={code}
+                value={code.toUpperCase()}
+                onSelect={handleSelect}
+              >
+                <FaCheckIcon
+                  className={cn(
+                    "mr-2 size-4",
+                    value === code ? "opacity-100" : "opacity-0"
+                  )}
+                />
+                {t(code.toUpperCase() as Locale)}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        </Command>
+      </PopoverContent>
+    </Popover>
   )
 }

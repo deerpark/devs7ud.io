@@ -15,7 +15,9 @@
       "label": "Language",
       "KO": "한국어",
       "EN": "English",
-      "FR": "Français"
+      "FR": "Français",
+      "placeholder": "Search language...",
+      "empty": "No language found."
     },
     "navigation": {
       "index": {
@@ -77,5 +79,9 @@
     "empty": {
       "message": "There are no comments registered."
     }
+  },
+  "AUTH": {
+    "signin": "Sign in",
+    "signup": "Sign up"
   }
 }
