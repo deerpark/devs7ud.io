@@ -1,5 +1,5 @@
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Heading } from "@/components/ui/typography"
-import { Button } from "@/components/ui/button"
 import { useTranslations } from "next-intl"
 import { FaBombIcon } from "../icon"
 import { cn } from "@/lib/utils"
@@ -27,8 +27,8 @@ export default function Error({ children, reset, className }: ErorProps) {
           <Button onClick={() => reset()} variant="link">
             {t("error.action")}
           </Button>
-          <Link href="/">
-            <Button variant="link">{t("gohome")}</Button>
+          <Link href="/" className={buttonVariants({ variant: "link" })}>
+            {t("gohome")}
           </Link>
         </div>
       </div>

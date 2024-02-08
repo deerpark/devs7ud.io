@@ -1,8 +1,9 @@
 import { Heading, P } from "@/components/ui/typography"
+import { buttonVariants } from "@/components/ui/button"
 import { FaDoNotEnterIcon } from "@/components/icon"
 import { getTranslations } from "next-intl/server"
-import { Button } from "@/components/ui/button"
 import { headers } from "next/headers"
+import { cn } from "@/lib/utils"
 import Link from "next/link"
 
 export default async function NotFound() {
@@ -21,10 +22,11 @@ export default async function NotFound() {
           <span className="text-muted-foreground">
             {t("SYSTEM.notfound.view")}
           </span>
-          <Link href="/posts">
-            <Button variant="link" className="px-1">
-              {t("SYSTEM.notfound.allposts")}
-            </Button>
+          <Link
+            href="/posts"
+            className={cn(buttonVariants({ variant: "link" }), "px-1")}
+          >
+            {t("SYSTEM.notfound.allposts")}
           </Link>
         </P>
       </div>

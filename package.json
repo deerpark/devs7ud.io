@@ -26,6 +26,9 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@clerk/localizations": "^1.26.14",
+    "@clerk/nextjs": "^4.29.6",
+    "@clerk/themes": "^1.7.9",
     "@fortawesome/fontawesome-pro": "^6.5.1",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-brands-svg-icons": "^6.5.1",

@@ -50,7 +50,7 @@ export function Post(props: PostProps) {
   const tags: Category[] = (post.properties?.Tags as any)?.multi_select || []
   return (
     <PostContainer title={title} description={description} tags={tags}>
-      <P className="text-muted-foreground mb-60 flex items-center justify-center space-x-2 text-xs">
+      <P className="text-muted-foreground mb-60 flex flex-wrap items-center justify-center space-x-2 text-xs/5">
         {createdBy && (
           <div className="flex items-center space-x-2">
             <Avatar className="ring-foreground group-[.active]:ring-primary-foreground border-1 size-5 rounded-full ring-1">
@@ -62,26 +62,26 @@ export function Post(props: PostProps) {
                 {createdBy.name?.slice(0, 1)}
               </AvatarFallback>
             </Avatar>
-            <div>{createdBy.name}</div>
+            <div className="truncate">{createdBy.name}</div>
             <Separator
               orientation="vertical"
               className="size-0.5 rounded-full"
             />
           </div>
         )}
-        <span>{updateAt}</span>
+        <span className="truncate">{updateAt}</span>
         {lastEditDateTime ? (
           <>
             <Separator
               orientation="vertical"
               className="size-0.5 rounded-full"
             />
-            <span>{t("POSTS.updated")}</span>
+            <span className="truncate">{t("POSTS.updated")}</span>
             <Separator
               orientation="vertical"
               className="size-0.5 rounded-full"
             />
-            <span>{updateDateTime}</span>
+            <span className="truncate">{updateDateTime}</span>
           </>
         ) : null}
       </P>

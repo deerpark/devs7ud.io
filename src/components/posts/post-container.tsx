@@ -61,7 +61,7 @@ export default function PostContainer({
           <h1
             ref={titleRef}
             className={cn(
-              "font-heading from-foreground to-foreground/70 bg-gradient-to-r bg-clip-text pb-2 pt-20 text-center text-transparent",
+              "font-heading from-foreground to-foreground/70 break-keep bg-gradient-to-r bg-clip-text pb-2 pt-20 text-center font-black text-transparent",
               title.length >= 20
                 ? "text-4xl/[1.05]"
                 : title.length >= 15
@@ -71,7 +71,7 @@ export default function PostContainer({
           >
             {title}
           </h1>
-          <P className="text-muted-foreground !mt-3 mb-20 text-center text-sm 2xl:px-1">
+          <P className="text-muted-foreground !mt-3 mb-20 break-keep text-center text-sm 2xl:px-1">
             {description}
           </P>
           {children}

@@ -69,7 +69,7 @@ export default function LocaleSwitcher(props: LocaleSwitcherProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="space-x-3 px-3">
+        <Button variant="secondary" className="space-x-3 px-3">
           {LocaleIcons[locale.toLowerCase() as keyof typeof LocaleIcons]}
           {props.showLabel && <span>{t(locale)}</span>}
         </Button>

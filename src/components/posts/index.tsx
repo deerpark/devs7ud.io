@@ -62,7 +62,7 @@ export async function Posts(props: PostsProps) {
               </div>
             )}
             <div
-              className={`text-secondary-foreground/40 group-[.active]:text-secondary-foreground flex items-center justify-between space-x-2 py-2 pl-0.5`}
+              className={`text-secondary-foreground/40 group-[.active]:text-secondary-foreground flex flex-wrap items-center justify-between space-y-2 py-2 pl-0.5`}
             >
               <div className="flex items-center space-x-2">
                 {byline && (
@@ -97,10 +97,10 @@ export async function Posts(props: PostsProps) {
                   <CommentCount id={post.id} />
                 </React.Suspense>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center justify-end space-x-2">
                 <Badge
                   variant="outline"
-                  className="text-muted-foreground group-[.active]:text-primary-foreground block max-w-16 truncate"
+                  className="text-muted-foreground group-[.active]:text-primary-foreground block max-w-full truncate"
                 >
                   {tags.map((tag) => t(tag.name)).join(", ")}
                 </Badge>

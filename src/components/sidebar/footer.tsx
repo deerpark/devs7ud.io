@@ -1,5 +1,6 @@
 import LocaleSwitcher from "../locale-switcher"
 import { ThemeToggle } from "../theme-toggle"
+import { UserButton } from "@clerk/nextjs"
 /* import { Button } from "../ui/button" */
 
 export default function SidebarFooter() {
@@ -19,6 +20,7 @@ export default function SidebarFooter() {
       </div> */}
       <div className="flex w-full items-center justify-between space-x-3">
         <LocaleSwitcher />
+        <UserButton afterSignOutUrl="/" />
         <ThemeToggle />
       </div>
     </div>
