@@ -12,7 +12,7 @@ const intlMiddleware = createMiddleware({
 export default authMiddleware({
   beforeAuth: intlMiddleware,
   publicRoutes: (req) =>
-    !req.url.includes("/:locale/bookmarks") && !req.url.includes("/bookmarks"),
+    !req.url.includes("/:locale/admin") && !req.url.includes("/admin"),
 })
 
 export const config = {

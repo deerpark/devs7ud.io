@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { getUsers } from "@/lib/notion"
 
 type CommentCreatedByProps = {

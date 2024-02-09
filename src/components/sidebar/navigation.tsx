@@ -4,10 +4,10 @@ import * as React from "react"
 import {
   FaAddressCardIcon,
   FaBlogIcon,
-  FaBoomarkIcon,
+  FaBookmarkIcon,
   FaGithubIcon,
   FaHouseIcon,
-  FaSquareArrowUpRightIcon,
+  FaArrowUpRightIcon,
   FaTwitterSquareIcon,
   FaWreathLaurelIcon,
 } from "../icon"
@@ -16,9 +16,13 @@ import { useTranslations } from "next-intl"
 
 type SidebarNavigationProps = {
   postCount: number
+  bookmarkCount: number
 }
 
-export function SidebarNavigation({ postCount }: SidebarNavigationProps) {
+export function SidebarNavigation({
+  postCount,
+  bookmarkCount,
+}: SidebarNavigationProps) {
   const pathname = usePathname()
   const t = useTranslations("SYSTEM.navigation")
   const sections = [
@@ -53,11 +57,12 @@ export function SidebarNavigation({ postCount }: SidebarNavigationProps) {
         {
           href: "/bookmarks",
           label: t("me.bookmarks"),
-          icon: FaBoomarkIcon,
+          icon: FaBookmarkIcon,
           trailingAccessory: null,
           isActive:
             pathname.replace(/en|ko|fr/g, "").indexOf("/bookmarks") >= 0,
           isExternal: false,
+          count: bookmarkCount,
         },
 
         {
@@ -78,7 +83,7 @@ export function SidebarNavigation({ postCount }: SidebarNavigationProps) {
           href: "https://coni.gsretail.com",
           label: t("projects.coni"),
           icon: FaWreathLaurelIcon,
-          trailingAccessory: FaSquareArrowUpRightIcon,
+          trailingAccessory: FaArrowUpRightIcon,
           isActive: false,
           trailingAction: null,
           isExternal: true,
@@ -92,7 +97,7 @@ export function SidebarNavigation({ postCount }: SidebarNavigationProps) {
           href: "https://twitter.com/deerpark7",
           label: t("online.twitter"),
           icon: FaTwitterSquareIcon,
-          trailingAccessory: FaSquareArrowUpRightIcon,
+          trailingAccessory: FaArrowUpRightIcon,
           isActive: false,
           trailingAction: null,
           isExternal: true,
@@ -102,7 +107,7 @@ export function SidebarNavigation({ postCount }: SidebarNavigationProps) {
           href: "https://github.com/deerpark",
           label: t("online.github"),
           icon: FaGithubIcon,
-          trailingAccessory: FaSquareArrowUpRightIcon,
+          trailingAccessory: FaArrowUpRightIcon,
           isActive: false,
           trailingAction: null,
           isExternal: true,

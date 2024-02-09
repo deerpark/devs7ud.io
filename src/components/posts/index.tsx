@@ -8,8 +8,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { getTranslations } from "next-intl/server"
 import ListItemLink from "../list/list-link"
 import { FaSpinnerThirdIcon } from "../icon"
+import CommentCount from "../comment-count"
 import { formatDistance } from "@/lib/date"
-import CommentCount from "./comment-count"
 import ListItem from "../list/list-item"
 import { Category } from "@/types/post"
 import { useLocale } from "next-intl"
@@ -25,14 +25,16 @@ export interface PostsProps {
   users: UserObjectResponse[]
 }
 
+const segment = "posts"
+
 export async function Posts(props: PostsProps) {
-  const { data, onClick, leadingAccessory = null, byline, users } = props
+  const { data, onClick, leadingAccessory = null, byline, users = [] } = props
   const t = await getTranslations("POSTS.category")
   const locale = useLocale()
 
   return data.map((post) => {
     const user = users.find((u) => u.id === post.created_by.id)
-    const url = `/posts/${(post.properties?.Slug as any)?.rich_text[0].plain_text}`
+    const url = `/${segment}/${(post.properties?.Slug as any)?.rich_text[0].plain_text}`
     const title = (post.properties?.Title as any)?.title[0]?.plain_text
     const description = (post.properties?.Description as any)?.rich_text[0]
       ?.plain_text
@@ -46,7 +48,7 @@ export async function Posts(props: PostsProps) {
     )
     return (
       <ListItem key={post.id} layoutKey={post.id}>
-        <ListItemLink url={url} onClick={onClick && onClick}>
+        <ListItemLink segment={segment} url={url} onClick={onClick && onClick}>
           {leadingAccessory}
           <div className="flex w-full flex-col justify-center space-y-1">
             <div
@@ -62,10 +64,10 @@ export async function Posts(props: PostsProps) {
               </div>
             )}
             <div
-              className={`text-secondary-foreground/40 group-[.active]:text-secondary-foreground flex flex-wrap items-center justify-between space-y-2 py-2 pl-0.5`}
+              className={`text-secondary-foreground/40 group-[.active]:text-secondary-foreground flex flex-wrap items-center justify-between pl-0.5`}
             >
-              <div className="flex items-center space-x-2">
-                {byline && (
+              <div className="my-2 flex items-center space-x-2">
+                {byline && user && (
                   <div className="flex items-center space-x-2">
                     <Avatar
                       className={cn(
@@ -97,7 +99,7 @@ export async function Posts(props: PostsProps) {
                   <CommentCount id={post.id} />
                 </React.Suspense>
               </div>
-              <div className="flex items-center justify-end space-x-2">
+              <div className="my-2 flex items-center justify-end space-x-2">
                 <Badge
                   variant="outline"
                   className="text-muted-foreground group-[.active]:text-primary-foreground block max-w-full truncate"

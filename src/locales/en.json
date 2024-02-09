@@ -67,7 +67,7 @@
     "title": "DEVS7UDIO"
   },
   "POSTS": {
-    "empty": "There are no registered posts.",
+    "empty": "There are no registered post.",
     "updated": "Updated",
     "category": {
       "General": "General",
@@ -77,6 +77,18 @@
       "Travel": "Travel",
       "Sports": "Sports"
     }
+  },
+  "BOOKMARKS": {
+    "empty": "There are no registered bookmark.",
+    "category": {
+      "General": "General",
+      "Technology": "Technology",
+      "Fashion": "Fashion",
+      "Food": "Food",
+      "Travel": "Travel",
+      "Sports": "Sports"
+    },
+    "visit": "Visit"
   },
   "COMMENT": {
     "empty": {

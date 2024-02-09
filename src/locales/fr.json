@@ -78,6 +78,18 @@
       "Sports": "Sports"
     }
   },
+  "BOOKMARKS": {
+    "empty": "Il n'y a pas de messages signet.",
+    "category": {
+      "General": "Général",
+      "Technology": "Technologie",
+      "Fashion": "Mode",
+      "Food": "Nourriture",
+      "Travel": "Voyage",
+      "Sports": "Sports"
+    },
+    "visit": "Visiter"
+  },
   "COMMENT": {
     "empty": {
       "message": "Aucun commentaire n'a été enregistré."

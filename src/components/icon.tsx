@@ -7,7 +7,7 @@ import {
   faCircleXmark as faCircleXmarkIcon,
   faXmark as faXmarkIcon,
   faHouse as faHouseIcon,
-  faSquareArrowUpRight as faSquareArrowUpRightIcon,
+  faArrowUpRight as faArrowUpRightIcon,
   faWreathLaurel as faWreathLaurelIcon,
   faMoonStars as faMoonStarsIcon,
   faSun as faSunIcon,
@@ -20,6 +20,7 @@ import {
   faCheck as faCheckIcon,
   faLanguage as faLanguageIcon,
   faUserTie as faUserTieIcon,
+  faLink as faLinkIcon,
 } from "@fortawesome/pro-duotone-svg-icons"
 import {
   faGithub as faGithubIcon,
@@ -62,7 +63,7 @@ export const FaHouseIcon = (props: IconProps) => (
 export const FaBlogIcon = (props: IconProps) => (
   <FaIcon icon={faBlogIcon} {...props} />
 )
-export const FaBoomarkIcon = (props: IconProps) => (
+export const FaBookmarkIcon = (props: IconProps) => (
   <FaIcon icon={faBookmarkIcon} {...props} />
 )
 export const FaAddressCardIcon = (props: IconProps) => (
@@ -71,8 +72,8 @@ export const FaAddressCardIcon = (props: IconProps) => (
 export const FaWreathLaurelIcon = (props: IconProps) => (
   <FaIcon icon={faWreathLaurelIcon} {...props} />
 )
-export const FaSquareArrowUpRightIcon = (props: IconProps) => (
-  <FaIcon icon={faSquareArrowUpRightIcon} {...props} />
+export const FaArrowUpRightIcon = (props: IconProps) => (
+  <FaIcon icon={faArrowUpRightIcon} {...props} />
 )
 export const FaTwitterSquareIcon = (props: IconProps) => (
   <FaIcon icon={faTwitterSquareIcon} {...props} />
@@ -112,4 +113,7 @@ export const FaLanguageIcon = (props: IconProps) => (
 )
 export const FaUserTieIcon = (props: IconProps) => (
   <FaIcon icon={faUserTieIcon} {...props} />
+)
+export const FaLinkIcon = (props: IconProps) => (
+  <FaIcon icon={faLinkIcon} {...props} />
 )

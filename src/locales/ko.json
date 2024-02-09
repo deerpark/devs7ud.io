@@ -78,6 +78,18 @@
       "Sports": "스포츠"
     }
   },
+  "BOOKMARKS": {
+    "empty": "등록된 포스트가 없습니다.",
+    "category": {
+      "General": "일상",
+      "Technology": "기술",
+      "Fashion": "패션",
+      "Food": "음식",
+      "Travel": "여행",
+      "Sports": "스포츠"
+    },
+    "visit": "방문하기"
+  },
   "COMMENT": {
     "empty": {
       "message": "등록된 코멘트가 없습니다."

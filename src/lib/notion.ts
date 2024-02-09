@@ -14,8 +14,14 @@ import { cache } from "react"
 
 import { env } from "@/lib/env"
 
-export const notionClient = new Client({
+const notionEnv = {
   auth: env.NOTION_TOKEN,
+  posts: env.NOTION_DATABASE_ID,
+  bookmarks: env.NOTION_BOOKMARKS_DATABASE_ID,
+}
+
+export const notionClient = new Client({
+  auth: notionEnv.auth,
 })
 
 export const getUsers = cache(async () => {
@@ -68,40 +74,44 @@ function resolveError(error: unknown) {
   }
 }
 
-export const getPages = cache(async (_locale?: string) => {
-  const locale = _locale || "ko"
-  try {
-    return notionClient.databases.query({
-      filter: {
-        and: [
-          {
-            property: "Status",
-            status: {
-              equals: "Published",
+export const getPages = cache(
+  async (_locale?: string, databaseKey = "posts") => {
+    const locale = _locale || "ko"
+    const database_id =
+      notionEnv[databaseKey as keyof typeof notionEnv] || env.NOTION_DATABASE_ID
+    try {
+      return notionClient.databases.query({
+        filter: {
+          and: [
+            {
+              property: "Status",
+              status: {
+                equals: "Published",
+              },
             },
-          },
-          {
-            property: "Locale",
-            select: {
-              equals: locale,
+            {
+              property: "Locale",
+              select: {
+                equals: locale,
+              },
             },
-          },
-        ],
-      },
-      database_id: env.NOTION_DATABASE_ID!,
-    })
-  } catch (error: unknown) {
-    resolveError(error)
-    return {
-      type: "page",
-      page_or_database: {},
-      object: "list",
-      next_cursor: null,
-      has_more: false,
-      results: [],
+          ],
+        },
+        database_id,
+      })
+    } catch (error: unknown) {
+      resolveError(error)
+      return {
+        type: "page",
+        page_or_database: {},
+        object: "list",
+        next_cursor: null,
+        has_more: false,
+        results: [],
+      }
     }
   }
-})
+)
 
 export const getPageContent = cache((pageId: string) => {
   return notionClient.blocks.children
@@ -109,10 +119,12 @@ export const getPageContent = cache((pageId: string) => {
     .then((res) => res.results as BlockObjectResponse[])
 })
 
-export const getPageBySlug = cache((slug: string) => {
+export const getPageBySlug = cache((slug: string, databaseKey = "posts") => {
+  const database_id =
+    notionEnv[databaseKey as keyof typeof notionEnv] || env.NOTION_DATABASE_ID
   return notionClient.databases
     .query({
-      database_id: env.NOTION_DATABASE_ID!,
+      database_id,
       filter: {
         property: "Slug",
         rich_text: {

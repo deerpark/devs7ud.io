@@ -1,6 +1,6 @@
 import { getComments } from "@/lib/notion"
-import { FaCommentIcon } from "../icon"
-import { Badge } from "../ui/badge"
+import { FaCommentIcon } from "./icon"
+import { Badge } from "./ui/badge"
 import { cn } from "@/lib/utils"
 
 type CommentCountProps = { id: string; className?: string }

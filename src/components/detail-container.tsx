@@ -1,26 +1,28 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import Scratch from "../filters/scratch"
+import Scratch from "./filters/scratch"
 import { Category } from "@/types/post"
-import { TitleBar } from "../title-bar"
+import { TitleBar } from "./title-bar"
 import { useTheme } from "next-themes"
-import { P } from "../ui/typography"
+import { P } from "./ui/typography"
 import { cn } from "@/lib/utils"
 import * as React from "react"
 
-type PostContainerProps = {
+type DetailContainerProps = {
   title: string
+  segment?: string
   description: string
   tags?: Category[]
 } & React.PropsWithChildren
 
-export default function PostContainer({
+export default function DetailContainer({
   children,
   title,
+  segment = "posts",
   description,
   tags,
-}: PostContainerProps) {
+}: DetailContainerProps) {
   const scrollContainerRef = React.useRef(null)
   const titleRef = React.useRef<HTMLHeadingElement>(null)
   const t = useTranslations("POSTS.category")
@@ -39,15 +41,15 @@ export default function PostContainer({
       <TitleBar
         backButton
         globalMenu={false}
-        backButtonHref={"/posts"}
+        backButtonHref={`/${segment}`}
         magicTitle
         title={title}
         tag={tags?.map((tag) => t(tag.name)).join(", ")}
         titleRef={titleRef}
         scrollContainerRef={scrollContainerRef}
       />
-      <div className="max-w-full">
-        <div className="mx-auto max-w-max p-8">
+      <div className="flex max-w-full flex-1 flex-col">
+        <div className="flex flex-1 flex-col p-8">
           <Scratch
             height={70}
             fontSize={40}
@@ -61,7 +63,7 @@ export default function PostContainer({
           <h1
             ref={titleRef}
             className={cn(
-              "font-heading from-foreground to-foreground/70 break-keep bg-gradient-to-r bg-clip-text pb-2 pt-20 text-center font-black text-transparent",
+              "font-heading from-foreground to-foreground/70 flex-none break-keep bg-gradient-to-r bg-clip-text pb-2 pt-20 text-center font-black text-transparent",
               title.length >= 20
                 ? "text-4xl/[1.05]"
                 : title.length >= 15
@@ -71,7 +73,7 @@ export default function PostContainer({
           >
             {title}
           </h1>
-          <P className="text-muted-foreground !mt-3 mb-20 break-keep text-center text-sm 2xl:px-1">
+          <P className="text-muted-foreground !mt-3 mb-20 flex-none break-keep text-center text-sm 2xl:px-1">
             {description}
           </P>
           {children}

@@ -15,9 +15,10 @@ import SidebarFooter from "./footer"
 
 type SidebarProps = {
   postCount: number
+  bookmarkCount: number
 }
 
-export function Sidebar({ postCount }: SidebarProps) {
+export function Sidebar({ postCount, bookmarkCount }: SidebarProps) {
   const navigationContext = React.useContext(GlobalNavigationContext)
   const navIsOpen = navigationContext.isOpen
   const scrollContainerRef = React.useRef<HTMLElement>(null)
@@ -30,7 +31,7 @@ export function Sidebar({ postCount }: SidebarProps) {
           navIsOpen
             ? "inset-y-0 left-0 translate-x-0 shadow-lg"
             : "-translate-x-full"
-        } 3xl:w-80 bg-card z-30 flex h-full max-h-screen min-h-screen w-3/4 flex-none flex-col overflow-y-auto border-r transition duration-200 ease-in-out sm:w-1/2 sm:pb-0 md:w-1/3 lg:relative lg:z-auto lg:w-56 lg:translate-x-0 2xl:w-72`}
+        } 3xl:w-80 bg-popover lg:bg-card z-30 flex h-full max-h-screen min-h-screen w-3/4 flex-none flex-col overflow-y-auto border-r transition duration-200 ease-in-out sm:w-1/2 sm:pb-0 md:w-1/3 lg:relative lg:z-auto lg:w-56 lg:translate-x-0 2xl:w-72`}
       >
         <TitleBar
           scrollContainerRef={scrollContainerRef}
@@ -51,7 +52,10 @@ export function Sidebar({ postCount }: SidebarProps) {
             </div>
           }
         />
-        <SidebarNavigation postCount={postCount} />
+        <SidebarNavigation
+          postCount={postCount}
+          bookmarkCount={bookmarkCount}
+        />
         <div className="space-y-1 p-3">
           <h4 className="text-muted-foreground/50 px-2 pb-2 pt-5 text-xs font-semibold">
             {t("SYSTEM.settings.label")}
