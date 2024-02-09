@@ -3,8 +3,8 @@
 import { useTheme } from "next-themes"
 import * as React from "react"
 
-import { FaArrowLeft, FaBars, FaXmark } from "./icon-duotone"
-import { GlobalNavigationContext } from "./providers"
+import GlobalMenuButton from "./global-menu-button"
+import { FaArrowLeft } from "./icon-duotone"
 import { useRouter } from "next/navigation"
 import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"
@@ -42,7 +42,6 @@ export function TitleBar({
   trailingAccessory = null,
   children,
 }: Props) {
-  const { isOpen, setIsOpen } = React.useContext(GlobalNavigationContext)
   const { theme } = useTheme()
   const [offset, setOffset] = React.useState(200)
   const [opacity, _setOpacity] = React.useState(0)
@@ -146,20 +145,7 @@ export function TitleBar({
     >
       <div className="flex flex-none items-center justify-between">
         <span className="flex w-full items-center">
-          {globalMenu && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-foreground mr-1 lg:hidden"
-            >
-              {isOpen ? (
-                <FaXmark className="size-4" />
-              ) : (
-                <FaBars className="size-4" />
-              )}
-            </Button>
-          )}
+          {globalMenu && <GlobalMenuButton />}
 
           {backButton && backButtonHref && (
             <Button

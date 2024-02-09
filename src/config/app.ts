@@ -14,6 +14,7 @@ export const defaultAppConfig = {
 export const appConfig = {
   ...defaultAppConfig,
   name: "DEVS7UDIO",
+  url: "https://devs7ud.io",
   description: "We think about practical and user-friendly user interfaces.",
   keywords: ["UX", "UI", "사용자경험", "프로토타입", "design engineer"],
   authors: [{ name: "Yonn Kim", url: "https://deerpark.github.io" }],

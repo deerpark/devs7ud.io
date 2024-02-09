@@ -80,6 +80,9 @@ const config = {
         sans: ["var(--font-inter)"],
         heading: ["var(--font-oa-gothic)"],
       },
+      transitionTimingFunction: {
+        "expo-in-out": "cubic-bezier(0.32, 0.72 , 0, 1)",
+      },
     },
   },
   // eslint-disable-next-line global-require

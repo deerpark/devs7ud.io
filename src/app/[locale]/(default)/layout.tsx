@@ -13,12 +13,15 @@ export default async function DefaultLayout({
   const pages = await getPages(params.locale)
   const bookmarks = await getPages(params.locale, "bookmarks")
   return (
-    <div className="flex size-full h-screen">
+    <div id="root" className="flex size-full h-screen">
       <Sidebar
         postCount={pages?.results?.length || 0}
         bookmarkCount={bookmarks?.results?.length || 0}
       />
-      <div className="relative flex max-h-screen flex-1 overflow-y-auto">
+      <div
+        id="contents"
+        className="ease-expo-in-out relative flex max-h-screen flex-1 overflow-y-auto transition-all duration-500"
+      >
         {children}
       </div>
     </div>

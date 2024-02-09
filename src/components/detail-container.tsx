@@ -2,7 +2,7 @@
 
 import DetailToolbar from "./detail-toolbar"
 import { useTranslations } from "next-intl"
-import ScrollToTop from "./scroll-to-top"
+import FloatingMenu from "./floating-menu"
 import Scratch from "./filters/scratch"
 import { Category } from "@/types/post"
 import { TitleBar } from "./title-bar"
@@ -100,9 +100,7 @@ export default function DetailContainer({
           {children}
         </div>
       </div>
-      <div className="fixed bottom-6 right-6">
-        <ScrollToTop scrollContainerRef={scrollContainerRef} />
-      </div>
+      <FloatingMenu scrollContainerRef={scrollContainerRef} />
     </div>
   )
 }

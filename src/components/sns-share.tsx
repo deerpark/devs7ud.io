@@ -45,12 +45,15 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import { FaArrowUpFromBracketIcon } from "./icon-duotone"
 import { useTranslations } from "next-intl"
 import { FaMailbox } from "./icon-regular"
+import { appConfig } from "@/config/app"
 import { Button } from "./ui/button"
 
 export default function SnsShare() {
   const t = useTranslations()
-  const url = window.location.href
-  const title = document.title
+  const url =
+    (typeof window !== "undefined" && window.location.href) || appConfig.url
+  const title =
+    (typeof document !== "undefined" && document.title) || appConfig.name
   return (
     <Drawer>
       <DrawerTrigger asChild>

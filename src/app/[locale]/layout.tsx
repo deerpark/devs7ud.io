@@ -51,7 +51,7 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
           params.locale === "ko" ? Fonts.oaGothic.variable : ""
         )}
       >
-        <body>
+        <body className="overflow-hidden">
           <SkipToContent />
           <ThemeProvider
             attribute="class"
