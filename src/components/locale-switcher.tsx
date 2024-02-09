@@ -8,9 +8,9 @@ import { appConfig } from "@/config/app"
 
 import {
   Command,
-  CommandEmpty,
+  /* CommandEmpty, */
   CommandGroup,
-  CommandInput,
+  /* CommandInput, */
   CommandItem,
 } from "./ui/command"
 import { FaAnglesUpDownIcon, FaCheckIcon, FaLanguageIcon } from "./icon"
@@ -56,8 +56,8 @@ export default function LocaleSwitcher() {
       </PopoverTrigger>
       <PopoverContent className="max-w-[200px] p-0" align="start">
         <Command>
-          <CommandInput placeholder={t("placeholder")} />
-          <CommandEmpty>{t("empty")}</CommandEmpty>
+          {/* <CommandInput placeholder={t("placeholder")} />
+          <CommandEmpty>{t("empty")}</CommandEmpty> */}
           <CommandGroup>
             {appConfig.locales.map((code) => (
               <CommandItem

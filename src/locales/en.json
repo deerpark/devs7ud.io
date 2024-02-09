@@ -1,6 +1,6 @@
 {
   "Meta": {
-    "title": "DEVS7UD.IO",
+    "title": "DEVS7UDIO",
     "description": "We think about practical and user-friendly user interfaces."
   },
   "SYSTEM": {
@@ -58,10 +58,13 @@
       "if": "if available",
       "or": "or",
       "jumpToList": "Jump to list"
+    },
+    "settings": {
+      "label": "Settings"
     }
   },
   "SIDEBAR": {
-    "title": "DEVS7UD.IO"
+    "title": "DEVS7UDIO"
   },
   "POSTS": {
     "empty": "There are no registered posts.",

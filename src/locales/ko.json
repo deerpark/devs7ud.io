@@ -1,6 +1,6 @@
 {
   "Meta": {
-    "title": "DEVS7UD.IO",
+    "title": "DEVS7UDIO",
     "description": "저희는 실용적이고 사용자 친화적인 사용자 인터페이스를 고민합니다."
   },
   "SYSTEM": {
@@ -58,10 +58,13 @@
       "if": "가능한 경우",
       "or": "또는",
       "jumpToList": "목록으로 이동"
+    },
+    "settings": {
+      "label": "설정"
     }
   },
   "SIDEBAR": {
-    "title": "DEVS7UD.IO"
+    "title": "DEVS7UDIO"
   },
   "POSTS": {
     "empty": "등록된 포스트가 없습니다.",

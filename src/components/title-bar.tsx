@@ -186,16 +186,22 @@ export function TitleBar({
                 : {}
             }
             className={cn(
-              isTitleString
-                ? "text-foreground line-clamp-1 transform-gpu text-base font-bold"
-                : "w-full",
+              isTitleString ? "transform-gpu" : "w-full",
               magicTitle && isTitleString
                 ? "flex items-center space-x-2 lg:px-6"
                 : ""
             )}
           >
-            {tag && <Badge>{tag}</Badge>}
-            <span>{title}</span>
+            {tag && <Badge className="block flex-none truncate">{tag}</Badge>}
+            <span
+              className={
+                isTitleString
+                  ? "text-foreground line-clamp-1 text-base font-bold"
+                  : ""
+              }
+            >
+              {title}
+            </span>
           </h2>
         </span>
 

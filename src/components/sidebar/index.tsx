@@ -21,7 +21,7 @@ export function Sidebar({ postCount }: SidebarProps) {
   const navigationContext = React.useContext(GlobalNavigationContext)
   const navIsOpen = navigationContext.isOpen
   const scrollContainerRef = React.useRef<HTMLElement>(null)
-  const t = useTranslations("SIDEBAR")
+  const t = useTranslations()
   return (
     <>
       <nav
@@ -46,7 +46,7 @@ export function Sidebar({ postCount }: SidebarProps) {
                 className="text-foreground/80 w-28 lg:w-24"
                 viewBox="0 0 141 18"
                 preserveAspectRatio="xMidYMid meet"
-                title={t("title")}
+                title={t("SIDEBAR.title")}
               />
             </div>
           }
@@ -54,7 +54,7 @@ export function Sidebar({ postCount }: SidebarProps) {
         <SidebarNavigation postCount={postCount} />
         <div className="space-y-1 p-3">
           <h4 className="text-muted-foreground/50 px-2 pb-2 pt-5 text-xs font-semibold">
-            설정
+            {t("SYSTEM.settings.label")}
           </h4>
           <LocaleSwitcher />
           <ThemeSwitcher />

@@ -1,6 +1,6 @@
 {
   "Meta": {
-    "title": "DEVS7UD.IO",
+    "title": "DEVS7UDIO",
     "description": "Nous pensons à des interfaces utilisateur pratiques et conviviales."
   },
   "SYSTEM": {
@@ -58,10 +58,13 @@
       "if": "si disponible",
       "or": "ou",
       "jumpToList": "Sauter à la liste"
+    },
+    "settings": {
+      "label": "Paramètres"
     }
   },
   "SIDEBAR": {
-    "title": "DEVS7UD.IO"
+    "title": "DEVS7UDIO"
   },
   "POSTS": {
     "empty": "Il n'y a pas de messages enregistrés.",
