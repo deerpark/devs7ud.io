@@ -1,7 +1,6 @@
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
-import { FaBlogIcon } from "@/components/icon-duotone"
 import { getPages, getUsers } from "@/lib/notion"
 import { Posts } from "@/components/posts"
 import List from "@/components/list"
@@ -24,12 +23,7 @@ export default async function PageLayout({
     <div className="flex w-full">
       <List
         title={
-          <div className="flex items-center space-x-2 lg:flex-col lg:justify-center lg:space-x-0 lg:space-y-2 lg:py-5">
-            <FaBlogIcon className="hidden size-5 lg:block lg:size-8" />
-            <span className="text-foreground lg:text-muted-foreground line-clamp-1 transform-gpu text-base font-black lg:text-xs lg:font-medium">
-              {t("SYSTEM.navigation.index.posts")}
-            </span>
-          </div>
+          <span className="lg:ml-3">{t("SYSTEM.navigation.index.posts")}</span>
         }
         contents={
           pages.results.length ? (

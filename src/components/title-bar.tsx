@@ -113,8 +113,6 @@ export function TitleBar({
       : currentScrollOffset + 0.8
   }
 
-  const isTitleString = typeof title === "string"
-
   React.useEffect(() => {
     // eslint-disable-next-line no-underscore-dangle
     const _scrollContainerRef = scrollContainerRef?.current
@@ -143,7 +141,7 @@ export function TitleBar({
       }}
       className={cn(
         "border-border/50 sticky top-0 z-10 flex min-h-14 flex-col justify-center border-b px-3 py-2 backdrop-blur-sm",
-        currentScrollOffset !== 0 ? "" : isTitleString ? "lg:border-0" : ""
+        currentScrollOffset !== 0 ? "" : "lg:border-0"
       )}
     >
       <div className="flex flex-none items-center justify-between">
@@ -178,7 +176,7 @@ export function TitleBar({
 
           <h2
             style={
-              magicTitle && isTitleString && !!title?.trim()
+              magicTitle
                 ? {
                     transform: `translateY(${offset}%)`,
                     opacity: `${opacity}`,
@@ -186,20 +184,12 @@ export function TitleBar({
                 : {}
             }
             className={cn(
-              isTitleString ? "transform-gpu" : "w-full",
-              magicTitle && isTitleString
-                ? "flex items-center space-x-2 lg:px-6"
-                : ""
+              "transform-gpu",
+              magicTitle ? "flex items-center space-x-2 lg:px-5" : ""
             )}
           >
             {tag && <Badge className="block flex-none truncate">{tag}</Badge>}
-            <span
-              className={
-                isTitleString
-                  ? "text-foreground line-clamp-1 text-base font-bold"
-                  : ""
-              }
-            >
+            <span className="text-foreground line-clamp-1 text-base font-bold">
               {title}
             </span>
           </h2>

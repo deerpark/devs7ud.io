@@ -7,7 +7,6 @@ import { format, formatDistance } from "@/lib/date"
 import DetailContainer from "../detail-container"
 import { Category } from "@/types/post"
 import { useLocale } from "next-intl"
-import { P } from "../ui/typography"
 import CreateBy from "../create-by"
 import Comments from "../comments"
 import Contents from "../contents"
@@ -48,14 +47,14 @@ export function Post(props: PostProps) {
   return (
     <DetailContainer title={title} description={description} tags={tags}>
       <div className="mx-auto max-w-max flex-1">
-        <P className="text-muted-foreground mb-60 flex flex-col items-center justify-center space-y-20 text-xs/5">
+        <div className="text-muted-foreground mb-60 flex flex-col items-center justify-center space-y-20 text-xs/5">
           {createdBy && <CreateBy name={createdBy.name} />}
           <ByLine
             updateAt={updateAt}
             lastEditDateTime={lastEditDateTime}
             updateDateTime={updateDateTime}
           />
-        </P>
+        </div>
         <Contents bannerUrl={banner.url} content={content} />
       </div>
       <Comments comments={comments} />

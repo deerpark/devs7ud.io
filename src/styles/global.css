@@ -84,6 +84,19 @@
     --fa-primary-opacity: 1;
     --fa-secondary-opacity: 0.4;
   }
+
+  .fa-default {
+    --fa-primary-color: hsl(255 100% 68%);
+    --fa-secondary-color: hsl(195 100% 55%);
+    --fa-primary-opacity: 1;
+    --fa-secondary-opacity: 1;
+  }
+  .dark.fa-default {
+    --fa-primary-color: hsl(255 70% 65%);
+    --fa-secondary-color: hsl(195 70% 65%);
+    --fa-primary-opacity: 1;
+    --fa-secondary-opacity: 1;
+  }
 }
 
 .filter-blur {

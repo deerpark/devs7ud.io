@@ -23,6 +23,7 @@ import {
   faLink as faLinkIcon,
   faEllipsisVertical as faEllipsisVerticalIcon,
   faArrowUpFromBracket as faArrowUpFromBracketIcon,
+  faUpToLine as faUpToLineIcon,
 } from "@fortawesome/pro-duotone-svg-icons"
 import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome"
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core"
@@ -114,4 +115,7 @@ export const FaEllipsisVerticalIcon = (props: IconProps) => (
 )
 export const FaArrowUpFromBracketIcon = (props: IconProps) => (
   <FaIcon icon={faArrowUpFromBracketIcon} {...props} />
+)
+export const FaUpToLineIcon = (props: IconProps) => (
+  <FaIcon icon={faUpToLineIcon} {...props} />
 )

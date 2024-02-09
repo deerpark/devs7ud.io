@@ -18,6 +18,13 @@
   background: none !important;
   padding: 0 !important;
 }
+pre {
+  border: 0 none !important;
+  box-shadow: none !important;
+  background: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
 .dark .notion code {
   color: rgba(229, 231, 235, 1);
 }

@@ -69,7 +69,7 @@ export default function SnsShare() {
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
-            <DrawerTitle>{t("SHARE.title")}</DrawerTitle>
+            <DrawerTitle className="font-bold">{t("SHARE.title")}</DrawerTitle>
             <DrawerDescription>{t("SHARE.description")}</DrawerDescription>
           </DrawerHeader>
           <div className="p-4">
