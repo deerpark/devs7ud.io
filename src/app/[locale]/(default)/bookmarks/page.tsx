@@ -1,4 +1,4 @@
-import { FaBookmarkIcon } from "@/components/icon"
+import { FaBookmarkIcon } from "@/components/icon-duotone"
 import Empty from "@/components/ui/empty"
 
 export default function BookmarksPage() {

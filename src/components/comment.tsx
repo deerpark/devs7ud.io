@@ -1,9 +1,9 @@
 import * as React from "react"
 
 import { CommentObjectResponse } from "@notionhq/client/build/src/api-endpoints"
+import { FaSpinnerThirdIcon } from "./icon-duotone"
 import CommentCreatedBy from "./created-by"
 import { formatDistance } from "@/lib/date"
-import { FaSpinnerThirdIcon } from "./icon"
 import { Separator } from "./ui/separator"
 import { useLocale } from "next-intl"
 

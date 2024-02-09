@@ -95,6 +95,19 @@
       "message": "Aucun commentaire n'a été enregistré."
     }
   },
+  "TITLEBAR": {
+    "share": "Partager",
+    "more": "Menus supplémentaires",
+    "edit": "Editer",
+    "delete": "Supprimer",
+    "report": "Faire un rapport"
+  },
+  "SHARE": {
+    "title": "Partager cette information",
+    "description": "Cliquez sur le service que vous souhaitez partager."
+  },
+  "confirm": "Confirmer",
+  "cancel": "Annuler",
   "AUTH": {
     "signin": "Connexion",
     "signup": "Inscription"

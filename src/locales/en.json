@@ -95,6 +95,19 @@
       "message": "There are no comments registered."
     }
   },
+  "TITLEBAR": {
+    "share": "Share",
+    "more": "Additional menus",
+    "edit": "Edit",
+    "delete": "Delete",
+    "report": "Make a report"
+  },
+  "SHARE": {
+    "title": "Share this",
+    "description": "Click on the service you want to share."
+  },
+  "confirm": "Confirm",
+  "cancel": "Cancel",
   "AUTH": {
     "signin": "Sign in",
     "signup": "Sign up"

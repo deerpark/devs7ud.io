@@ -3,8 +3,8 @@
 import { useTheme } from "next-themes"
 import * as React from "react"
 
+import { FaArrowLeft, FaBars, FaXmark } from "./icon-duotone"
 import { GlobalNavigationContext } from "./providers"
-import { FaArrowLeft, FaBars, FaXmark } from "./icon"
 import { useRouter } from "next/navigation"
 import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"

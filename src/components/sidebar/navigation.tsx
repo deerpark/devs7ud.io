@@ -5,12 +5,11 @@ import {
   FaAddressCardIcon,
   FaBlogIcon,
   FaBookmarkIcon,
-  FaGithubIcon,
   FaHouseIcon,
   FaArrowUpRightIcon,
-  FaTwitterSquareIcon,
   FaWreathLaurelIcon,
-} from "../icon"
+} from "../icon-duotone"
+import { FaGithubIcon, FaTwitterIcon } from "../icon-brand"
 import { NavigationLink } from "./navigation-link"
 import { useTranslations } from "next-intl"
 
@@ -96,7 +95,7 @@ export function SidebarNavigation({
         {
           href: "https://twitter.com/deerpark7",
           label: t("online.twitter"),
-          icon: FaTwitterSquareIcon,
+          icon: FaTwitterIcon,
           trailingAccessory: FaArrowUpRightIcon,
           isActive: false,
           trailingAction: null,

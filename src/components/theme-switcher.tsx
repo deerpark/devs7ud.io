@@ -11,7 +11,7 @@ import {
   FaCheckIcon,
   FaSunIcon,
   FaMoonStarsIcon,
-} from "./icon"
+} from "./icon-duotone"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { Command, CommandGroup, CommandItem } from "./ui/command"
 import { appConfig } from "@/config/app"
@@ -38,7 +38,7 @@ export function ThemeSwitcher() {
           variant="ghost"
           role="combobox"
           aria-expanded={open}
-          className="h-auto w-full items-center space-x-3 rounded-md p-2 lg:py-1.5"
+          className="group h-auto w-full items-center space-x-3 rounded-md p-2 lg:py-1.5"
         >
           <span className="flex w-5 items-center justify-center lg:w-4">
             <FaSunIcon className="size-5 rotate-0 scale-100 transition-all lg:size-4 dark:-rotate-90 dark:scale-0" />
@@ -47,7 +47,7 @@ export function ThemeSwitcher() {
           <span className="text-muted-foreground flex-1 text-left text-base/5 lg:text-sm/5">
             {t("toggle")}
           </span>
-          <FaAnglesUpDownIcon className="fa-dark dark:fa-light size-4 shrink-0 lg:size-3" />
+          <FaAnglesUpDownIcon className="fa-dark dark:fa-light size-4 shrink-0 opacity-40 group-hover:opacity-100 lg:size-3" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="max-w-[200px] p-0" align="start">

@@ -13,7 +13,7 @@ import {
   /* CommandInput, */
   CommandItem,
 } from "./ui/command"
-import { FaAnglesUpDownIcon, FaCheckIcon, FaLanguageIcon } from "./icon"
+import { FaAnglesUpDownIcon, FaCheckIcon, FaLanguageIcon } from "./icon-duotone"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { Locale } from "@/types/common"
 import { Button } from "./ui/button"
@@ -43,7 +43,7 @@ export default function LocaleSwitcher() {
           variant="ghost"
           role="combobox"
           aria-expanded={open}
-          className="h-auto w-full items-center space-x-3 rounded-md p-2 lg:py-1.5"
+          className="group h-auto w-full items-center space-x-3 rounded-md p-2 lg:py-1.5"
         >
           <span className="flex w-5 items-center justify-center lg:w-4">
             <FaLanguageIcon className="text-tertiary size-5 lg:size-4" />
@@ -51,7 +51,7 @@ export default function LocaleSwitcher() {
           <span className="text-muted-foreground flex-1 text-left text-base/5 lg:text-sm/5">
             {t("label")}
           </span>
-          <FaAnglesUpDownIcon className="fa-dark dark:fa-light size-4 shrink-0 lg:size-3" />
+          <FaAnglesUpDownIcon className="fa-dark dark:fa-light size-4 shrink-0 opacity-40 group-hover:opacity-100 lg:size-3" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="max-w-[200px] p-0" align="start">

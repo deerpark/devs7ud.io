@@ -1,7 +1,7 @@
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Heading } from "@/components/ui/typography"
+import { FaBombIcon } from "../icon-duotone"
 import { useTranslations } from "next-intl"
-import { FaBombIcon } from "../icon"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 

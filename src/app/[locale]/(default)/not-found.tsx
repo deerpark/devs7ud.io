@@ -6,9 +6,9 @@ import "@/styles/global.css"
 import { headers } from "next/headers"
 import Link from "next/link"
 
+import { FaDoNotEnterIcon } from "@/components/icon-duotone"
 import { Heading, P } from "@/components/ui/typography"
 import { buttonVariants } from "@/components/ui/button"
-import { FaDoNotEnterIcon } from "@/components/icon"
 import { getTranslations } from "next-intl/server"
 
 export { metadata } from "@/lib/metadata"

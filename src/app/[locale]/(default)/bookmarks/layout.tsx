@@ -1,8 +1,8 @@
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
+import { FaBookmarkIcon } from "@/components/icon-duotone"
 import { Bookmarks } from "@/components/bookmarks"
-import { FaBookmarkIcon } from "@/components/icon"
 import { getPages } from "@/lib/notion"
 import List from "@/components/list"
 

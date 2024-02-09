@@ -3,17 +3,15 @@ import {
   PageObjectResponse,
   UserObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints"
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
-import { useLocale, useTranslations } from "next-intl"
 import { format, formatDistance } from "@/lib/date"
-import PostContainer from "../detail-container"
-import { Separator } from "../ui/separator"
-import { FaMessagesIcon } from "../icon"
+import DetailContainer from "../detail-container"
 import { Category } from "@/types/post"
+import { useLocale } from "next-intl"
 import { P } from "../ui/typography"
-import Comment from "../comment"
-import Empty from "../ui/empty"
-import Image from "next/image"
+import CreateBy from "../create-by"
+import Comments from "../comments"
+import Contents from "../contents"
+import ByLine from "../by-line"
 
 interface Banner {
   url: string | null
@@ -36,7 +34,6 @@ export function Post(props: PostProps) {
   }
   // const dateTime = post.created_time
   const lastEditDateTime = post.last_edited_time
-  const t = useTranslations()
   const locale = useLocale()
   const updateDateTime = formatDistance(
     new Date(lastEditDateTime),
@@ -49,78 +46,19 @@ export function Post(props: PostProps) {
   const updateAt = format(lastEditDateTime, "PP", locale)
   const tags: Category[] = (post.properties?.Tags as any)?.multi_select || []
   return (
-    <PostContainer title={title} description={description} tags={tags}>
+    <DetailContainer title={title} description={description} tags={tags}>
       <div className="mx-auto max-w-max flex-1">
         <P className="text-muted-foreground mb-60 flex flex-col items-center justify-center space-y-20 text-xs/5">
-          {createdBy && (
-            <div className="flex flex-col items-center space-y-2">
-              <Avatar className="ring-foreground group-[.active]:ring-primary-foreground border-1 size-16 rounded-full ring-1">
-                <AvatarImage
-                  src="/assets/images/yonn-kim.jpg"
-                  alt={`${createdBy.name} avatar image`}
-                />
-                <AvatarFallback className="text-xs font-bold">
-                  {createdBy.name?.slice(0, 1)}
-                </AvatarFallback>
-              </Avatar>
-              <div className="truncate">{createdBy.name}</div>
-            </div>
-          )}
-          <div className="flex flex-wrap items-center space-x-2">
-            <span className="truncate">{updateAt}</span>
-            {lastEditDateTime ? (
-              <>
-                <Separator
-                  orientation="vertical"
-                  className="size-0.5 rounded-full"
-                />
-                <span className="truncate">{t("POSTS.updated")}</span>
-                <Separator
-                  orientation="vertical"
-                  className="size-0.5 rounded-full"
-                />
-                <span className="truncate">{updateDateTime}</span>
-              </>
-            ) : null}
-          </div>
-        </P>
-        {banner.url && (
-          <Image
-            alt="Image"
-            src={banner.url}
-            // width={banner.width}
-            width={800}
-            height={400}
-            className="max-w-full object-cover"
+          {createdBy && <CreateBy name={createdBy.name} />}
+          <ByLine
+            updateAt={updateAt}
+            lastEditDateTime={lastEditDateTime}
+            updateDateTime={updateDateTime}
           />
-        )}
-        <div
-          className="prose prose-p:text-secondary-foreground prose-headings:text-foreground mx-auto mt-4 max-w-3xl text-lg/7"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
+        </P>
+        <Contents bannerUrl={banner.url} content={content} />
       </div>
-      <div className="bg-card -mx-8 -mb-8 mt-20 flex-none">
-        <Separator
-          orientation="horizontal"
-          className="2xl:from-border/20 2xl:via-border 2xl:to-border/20 2xl:bg-transparent 2xl:bg-gradient-to-r"
-        />
-        <div className="p-8">
-          <div className="text-card-foreground divide-border space-y-5 divide-y">
-            {comments?.map((comment) => (
-              <Comment key={comment.id} comment={comment} />
-            ))}
-            {!comments?.length && (
-              <Empty
-                icon={
-                  <FaMessagesIcon className="text-muted-foreground size-12" />
-                }
-                description={t("COMMENT.empty.message")}
-              />
-            )}
-          </div>
-        </div>
-      </div>
-    </PostContainer>
+      <Comments comments={comments} />
+    </DetailContainer>
   )
 }

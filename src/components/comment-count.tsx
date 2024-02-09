@@ -1,5 +1,5 @@
+import { FaCommentIcon } from "./icon-duotone"
 import { getComments } from "@/lib/notion"
-import { FaCommentIcon } from "./icon"
 import { Badge } from "./ui/badge"
 import { cn } from "@/lib/utils"
 

@@ -1,7 +1,7 @@
+import { FaUserTieIcon } from "../icon-duotone"
 import { buttonVariants } from "../ui/button"
 import { Separator } from "../ui/separator"
 import { useTranslations } from "next-intl"
-import { FaUserTieIcon } from "../icon"
 import { cn } from "@/lib/utils"
 /* import { UserButton } from "@clerk/nextjs" */
 import Link from "next/link"

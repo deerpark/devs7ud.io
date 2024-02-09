@@ -5,9 +5,9 @@ import type {
   UserObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { FaSpinnerThirdIcon } from "../icon-duotone"
 import { getTranslations } from "next-intl/server"
 import ListItemLink from "../list/list-link"
-import { FaSpinnerThirdIcon } from "../icon"
 import CommentCount from "../comment-count"
 import { formatDistance } from "@/lib/date"
 import ListItem from "../list/list-item"
@@ -58,7 +58,7 @@ export async function Posts(props: PostsProps) {
             </div>
             {description && (
               <div
-                className={`text-muted-foreground group-[.active]:text-primary-foreground/70 line-clamp-2 text-base/5 lg:text-sm/4`}
+                className={`text-muted-foreground group-[.active]:text-primary-foreground/70 line-clamp-2 text-base/5 lg:text-xs/4`}
               >
                 {description}
               </div>

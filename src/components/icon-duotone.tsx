@@ -21,21 +21,19 @@ import {
   faLanguage as faLanguageIcon,
   faUserTie as faUserTieIcon,
   faLink as faLinkIcon,
+  faEllipsisVertical as faEllipsisVerticalIcon,
+  faArrowUpFromBracket as faArrowUpFromBracketIcon,
 } from "@fortawesome/pro-duotone-svg-icons"
-import {
-  faGithub as faGithubIcon,
-  faTwitterSquare as faTwitterSquareIcon,
-} from "@fortawesome/free-brands-svg-icons"
 import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome"
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 // IconType을 사용하여 아이콘 정의를 받아오고, FontAwesomeIcon 컴포넌트에 전달합니다.
 type IconType = IconDefinition
-type IconProps = Omit<FontAwesomeIconProps, "icon">
+export type IconProps = Omit<FontAwesomeIconProps, "icon">
 export type Icon = (props: IconProps) => JSX.Element
 
-interface FaIconProps extends IconProps {
+export interface FaIconProps extends IconProps {
   icon: IconType
 }
 
@@ -75,12 +73,6 @@ export const FaWreathLaurelIcon = (props: IconProps) => (
 export const FaArrowUpRightIcon = (props: IconProps) => (
   <FaIcon icon={faArrowUpRightIcon} {...props} />
 )
-export const FaTwitterSquareIcon = (props: IconProps) => (
-  <FaIcon icon={faTwitterSquareIcon} {...props} />
-)
-export const FaGithubIcon = (props: IconProps) => (
-  <FaIcon icon={faGithubIcon} {...props} />
-)
 export const FaMoonStarsIcon = (props: IconProps) => (
   <FaIcon icon={faMoonStarsIcon} {...props} />
 )
@@ -116,4 +108,10 @@ export const FaUserTieIcon = (props: IconProps) => (
 )
 export const FaLinkIcon = (props: IconProps) => (
   <FaIcon icon={faLinkIcon} {...props} />
+)
+export const FaEllipsisVerticalIcon = (props: IconProps) => (
+  <FaIcon icon={faEllipsisVerticalIcon} {...props} />
+)
+export const FaArrowUpFromBracketIcon = (props: IconProps) => (
+  <FaIcon icon={faArrowUpFromBracketIcon} {...props} />
 )

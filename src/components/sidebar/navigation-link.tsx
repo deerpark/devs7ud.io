@@ -4,8 +4,8 @@ import * as React from "react"
 import Link from "next/link"
 
 import { GlobalNavigationContext } from "../providers"
+import type { Icon } from "../icon-duotone"
 import { Badge } from "../ui/badge"
-import type { Icon } from "../icon"
 
 interface NavigationLinkProps {
   link: {

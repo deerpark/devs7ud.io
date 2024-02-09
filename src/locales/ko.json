@@ -95,6 +95,19 @@
       "message": "등록된 코멘트가 없습니다."
     }
   },
+  "TITLEBAR": {
+    "share": "공유하기",
+    "more": "추가 메뉴",
+    "edit": "수정",
+    "delete": "삭제",
+    "report": "신고"
+  },
+  "SHARE": {
+    "title": "공유 하기",
+    "description": "공유 하려는 서비스를 클릭해 주세요."
+  },
+  "confirm": "확인",
+  "cancel": "취소",
   "AUTH": {
     "signin": "로그인",
     "signup": "회원가입"
