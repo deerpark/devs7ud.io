@@ -61,6 +61,19 @@
   }
 }
 
+.dark .prose code {
+  color: hsl(195 70% 65%);
+}
+.dark .prose .notion-divider {
+  border-color: hsl(255 32.6% 17.5%);
+}
+.dark .prose tbody tr {
+  border-bottom-color: hsla(255 32.6% 17.5% / 50%);
+}
+.dark .prose a {
+  color: hsl(255 70% 65%);
+}
+
 @layer base {
   * {
     @apply border-border;
