@@ -106,7 +106,10 @@
   },
   "SHARE": {
     "title": "Partager cette information",
-    "description": "Cliquez sur le service que vous souhaitez partager."
+    "description": "Cliquez sur le service que vous souhaitez partager.",
+    "copy": {
+      "success": "Le lien a été copié dans le presse-papiers."
+    }
   },
   "confirm": "Confirmer",
   "cancel": "Annuler",

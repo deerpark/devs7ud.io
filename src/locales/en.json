@@ -106,7 +106,10 @@
   },
   "SHARE": {
     "title": "Share this",
-    "description": "Click on the service you want to share."
+    "description": "Click on the service you want to share.",
+    "copy": {
+      "success": "The link has been copied to the clipboard."
+    }
   },
   "confirm": "Confirm",
   "cancel": "Cancel",

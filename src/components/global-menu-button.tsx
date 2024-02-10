@@ -60,10 +60,10 @@ export default function GlobalMenuButton({
         size="icon"
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "lg:hidden",
+          "group lg:hidden",
           !isFloating && isOpen ? "hidden" : "",
           isFloating
-            ? "bg-primary/75 border-background ease-expo-in-out group size-9 rounded-full backdrop-blur-sm transition-all duration-500"
+            ? "bg-primary/75 border-background ease-expo-in-out size-9 rounded-full backdrop-blur-sm transition-all duration-500"
             : "text-foreground mr-1",
           isFloating && !isOpen
             ? "opacity-100"
@@ -76,7 +76,7 @@ export default function GlobalMenuButton({
           className={cn(
             isFloating ? "size-5" : "size-4",
             isMono
-              ? "fa-light group-hover:fa-dark"
+              ? "fa-light group-hover:fa-default"
               : isFloating
                 ? "fa-light dark:fa-dark group-hover:fa-default"
                 : ""

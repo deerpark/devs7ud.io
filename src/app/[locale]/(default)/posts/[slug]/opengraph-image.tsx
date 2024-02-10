@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import { getPageBySlug } from "@/lib/notion"
-import { getFontBinary } from "@/lib/fonts"
+/* import { getFontBinary } from "@/lib/fonts" */
 import { appConfig } from "@/config/app"
 import { ImageResponse } from "next/og"
 
 // Route segment config
-export const runtime = "edge"
+// export const runtime = "edge"
 
 // Image metadata
 export const alt = appConfig.name
@@ -22,9 +22,9 @@ export default async function Image({
 }: {
   params: { locale: string; slug: string }
 }) {
-  const isKo = !params.locale || params.locale !== "ko"
+  /* const isKo = !params.locale || params.locale !== "ko"
   // Font
-  const font = getFontBinary(isKo)
+  const font = getFontBinary(isKo) */
 
   const post = await getPageBySlug(params.slug)
   const imageUrl = (post?.properties?.OpenGraph as any)?.files[0]?.file?.url
@@ -69,7 +69,7 @@ export default async function Image({
               className="font-heading"
               style={{
                 fontSize: 128,
-                fontFamily: isKo ? "OAGothic-ExtraBold" : "Inter",
+                /* fontFamily: isKo ? "OAGothic-ExtraBold" : "Inter", */
                 fontWeight: 900,
                 letterSpacing: -10,
               }}
@@ -94,14 +94,14 @@ export default async function Image({
       // For convenience, we can re-use the exported opengraph-image
       // size config to also set the ImageResponse's width and height.
       ...size,
-      fonts: [
+      /* fonts: [
         {
           name: isKo ? "OAGothic-ExtraBold" : "Inter",
           data: await font,
           style: "normal",
           weight: 800,
         },
-      ],
+      ], */
     }
   )
 }

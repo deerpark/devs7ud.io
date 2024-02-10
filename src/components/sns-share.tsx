@@ -42,11 +42,14 @@ import {
   DrawerTrigger,
 } from "./ui/drawer"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
+import { CopyToClipboard } from "react-copy-to-clipboard"
 import { FaArrowUpFromBracketIcon } from "./icon-duotone"
+import { FaLinkIcon } from "./icon-regular"
 import { useTranslations } from "next-intl"
 import { FaMailbox } from "./icon-regular"
 import { appConfig } from "@/config/app"
 import { Button } from "./ui/button"
+import { toast } from "sonner"
 
 export default function SnsShare() {
   const t = useTranslations()
@@ -77,6 +80,23 @@ export default function SnsShare() {
           </DrawerHeader>
           <div className="p-4">
             <div className="grid grid-cols-4 gap-2 lg:grid-cols-6">
+              <CopyToClipboard
+                text={url}
+                onCopy={() => toast(t("SHARE.copy.success"))}
+              >
+                <div className="flex items-center justify-center">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button size="icon" variant="ghost">
+                        <span>
+                          <FaLinkIcon className="size-5" />
+                        </span>
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Link</TooltipContent>
+                  </Tooltip>
+                </div>
+              </CopyToClipboard>
               <EmailShareButton url={url} subject={title}>
                 <Tooltip>
                   <TooltipTrigger asChild>

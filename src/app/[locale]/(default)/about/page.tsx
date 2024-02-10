@@ -38,7 +38,7 @@ export default function AboutPage() {
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
             >
-              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <g id="GS_logo" fill="currentColor" fill-rule="nonzero">
                   <path
                     d="M8.777,22.377 L5.773,19.064 C2.096,25.353 0,32.646 0,40.061 L2.07,40.061 C2.08,33.125 4.492,26.815 8.777,22.377 Z"

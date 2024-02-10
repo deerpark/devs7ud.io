@@ -106,7 +106,10 @@
   },
   "SHARE": {
     "title": "공유 하기",
-    "description": "공유 하려는 서비스를 클릭해 주세요."
+    "description": "공유 하려는 서비스를 클릭해 주세요.",
+    "copy": {
+      "success": "링크가 클립보드로 복사 되었습니다."
+    }
   },
   "confirm": "확인",
   "cancel": "취소",

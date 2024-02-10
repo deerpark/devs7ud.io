@@ -1,4 +1,7 @@
-import { faMailbox as faMailboxIcon } from "@fortawesome/pro-regular-svg-icons"
+import {
+  faMailbox as faMailboxIcon,
+  faLink as faLinkIcon,
+} from "@fortawesome/pro-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { FaIconProps, IconProps } from "./icon-duotone"
 
@@ -10,4 +13,7 @@ const FaIcon = ({ icon, ...props }: FaIconProps) => (
 // 각 아이콘을 위한 특정 컴포넌트 생성
 export const FaMailbox = (props: IconProps) => (
   <FaIcon icon={faMailboxIcon} {...props} />
+)
+export const FaLinkIcon = (props: IconProps) => (
+  <FaIcon icon={faLinkIcon} {...props} />
 )
