@@ -115,6 +115,6 @@
     "signup": "회원가입"
   },
   "SLIDESHOW": {
-    "indicator": "이미지 {current} / 전체 {count}개"
+    "indicator": "컨텐츠 훑어보기 {current} / {count}"
   }
 }

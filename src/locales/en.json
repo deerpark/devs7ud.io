@@ -115,6 +115,6 @@
     "signup": "Sign up"
   },
   "SLIDESHOW": {
-    "indicator": "Slide {current} of {count}"
+    "indicator": "Skim content {current} / {count}"
   }
 }
