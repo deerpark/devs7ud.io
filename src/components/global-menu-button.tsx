@@ -9,10 +9,12 @@ import { cn } from "@/lib/utils"
 
 type GlobalMenuButtonProps = {
   isFloating?: boolean
+  isMono?: boolean
 }
 
 export default function GlobalMenuButton({
   isFloating = false,
+  isMono = false,
 }: GlobalMenuButtonProps) {
   const { isOpen, setIsOpen } = React.useContext(GlobalNavigationContext)
   return (
@@ -72,9 +74,10 @@ export default function GlobalMenuButton({
       >
         <FaBars
           className={cn(
-            isFloating
-              ? "fa-light dark:fa-dark group-hover:fa-default size-5"
-              : "size-4"
+            isFloating ? "size-5" : "size-4",
+            isMono
+              ? "fa-light group-hover:fa-default"
+              : "fa-light dark:fa-dark group-hover:fa-default"
           )}
         />
       </Button>
