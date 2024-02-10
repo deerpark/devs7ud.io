@@ -45,6 +45,7 @@
       "message": "요청된 리소스를 찾을 수 없습니다.",
       "view": "",
       "allposts": "모든 글 보기",
+      "allbookmarks": "모든 북마크 보기",
       "domain": "도메인"
     },
     "gohome": "홈 페이지로 이동",
@@ -112,5 +113,8 @@
   "AUTH": {
     "signin": "로그인",
     "signup": "회원가입"
+  },
+  "SLIDESHOW": {
+    "indicator": "이미지 {current} / 전체 {count}개"
   }
 }

@@ -10,6 +10,7 @@ import {
 } from "./ui/carousel"
 import { Screenshot } from "@/types/bookmark.type"
 import { Card, CardContent } from "./ui/card"
+import { useTranslations } from "next-intl"
 import Image from "next/image"
 import * as React from "react"
 
@@ -21,6 +22,7 @@ export default function Slideshow({ items = [] }: SlideshowProps) {
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
+  const t = useTranslations()
 
   React.useEffect(() => {
     if (!api) {
@@ -44,7 +46,7 @@ export default function Slideshow({ items = [] }: SlideshowProps) {
             .map((item, index) => (
               <CarouselItem key={index}>
                 <div className="p-1">
-                  <Card>
+                  <Card className="overflow-hidden">
                     <CardContent className="flex aspect-video items-center justify-center p-0">
                       <Image
                         alt="Image"
@@ -60,11 +62,17 @@ export default function Slideshow({ items = [] }: SlideshowProps) {
               </CarouselItem>
             ))}
         </CarouselContent>
-        <CarouselPrevious className="-left-3" />
-        <CarouselNext className="-right-3" />
+        <CarouselPrevious
+          variant="secondary"
+          className="bg-primary/75 border-background ease-expo-in-out group -left-3 size-9 backdrop-blur-sm transition-all duration-500"
+        />
+        <CarouselNext
+          variant="secondary"
+          className="bg-primary/75 border-background ease-expo-in-out group -right-3 size-9 backdrop-blur-sm transition-all duration-500"
+        />
       </Carousel>
       <div className="text-muted-foreground py-2 text-center text-sm">
-        Slide {current} of {count}
+        {t("SLIDESHOW.indicator", { current, count })}
       </div>
     </div>
   ) : null

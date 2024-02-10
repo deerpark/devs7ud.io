@@ -45,6 +45,7 @@
       "message": "La ressource demandée n'a pas été trouvée.",
       "view": "Voir",
       "allposts": "tous les messages",
+      "allbookmarks": "tous les signets",
       "domain": "domaine"
     },
     "gohome": "Aller à la page d'accueil",
@@ -112,5 +113,8 @@
   "AUTH": {
     "signin": "Connexion",
     "signup": "Inscription"
+  },
+  "SLIDESHOW": {
+    "indicator": "Diapositive {current} de {count}"
   }
 }

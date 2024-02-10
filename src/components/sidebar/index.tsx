@@ -30,8 +30,7 @@ export function Sidebar({ counts }: SidebarProps) {
   useToggleClassname(
     navIsOpen,
     "shrink-left",
-    (typeof document !== "undefined" && document.getElementById("contents")) ||
-      null
+    (typeof document !== "undefined" && document.getElementById("main")) || null
   )
   return (
     <>

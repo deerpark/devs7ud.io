@@ -45,6 +45,7 @@
       "message": "The requested resource could not be found.",
       "view": "View",
       "allposts": "all posts",
+      "allbookmarks": "all bookmarks",
       "domain": "domain"
     },
     "gohome": "Go to the front page",
@@ -112,5 +113,8 @@
   "AUTH": {
     "signin": "Sign in",
     "signup": "Sign up"
+  },
+  "SLIDESHOW": {
+    "indicator": "Slide {current} of {count}"
   }
 }

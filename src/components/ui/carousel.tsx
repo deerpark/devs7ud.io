@@ -3,9 +3,9 @@
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
-import { ArrowLeft, ArrowRight } from "lucide-react"
 import * as React from "react"
 
+import { FaArrowLeft, FaArrowRight } from "../icon-duotone"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -216,7 +216,12 @@ const CarouselPrevious = React.forwardRef<
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft className={cn("size-4", !canScrollPrev ? "opacity-30" : "")} />
+      <FaArrowLeft
+        className={cn(
+          "fa-light dark:fa-dark group-hover:fa-default size-5",
+          !canScrollPrev ? "opacity-30" : ""
+        )}
+      />
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -245,8 +250,11 @@ const CarouselNext = React.forwardRef<
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight
-        className={cn("size-4", !canScrollNext ? "opacity-30" : "")}
+      <FaArrowRight
+        className={cn(
+          "fa-light dark:fa-dark group-hover:fa-default size-5",
+          !canScrollNext ? "opacity-30" : ""
+        )}
       />
       <span className="sr-only">Next slide</span>
     </Button>
