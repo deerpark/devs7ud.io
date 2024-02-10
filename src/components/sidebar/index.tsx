@@ -36,7 +36,7 @@ export function Sidebar({ counts }: SidebarProps) {
     <>
       <nav
         ref={scrollContainerRef}
-        className={`fixed ${
+        className={`absolute ${
           navIsOpen
             ? "inset-y-0 left-0 translate-x-0 shadow-lg"
             : "-translate-x-full"
