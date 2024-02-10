@@ -25,7 +25,7 @@ export default function AboutPage() {
             className="ease-expo-in-out absolute inset-0 block size-full object-cover opacity-0 grayscale transition-all duration-1000 group-hover:opacity-70 dark:group-hover:opacity-50"
           />
         </div>
-        <div className="relative z-20 flex w-full items-center text-base font-medium text-white">
+        <div className="relative z-20 flex w-full items-center pt-[calc(env(safe-area-inset-top)-8px)] text-base font-medium text-white">
           <GlobalMenuButton isMono />
           <span className="flex-1" />
           <div className="pointer-events-none flex items-center space-x-2">

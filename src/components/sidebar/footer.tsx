@@ -9,7 +9,7 @@ import Link from "next/link"
 export default function SidebarFooter() {
   const t = useTranslations("AUTH")
   return (
-    <div className="border-border/50 filter-blur sticky bottom-0 z-10 flex w-full flex-col space-y-3 border-t py-2 pl-5 pr-2">
+    <div className="border-border/50 filter-blur sticky bottom-0 z-10 flex w-full flex-col space-y-3 border-t pb-[calc(8px+env(safe-area-inset-left))] pl-5 pr-2 pt-2">
       <div className="flex w-full items-center justify-between space-x-1">
         {/* <UserButton afterSignOutUrl="/" /> */}
         <FaUserTieIcon className="size-5 lg:size-4" />

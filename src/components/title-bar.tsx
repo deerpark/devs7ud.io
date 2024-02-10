@@ -139,11 +139,11 @@ export function TitleBar({
         boxShadow: `0 1px 20px rgba(0,0,0,${currentScrollOffset})`,
       }}
       className={cn(
-        "border-border/50 sticky top-0 z-10 flex min-h-14 flex-col justify-center border-b px-3 py-2 backdrop-blur-sm",
+        "border-border/50 sticky top-0 z-10 flex flex-col justify-center border-b px-3 pt-[calc(env(safe-area-inset-top))] backdrop-blur-sm",
         currentScrollOffset !== 0 ? "" : "lg:border-0"
       )}
     >
-      <div className="flex flex-none items-center justify-between">
+      <div className="flex min-h-14 flex-none items-center justify-between py-2">
         <span className="flex w-full items-center">
           {globalMenu && <GlobalMenuButton />}
 

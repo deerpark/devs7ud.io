@@ -36,11 +36,11 @@ export function Sidebar({ counts }: SidebarProps) {
     <>
       <nav
         ref={scrollContainerRef}
-        className={`absolute ${
+        className={`fixed ${
           navIsOpen
             ? "inset-y-0 left-0 translate-x-0 shadow-lg"
             : "-translate-x-full"
-        } 3xl:w-80 bg-popover lg:bg-card ease-expo-in-out z-30 flex h-full w-3/4 flex-none flex-col overflow-y-auto border-r transition duration-500 sm:w-1/2 sm:pb-0 md:w-1/3 lg:relative lg:z-auto lg:w-56 lg:translate-x-0 2xl:w-72`}
+        } 3xl:w-80 bg-popover lg:bg-card ease-expo-in-out z-30 flex h-full w-3/4 flex-none flex-col overflow-y-auto border-r transition duration-500 sm:w-1/2 sm:pb-0 md:w-1/3 lg:relative lg:z-auto lg:min-h-screen lg:w-56 lg:translate-x-0 2xl:w-72`}
       >
         <TitleBar
           scrollContainerRef={scrollContainerRef}
