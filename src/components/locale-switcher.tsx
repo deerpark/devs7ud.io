@@ -15,7 +15,7 @@ import {
 } from "./ui/command"
 import { FaAnglesUpDownIcon, FaCheckIcon, FaLanguageIcon } from "./icon-duotone"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
-import { Locale } from "@/types/common"
+import { Locale } from "@/types/common.type"
 import { Button } from "./ui/button"
 import { cn } from "@/lib/utils"
 

@@ -3,14 +3,15 @@ import {
   PageObjectResponse,
   UserObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints"
+import { Category, MultiSelect } from "@/types/post.type"
 import { format, formatDistance } from "@/lib/date"
 import DetailContainer from "../detail-container"
-import { Category } from "@/types/post"
 import { useLocale } from "next-intl"
 import CreateBy from "../create-by"
 import Comments from "../comments"
 import Contents from "../contents"
 import ByLine from "../by-line"
+import Tags from "../tags"
 
 interface Banner {
   url: string | null
@@ -43,11 +44,17 @@ export function Post(props: PostProps) {
     }
   )
   const updateAt = format(lastEditDateTime, "PP", locale)
-  const tags: Category[] = (post.properties?.Tags as any)?.multi_select || []
+  const categories: Category[] =
+    (post.properties?.Categories as any)?.multi_select || []
+  const tags: MultiSelect[] = (post.properties?.Tags as any)?.multi_select || []
   return (
-    <DetailContainer title={title} description={description} tags={tags}>
-      <div className="mx-auto max-w-max flex-1">
-        <div className="text-muted-foreground mb-60 flex flex-col items-center justify-center space-y-20 text-xs/5">
+    <DetailContainer
+      title={title}
+      description={description}
+      categories={categories}
+    >
+      <div className="mx-auto max-w-max flex-1 space-y-10">
+        <div className="text-muted-foreground mb-40 flex flex-col items-center justify-center space-y-20 text-xs/5">
           {createdBy && <CreateBy name={createdBy.name} />}
           <ByLine
             updateAt={updateAt}
@@ -56,6 +63,7 @@ export function Post(props: PostProps) {
           />
         </div>
         <Contents bannerUrl={banner.url} content={content} />
+        <Tags items={tags} />
       </div>
       <Comments comments={comments} />
     </DetailContainer>

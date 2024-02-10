@@ -4,7 +4,7 @@ import {
   format as formatFn,
 } from "date-fns"
 import { enUS, fr, ko } from "date-fns/locale"
-import { Locale } from "@/types/common"
+import { Locale } from "@/types/common.type"
 
 export function formatDistance(
   date: string | number | Date,

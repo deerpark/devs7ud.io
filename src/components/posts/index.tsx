@@ -8,10 +8,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { FaSpinnerThirdIcon } from "../icon-duotone"
 import { getTranslations } from "next-intl/server"
 import ListItemLink from "../list/list-link"
+import { Category } from "@/types/post.type"
 import CommentCount from "../comment-count"
 import { formatDistance } from "@/lib/date"
 import ListItem from "../list/list-item"
-import { Category } from "@/types/post"
 import { useLocale } from "next-intl"
 import { Badge } from "../ui/badge"
 import { cn } from "@/lib/utils"
@@ -38,7 +38,8 @@ export async function Posts(props: PostsProps) {
     const title = (post.properties?.Title as any)?.title[0]?.plain_text
     const description = (post.properties?.Description as any)?.rich_text[0]
       ?.plain_text
-    const tags: Category[] = (post.properties?.Tags as any)?.multi_select || []
+    const categories: Category[] =
+      (post.properties?.Categories as any)?.multi_select || []
     const lastEditedTime = post.last_edited_time
     const lastEditedTimeFormat = formatDistance(
       new Date(lastEditedTime),
@@ -104,7 +105,7 @@ export async function Posts(props: PostsProps) {
                   variant="outline"
                   className="text-muted-foreground group-[.active]:text-primary-foreground block max-w-full truncate"
                 >
-                  {tags.map((tag) => t(tag.name)).join(", ")}
+                  {categories.map((category) => t(category.name)).join(", ")}
                 </Badge>
               </div>
             </div>

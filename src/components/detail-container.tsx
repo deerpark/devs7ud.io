@@ -1,10 +1,10 @@
 "use client"
 
+import { Category } from "@/types/post.type"
 import DetailToolbar from "./detail-toolbar"
 import { useTranslations } from "next-intl"
 import FloatingMenu from "./floating-menu"
 import Scratch from "./filters/scratch"
-import { Category } from "@/types/post"
 import { TitleBar } from "./title-bar"
 import { useTheme } from "next-themes"
 import { P } from "./ui/typography"
@@ -17,7 +17,7 @@ type DetailContainerProps = {
   segment?: string
   description: string
   fancyTitle?: boolean
-  tags?: Category[]
+  categories?: Category[]
 } & React.PropsWithChildren
 
 export default function DetailContainer({
@@ -26,7 +26,7 @@ export default function DetailContainer({
   segment = "posts",
   description,
   fancyTitle = false,
-  tags,
+  categories,
 }: DetailContainerProps) {
   const scrollContainerRef = React.useRef(null)
   const titleRef = React.useRef<HTMLHeadingElement>(null)
@@ -49,7 +49,9 @@ export default function DetailContainer({
         backButtonHref={`/${segment}`}
         magicTitle
         title={title}
-        tag={tags?.map((tag) => t(`POSTS.category.${tag.name}`)).join(", ")}
+        tag={categories
+          ?.map((category) => t(`POSTS.category.${category.name}`))
+          .join(", ")}
         titleRef={titleRef}
         scrollContainerRef={scrollContainerRef}
         trailingAccessory={<DetailToolbar />}
@@ -57,9 +59,9 @@ export default function DetailContainer({
       <div className="flex max-w-full flex-1 flex-col">
         <div className="flex flex-1 flex-col p-8">
           <div className="mb-4 flex items-center justify-center space-x-2">
-            {tags?.map((tag) => (
-              <Badge key={tag.id} variant="outline" className="">
-                {t(`POSTS.category.${tag.name}`)}
+            {categories?.map((category) => (
+              <Badge key={category.id} variant="outline" className="">
+                {t(`POSTS.category.${category.name}`)}
               </Badge>
             ))}
           </div>

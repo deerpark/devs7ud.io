@@ -16,11 +16,13 @@ import SidebarFooter from "./footer"
 import { cn } from "@/lib/utils"
 
 type SidebarProps = {
-  postCount: number
-  bookmarkCount: number
+  counts: {
+    posts: number
+    bookmarks: number
+  }
 }
 
-export function Sidebar({ postCount, bookmarkCount }: SidebarProps) {
+export function Sidebar({ counts }: SidebarProps) {
   const navigationContext = React.useContext(GlobalNavigationContext)
   const navIsOpen = navigationContext.isOpen
   const scrollContainerRef = React.useRef<HTMLElement>(null)
@@ -63,10 +65,7 @@ export function Sidebar({ postCount, bookmarkCount }: SidebarProps) {
             </div>
           }
         />
-        <SidebarNavigation
-          postCount={postCount}
-          bookmarkCount={bookmarkCount}
-        />
+        <SidebarNavigation counts={counts} />
         <div className="space-y-1 p-3">
           <h4 className="text-muted-foreground/50 px-2 pb-2 pt-5 text-xs font-semibold">
             {t("SYSTEM.settings.label")}

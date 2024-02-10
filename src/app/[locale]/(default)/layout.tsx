@@ -15,8 +15,10 @@ export default async function DefaultLayout({
   return (
     <div id="root" className="flex size-full h-screen">
       <Sidebar
-        postCount={pages?.results?.length || 0}
-        bookmarkCount={bookmarks?.results?.length || 0}
+        counts={{
+          posts: pages?.results?.length || 0,
+          bookmarks: bookmarks?.results?.length || 0,
+        }}
       />
       <div
         id="contents"

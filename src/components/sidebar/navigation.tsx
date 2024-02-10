@@ -14,14 +14,13 @@ import { NavigationLink } from "./navigation-link"
 import { useTranslations } from "next-intl"
 
 type SidebarNavigationProps = {
-  postCount: number
-  bookmarkCount: number
+  counts: {
+    posts: number
+    bookmarks: number
+  }
 }
 
-export function SidebarNavigation({
-  postCount,
-  bookmarkCount,
-}: SidebarNavigationProps) {
+export function SidebarNavigation({ counts }: SidebarNavigationProps) {
   const pathname = usePathname()
   const t = useTranslations("SYSTEM.navigation")
   const sections = [
@@ -46,7 +45,7 @@ export function SidebarNavigation({
           isActive: pathname.replace(/en|ko|fr/g, "").indexOf("/posts") >= 0,
           trailingAction: null,
           isExternal: false,
-          count: postCount,
+          count: counts.posts,
         },
       ],
     },
@@ -61,9 +60,8 @@ export function SidebarNavigation({
           isActive:
             pathname.replace(/en|ko|fr/g, "").indexOf("/bookmarks") >= 0,
           isExternal: false,
-          count: bookmarkCount,
+          count: counts.bookmarks,
         },
-
         {
           href: "/about",
           label: t("me.about"),

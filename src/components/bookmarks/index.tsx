@@ -3,9 +3,9 @@ import * as React from "react"
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 import { getTranslations } from "next-intl/server"
 import ListItemLink from "../list/list-link"
+import { Category } from "@/types/post.type"
 import { Separator } from "../ui/separator"
 import ListItem from "../list/list-item"
-import { Category } from "@/types/post"
 /* import { useLocale } from "next-intl" */
 import Image from "next/image"
 /* import { cn } from "@/lib/utils" */
@@ -33,7 +33,8 @@ export async function Bookmarks(props: BookmarksProps) {
       /^(?:https?:\/\/)?(?:www\.)?([^\/:]+)/
     )
     const favicon = (item.properties?.Favicon as any)?.files[0]?.file?.url
-    const tags: Category[] = (item.properties?.Tags as any)?.multi_select || []
+    const categories: Category[] =
+      (item.properties?.Categories as any)?.multi_select || []
     return (
       <ListItem key={item.id} layoutKey={item.id}>
         <ListItemLink
@@ -61,7 +62,7 @@ export async function Bookmarks(props: BookmarksProps) {
                 {title}
               </span>
             </div>
-            {(link || tags) && (
+            {(link || categories) && (
               <div className="text-muted-foreground/70 group-[.active]:text-primary-foreground/70 flex items-center space-x-1 text-sm lg:text-xs/[1.15]">
                 {link && (
                   <>
@@ -72,9 +73,11 @@ export async function Bookmarks(props: BookmarksProps) {
                     />
                   </>
                 )}
-                {tags?.length && (
+                {categories?.length && (
                   <span className="line-clamp-1">
-                    {tags.map((tag) => t(tag.name) || tag.name).join(", ")}
+                    {categories
+                      .map((category) => t(category.name) || category.name)
+                      .join(", ")}
                   </span>
                 )}
               </div>
