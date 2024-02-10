@@ -68,7 +68,7 @@ export default function LocaleSwitcher() {
                 <FaCheckIcon
                   className={cn(
                     "mr-2 size-4",
-                    value === code ? "opacity-100" : "opacity-0"
+                    value.toLowerCase() === code ? "opacity-100" : "opacity-0"
                   )}
                 />
                 {t(code.toUpperCase() as Locale)}

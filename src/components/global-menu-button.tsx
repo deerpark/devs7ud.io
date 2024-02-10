@@ -77,7 +77,9 @@ export default function GlobalMenuButton({
             isFloating ? "size-5" : "size-4",
             isMono
               ? "fa-light group-hover:fa-default"
-              : "fa-light dark:fa-dark group-hover:fa-default"
+              : isFloating
+                ? "fa-light dark:fa-dark group-hover:fa-default"
+                : ""
           )}
         />
       </Button>

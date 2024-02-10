@@ -22,7 +22,7 @@ export default async function DefaultLayout({
       />
       <div
         id="contents"
-        className="relative flex flex-1 overflow-y-auto md:max-h-screen"
+        className="relative flex max-h-screen flex-1 overflow-y-auto"
       >
         {children}
       </div>
