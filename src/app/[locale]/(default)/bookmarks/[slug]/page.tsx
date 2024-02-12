@@ -8,10 +8,24 @@ import {
   getComments,
   getPageBySlug,
   getPageContent,
+  getPages,
   getUsers,
   notionClient,
 } from "@/lib/notion"
+import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 import { Bookmark } from "@/components/bookmarks/bookmark"
+
+export async function generateStaticParams({
+  params,
+}: {
+  params: { locale: string }
+}) {
+  const bookmarks = await getPages(params.locale, "bookmarks")
+  return bookmarks?.results?.map((post) => ({
+    slug: ((post as PageObjectResponse).properties?.Slug as any)?.rich_text[0]
+      .plain_text,
+  }))
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const bookmark = await getPageBySlug(params.slug, "bookmarks")

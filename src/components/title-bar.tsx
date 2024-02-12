@@ -140,7 +140,7 @@ export function TitleBar({
       }}
       className={cn(
         "border-border/50 sticky top-0 z-10 flex flex-col justify-center border-b px-3 pt-[calc(env(safe-area-inset-top))] backdrop-blur-sm",
-        currentScrollOffset !== 0 ? "" : "lg:border-0"
+        currentScrollOffset !== 0 ? "dark:border-0" : "border-border/20"
       )}
     >
       <div className="flex min-h-14 flex-none items-center justify-between py-2">

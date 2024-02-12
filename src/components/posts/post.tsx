@@ -47,11 +47,13 @@ export function Post(props: PostProps) {
   const categories: Category[] =
     (post.properties?.Categories as any)?.multi_select || []
   const tags: MultiSelect[] = (post.properties?.Tags as any)?.multi_select || []
+  const poster = (post?.properties?.OpenGraph as any)?.files[0]?.file?.url
   return (
     <DetailContainer
       title={title}
       description={description}
       categories={categories}
+      poster={poster}
     >
       <div className="mx-auto max-w-max flex-1 space-y-10">
         <div className="text-muted-foreground mb-40 flex flex-col items-center justify-center space-y-20 text-xs/5">

@@ -382,11 +382,6 @@
   }
 }
 
-.notion-bookmark:hover {
-  border-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
-  border-image-slice: 1;
-}
-
 .notion-block-ab9a258d6cf444f3bb40dc2600feae91 .notion-column {
   padding: 0;
 }
@@ -409,4 +404,66 @@
 
 .notion-equation.notion-equation-block {
   align-items: center;
+}
+
+.notion-bookmark {
+  position: relative;
+  min-height: 64px;
+  display: flex;
+  margin-bottom: 20px;
+  text-decoration-line: none;
+  align-items: center;
+}
+
+.bookmark-thumbnail {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.bookmark-thumbnail > img {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+}
+
+.notion-bookmark img {
+  margin: 0;
+  object-fit: cover;
+}
+
+.bookmark-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 1 0%;
+  margin-left: 72px;
+}
+.bookmark-title {
+  color: hsl(var(--foreground));
+}
+.bookmark-description {
+  color: hsl(var(--foreground) / 50%);
+  font-size: 12px;
+  margin: 0;
+}
+.bookmark-footer {
+  display: none;
+  align-items: center;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+/* Flexbox 항목 간 간격 적용 예시 */
+.bookmark-footer > * + * {
+  margin-left: 4px;
+}
+
+.bookmark-footer img {
+  width: 16px;
+  height: 16px;
 }

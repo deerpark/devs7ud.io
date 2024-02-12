@@ -10,6 +10,7 @@ import { useTheme } from "next-themes"
 import { P } from "./ui/typography"
 import { Badge } from "./ui/badge"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 import * as React from "react"
 
 type DetailContainerProps = {
@@ -18,6 +19,7 @@ type DetailContainerProps = {
   description: string
   fancyTitle?: boolean
   categories?: Category[]
+  poster?: string
 } & React.PropsWithChildren
 
 export default function DetailContainer({
@@ -27,6 +29,7 @@ export default function DetailContainer({
   description,
   fancyTitle = false,
   categories,
+  poster,
 }: DetailContainerProps) {
   const scrollContainerRef = React.useRef(null)
   const titleRef = React.useRef<HTMLHeadingElement>(null)
@@ -57,6 +60,18 @@ export default function DetailContainer({
           scrollContainerRef={scrollContainerRef}
           trailingAccessory={<DetailToolbar />}
         />
+        {poster && (
+          <div className="relative -mt-16 mb-16">
+            <Image
+              src={poster}
+              width={1600}
+              height={1200}
+              alt=""
+              className="max-h-[calc(100vh/2)] w-full max-w-full object-cover"
+            />
+            <div className="to-background via-background/0 from-background/0 absolute inset-0 bg-gradient-to-b" />
+          </div>
+        )}
         <div className="flex max-w-full flex-1 flex-col">
           <div className="flex flex-1 flex-col p-8">
             <div className="mb-4 flex items-center justify-center space-x-2">

@@ -13,7 +13,7 @@ import SnsShare from "./sns-share"
 export default function DetailToolbar() {
   const t = useTranslations()
   return (
-    <div className="flex items-center p-2">
+    <div className="flex items-center px-2">
       <div className="ml-auto flex items-center gap-2">
         <SnsShare />
       </div>

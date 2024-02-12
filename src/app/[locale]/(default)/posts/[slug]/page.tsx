@@ -8,10 +8,24 @@ import {
   getComments,
   getPageBySlug,
   getPageContent,
+  getPages,
   getUsers,
   notionClient,
 } from "@/lib/notion"
+import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 import { Post } from "@/components/posts/post"
+
+export async function generateStaticParams({
+  params,
+}: {
+  params: { locale: string }
+}) {
+  const pages = await getPages(params.locale)
+  return pages?.results?.map((post) => ({
+    slug: ((post as PageObjectResponse).properties?.Slug as any)?.rich_text[0]
+      .plain_text,
+  }))
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const post = await getPageBySlug(params.slug)
@@ -31,7 +45,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
   notionRenderer.use(bookmarkPlugin(undefined))
   const html = await notionRenderer.render(...content)
 
-  console.log("Post: ", post)
+  // console.log("Post: ", post)
+  console.log("content: ", content)
   // console.log("Users:", users)
   // console.log("Html: ", html)
   // console.log("Comments: ", comments)

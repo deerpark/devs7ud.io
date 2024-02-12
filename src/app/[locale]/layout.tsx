@@ -13,6 +13,7 @@ import * as Fonts from "@/lib/fonts"
 
 export { metadata } from "@/lib/metadata"
 export { viewport } from "@/lib/viewport"
+import MicrosoftClarity from "@/components/microfost-clarity"
 import GoogleAnalytics from "@/components/google-analytics"
 import { Bootstrap } from "@/components/bootstrap"
 import { appConfig } from "@/config/app"
@@ -65,6 +66,7 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
           </ThemeProvider>
           <Bootstrap />
           <GoogleAnalytics />
+          <MicrosoftClarity />
         </body>
       </html>
     </ClerkProvider>
