@@ -21,6 +21,7 @@ type DetailContainerProps = {
   categories?: Category[]
   poster?: string
   blurDataURL?: string
+  invert?: boolean
 } & React.PropsWithChildren
 
 export default function DetailContainer({
@@ -31,6 +32,7 @@ export default function DetailContainer({
   fancyTitle = false,
   categories,
   poster,
+  invert = false,
 }: DetailContainerProps) {
   const scrollContainerRef = React.useRef(null)
   const titleRef = React.useRef<HTMLHeadingElement>(null)
@@ -53,6 +55,7 @@ export default function DetailContainer({
           globalMenu={false}
           backButtonHref={`/${segment}`}
           magicTitle
+          invert={invert}
           title={title}
           tag={categories
             ?.map((category) => t(`POSTS.category.${category.name}`))

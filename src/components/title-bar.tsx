@@ -22,6 +22,7 @@ interface Props {
   backButton?: boolean
   backButtonHref?: string
   magicTitle?: boolean
+  invert?: boolean
   titleRef?: React.RefObject<HTMLHeadingElement> | null
   scrollContainerRef?: React.RefObject<HTMLElement> | null
   children?: React.ReactNode
@@ -36,6 +37,7 @@ export function TitleBar({
   backButton = false,
   backButtonHref,
   magicTitle = false,
+  invert = false,
   titleRef = null,
   scrollContainerRef = null,
   leadingAccessory = null,
@@ -139,13 +141,15 @@ export function TitleBar({
         boxShadow: `0 1px 20px rgba(0,0,0,${currentScrollOffset})`,
       }}
       className={cn(
-        "border-border/50 sticky top-0 z-10 flex flex-col justify-center border-b px-3 pt-[calc(env(safe-area-inset-top))] backdrop-blur-sm",
-        currentScrollOffset !== 0 ? "dark:border-0" : "border-border/20"
+        "border-border/50 group/bar sticky top-0 z-10 flex flex-col justify-center border-b px-3 pt-[calc(env(safe-area-inset-top))] transition-all",
+        currentScrollOffset !== 0
+          ? "active backdrop-blur-sm dark:border-0"
+          : " border-border/20"
       )}
     >
       <div className="flex min-h-14 flex-none items-center justify-between py-2">
         <span className="flex w-full items-center">
-          {globalMenu && <GlobalMenuButton />}
+          {globalMenu && <GlobalMenuButton invert={invert} />}
 
           {backButton && backButtonHref && (
             <Button
