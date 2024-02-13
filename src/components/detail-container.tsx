@@ -20,6 +20,7 @@ type DetailContainerProps = {
   fancyTitle?: boolean
   categories?: Category[]
   poster?: string
+  blurDataURL?: string
 } & React.PropsWithChildren
 
 export default function DetailContainer({
@@ -61,13 +62,15 @@ export default function DetailContainer({
           trailingAccessory={<DetailToolbar />}
         />
         {poster && (
-          <div className="relative -mt-16 mb-16">
+          <div className="relative mb-16 mt-[calc(-64px-env(safe-area-inset-top))]">
             <Image
               src={poster}
               width={1600}
               height={1200}
               alt=""
-              className="max-h-[calc(100vh/2)] w-full max-w-full object-cover"
+              /* placeholder="blur"
+              blurDataURL={blurDataURL} */
+              className="from-primary to-primary/0 max-h-[calc(100vh/2)] w-full max-w-full bg-gradient-to-b object-cover"
             />
             <div className="to-background via-background/0 from-background/0 absolute inset-0 bg-gradient-to-b" />
           </div>

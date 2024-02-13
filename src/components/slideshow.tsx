@@ -54,7 +54,7 @@ export default function Slideshow({ items = [] }: SlideshowProps) {
                         // width={banner.width}
                         width={720}
                         height={400}
-                        className="size-full max-w-full object-cover"
+                        className="via-primary/30 to-primary/50 size-full max-w-full bg-gradient-to-b object-cover"
                       />
                     </CardContent>
                   </Card>

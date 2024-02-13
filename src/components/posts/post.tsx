@@ -22,10 +22,12 @@ interface PostProps {
   content: string
   createdBy?: UserObjectResponse
   comments: CommentObjectResponse[]
+  poster?: string
+  blurDataURL?: string
 }
 
 export function Post(props: PostProps) {
-  const { post, content, createdBy, comments } = props
+  const { post, content, createdBy, comments, poster, blurDataURL } = props
   const title = (post.properties.Title as any).title[0].plain_text
   const description = (post.properties?.Description as any)?.rich_text[0]
     ?.plain_text
@@ -47,13 +49,13 @@ export function Post(props: PostProps) {
   const categories: Category[] =
     (post.properties?.Categories as any)?.multi_select || []
   const tags: MultiSelect[] = (post.properties?.Tags as any)?.multi_select || []
-  const poster = (post?.properties?.OpenGraph as any)?.files[0]?.file?.url
   return (
     <DetailContainer
       title={title}
       description={description}
       categories={categories}
       poster={poster}
+      blurDataURL={blurDataURL}
     >
       <div className="mx-auto max-w-max flex-1 space-y-10">
         <div className="text-muted-foreground mb-40 flex flex-col items-center justify-center space-y-20 text-xs/5">

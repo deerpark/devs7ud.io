@@ -46,7 +46,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const html = await notionRenderer.render(...content)
 
   // console.log("Post: ", post)
-  console.log("content: ", content)
+  // console.log("content: ", content)
   // console.log("Users:", users)
   // console.log("Html: ", html)
   // console.log("Comments: ", comments)
@@ -54,12 +54,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
     "results" in users
       ? users.results.find((u) => u.id === post.created_by.id)
       : undefined
+  const poster = (post?.properties?.OpenGraph as any)?.files[0]?.file?.url
 
   return (
     <Post
       post={post}
       content={html}
       createdBy={user}
+      poster={poster}
       comments={"results" in comments ? comments.results : []}
     />
   )

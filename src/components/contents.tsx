@@ -15,7 +15,7 @@ export default function Contents({ bannerUrl, content }: ContentsProps) {
           // width={banner.width}
           width={800}
           height={400}
-          className="max-w-full object-cover"
+          className="via-primary/30 to-primary/50 max-w-full bg-gradient-to-b object-cover"
         />
       )}
       <div
