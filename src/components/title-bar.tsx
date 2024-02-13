@@ -141,10 +141,8 @@ export function TitleBar({
         boxShadow: `0 1px 20px rgba(0,0,0,${currentScrollOffset})`,
       }}
       className={cn(
-        "border-border/50 group/bar sticky top-0 z-10 flex flex-col justify-center border-b px-3 pt-[calc(env(safe-area-inset-top))] transition-all duration-1000",
-        currentScrollOffset !== 0
-          ? "active backdrop-blur-sm dark:border-0"
-          : " border-border/20"
+        "group/bar sticky top-0 z-10 flex flex-col justify-center px-3 pt-[calc(env(safe-area-inset-top))] transition-all duration-1000",
+        currentScrollOffset !== 0 ? "active backdrop-blur-sm" : ""
       )}
     >
       <div className="flex min-h-14 flex-none items-center justify-between py-2">

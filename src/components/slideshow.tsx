@@ -38,37 +38,35 @@ export default function Slideshow({ items = [] }: SlideshowProps) {
     })
   }, [api])
   return items.length ? (
-    <div className="mx-auto max-w-3xl">
+    <div className="-mx-8 max-w-3xl md:mx-auto">
       <Carousel setApi={setApi} className="w-full max-w-full">
         <CarouselContent>
           {items
             .filter((item) => item.file.url)
             .map((item, index) => (
               <CarouselItem key={index}>
-                <div className="p-1">
-                  <Card className="overflow-hidden">
-                    <CardContent className="flex aspect-video items-center justify-center p-0">
-                      <Image
-                        alt="Image"
-                        src={item.file.url}
-                        // width={banner.width}
-                        width={720}
-                        height={400}
-                        className="via-primary/30 to-primary/50 size-full max-w-full bg-gradient-to-b object-cover"
-                      />
-                    </CardContent>
-                  </Card>
-                </div>
+                <Card className="overflow-hidden rounded-none border-0">
+                  <CardContent className="flex aspect-video items-center justify-center p-0">
+                    <Image
+                      alt="Image"
+                      src={item.file.url}
+                      // width={banner.width}
+                      width={720}
+                      height={400}
+                      className="via-primary/30 to-primary/50 size-full max-w-full bg-gradient-to-b object-cover"
+                    />
+                  </CardContent>
+                </Card>
               </CarouselItem>
             ))}
         </CarouselContent>
         <CarouselPrevious
           variant="secondary"
-          className="bg-primary/75 border-background ease-expo-in-out group -left-3 size-9 backdrop-blur-sm transition-all duration-500"
+          className="bg-primary/75 border-background ease-expo-in-out group left-5 size-9 backdrop-blur-sm transition-all duration-500"
         />
         <CarouselNext
           variant="secondary"
-          className="bg-primary/75 border-background ease-expo-in-out group -right-3 size-9 backdrop-blur-sm transition-all duration-500"
+          className="bg-primary/75 border-background ease-expo-in-out group right-5 size-9 backdrop-blur-sm transition-all duration-500"
         />
       </Carousel>
       <div className="text-muted-foreground py-2 text-center text-sm">
