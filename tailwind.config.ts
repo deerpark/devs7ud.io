@@ -81,7 +81,16 @@ const config = {
         heading: ["var(--font-oa-gothic)"],
       },
       transitionTimingFunction: {
-        "expo-in-out": "cubic-bezier(0.32, 0.72 , 0, 1)",
+        "ease-custom": "cubic-bezier(0.32, 0.72 , 0, 1)",
+        "expo-in-out": "cubic-bezier(0.8, 0 , 2, 1)",
+        "expo-in": "cubic-bezier(0.8, 0 , 0.33, 0.33)",
+        "expo-out": "cubic-bezier(0.77, 0.77 , 2, 1)",
+      },
+      animationTimingFunction: {
+        "ease-custom": "cubic-bezier(0.32, 0.72 , 0, 1)",
+        "expo-in-out": "cubic-bezier(0.8, 0 , 2, 1)",
+        "expo-in": "cubic-bezier(0.8, 0 , 0.33, 0.33)",
+        "expo-out": "cubic-bezier(0.77, 0.77 , 2, 1)",
       },
     },
   },

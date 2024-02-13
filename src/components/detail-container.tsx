@@ -5,6 +5,7 @@ import DetailToolbar from "./detail-toolbar"
 import { useTranslations } from "next-intl"
 import FloatingMenu from "./floating-menu"
 import Scratch from "./filters/scratch"
+import { motion } from "framer-motion"
 import { TitleBar } from "./title-bar"
 import { useTheme } from "next-themes"
 import { P } from "./ui/typography"
@@ -35,6 +36,7 @@ export default function DetailContainer({
   invert = false,
 }: DetailContainerProps) {
   const scrollContainerRef = React.useRef(null)
+  const [imgLoaded, setImgLoaded] = React.useState(false)
   const titleRef = React.useRef<HTMLHeadingElement>(null)
   const t = useTranslations()
   const { theme } = useTheme()
@@ -43,6 +45,9 @@ export default function DetailContainer({
     (theme === "system" &&
       window?.matchMedia &&
       window?.matchMedia("(prefers-color-scheme: dark)").matches)
+  const handleLoadImage = React.useCallback(() => {
+    setImgLoaded(true)
+  }, [])
   return (
     <>
       <div
@@ -65,20 +70,33 @@ export default function DetailContainer({
           trailingAccessory={<DetailToolbar />}
         />
         {poster && (
-          <div className="relative mb-16 mt-[calc(-64px-env(safe-area-inset-top))]">
+          <div
+            className={cn(
+              "expo-out relative mb-16 mt-[calc(-64px-env(safe-area-inset-top))] transition duration-500",
+              imgLoaded ? "h-[calc(100vh/3)] opacity-100" : "h-0 opacity-0"
+            )}
+          >
             <Image
               src={poster}
               width={1600}
               height={1200}
               alt=""
+              onLoad={handleLoadImage}
               /* placeholder="blur"
-              blurDataURL={blurDataURL} */
-              className="from-primary to-primary/0 max-h-[calc(100vh/2)] w-full max-w-full bg-gradient-to-b object-cover"
+            blurDataURL={blurDataURL} */
+              className={cn(
+                "from-primary/20 to-primary/0 slide-in-from-top fade-in expo-out h-[calc(100vh/3)] w-full max-w-full bg-gradient-to-b object-cover duration-500",
+                imgLoaded ? "animate-in" : ""
+              )}
             />
-            <div className="to-background via-background/0 from-background/0 absolute inset-0 bg-gradient-to-b" />
+            <div className="to-background from-background/50 absolute inset-0 bottom-auto h-[calc(100vh/3)] bg-gradient-to-b" />
           </div>
         )}
-        <div className="flex max-w-full flex-1 flex-col">
+        <motion.div
+          key="contents"
+          layout
+          className="flex max-w-full flex-1 flex-col"
+        >
           <div className="flex flex-1 flex-col p-8">
             <div className="mb-4 flex items-center justify-center space-x-2">
               {categories?.map((category) => (
@@ -123,7 +141,7 @@ export default function DetailContainer({
             </P>
             {children}
           </div>
-        </div>
+        </motion.div>
       </div>
       <FloatingMenu scrollContainerRef={scrollContainerRef} />
     </>
