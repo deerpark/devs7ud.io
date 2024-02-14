@@ -60,6 +60,7 @@ export async function Posts(props: PostsProps) {
               <Image
                 src={thumbnail}
                 fill
+                sizes="20vw"
                 alt=""
                 className="ring-foreground/25 dark:ring-background/25 rounded-xl object-cover opacity-50 shadow-lg grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0 group-[.active]:opacity-100 group-[.active]:grayscale-0 lg:rounded-sm lg:group-[.active]:ring-1 2xl:rounded-xl"
               />

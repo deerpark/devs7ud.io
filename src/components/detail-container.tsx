@@ -72,8 +72,8 @@ export default function DetailContainer({
           <div className="relative mt-[calc(-64px-env(safe-area-inset-top))] h-0 overflow-hidden pt-[calc(100vh/3)] sm:mb-4 md:mb-6 lg:mb-8 xl:mb-12 2xl:mb-16">
             <Image
               src={poster}
-              width={1600}
-              height={1200}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               alt=""
               onLoad={handleLoadImage}
               /* placeholder="blur"
