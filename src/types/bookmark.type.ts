@@ -1,3 +1,6 @@
+import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
+import { PageProps } from "./common.type"
+
 export type Screenshot = {
   file: {
     url: string
@@ -5,4 +8,8 @@ export type Screenshot = {
   }
   name: string
   type?: "file"
+}
+
+export interface BookmarkProps extends PageProps<BookmarkProps> {
+  post: PageObjectResponse
 }

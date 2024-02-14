@@ -65,7 +65,7 @@
     },
     "server": {
       "error": {
-        "include": "Unable to load the component."
+        "template": "Unable to load the component."
       }
     }
   },

@@ -1,10 +1,5 @@
-import {
-  CommentObjectResponse,
-  PageObjectResponse,
-  UserObjectResponse,
-} from "@notionhq/client/build/src/api-endpoints"
+import { BookmarkProps, Screenshot } from "@/types/bookmark.type"
 import { Category, MultiSelect } from "@/types/post.type"
-import { Screenshot } from "@/types/bookmark.type"
 import DetailContainer from "../detail-container"
 import LinkVisit from "./link-visit"
 import Slideshow from "../slideshow"
@@ -12,44 +7,35 @@ import Comments from "../comments"
 import Contents from "../contents"
 import Tags from "../tags"
 
-interface Banner {
-  url: string | null
-}
-
-interface BookmarkProps {
-  bookmark: PageObjectResponse
-  content: string
-  createdBy?: UserObjectResponse
-  comments: CommentObjectResponse[]
-}
-
 export function Bookmark(props: BookmarkProps) {
-  const { bookmark, content, comments } = props
-  const title = (bookmark.properties.Title as any).title[0].plain_text
-  const description = (bookmark.properties?.Description as any)?.rich_text[0]
+  const { post, comments, blurDataURL } = props
+  const title = (post.properties.Title as any).title[0].plain_text
+  /* const poster =
+    (post?.properties?.cover as any)?.file?.url ||
+    (post?.properties?.cover as any)?.external?.url */
+  const description = (post.properties?.Description as any)?.rich_text[0]
     ?.plain_text
-  const link = (bookmark.properties?.Link as any)?.url
-  const banner: Banner = {
-    url: (bookmark.properties.Banner as any)?.files[0]?.file?.url,
-  }
+  const link = (post.properties?.Link as any)?.url
   const screenshots: Screenshot[] =
-    (bookmark.properties?.Screenshot as any)?.files || []
-  // const dateTime = bookmark.created_time
+    (post.properties?.Screenshot as any)?.files || []
+  // const dateTime = post.created_time
   const categories: Category[] =
-    (bookmark.properties?.Categories as any)?.multi_select || []
-  const tags: MultiSelect[] =
-    (bookmark.properties?.Tags as any)?.multi_select || []
+    (post.properties?.Categories as any)?.multi_select || []
+  const tags: MultiSelect[] = (post.properties?.Tags as any)?.multi_select || []
   return (
     <DetailContainer
       title={title}
       segment="bookmarks"
       description={description}
+      /* poster={poster} */
       categories={categories}
+      blurDataURL={blurDataURL}
+      /* invert={!!poster} */
     >
       <div className="mx-auto max-w-max flex-1 space-y-10">
         <Slideshow items={screenshots} />
         <LinkVisit link={link} />
-        <Contents bannerUrl={banner.url} content={content} />
+        <Contents {...props} />
         <Tags items={tags} />
       </div>
       <Comments comments={comments} />

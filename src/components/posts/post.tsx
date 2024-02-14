@@ -1,9 +1,4 @@
-import {
-  CommentObjectResponse,
-  PageObjectResponse,
-  UserObjectResponse,
-} from "@notionhq/client/build/src/api-endpoints"
-import { Category, MultiSelect } from "@/types/post.type"
+import { Category, MultiSelect, PostProps } from "@/types/post.type"
 import { format, formatDistance } from "@/lib/date"
 import DetailContainer from "../detail-container"
 import { useLocale } from "next-intl"
@@ -13,27 +8,18 @@ import Contents from "../contents"
 import ByLine from "../by-line"
 import Tags from "../tags"
 
-interface Banner {
-  url: string | null
-}
-
-interface PostProps {
-  post: PageObjectResponse
-  content: string | React.ComponentType<{}>
-  createdBy?: UserObjectResponse
-  comments: CommentObjectResponse[]
-  poster?: string
-  blurDataURL?: string
-}
-
 export function Post(props: PostProps) {
-  const { post, content, createdBy, comments, poster, blurDataURL } = props
+  const { post, users, comments, blurDataURL } = props
+  const createdBy =
+    "results" in users
+      ? users.results.find((u) => u.id === post.created_by.id)
+      : undefined
   const title = (post.properties.Title as any).title[0].plain_text
+  const poster =
+    (post?.properties?.cover as any)?.file?.url ||
+    (post?.properties?.cover as any)?.external?.url
   const description = (post.properties?.Description as any)?.rich_text[0]
     ?.plain_text
-  const banner: Banner = {
-    url: (post.properties.Banner as any)?.files[0]?.file?.url,
-  }
   // const dateTime = post.created_time
   const lastEditDateTime = post.last_edited_time
   const locale = useLocale()
@@ -56,7 +42,7 @@ export function Post(props: PostProps) {
       categories={categories}
       poster={poster}
       blurDataURL={blurDataURL}
-      invert
+      invert={!!poster}
     >
       <div className="mx-auto max-w-max flex-1 space-y-10">
         <div className="text-muted-foreground mb-40 flex flex-col items-center justify-center space-y-20 text-xs/5">
@@ -67,7 +53,7 @@ export function Post(props: PostProps) {
             updateDateTime={updateDateTime}
           />
         </div>
-        <Contents bannerUrl={banner.url} content={content} />
+        <Contents {...props} />
         <Tags items={tags} />
       </div>
       <Comments comments={comments} />

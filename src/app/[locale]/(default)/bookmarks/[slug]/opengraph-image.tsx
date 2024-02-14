@@ -21,8 +21,10 @@ export default async function Image({
 }: {
   params: { locale: string; slug: string }
 }) {
-  const bookmark = await getPageBySlug(params.slug, "bookmarks")
-  const imageUrl = (bookmark?.properties?.OpenGraph as any)?.files[0]?.file?.url
+  const post = await getPageBySlug(params.slug, "bookmarks")
+  const imageUrl =
+    (post?.properties?.cover as any)?.file?.url ||
+    (post?.properties?.cover as any)?.external?.url
 
   return new ImageResponse(
     (
@@ -46,40 +48,13 @@ export default async function Image({
             style={{ objectFit: "cover" }}
           />
         ) : (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <img
-              src="https://devs7ud.io/assets/icons/logo-background-white.svg"
-              width={140}
-              height={138}
-              alt=""
-            />
-            <h2
-              className="font-heading"
-              style={{
-                fontSize: 128,
-                fontWeight: 900,
-                letterSpacing: -10,
-              }}
-            >
-              {(bookmark?.properties.Title as any).title[0].plain_text ||
-                appConfig.name}
-            </h2>
-            <div
-              style={{
-                fontSize: 48,
-              }}
-            >
-              {(bookmark?.properties.Description as any)?.rich_text[0]
-                ?.plain_text || appConfig.description}
-            </div>
-          </div>
+          <img
+            alt="Image"
+            src="https://devs7ud.io/og.jpeg"
+            width="100%"
+            height="100%"
+            style={{ objectFit: "cover" }}
+          />
         )}
       </div>
     ),

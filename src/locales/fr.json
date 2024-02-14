@@ -65,7 +65,7 @@
     },
     "server": {
       "error": {
-        "include": "Le composant n'a pas pu être importé."
+        "template": "Le composant n'a pas pu être importé."
       }
     }
   },

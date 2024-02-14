@@ -16,6 +16,7 @@ import {
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 import { getTranslations } from "next-intl/server"
 import { Post } from "@/components/posts/post"
+import { PostProps } from "@/types/post.type"
 
 export async function generateStaticParams({
   params,
@@ -45,35 +46,33 @@ export default async function Page({ params }: { params: { slug: string } }) {
   // console.log("Users:", users)
   // console.log("Html: ", html)
   // console.log("Comments: ", comments)
-  const user =
-    "results" in users
-      ? users.results.find((u) => u.id === post.created_by.id)
-      : undefined
-  const poster = (post?.properties?.OpenGraph as any)?.files[0]?.file?.url
-  const include = (post?.properties?.Include as any)?.rich_text[0]?.plain_text
+  const template = (post?.properties?.Template as any)?.rich_text[0]?.plain_text
 
   const notionRenderer = new NotionRenderer({
     client: notionClient,
   })
-  let html: string | React.ComponentType<{}>
+  notionRenderer.use(hljsPlugin({}))
+  notionRenderer.use(bookmarkPlugin(undefined))
+  const html = await notionRenderer.render(...content)
+  let pageComponent:
+    | React.ComponentType<Omit<PostProps, "page" | "users" | "comments">>
+    | string
 
   try {
-    notionRenderer.use(hljsPlugin({}))
-    notionRenderer.use(bookmarkPlugin(undefined))
-    html = include
-      ? dynamic(() => import(`@/components/pages/${include}`))
-      : await notionRenderer.render(...content)
+    pageComponent = template
+      ? dynamic(() => import(`@/components/templates/${template}`))
+      : ""
   } catch (error) {
     console.error(error)
-    html = t("SYSTEM.server.error.include")
+    pageComponent = t("SYSTEM.server.error.template")
   }
 
   return (
     <Post
       post={post}
       content={html}
-      createdBy={user}
-      poster={poster}
+      users={users}
+      page={pageComponent}
       comments={"results" in comments ? comments.results : []}
     />
   )
