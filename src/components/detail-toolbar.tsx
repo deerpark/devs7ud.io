@@ -17,11 +17,14 @@ export default function DetailToolbar() {
       <div className="ml-auto flex items-center gap-2">
         <SnsShare />
       </div>
-      <Separator orientation="vertical" className="mx-2 h-4" />
+      <Separator
+        orientation="vertical"
+        className="group-[.active]/bar:bg-border/50 mx-2 h-4"
+      />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button className="size-8" variant="ghost" size="icon">
-            <FaEllipsisVerticalIcon className="size-4" />
+            <FaEllipsisVerticalIcon className="fa-light group-[.active]/bar:fa-default size-4" />
             <span className="sr-only">{t("TITLEBAR.more")}</span>
           </Button>
         </DropdownMenuTrigger>

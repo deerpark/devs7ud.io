@@ -62,6 +62,11 @@
     },
     "settings": {
       "label": "Settings"
+    },
+    "server": {
+      "error": {
+        "include": "Unable to load the component."
+      }
     }
   },
   "SIDEBAR": {

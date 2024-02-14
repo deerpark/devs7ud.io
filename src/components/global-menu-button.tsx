@@ -18,7 +18,6 @@ export default function GlobalMenuButton({
   isMono = false,
   invert = false,
 }: GlobalMenuButtonProps) {
-  console.log(invert)
   const { isOpen, setIsOpen } = React.useContext(GlobalNavigationContext)
   return (
     <div

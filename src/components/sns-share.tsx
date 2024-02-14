@@ -64,7 +64,7 @@ export default function SnsShare() {
           <Tooltip>
             <TooltipTrigger asChild>
               <Button className="size-8" variant="ghost" size="icon">
-                <FaArrowUpFromBracketIcon className="size-4" />
+                <FaArrowUpFromBracketIcon className="fa-light group-[.active]/bar:fa-default size-4" />
                 <span className="sr-only">{t("TITLEBAR.share")}</span>
               </Button>
             </TooltipTrigger>

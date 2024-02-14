@@ -62,6 +62,11 @@
     },
     "settings": {
       "label": "설정"
+    },
+    "server": {
+      "error": {
+        "include": "컴포넌트를 불러올 수 없습니다."
+      }
     }
   },
   "SIDEBAR": {

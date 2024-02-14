@@ -3,6 +3,7 @@ import { NotionRenderer } from "@notion-render/client"
 // Plugins
 import hljsPlugin from "@notion-render/hljs-plugin"
 import { notFound } from "next/navigation"
+import dynamic from "next/dynamic"
 
 import {
   getComments,
@@ -13,6 +14,7 @@ import {
   notionClient,
 } from "@/lib/notion"
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
+import { getTranslations } from "next-intl/server"
 import { Post } from "@/components/posts/post"
 
 export async function generateStaticParams({
@@ -28,6 +30,7 @@ export async function generateStaticParams({
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
+  const t = await getTranslations()
   const post = await getPageBySlug(params.slug)
   const users = await getUsers()
 
@@ -36,14 +39,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   const content = await getPageContent(post.id)
   const comments = await getComments({ parent: post.id })
-
-  const notionRenderer = new NotionRenderer({
-    client: notionClient,
-  })
-
-  notionRenderer.use(hljsPlugin({}))
-  notionRenderer.use(bookmarkPlugin(undefined))
-  const html = await notionRenderer.render(...content)
 
   // console.log("Post: ", post)
   // console.log("content: ", content)
@@ -55,6 +50,23 @@ export default async function Page({ params }: { params: { slug: string } }) {
       ? users.results.find((u) => u.id === post.created_by.id)
       : undefined
   const poster = (post?.properties?.OpenGraph as any)?.files[0]?.file?.url
+  const include = (post?.properties?.Include as any)?.rich_text[0]?.plain_text
+
+  const notionRenderer = new NotionRenderer({
+    client: notionClient,
+  })
+  let html: string | React.ComponentType<{}>
+
+  try {
+    notionRenderer.use(hljsPlugin({}))
+    notionRenderer.use(bookmarkPlugin(undefined))
+    html = include
+      ? dynamic(() => import(`@/components/pages/${include}`))
+      : await notionRenderer.render(...content)
+  } catch (error) {
+    console.error(error)
+    html = t("SYSTEM.server.error.include")
+  }
 
   return (
     <Post

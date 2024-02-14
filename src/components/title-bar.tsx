@@ -48,13 +48,17 @@ export function TitleBar({
   const [offset, setOffset] = React.useState(200)
   const [opacity, _setOpacity] = React.useState(0)
   const [currentScrollOffset, _setCurrentScrollOffset] = React.useState(0)
+  const [backgroundColorOpacity, setBackgroundColorOpacity] = React.useState(0)
   const router = useRouter()
 
-  const isDarkmode =
-    theme === "dark" ||
-    (theme === "system" &&
-      window?.matchMedia &&
-      window?.matchMedia("(prefers-color-scheme: dark)").matches)
+  const isDarkmode = React.useMemo(
+    () =>
+      theme === "dark" ||
+      (theme === "system" &&
+        window?.matchMedia &&
+        window?.matchMedia("(prefers-color-scheme: dark)").matches),
+    [theme]
+  )
 
   const [initialTitleOffsets, _setInitialTitleOffsets] =
     React.useState<InitialTitleOffsets>({
@@ -63,22 +67,25 @@ export function TitleBar({
     })
 
   const initialTitleOffsetsRef = React.useRef(initialTitleOffsets)
-  const setInitialTitleOffsets = (data: InitialTitleOffsets) => {
-    initialTitleOffsetsRef.current = data
-    _setInitialTitleOffsets(data)
-  }
+  const setInitialTitleOffsets = React.useCallback(
+    (data: InitialTitleOffsets) => {
+      initialTitleOffsetsRef.current = data
+      _setInitialTitleOffsets(data)
+    },
+    []
+  )
 
   const opacityRef = React.useRef(opacity)
-  const setOpacity = (data: number) => {
+  const setOpacity = React.useCallback((data: number) => {
     opacityRef.current = data
     _setOpacity(data)
-  }
+  }, [])
 
   const currentScrollOffsetRef = React.useRef(currentScrollOffset)
-  const setCurrentScrollOffset = (data: number) => {
+  const setCurrentScrollOffset = React.useCallback((data: number) => {
     currentScrollOffsetRef.current = data
     _setCurrentScrollOffset(data)
-  }
+  }, [])
 
   const handler = React.useCallback(() => {
     const shadowOpacity = scrollContainerRef?.current?.scrollTop ?? 0 / 200
@@ -98,28 +105,29 @@ export function TitleBar({
 
     setOffset(Math.min(Math.max(offsetAmount, 0), 100))
     setOpacity(opacityOffset)
-  }, [titleRef, scrollContainerRef])
+  }, [scrollContainerRef, setCurrentScrollOffset, titleRef, setOpacity])
 
   const handleNavToBack = React.useCallback(() => {
     if (!backButtonHref) return
     router.push(backButtonHref)
   }, [backButtonHref, router])
 
-  let backgroundColorOpacity
-  if (currentScrollOffset === 0) {
-    backgroundColorOpacity = currentScrollOffset
-  } else {
-    backgroundColorOpacity = isDarkmode
-      ? currentScrollOffset + 0.5
-      : currentScrollOffset + 0.8
-  }
+  React.useEffect(() => {
+    setBackgroundColorOpacity(
+      currentScrollOffset === 0
+        ? currentScrollOffset
+        : isDarkmode
+          ? currentScrollOffset + 0.5
+          : currentScrollOffset + 0.8
+    )
+  }, [currentScrollOffset, isDarkmode])
 
   React.useEffect(() => {
     // eslint-disable-next-line no-underscore-dangle
     const _scrollContainerRef = scrollContainerRef?.current
     _scrollContainerRef?.addEventListener("scroll", handler)
     return () => _scrollContainerRef?.removeEventListener("scroll", handler)
-  }, [title, titleRef, scrollContainerRef, handler])
+  }, [scrollContainerRef, handler])
 
   React.useEffect(() => {
     if (!titleRef?.current || !scrollContainerRef?.current) return
@@ -132,7 +140,7 @@ export function TitleBar({
       bottom: titleRef.current.getBoundingClientRect().bottom - 56,
       top: titleRef.current.getBoundingClientRect().top - 48,
     })
-  }, [title, titleRef, scrollContainerRef])
+  }, [titleRef, scrollContainerRef, setOpacity, setInitialTitleOffsets])
 
   return (
     <div
@@ -156,7 +164,12 @@ export function TitleBar({
               onClick={handleNavToBack}
               className="text-foreground mr-3 flex items-center justify-center rounded-md p-2 lg:hidden"
             >
-              <FaArrowLeft className="size-4" />
+              <FaArrowLeft
+                className={cn(
+                  "size-4",
+                  invert ? "fa-light group-[.active]/bar:fa-default" : ""
+                )}
+              />
             </Button>
           )}
 
