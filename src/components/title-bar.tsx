@@ -17,6 +17,7 @@ type InitialTitleOffsets = {
 
 interface Props {
   title: React.ReactNode
+  segment?: string
   tag?: React.ReactNode
   globalMenu?: boolean
   backButton?: boolean
@@ -32,6 +33,7 @@ interface Props {
 
 export function TitleBar({
   title,
+  segment,
   tag,
   globalMenu = true,
   backButton = false,
@@ -149,7 +151,7 @@ export function TitleBar({
         currentScrollOffset !== 0 ? "active" : ""
       )}
     >
-      {magicTitle && (
+      {magicTitle && segment === "posts" && (
         <div
           className={cn(
             "from-foreground/30 to-foreground/0 dark:from-background/50 dark:to-background/0 pointer-events-none absolute inset-0 z-0 size-full h-28 bg-gradient-to-b pt-[calc(env(safe-area-inset-top))] contrast-150 transition-all",

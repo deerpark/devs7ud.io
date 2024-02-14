@@ -55,6 +55,7 @@ export default function DetailContainer({
         className="relative flex max-h-screen w-full flex-1 flex-col overflow-y-auto scroll-smooth transition-all duration-500"
       >
         <TitleBar
+          segment={segment}
           backButton
           globalMenu={false}
           backButtonHref={`/${segment}`}
