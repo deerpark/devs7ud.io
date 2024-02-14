@@ -144,16 +144,24 @@ export function TitleBar({
 
   return (
     <div
-      style={{
-        background: `hsla(var(--background) / ${backgroundColorOpacity})`,
-        boxShadow: `0 1px 20px rgba(0,0,0,${currentScrollOffset})`,
-      }}
       className={cn(
         "group/bar sticky top-0 z-10 flex flex-col justify-center px-3 pt-[calc(env(safe-area-inset-top))] transition-all duration-1000",
-        currentScrollOffset !== 0 ? "active backdrop-blur-sm" : ""
+        currentScrollOffset !== 0 ? "active" : ""
       )}
     >
-      <div className="flex min-h-14 flex-none items-center justify-between py-2">
+      <div
+        style={{
+          background: `linear-gradient(180deg, hsla(var(--background) / ${backgroundColorOpacity}) 0%, hsla(var(--background) / 0) 100%)`,
+          boxShadow: `0 1px 20px rgba(0,0,0,${currentScrollOffset})`,
+        }}
+        className={cn(
+          "pointer-events-none absolute inset-0 z-0 size-full transition-all",
+          currentScrollOffset !== 0
+            ? "duration-2000 opacity-100 backdrop-blur-sm"
+            : "opacity-0 duration-1000"
+        )}
+      />
+      <div className="relative flex min-h-14 flex-none items-center justify-between py-2">
         <span className="flex w-full items-center">
           {globalMenu && <GlobalMenuButton invert={invert} />}
 

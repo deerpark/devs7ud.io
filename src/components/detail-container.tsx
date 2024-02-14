@@ -66,7 +66,7 @@ export default function DetailContainer({
             .join(", ")}
           titleRef={titleRef}
           scrollContainerRef={scrollContainerRef}
-          trailingAccessory={<DetailToolbar />}
+          trailingAccessory={<DetailToolbar invert={invert} />}
         />
         {poster && (
           <div className="relative mt-[calc(-64px-env(safe-area-inset-top))] h-0 overflow-hidden pt-[calc(100vh/3)] sm:mb-4 md:mb-6 lg:mb-8 xl:mb-12 2xl:mb-16">

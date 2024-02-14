@@ -56,16 +56,16 @@ export async function Posts(props: PostsProps) {
         <ListItemLink segment={segment} url={url} onClick={onClick && onClick}>
           {leadingAccessory}
           {thumbnail && (
-            <div className="relative my-auto grid size-24 flex-none place-content-center lg:h-20 lg:w-full 2xl:size-24">
+            <div className="relative my-auto grid size-24 flex-none place-content-center lg:h-40 lg:w-full 2xl:size-24">
               <Image
                 src={thumbnail}
                 fill
                 alt=""
-                className="rounded-xl object-cover lg:rounded-sm 2xl:rounded-xl"
+                className="rounded-xl object-cover lg:rounded-lg lg:rounded-b-none 2xl:rounded-xl"
               />
             </div>
           )}
-          <div className="flex w-full flex-1 flex-col justify-center space-y-1">
+          <div className="flex w-full flex-1 flex-col justify-center space-y-1 lg:px-3 2xl:px-0">
             <div
               className={`group-[.active]:text-primary-foreground line-clamp-3 text-lg/6 font-bold lg:text-base/5`}
             >
@@ -114,7 +114,7 @@ export async function Posts(props: PostsProps) {
                   <CommentCount id={post.id} />
                 </React.Suspense>
               </div>
-              <div className="my-2 flex items-center justify-end space-x-2 2xl:mb-0 2xl:mt-1">
+              <div className="my-2 flex items-center justify-end space-x-2 lg:mb-0 2xl:mb-2 2xl:mt-1">
                 <Badge
                   variant="outline"
                   className="text-muted-foreground group-[.active]:text-primary-foreground block max-w-full truncate"

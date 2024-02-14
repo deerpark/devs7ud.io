@@ -49,9 +49,14 @@ import { useTranslations } from "next-intl"
 import { FaMailbox } from "./icon-regular"
 import { appConfig } from "@/config/app"
 import { Button } from "./ui/button"
+import { cn } from "@/lib/utils"
 import { toast } from "sonner"
 
-export default function SnsShare() {
+type SnsShareProps = {
+  invert?: boolean
+}
+
+export default function SnsShare({ invert = false }: SnsShareProps) {
   const t = useTranslations()
   const url =
     (typeof window !== "undefined" && window.location.href) || appConfig.url
@@ -64,7 +69,12 @@ export default function SnsShare() {
           <Tooltip>
             <TooltipTrigger asChild>
               <Button className="size-8" variant="ghost" size="icon">
-                <FaArrowUpFromBracketIcon className="fa-light group-[.active]/bar:fa-default size-4" />
+                <FaArrowUpFromBracketIcon
+                  className={cn(
+                    "size-4",
+                    invert ? "fa-light group-[.active]/bar:fa-default" : ""
+                  )}
+                />
                 <span className="sr-only">{t("TITLEBAR.share")}</span>
               </Button>
             </TooltipTrigger>

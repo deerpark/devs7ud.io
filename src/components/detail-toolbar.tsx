@@ -9,13 +9,18 @@ import { useTranslations } from "next-intl"
 import { Separator } from "./ui/separator"
 import { Button } from "./ui/button"
 import SnsShare from "./sns-share"
+import { cn } from "@/lib/utils"
 
-export default function DetailToolbar() {
+type DetailToolbarProps = {
+  invert?: boolean
+}
+
+export default function DetailToolbar({ invert = false }: DetailToolbarProps) {
   const t = useTranslations()
   return (
     <div className="flex items-center px-2">
       <div className="ml-auto flex items-center gap-2">
-        <SnsShare />
+        <SnsShare invert={invert} />
       </div>
       <Separator
         orientation="vertical"
@@ -24,7 +29,12 @@ export default function DetailToolbar() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button className="size-8" variant="ghost" size="icon">
-            <FaEllipsisVerticalIcon className="fa-light group-[.active]/bar:fa-default size-4" />
+            <FaEllipsisVerticalIcon
+              className={cn(
+                "size-4",
+                invert ? "fa-light group-[.active]/bar:fa-default" : ""
+              )}
+            />
             <span className="sr-only">{t("TITLEBAR.more")}</span>
           </Button>
         </DropdownMenuTrigger>
