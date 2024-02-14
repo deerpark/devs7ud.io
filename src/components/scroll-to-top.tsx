@@ -16,15 +16,15 @@ export default function ScrollToTop({
 }: ScrollToTopProps) {
   return (
     <Button
-      variant="secondary"
+      variant="ghost"
       size="icon"
       className={cn(
-        "bg-primary/75 border-background ease-expo-in-out group size-9 rounded-full backdrop-blur-sm transition-all duration-500",
+        "border-background ease-expo-in-out group size-9 backdrop-blur-sm transition-all duration-500",
         isShow ? "opacity-100" : "opacity-0"
       )}
       onClick={handleScrollToTop}
     >
-      <FaUpToLineIcon className="fa-light dark:fa-dark group-hover:fa-default size-5" />
+      <FaUpToLineIcon className="size-5" />
     </Button>
   )
 }

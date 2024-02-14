@@ -68,11 +68,17 @@ export default function SnsShare({ invert = false }: SnsShareProps) {
         <div>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button className="size-8" variant="ghost" size="icon">
+              <Button
+                className="group/button size-8"
+                variant="ghost"
+                size="icon"
+              >
                 <FaArrowUpFromBracketIcon
                   className={cn(
-                    "size-4",
-                    invert ? "fa-light group-[.active]/bar:fa-default" : ""
+                    "size-4 transition-all",
+                    invert
+                      ? "fa-light group-[.active]/bar:fa-default group-hover/button:fa-default"
+                      : ""
                   )}
                 />
                 <span className="sr-only">{t("TITLEBAR.share")}</span>

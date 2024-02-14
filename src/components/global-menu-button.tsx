@@ -37,10 +37,10 @@ export default function GlobalMenuButton({
         size="icon"
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "lg:hidden",
+          "group/button transition-all lg:hidden",
           !isFloating && !isOpen ? "hidden" : "",
           isFloating
-            ? "bg-primary/75 border-background ease-expo-in-out group absolute -left-9 size-9 rounded-full backdrop-blur-sm transition-all duration-500"
+            ? "border-background ease-expo-in-out absolute -left-9 size-9 backdrop-blur-sm transition-all duration-500"
             : "text-foreground",
           isFloating && !isOpen
             ? "opacity-0"
@@ -50,11 +50,7 @@ export default function GlobalMenuButton({
         )}
       >
         <FaXmark
-          className={cn(
-            isFloating
-              ? "fa-light dark:fa-dark group-hover:fa-default size-5"
-              : "size-4"
-          )}
+          className={cn("transition-all", isFloating ? "size-5" : "size-4")}
         />
       </Button>
       <Button
@@ -62,10 +58,10 @@ export default function GlobalMenuButton({
         size="icon"
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "group lg:hidden",
+          "group transition-all lg:hidden",
           !isFloating && isOpen ? "hidden" : "",
           isFloating
-            ? "bg-primary/75 border-background ease-expo-in-out size-9 rounded-full backdrop-blur-sm transition-all duration-500"
+            ? "border-background ease-expo-in-out size-9 backdrop-blur-sm transition-all duration-500"
             : "text-foreground mr-1",
           isFloating && !isOpen
             ? "opacity-100"
@@ -76,11 +72,12 @@ export default function GlobalMenuButton({
       >
         <FaBars
           className={cn(
+            "transition-all",
             isFloating ? "size-5" : "size-4",
             isMono
               ? "fa-light group-hover:fa-default"
               : isFloating
-                ? "fa-light dark:fa-dark group-hover:fa-default"
+                ? ""
                 : isOpen
                   ? ""
                   : invert

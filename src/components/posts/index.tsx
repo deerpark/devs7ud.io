@@ -52,16 +52,16 @@ export async function Posts(props: PostsProps) {
       (post?.cover as any)?.file?.url || (post?.cover as any)?.external?.url
     console.log(thumbnail)
     return (
-      <ListItem key={post.id} layoutKey={post.id}>
+      <ListItem key={post.id} layoutKey={post.id} className="group/item post">
         <ListItemLink segment={segment} url={url} onClick={onClick && onClick}>
           {leadingAccessory}
           {thumbnail && (
-            <div className="relative my-auto grid size-24 flex-none place-content-center lg:h-40 lg:w-full 2xl:size-24">
+            <div className="relative my-auto grid size-24 flex-none place-content-center transition-all lg:h-28 lg:w-full lg:group-[.active]:m-1 lg:group-[.active]:h-40 lg:group-[.active]:w-[calc(100%-8px)] 2xl:m-0 2xl:size-24 2xl:group-[.active]:m-0 2xl:group-[.active]:size-24">
               <Image
                 src={thumbnail}
                 fill
                 alt=""
-                className="rounded-xl object-cover lg:rounded-lg lg:rounded-b-none 2xl:rounded-xl"
+                className="ring-foreground/25 dark:ring-background/25 rounded-xl object-cover opacity-50 shadow-lg grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0 group-[.active]:opacity-100 group-[.active]:grayscale-0 lg:rounded-sm lg:group-[.active]:ring-1 2xl:rounded-xl"
               />
             </div>
           )}
@@ -92,6 +92,7 @@ export async function Posts(props: PostsProps) {
                       <AvatarImage
                         src="/assets/images/yonn-kim.jpg"
                         alt={`@${user?.name} avatar image`}
+                        className="grayscale group-hover:!grayscale-0 group-[.active]:grayscale-0"
                       />
                       <AvatarFallback className="text-xs font-bold">
                         {user?.name?.slice(0, 1)}
@@ -114,7 +115,7 @@ export async function Posts(props: PostsProps) {
                   <CommentCount id={post.id} />
                 </React.Suspense>
               </div>
-              <div className="my-2 flex items-center justify-end space-x-2 lg:mb-0 2xl:mb-2 2xl:mt-1">
+              <div className="my-2 flex items-center justify-end space-x-2 lg:mb-0 2xl:mb-0 2xl:mt-1">
                 <Badge
                   variant="outline"
                   className="text-muted-foreground group-[.active]:text-primary-foreground block max-w-full truncate"

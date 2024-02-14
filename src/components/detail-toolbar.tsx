@@ -24,15 +24,17 @@ export default function DetailToolbar({ invert = false }: DetailToolbarProps) {
       </div>
       <Separator
         orientation="vertical"
-        className="group-[.active]/bar:bg-border/50 mx-2 h-4"
+        className="group-[.active]/bar:bg-border/50 hover:fa-default mx-2 h-4 transition-all"
       />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button className="size-8" variant="ghost" size="icon">
+          <Button className="group/button size-8" variant="ghost" size="icon">
             <FaEllipsisVerticalIcon
               className={cn(
-                "size-4",
-                invert ? "fa-light group-[.active]/bar:fa-default" : ""
+                "size-4 transition-all",
+                invert
+                  ? "fa-light group-[.active]/bar:fa-default group-hover/button:fa-default"
+                  : ""
               )}
             />
             <span className="sr-only">{t("TITLEBAR.more")}</span>

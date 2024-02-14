@@ -149,6 +149,16 @@ export function TitleBar({
         currentScrollOffset !== 0 ? "active" : ""
       )}
     >
+      {magicTitle && (
+        <div
+          className={cn(
+            "from-foreground/30 to-foreground/0 dark:from-background/50 dark:to-background/0 pointer-events-none absolute inset-0 z-0 size-full h-28 bg-gradient-to-b pt-[calc(env(safe-area-inset-top))] contrast-150 transition-all",
+            currentScrollOffset !== 0
+              ? "duration-2000 opacity-0"
+              : "opacity-100 duration-300"
+          )}
+        />
+      )}
       <div
         style={{
           background: `linear-gradient(180deg, hsla(var(--background) / ${backgroundColorOpacity}) 0%, hsla(var(--background) / 0) 100%)`,
@@ -158,7 +168,7 @@ export function TitleBar({
           "pointer-events-none absolute inset-0 z-0 size-full transition-all",
           currentScrollOffset !== 0
             ? "duration-2000 opacity-100 backdrop-blur-sm"
-            : "opacity-0 duration-1000"
+            : "opacity-0 duration-300"
         )}
       />
       <div className="relative flex min-h-14 flex-none items-center justify-between py-2">
@@ -170,12 +180,14 @@ export function TitleBar({
               variant="ghost"
               size="icon"
               onClick={handleNavToBack}
-              className="text-foreground mr-3 flex items-center justify-center rounded-md p-2 lg:hidden"
+              className="text-foreground group/button mr-3 flex items-center justify-center rounded-md p-2 lg:hidden"
             >
               <FaArrowLeft
                 className={cn(
                   "size-4",
-                  invert ? "fa-light group-[.active]/bar:fa-default" : ""
+                  invert
+                    ? "fa-light group-[.active]/bar:fa-default group-hover/button:fa-default"
+                    : ""
                 )}
               />
             </Button>

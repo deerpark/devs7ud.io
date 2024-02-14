@@ -27,7 +27,7 @@ export default function List({
       >
         <div
           ref={scrollContainerRef}
-          className="bg-popover lg:bg-card/30 relative size-full max-h-screen min-h-screen flex-none overflow-y-auto lg:w-80 lg:border-r xl:w-96"
+          className="bg-popover lg:bg-card/30 relative size-full max-h-screen min-h-screen flex-none overflow-y-auto transition-all lg:w-80 lg:border-r xl:w-96"
           {...rest}
         >
           <TitleBar scrollContainerRef={scrollContainerRef} title={title} />

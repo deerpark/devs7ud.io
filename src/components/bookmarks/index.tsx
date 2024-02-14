@@ -36,7 +36,11 @@ export async function Bookmarks(props: BookmarksProps) {
     const categories: Category[] =
       (item.properties?.Categories as any)?.multi_select || []
     return (
-      <ListItem key={item.id} layoutKey={item.id}>
+      <ListItem
+        key={item.id}
+        layoutKey={item.id}
+        className="group/item bookmark"
+      >
         <ListItemLink
           segment={segment}
           url={url}

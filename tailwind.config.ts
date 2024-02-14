@@ -97,6 +97,34 @@ const config = {
         "5000": "5000ms",
         "10000": "10000ms",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            h1: {
+              color: "hsl(var(--primary)) !important",
+            },
+            h2: {
+              color: "hsl(var(--primary)) !important",
+            },
+            h3: {
+              color: "hsl(var(--primary)) !important",
+            },
+            h4: {
+              color: "hsl(var(--primary)) !important",
+            },
+            h5: {
+              color: "hsl(var(--primary)) !important",
+            },
+            h6: {
+              color: "hsl(var(--primary)) !important",
+            },
+            p: {
+              marginTop: "3rem",
+              marginBottom: "3rem",
+            },
+          },
+        },
+      },
     },
   },
   // eslint-disable-next-line global-require
