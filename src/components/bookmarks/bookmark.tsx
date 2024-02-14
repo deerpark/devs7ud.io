@@ -11,8 +11,8 @@ export function Bookmark(props: BookmarkProps) {
   const { post, comments, blurDataURL } = props
   const title = (post.properties.Title as any).title[0].plain_text
   /* const poster =
-    (post?.properties?.cover as any)?.file?.url ||
-    (post?.properties?.cover as any)?.external?.url */
+    (post?.cover as any)?.file?.url ||
+    (post?.cover as any)?.external?.url */
   const description = (post.properties?.Description as any)?.rich_text[0]
     ?.plain_text
   const link = (post.properties?.Link as any)?.url

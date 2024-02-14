@@ -28,8 +28,7 @@ export default async function Image({
 
   const post = await getPageBySlug(params.slug)
   const imageUrl =
-    (post?.properties?.cover as any)?.file?.url ||
-    (post?.properties?.cover as any)?.external?.url
+    (post?.cover as any)?.file?.url || (post?.cover as any)?.external?.url
 
   return new ImageResponse(
     (

@@ -1,3 +1,4 @@
+import Image from "next/image"
 import * as React from "react"
 
 import type {
@@ -47,11 +48,24 @@ export async function Posts(props: PostsProps) {
       locale,
       { addSuffix: true }
     )
+    const thumbnail =
+      (post?.cover as any)?.file?.url || (post?.cover as any)?.external?.url
+    console.log(thumbnail)
     return (
       <ListItem key={post.id} layoutKey={post.id}>
         <ListItemLink segment={segment} url={url} onClick={onClick && onClick}>
           {leadingAccessory}
-          <div className="flex w-full flex-col justify-center space-y-1">
+          {thumbnail && (
+            <div className="relative my-auto grid size-24 flex-none place-content-center lg:h-20 lg:w-full 2xl:size-24">
+              <Image
+                src={thumbnail}
+                fill
+                alt=""
+                className="rounded-xl object-cover lg:rounded-sm 2xl:rounded-xl"
+              />
+            </div>
+          )}
+          <div className="flex w-full flex-1 flex-col justify-center space-y-1">
             <div
               className={`group-[.active]:text-primary-foreground line-clamp-3 text-lg/6 font-bold lg:text-base/5`}
             >
@@ -59,7 +73,7 @@ export async function Posts(props: PostsProps) {
             </div>
             {description && (
               <div
-                className={`text-muted-foreground group-[.active]:text-primary-foreground/70 line-clamp-2 text-base/5 lg:text-xs/4`}
+                className={`group-[.active]:text-primary-foreground line-clamp-2 text-base/5 opacity-70 lg:text-xs/4`}
               >
                 {description}
               </div>
@@ -67,7 +81,7 @@ export async function Posts(props: PostsProps) {
             <div
               className={`text-secondary-foreground/40 group-[.active]:text-secondary-foreground flex flex-wrap items-center justify-between pl-0.5`}
             >
-              <div className="my-2 flex items-center space-x-2">
+              <div className="my-2 flex items-center space-x-2 2xl:mb-0 2xl:mt-1">
                 {byline && user && (
                   <div className="flex items-center space-x-2">
                     <Avatar
@@ -100,7 +114,7 @@ export async function Posts(props: PostsProps) {
                   <CommentCount id={post.id} />
                 </React.Suspense>
               </div>
-              <div className="my-2 flex items-center justify-end space-x-2">
+              <div className="my-2 flex items-center justify-end space-x-2 2xl:mb-0 2xl:mt-1">
                 <Badge
                   variant="outline"
                   className="text-muted-foreground group-[.active]:text-primary-foreground block max-w-full truncate"

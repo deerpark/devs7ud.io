@@ -11,11 +11,14 @@ type LinkVisitProps = {
 export default function LinkVisit({ link }: LinkVisitProps) {
   const t = useTranslations()
   return (
-    <div className="mx-auto">
+    <div className="mx-auto w-full md:max-w-fit">
       <Link
         href={link}
         target="_blank"
-        className={cn(buttonVariants({ variant: "default" }), "space-x-2")}
+        className={cn(
+          buttonVariants({ variant: "default" }),
+          "block space-x-2 md:inline-block"
+        )}
       >
         <span>{t("BOOKMARKS.visit")}</span>
         <FaLinkIcon className="fa-light dark:fa-dark size-5" />
