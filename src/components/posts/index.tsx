@@ -73,7 +73,7 @@ export async function Posts(props: PostsProps) {
             </div>
             {description && (
               <div
-                className={`group-[.active]:text-primary-foreground line-clamp-2 text-base/5 opacity-70 lg:text-xs/4`}
+                className={`group-[.active]:text-primary-foreground line-clamp-1 text-base/5 opacity-70 lg:text-xs/4 2xl:line-clamp-2`}
               >
                 {description}
               </div>
