@@ -22,7 +22,6 @@ export default function ListItemLink({
   const params = useParams<{ slug: string; locale: string }>()
   const active = `/${segment}/${params.slug}` === url
   const isPost = segment === "posts"
-  console.log()
   return (
     <Link
       href={url}

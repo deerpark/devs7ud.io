@@ -4,6 +4,8 @@ import { useParams } from "next/navigation"
 import { LayoutGroup } from "framer-motion"
 import { TitleBar } from "../title-bar"
 import * as React from "react"
+import { search } from "@/actions/search"
+import Search from "./search"
 
 type ListProps = {
   title: React.ReactNode
@@ -23,14 +25,16 @@ export default function List({
     <div className="flex max-w-full flex-1">
       <div
         id="list"
-        className={`flex-none ${params.slug ? "hidden lg:flex" : "min-h-screen w-full"}`}
+        className={`flex-none transition-all duration-500 ${params.slug ? "hidden lg:flex" : "min-h-screen w-full"}`}
       >
         <div
           ref={scrollContainerRef}
           className="bg-popover lg:bg-card/30 relative size-full max-h-screen min-h-screen flex-none overflow-y-auto transition-all lg:w-80 lg:border-r xl:w-96"
           {...rest}
         >
-          <TitleBar scrollContainerRef={scrollContainerRef} title={title} />
+          <TitleBar scrollContainerRef={scrollContainerRef} title={title}>
+            <Search onSearch={search} locale={params.locale} />
+          </TitleBar>
           <LayoutGroup>
             <div className="lg:space-y-3 lg:p-3 2xl:space-y-0">{contents}</div>
           </LayoutGroup>

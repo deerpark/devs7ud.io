@@ -26,6 +26,7 @@ import {
   faArrowUpFromBracket as faArrowUpFromBracketIcon,
   faUpToLine as faUpToLineIcon,
   faSwatchbook as faSwatchbookIcon,
+  faSearch as faSearchIcon,
 } from "@fortawesome/pro-duotone-svg-icons"
 import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome"
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core"
@@ -126,4 +127,7 @@ export const FaUpToLineIcon = (props: IconProps) => (
 )
 export const FaSwatchbookIcon = (props: IconProps) => (
   <FaIcon icon={faSwatchbookIcon} {...props} />
+)
+export const FaSearchIcon = (props: IconProps) => (
+  <FaIcon icon={faSearchIcon} {...props} />
 )

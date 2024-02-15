@@ -75,26 +75,114 @@ function resolveError(error: unknown) {
 }
 
 export const getPages = cache(
-  async (_locale?: string, databaseKey = "posts") => {
-    const locale = _locale || "ko"
+  async (locale: string = "ko", databaseKey = "posts", tag?: string) => {
     const database_id =
       notionEnv[databaseKey as keyof typeof notionEnv] || env.NOTION_DATABASE_ID
     try {
       return notionClient.databases.query({
         filter: {
-          and: [
+          and: tag
+            ? [
+                {
+                  property: "Status",
+                  status: {
+                    equals: "Published",
+                  },
+                },
+                {
+                  property: "Locale",
+                  select: {
+                    equals: locale,
+                  },
+                },
+                {
+                  select: {
+                    equals: tag,
+                  },
+                  property: "Tags",
+                },
+              ]
+            : [
+                {
+                  property: "Status",
+                  status: {
+                    equals: "Published",
+                  },
+                },
+                {
+                  property: "Locale",
+                  select: {
+                    equals: locale,
+                  },
+                },
+              ],
+        },
+        database_id,
+      })
+    } catch (error: unknown) {
+      resolveError(error)
+      return {
+        type: "page",
+        page_or_database: {},
+        object: "list",
+        next_cursor: null,
+        has_more: false,
+        results: [],
+      }
+    }
+  }
+)
+
+export const searchPages = cache(
+  async (locale: string = "ko", databaseKey = "posts", keyword: string) => {
+    const database_id =
+      notionEnv[databaseKey as keyof typeof notionEnv] || env.NOTION_DATABASE_ID
+    try {
+      return notionClient.databases.query({
+        filter: {
+          or: [
             {
-              property: "Status",
-              status: {
-                equals: "Published",
-              },
-            },
-            {
-              property: "Locale",
-              select: {
-                equals: locale,
-              },
-            },
+              and: [
+                {
+                  property: "Status",
+                  status: {
+                    equals: "Published",
+                  },
+                },
+                {
+                  property: "Locale",
+                  select: {
+                    equals: locale,
+                  },
+                },
+                {
+                  title: {
+                    contains: keyword,
+                  },
+                  property: "Title",
+                },
+              ],
+              or: [
+                {
+                  property: "Status",
+                  status: {
+                    equals: "Published",
+                  },
+                },
+                {
+                  property: "Locale",
+                  select: {
+                    equals: locale,
+                  },
+                },
+                {
+                  title: {
+                    contains: keyword,
+                  },
+                  property: "Description",
+                },
+              ],
+            }
           ],
         },
         database_id,

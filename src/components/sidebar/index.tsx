@@ -31,17 +31,17 @@ export function Sidebar({ counts }: SidebarProps) {
   useToggleClassname(
     navIsOpen,
     "shrink-left",
-    (typeof document !== "undefined" && document.getElementById("main")) || null
+    (typeof document !== "undefined" && (document.getElementById("main") || document.getElementById("list"))) || null
   )
   return (
     <>
       <nav
         ref={scrollContainerRef}
-        className={`fixed ${
+        className={`fixed inset-y-0 ${
           navIsOpen
-            ? "inset-y-0 left-0 translate-x-0 shadow-lg"
+            ? "left-0 translate-x-0 shadow-lg"
             : "-translate-x-full"
-        } 3xl:w-80 bg-background ease-expo-in-out z-30 flex h-full w-3/4 flex-none flex-col overflow-y-auto border-r transition duration-500 sm:w-1/2 sm:pb-0 md:w-1/3 lg:relative lg:z-auto lg:min-h-screen lg:w-56 lg:translate-x-0 2xl:w-72`}
+        } 3xl:w-80 bg-background ease-expo-in-out z-30 h-full w-3/4 flex-none overflow-y-auto overflow-x-hidden border-r transition-all duration-500 sm:w-1/2 md:w-1/3 lg:relative lg:z-auto min-h-screen lg:w-56 lg:translate-x-0 2xl:w-72`}
       >
         <TitleBar
           scrollContainerRef={scrollContainerRef}
@@ -66,7 +66,7 @@ export function Sidebar({ counts }: SidebarProps) {
           }
         />
         <SidebarNavigation counts={counts} />
-        <div className="space-y-1 p-3">
+        <div className="flex-none space-y-1 p-3">
           <h4 className="text-muted-foreground/50 px-2 pb-2 pt-5 text-xs font-semibold">
             {t("SYSTEM.settings.label")}
           </h4>

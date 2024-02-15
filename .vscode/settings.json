@@ -1,7 +1,6 @@
 {
   "i18n-ally.keystyle": "nested",
   "tailwindCSS.experimental.classRegex": [
-    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ],
   "i18n-ally.localesPaths": ["src/locales"]

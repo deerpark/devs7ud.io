@@ -1,5 +1,4 @@
-import { faSpinnerThird } from "@fortawesome/pro-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { FaSpinnerThirdIcon } from "./icon-duotone"
 import { cn } from "@/lib/utils"
 
 export default function Loading({ className }: { className?: string }) {
@@ -10,10 +9,7 @@ export default function Loading({ className }: { className?: string }) {
         className
       )}
     >
-      <FontAwesomeIcon
-        icon={faSpinnerThird}
-        className="text-primary size-6 animate-spin"
-      />
+      <FaSpinnerThirdIcon className="text-primary size-6 animate-spin" />
     </div>
   )
 }

@@ -129,5 +129,8 @@
     "title": "Introducing DEVS7UDIO.",
     "description": "Design Engineer Yonn Kim covers a variety of topics.",
     "message": "If it's uncomfortable, it's not a perfect design. It's not done until it's perfect."
+  },
+  "SEARCH": {
+    "placeholder": "Search"
   }
 }

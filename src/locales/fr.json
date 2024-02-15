@@ -129,5 +129,8 @@
     "title": "Voici DEVS7UDIO.",
     "description": "L'ingénieur concepteur Yonn Kim aborde divers sujets.",
     "message": "S'il est inconfortable, c'est qu'il n'est pas parfait. Il n'est pas terminé tant qu'il n'est pas parfait."
+  },
+  "SEARCH": {
+    "placeholder": "Recherche"
   }
 }

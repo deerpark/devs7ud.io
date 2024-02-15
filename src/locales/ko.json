@@ -129,5 +129,8 @@
     "title": "DEVS7UDIO를 소개합니다.",
     "description": "Design Engineer인 Yonn Kim의 잡다한 주제를 다룹니다.",
     "message": "불편하면 그건 완벽한 디자인이 아닙니다. 완벽할때까지 끝난게 아닙니다."
+  },
+  "SEARCH": {
+    "placeholder": "검색"
   }
 }

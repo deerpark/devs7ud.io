@@ -14,3 +14,15 @@ export type MultiSelect = { id: string; name: string; color: string }
 export interface PostProps extends PageProps<PostProps> {
   post: PageObjectResponse
 }
+
+export type PostsResponse = {
+  errors?: string;
+  posts: PageObjectResponse[];
+}
+export type Posts = {
+  posts: PageObjectResponse[];
+}
+export type RequestParams = {
+  locale: string
+}
+export type OnSearch = (params: Pick<RequestParams, "locale">, prevState: Posts, formData: FormData) => Promise<PostsResponse>

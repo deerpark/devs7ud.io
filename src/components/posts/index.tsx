@@ -50,19 +50,18 @@ export async function Posts(props: PostsProps) {
     )
     const thumbnail =
       (post?.cover as any)?.file?.url || (post?.cover as any)?.external?.url
-    console.log(thumbnail)
     return (
       <ListItem key={post.id} layoutKey={post.id} className="group/item post">
         <ListItemLink segment={segment} url={url} onClick={onClick && onClick}>
           {leadingAccessory}
           {thumbnail && (
-            <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid size-24 flex-none place-content-center overflow-hidden rounded-xl shadow-lg transition-all duration-500 lg:h-28 lg:w-full lg:rounded-sm lg:group-[.active]:m-1 lg:group-[.active]:h-40 lg:group-[.active]:w-[calc(100%-8px)] lg:group-[.active]:ring-1 2xl:m-0 2xl:size-24 2xl:rounded-xl 2xl:group-[.active]:m-0 2xl:group-[.active]:size-24">
+            <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid size-24 flex-none place-content-center overflow-hidden rounded-xl transition-all duration-500 group-hover:shadow-lg lg:h-28 lg:w-full lg:rounded-sm lg:group-[.active]:m-1 lg:group-[.active]:h-40 lg:group-[.active]:w-[calc(100%-8px)] lg:group-[.active]:ring-1 2xl:m-0 2xl:size-24 2xl:rounded-xl 2xl:group-[.active]:m-0 2xl:group-[.active]:size-24">
               <Image
                 src={thumbnail}
                 width={351}
                 height={160}
                 alt=""
-                className="absolute inset-0 size-full object-cover opacity-50 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0 group-[.active]:opacity-100 group-[.active]:grayscale-0"
+                className="absolute inset-0 size-full object-cover transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0 group-[.active]:opacity-100 group-[.active]:grayscale-0 lg:opacity-50 lg:grayscale"
               />
             </div>
           )}
@@ -87,13 +86,13 @@ export async function Posts(props: PostsProps) {
                   <div className="flex items-center space-x-2">
                     <Avatar
                       className={cn(
-                        "ring-foreground group-[.active]:ring-primary-foreground border-1 size-5 rounded-full ring-1"
+                        "ring-foreground group-[.active]:ring-primary-foreground border-1 size-5 rounded-full ring-1 group-hover:!opacity-100 group-[.active]:opacity-100 lg:opacity-50"
                       )}
                     >
                       <AvatarImage
                         src="/assets/images/yonn-kim.jpg"
                         alt={`@${user?.name} avatar image`}
-                        className="grayscale group-hover:!grayscale-0 group-[.active]:grayscale-0"
+                        className="transition-all group-hover:!grayscale-0 group-[.active]:grayscale-0 lg:grayscale"
                       />
                       <AvatarFallback className="text-xs font-bold">
                         {user?.name?.slice(0, 1)}
