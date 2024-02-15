@@ -117,19 +117,19 @@
 @layer components {
   .shrink-top {
     transform-origin: center top;
-    @apply rounded-lg overflow-hidden scale-[0.954] translate-y-[calc(env(safe-area-inset-top)+14px)];
+    @apply rounded-lg overflow-hidden scale-[0.954] translate-y-[calc(env(safe-area-inset-top)+10%)];
   }
   .shrink-bottom {
     transform-origin: center bottom;
-    @apply rounded-lg overflow-hidden scale-[0.954] -translate-y-[calc(env(safe-area-inset-top)+14px)];
+    @apply rounded-lg overflow-hidden scale-[0.954] -translate-y-[calc(env(safe-area-inset-top)+10%)];
   }
   .shrink-right {
     transform-origin: right center;
-    @apply rounded-lg overflow-hidden scale-[0.954] -translate-x-8;
+    @apply rounded-lg overflow-hidden scale-[0.954] -translate-x-[10%];
   }
   .shrink-left {
     transform-origin: left center;
-    @apply rounded-lg overflow-hidden scale-[0.954] translate-x-8;
+    @apply rounded-lg overflow-hidden scale-[0.954] translate-x-[10%];
   }
 }
 

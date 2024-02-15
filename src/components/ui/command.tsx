@@ -15,7 +15,7 @@ const Command = React.forwardRef<
   <CommandPrimitive
     ref={ref}
     className={cn(
-      "bg-popover text-popover-foreground flex size-full flex-col overflow-hidden rounded-md",
+      "bg-popover text-popover-foreground flex size-full flex-col overflow-hidden rounded-lg",
       className
     )}
     {...props}
@@ -39,9 +39,15 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
 
 const CommandInput = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input> & {icon?: React.ReactNode}
->(({ className, icon, ...props }, ref) => (
-  <div className="flex items-center border-b px-3 relative" cmdk-input-wrapper="">
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input> & {
+    icon?: React.ReactNode
+    suffixExtra?: React.ReactNode
+  }
+>(({ className, icon, suffixExtra, ...props }, ref) => (
+  <div
+    className="relative flex items-center border-b px-3"
+    cmdk-input-wrapper=""
+  >
     {icon ? icon : <Search className="mr-2 size-4 shrink-0 opacity-50" />}
     <CommandPrimitive.Input
       ref={ref}
@@ -51,6 +57,7 @@ const CommandInput = React.forwardRef<
       )}
       {...props}
     />
+    {suffixExtra}
   </div>
 ))
 

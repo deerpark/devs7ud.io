@@ -5,6 +5,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css"
 import { ClerkProvider } from "@clerk/nextjs"
 import { notFound } from "next/navigation"
 import { useMessages } from "next-intl"
+import { headers } from "next/headers"
 import "@/styles/global.css"
 
 import SkipToContent from "@/components/skip-to-content"
@@ -38,6 +39,8 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
 
   // Using internationalization in Client Components
   const messages = useMessages()
+  const headersList = headers()
+  const url = headersList.get("Referer") || ""
 
   return (
     <ClerkProvider
@@ -57,6 +60,7 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
+            url={url}
             enableSystem
             disableTransitionOnChange
             locale={params.locale}

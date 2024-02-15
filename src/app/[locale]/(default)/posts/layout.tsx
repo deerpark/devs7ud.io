@@ -2,12 +2,14 @@ import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoint
 
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import { getPages, getUsers } from "@/lib/notion"
+import Search from "@/components/list/search"
 import { Posts } from "@/components/posts"
 import List from "@/components/list"
+import * as React from "react"
 
 type PageLayoutProps = Readonly<{
   children: React.ReactNode
-  params: { locale: string }
+  params: { locale: string; slug: string }
 }>
 
 export default async function PageLayout({
@@ -18,6 +20,7 @@ export default async function PageLayout({
   const pages = await getPages(params.locale)
   const users = await getUsers()
   const t = await getTranslations()
+  console.log(params)
 
   return (
     <div className="flex w-full">
@@ -42,6 +45,7 @@ export default async function PageLayout({
             </div>
           )
         }
+        search={!params.slug ? <Search /> : undefined}
       >
         {children}
       </List>

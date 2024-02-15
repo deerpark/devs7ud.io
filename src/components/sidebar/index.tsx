@@ -26,22 +26,24 @@ type SidebarProps = {
 export function Sidebar({ counts }: SidebarProps) {
   const navigationContext = React.useContext(GlobalNavigationContext)
   const navIsOpen = navigationContext.isOpen
+  const url = navigationContext.url
   const scrollContainerRef = React.useRef<HTMLElement>(null)
   const t = useTranslations()
   useToggleClassname(
     navIsOpen,
     "shrink-left",
-    (typeof document !== "undefined" && (document.getElementById("main") || document.getElementById("list"))) || null
+    (typeof document !== "undefined" &&
+      (document.getElementById("main") || document.getElementById("list"))) ||
+      null
   )
   return (
     <>
       <nav
         ref={scrollContainerRef}
-        className={`fixed inset-y-0 ${
-          navIsOpen
-            ? "left-0 translate-x-0 shadow-lg"
-            : "-translate-x-full"
-        } 3xl:w-80 bg-background ease-expo-in-out z-30 h-full w-3/4 flex-none overflow-y-auto overflow-x-hidden border-r transition-all duration-500 sm:w-1/2 md:w-1/3 lg:relative lg:z-auto min-h-screen lg:w-56 lg:translate-x-0 2xl:w-72`}
+        className={cn(
+          `3xl:w-80 bg-background ease-expo-in-out fixed inset-y-0 z-30 flex h-full min-h-screen w-3/4 flex-none flex-col overflow-y-auto overflow-x-hidden border-r transition-all duration-500 sm:w-1/2 md:w-1/3 lg:relative lg:inset-y-auto lg:z-auto lg:max-h-screen lg:w-56 lg:translate-x-0 2xl:w-72`,
+          navIsOpen ? "left-0 translate-x-0 shadow-lg" : "-translate-x-full"
+        )}
       >
         <TitleBar
           scrollContainerRef={scrollContainerRef}
@@ -65,7 +67,7 @@ export function Sidebar({ counts }: SidebarProps) {
             </Link>
           }
         />
-        <SidebarNavigation counts={counts} />
+        <SidebarNavigation counts={counts} url={url} />
         <div className="flex-none space-y-1 p-3">
           <h4 className="text-muted-foreground/50 px-2 pb-2 pt-5 text-xs font-semibold">
             {t("SYSTEM.settings.label")}

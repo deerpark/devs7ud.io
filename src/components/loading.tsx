@@ -1,7 +1,13 @@
 import { FaSpinnerThirdIcon } from "./icon-duotone"
 import { cn } from "@/lib/utils"
 
-export default function Loading({ className }: { className?: string }) {
+export default function Loading({
+  className,
+  iconClassName,
+}: {
+  className?: string
+  iconClassName?: string
+}) {
   return (
     <div
       className={cn(
@@ -9,7 +15,9 @@ export default function Loading({ className }: { className?: string }) {
         className
       )}
     >
-      <FaSpinnerThirdIcon className="text-primary size-6 animate-spin" />
+      <FaSpinnerThirdIcon
+        className={cn("text-primary size-6 animate-spin", iconClassName)}
+      />
     </div>
   )
 }

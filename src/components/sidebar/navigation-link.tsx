@@ -4,19 +4,11 @@ import * as React from "react"
 import Link from "next/link"
 
 import { GlobalNavigationContext } from "../providers"
-import type { Icon } from "../icon-duotone"
+import { RouteItem } from "@/types/common.type"
 import { Badge } from "../ui/badge"
 
 interface NavigationLinkProps {
-  link: {
-    href: string
-    label: string
-    icon: Icon
-    isActive: boolean
-    trailingAccessory: Icon | null
-    isExternal: boolean
-    count?: number
-  }
+  link: RouteItem
 }
 
 export function NavigationLink({

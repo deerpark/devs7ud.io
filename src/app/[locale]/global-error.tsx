@@ -12,6 +12,7 @@ import ErrorComponent from "@/components/ui/error"
 import { useMessages } from "next-intl"
 import * as Fonts from "@/lib/fonts"
 import { cn } from "@/lib/utils"
+import { env } from "@/lib/env"
 
 export { metadata } from "@/lib/metadata"
 export { viewport } from "@/lib/viewport"
@@ -45,6 +46,7 @@ export default function GlobalError(props: GlobalErrorProps) {
           attribute="class"
           defaultTheme="system"
           enableSystem
+          url={env.NEXT_PUBLIC_HOST}
           locale={props.params.locale}
           messages={messages}
         >

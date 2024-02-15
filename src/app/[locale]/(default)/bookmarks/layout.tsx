@@ -2,12 +2,14 @@ import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoint
 
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import { Bookmarks } from "@/components/bookmarks"
+import Search from "@/components/list/search"
 import { getPages } from "@/lib/notion"
 import List from "@/components/list"
+import * as React from "react"
 
 type PageLayoutProps = Readonly<{
   children: React.ReactNode
-  params: { locale: string }
+  params: { locale: string; slug: string }
 }>
 
 export default async function PageLayout({
@@ -38,6 +40,7 @@ export default async function PageLayout({
             </div>
           )
         }
+        search={!params.slug ? <Search /> : undefined}
       >
         {children}
       </List>

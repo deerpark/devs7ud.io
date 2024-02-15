@@ -4,18 +4,18 @@ import { useParams } from "next/navigation"
 import { LayoutGroup } from "framer-motion"
 import { TitleBar } from "../title-bar"
 import * as React from "react"
-import { search } from "@/actions/search"
-import Search from "./search"
 
 type ListProps = {
   title: React.ReactNode
   contents: React.ReactNode
+  search: React.ReactNode
 } & React.PropsWithChildren
 
 export default function List({
   children,
   title,
   contents,
+  search,
   ...rest
 }: ListProps) {
   const params = useParams<{ slug: string; locale: string }>()
@@ -32,9 +32,11 @@ export default function List({
           className="bg-popover lg:bg-card/30 relative size-full max-h-screen min-h-screen flex-none overflow-y-auto transition-all lg:w-80 lg:border-r xl:w-96"
           {...rest}
         >
-          <TitleBar scrollContainerRef={scrollContainerRef} title={title}>
-            <Search onSearch={search} locale={params.locale} />
-          </TitleBar>
+          <TitleBar
+            scrollContainerRef={scrollContainerRef}
+            title={title}
+            trailingAccessory={search}
+          />
           <LayoutGroup>
             <div className="lg:space-y-3 lg:p-3 2xl:space-y-0">{contents}</div>
           </LayoutGroup>
