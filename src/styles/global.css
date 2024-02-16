@@ -136,3 +136,8 @@
 .filter-blur {
   backdrop-filter: saturate(150%) blur(20px);
 }
+
+.cl-userButtonAvatarBox {
+  width: 16px !important;
+  height: 16px !important;
+}
