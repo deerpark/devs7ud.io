@@ -148,7 +148,9 @@ export function TitleBar({
       style={{ boxShadow: `0 1px 20px rgba(0,0,0,${currentScrollOffset / 2})` }}
       className={cn(
         "group/bar sticky top-0 z-10 flex flex-col justify-center overflow-hidden px-3 pt-[calc(env(safe-area-inset-top))] transition-all duration-1000",
-        magicTitle ? "top-2 mx-2 min-h-14 rounded-2xl" : "min-h-[72px]",
+        magicTitle
+          ? "top-2 mx-2 min-h-[calc(56px+env(safe-area-inset-top))] rounded-3xl sm:rounded-2xl"
+          : "min-h-[calc(72px+env(safe-area-inset-top))]",
         currentScrollOffset !== 0 ? "active" : ""
       )}
     >

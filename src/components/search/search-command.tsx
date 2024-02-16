@@ -73,11 +73,11 @@ export default function SearchCommand({
   return (
     <>
       <CommandInput
-        className="min-h-14 pl-[42px]"
+        className="bg-popover text-popover-foreground placehoder:!font-semibold min-h-14 rounded-3xl border pl-14 !text-lg/8 !font-black md:rounded-2xl"
         icon={
           <FaSearchIcon
             className={cn(
-              "absolute inset-y-0 left-3.5 my-auto size-4",
+              "absolute inset-y-0 left-6 my-auto size-4",
               pending ? "animate-pulse" : ""
             )}
           />
@@ -101,6 +101,7 @@ export default function SearchCommand({
           <CommandGroup heading="Posts">
             {state.posts.map((post) => (
               <CommandItem
+                className="text-background dark:text-foreground"
                 key={post.id}
                 value={`posts/${(post.properties?.Slug as any)?.rich_text[0].plain_text}`}
                 onSelect={handleSelectItem}
@@ -114,6 +115,7 @@ export default function SearchCommand({
           <CommandGroup heading="Bookmarks">
             {state.bookmarks.map((bookmark) => (
               <CommandItem
+                className="text-background dark:text-foreground"
                 key={bookmark.id}
                 value={`bookmarks/${(bookmark.properties?.Slug as any)?.rich_text[0].plain_text}`}
                 onSelect={handleSelectItem}

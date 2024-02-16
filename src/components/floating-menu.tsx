@@ -35,7 +35,7 @@ export default function FloatingMenu({
   return (
     <div
       className={cn(
-        "ease-expo-in-out fixed bottom-5 right-5 z-50 flex flex-col space-y-2 transition-all duration-500",
+        "ease-expo-in-out fixed bottom-9 right-5 z-50 flex flex-col space-y-2 transition-all duration-500",
         isShow ? "translate-y-0 " : "translate-y-11"
       )}
     >
