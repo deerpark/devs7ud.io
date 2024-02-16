@@ -33,7 +33,6 @@ interface Props {
 
 export function TitleBar({
   title,
-  segment,
   tag,
   globalMenu = true,
   backButton = false,
@@ -146,25 +145,16 @@ export function TitleBar({
 
   return (
     <div
+      style={{ boxShadow: `0 1px 20px rgba(0,0,0,${currentScrollOffset / 2})` }}
       className={cn(
-        "group/bar sticky top-0 z-10 flex flex-col justify-center px-3 pt-[calc(env(safe-area-inset-top))] transition-all duration-1000",
+        "group/bar sticky top-0 z-10 flex flex-col justify-center overflow-hidden px-3 pt-[calc(env(safe-area-inset-top))] transition-all duration-1000",
+        magicTitle ? "top-2 mx-2 min-h-14 rounded-2xl" : "min-h-[72px]",
         currentScrollOffset !== 0 ? "active" : ""
       )}
     >
-      {magicTitle && segment === "posts" && (
-        <div
-          className={cn(
-            "from-foreground/30 to-foreground/0 dark:from-background/50 dark:to-background/0 pointer-events-none absolute inset-0 z-0 size-full h-28 bg-gradient-to-b pt-[calc(env(safe-area-inset-top))] contrast-150 transition-all",
-            currentScrollOffset !== 0
-              ? "duration-2000 opacity-0"
-              : "opacity-100 duration-300"
-          )}
-        />
-      )}
       <div
         style={{
-          background: `linear-gradient(180deg, hsla(var(--background) / ${backgroundColorOpacity}) 0%, hsla(var(--background) / 0) 100%)`,
-          boxShadow: `0 1px 20px rgba(0,0,0,${currentScrollOffset})`,
+          background: `hsla(var(--background) / ${backgroundColorOpacity / 2}`,
         }}
         className={cn(
           "pointer-events-none absolute inset-0 z-0 size-full transition-all",

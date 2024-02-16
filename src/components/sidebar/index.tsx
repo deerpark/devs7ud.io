@@ -26,7 +26,6 @@ type SidebarProps = {
 export function Sidebar({ counts }: SidebarProps) {
   const navigationContext = React.useContext(GlobalNavigationContext)
   const navIsOpen = navigationContext.isOpen
-  const url = navigationContext.url
   const scrollContainerRef = React.useRef<HTMLElement>(null)
   const t = useTranslations()
   useToggleClassname(
@@ -67,7 +66,7 @@ export function Sidebar({ counts }: SidebarProps) {
             </Link>
           }
         />
-        <SidebarNavigation counts={counts} url={url} />
+        <SidebarNavigation counts={counts} />
         <div className="flex-none space-y-1 p-3">
           <h4 className="text-muted-foreground/50 px-2 pb-2 pt-5 text-xs font-semibold">
             {t("SYSTEM.settings.label")}

@@ -55,13 +55,13 @@ export async function Posts(props: PostsProps) {
         <ListItemLink segment={segment} url={url} onClick={onClick && onClick}>
           {leadingAccessory}
           {thumbnail && (
-            <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid size-24 flex-none place-content-center overflow-hidden rounded-xl transition-all duration-500 group-hover:shadow-lg lg:h-28 lg:w-full lg:rounded-sm lg:group-[.active]:m-1 lg:group-[.active]:h-40 lg:group-[.active]:w-[calc(100%-8px)] lg:group-[.active]:ring-1 2xl:m-0 2xl:size-24 2xl:rounded-xl 2xl:group-[.active]:m-0 2xl:group-[.active]:size-24">
+            <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid size-24 flex-none place-content-center overflow-hidden rounded-xl transition-all duration-500 group-hover:shadow-lg lg:m-1 lg:h-28 lg:w-[calc(100%-8px)] lg:rounded-sm lg:group-[.active]:h-40 lg:group-[.active]:ring-1 2xl:m-0 2xl:size-24 2xl:rounded-xl 2xl:group-[.active]:m-0 2xl:group-[.active]:size-24">
               <Image
                 src={thumbnail}
                 width={351}
                 height={160}
                 alt=""
-                className="absolute inset-0 size-full object-cover transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0 group-[.active]:opacity-100 group-[.active]:grayscale-0 lg:opacity-50 lg:grayscale"
+                className="absolute inset-0 size-full object-cover transition-all duration-500 group-hover:opacity-100 group-[.active]:opacity-100 lg:opacity-50"
               />
             </div>
           )}

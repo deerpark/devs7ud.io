@@ -9,7 +9,7 @@ import { schema } from "@/scheme"
 
 export async function search(
   params: { locale: string },
-  _: { posts: PageObjectResponse[] },
+  _: { posts: PageObjectResponse[]; bookmarks: PageObjectResponse[] },
   formData: FormData
 ) {
   const parse = schema.safeParse({
@@ -20,24 +20,34 @@ export async function search(
     return {
       errors: parse.error.flatten().fieldErrors.keyword?.join(),
       posts: [] as PageObjectResponse[],
+      bookmarks: [] as PageObjectResponse[],
     }
   }
 
   const data = parse.data
 
   try {
-    const pages = (await searchPages(
+    const posts = (await searchPages(
       params.locale,
       "posts",
       data.keyword
     )) as QueryDatabaseResponse
+    const bookmarks = (await searchPages(
+      params.locale,
+      "bookmarks",
+      data.keyword
+    )) as QueryDatabaseResponse
 
     // revalidatePath("/posts")
-    return { posts: pages.results as PageObjectResponse[] }
+    return {
+      posts: posts.results as PageObjectResponse[],
+      bookmarks: bookmarks.results as PageObjectResponse[],
+    }
   } catch (e) {
     return {
       errors: "Failed to load posts",
       posts: [] as PageObjectResponse[],
+      bookmarks: [] as PageObjectResponse[],
     }
   }
 }

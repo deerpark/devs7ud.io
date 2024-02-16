@@ -1,117 +1,129 @@
 "use client"
 
 import {
-  CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command"
+import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 import { FaSearchIcon } from "../icon-duotone"
 import { Route } from "@/types/common.type"
+import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
-import { search } from "@/actions/search"
-import { useFormState } from "react-dom"
-import { Button } from "../ui/button"
+import { useFormStatus } from "react-dom"
 import { useLocale } from "next-intl"
 import { debounce } from "lodash"
 import { cn } from "@/lib/utils"
+import Loading from "../loading"
 import * as React from "react"
+import { Command } from "cmdk"
 
 type SearchCommandProps = {
-  routes: Route[]
-  className?: string
-  iconClassName?: string
+  routes?: Route[]
+  formRef: React.RefObject<HTMLFormElement>
+  state:
+    | {
+        errors: string | undefined
+        posts: PageObjectResponse[]
+        bookmarks: PageObjectResponse[]
+      }
+    | {
+        posts: PageObjectResponse[]
+        bookmarks: PageObjectResponse[]
+        errors?: undefined
+      }
+  onClose: any
 }
 
 export default function SearchCommand({
-  routes,
-  className,
-  iconClassName,
+  /* routes, */
+  state,
+  formRef,
+  onClose,
 }: SearchCommandProps) {
   const t = useTranslations()
   const locale = useLocale()
-  const formRef = React.useRef<HTMLFormElement>(null)
-  const keywordRef = React.useRef<HTMLInputElement>(null)
-  const [state, formAction] = useFormState(search.bind(null, { locale }), {
-    posts: [],
-  })
-  const [isLoading, setLoading] = React.useState(false)
-  const [isSearchMode, setSearchMode] = React.useState(false)
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> =
-    React.useCallback(() => {
-      setSearchMode((open) => !open)
-    }, [])
+  const router = useRouter()
+  const { pending } = useFormStatus()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleChangeValue = React.useCallback(
-    debounce(() => {
-      if (!keywordRef.current || !keywordRef.current.form) return
-      setLoading(true)
-      keywordRef.current.form.requestSubmit()
-    }, 500),
-    []
+  const handleChangeValue = debounce((v) => {
+    if (!formRef.current) return
+    formRef.current.requestSubmit()
+  }, 500)
+  const handleSelectItem = React.useCallback(
+    (value: string) => {
+      onClose()
+      router.push(`/${locale}/${value}`)
+    },
+    [locale, router, onClose]
   )
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault()
-        setSearchMode((open) => !open)
       }
     }
 
     document.addEventListener("keydown", down)
     return () => document.removeEventListener("keydown", down)
   }, [])
-  React.useEffect(() => {
-    setLoading(false)
-  }, [state])
 
   return (
     <>
-      <Button
-        type="button"
-        variant="ghost"
-        className={cn(
-          "fa-dark dark:fa-light size-8 px-0 transition-all",
-          isSearchMode ? "scale-150 opacity-0" : "scale-100 opacity-100",
-          className
-        )}
-        onClick={handleClick}
-      >
-        <FaSearchIcon className={cn("size-4", iconClassName)} />
-      </Button>
-      <CommandDialog open={isSearchMode} onOpenChange={setSearchMode}>
-        <form ref={formRef} action={formAction}>
-          <CommandInput
-            className="pl-[42px]"
-            icon={
-              <FaSearchIcon
-                className={cn(
-                  "absolute inset-y-0 left-3.5 my-auto size-4",
-                  isLoading ? "animate-pulse" : ""
-                )}
-              />
-            }
-            ref={keywordRef}
-            id="keyword"
-            name="keyword"
-            placeholder={t("SEARCH.placeholder")}
-            onValueChange={handleChangeValue}
+      <CommandInput
+        className="min-h-14 pl-[42px]"
+        icon={
+          <FaSearchIcon
+            className={cn(
+              "absolute inset-y-0 left-3.5 my-auto size-4",
+              pending ? "animate-pulse" : ""
+            )}
           />
-        </form>
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          {state.posts.length ? (
-            <CommandGroup heading="Posts">
-              {state.posts.map((post) => (
-                <CommandItem key={post.id}>
-                  {(post.properties.Title as any).title[0].plain_text}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          ) : null}
-          <CommandGroup heading="Navigation">
+        }
+        id="keyword"
+        name="keyword"
+        placeholder={t("SEARCH.placeholder")}
+        onValueChange={handleChangeValue}
+      />
+      <CommandList>
+        <CommandEmpty>
+          {pending ? (
+            <Command.Loading>
+              <Loading className="h-auto w-full" />
+            </Command.Loading>
+          ) : (
+            "No results found."
+          )}
+        </CommandEmpty>
+        {state.posts.length ? (
+          <CommandGroup heading="Posts">
+            {state.posts.map((post) => (
+              <CommandItem
+                key={post.id}
+                value={`posts/${(post.properties?.Slug as any)?.rich_text[0].plain_text}`}
+                onSelect={handleSelectItem}
+              >
+                {(post.properties.Title as any).title[0].plain_text}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        ) : null}
+        {state.bookmarks.length ? (
+          <CommandGroup heading="Bookmarks">
+            {state.bookmarks.map((bookmark) => (
+              <CommandItem
+                key={bookmark.id}
+                value={`bookmarks/${(bookmark.properties?.Slug as any)?.rich_text[0].plain_text}`}
+                onSelect={handleSelectItem}
+              >
+                {(bookmark.properties.Title as any).title[0].plain_text}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        ) : null}
+        {/* <CommandGroup heading="Navigation">
             {routes.map((item) => {
               return item.items.map((subItem) => (
                 <CommandItem key={`${item.label}-${subItem.label}`}>
@@ -125,9 +137,8 @@ export default function SearchCommand({
           </CommandGroup>
           <CommandGroup heading="Settings">
             <CommandItem>다크모드</CommandItem>
-          </CommandGroup>
-        </CommandList>
-      </CommandDialog>
+          </CommandGroup> */}
+      </CommandList>
     </>
   )
 }

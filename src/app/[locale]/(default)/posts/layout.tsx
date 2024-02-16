@@ -20,7 +20,6 @@ export default async function PageLayout({
   const pages = await getPages(params.locale)
   const users = await getUsers()
   const t = await getTranslations()
-  console.log(params)
 
   return (
     <div className="flex w-full">
