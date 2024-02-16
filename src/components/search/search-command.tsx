@@ -48,7 +48,7 @@ export default function SearchCommand({
   const router = useRouter()
   const { pending } = useFormStatus()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleChangeValue = debounce((v) => {
+  const handleChangeValue = debounce(() => {
     if (!formRef.current) return
     formRef.current.requestSubmit()
   }, 500)
