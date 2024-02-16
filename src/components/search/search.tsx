@@ -50,8 +50,9 @@ export default function Search({ className, iconClassName }: SearchProps) {
       <Button
         type="button"
         variant="ghost"
+        size="icon"
         className={cn(
-          "fa-dark dark:fa-light size-8 px-0 transition-all",
+          "fa-dark dark:fa-light px-0 transition-all",
           isSearchMode ? "scale-150 opacity-0" : "scale-100 opacity-100",
           className
         )}

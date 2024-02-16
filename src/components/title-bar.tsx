@@ -147,9 +147,9 @@ export function TitleBar({
     <div
       style={{ boxShadow: `0 1px 20px rgba(0,0,0,${currentScrollOffset / 2})` }}
       className={cn(
-        "group/bar sticky top-0 z-10 flex flex-col justify-center overflow-hidden px-3 pt-[calc(env(safe-area-inset-top))] transition-all duration-1000",
+        "group/bar sticky top-0 z-10 flex flex-col justify-center overflow-hidden rounded-3xl px-3 pt-[calc(env(safe-area-inset-top))] transition-all duration-1000 sm:rounded-2xl",
         magicTitle
-          ? "top-2 mx-2 min-h-[calc(56px+env(safe-area-inset-top))] rounded-3xl sm:rounded-2xl"
+          ? "top-2 mx-2 min-h-[calc(56px+env(safe-area-inset-top))]"
           : "min-h-[calc(72px+env(safe-area-inset-top))]",
         currentScrollOffset !== 0 ? "active" : ""
       )}
@@ -159,7 +159,7 @@ export function TitleBar({
           background: `hsla(var(--background) / ${backgroundColorOpacity / 2}`,
         }}
         className={cn(
-          "pointer-events-none absolute inset-0 z-0 size-full transition-all",
+          "pointer-events-none absolute inset-0 top-[calc(env(safe-area-inset-top))] z-0 size-full rounded-3xl transition-all sm:rounded-2xl",
           currentScrollOffset !== 0
             ? "duration-2000 opacity-100 backdrop-blur-sm"
             : "opacity-0 duration-300"
