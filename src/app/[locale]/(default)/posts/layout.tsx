@@ -2,7 +2,7 @@ import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoint
 
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import { getPages, getUsers } from "@/lib/notion"
-import Search from "@/components/list/search"
+import Search from "@/components/search/search"
 import { Posts } from "@/components/posts"
 import List from "@/components/list"
 import * as React from "react"

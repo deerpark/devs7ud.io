@@ -72,7 +72,11 @@ export default function SearchCommand({
       <Button
         type="button"
         variant="ghost"
-        className={cn("fa-dark dark:fa-light size-8 px-0", className)}
+        className={cn(
+          "fa-dark dark:fa-light size-8 px-0 transition-all",
+          isSearchMode ? "scale-150 opacity-0" : "scale-100 opacity-100",
+          className
+        )}
         onClick={handleClick}
       >
         <FaSearchIcon className={cn("size-4", iconClassName)} />
