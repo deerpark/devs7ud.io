@@ -30,6 +30,16 @@ export default function Search({ className, iconClassName }: SearchProps) {
     React.useCallback(() => {
       setSearchMode((open) => !open)
     }, [])
+  React.useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault()
+        setSearchMode(true)
+      }
+    }
+    document.addEventListener("keydown", down)
+    return () => document.removeEventListener("keydown", down)
+  }, [setSearchMode])
   return (
     <>
       <Button
@@ -45,7 +55,11 @@ export default function Search({ className, iconClassName }: SearchProps) {
         <FaSearchIcon className={cn("size-4", iconClassName)} />
       </Button>
       <CommandDialog open={isSearchMode} onOpenChange={setSearchMode}>
-        <form ref={formRef} action={formAction}>
+        <form
+          ref={formRef}
+          action={formAction}
+          className="flex flex-col space-y-4"
+        >
           <SearchCommand
             routes={routes}
             state={state}

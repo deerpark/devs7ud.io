@@ -47,7 +47,6 @@ export default function SearchCommand({
   const locale = useLocale()
   const router = useRouter()
   const { pending } = useFormStatus()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChangeValue = debounce(() => {
     if (!formRef.current) return
     formRef.current.requestSubmit()
@@ -59,16 +58,6 @@ export default function SearchCommand({
     },
     [locale, router, onClose]
   )
-  React.useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
-      }
-    }
-
-    document.addEventListener("keydown", down)
-    return () => document.removeEventListener("keydown", down)
-  }, [])
 
   return (
     <>
