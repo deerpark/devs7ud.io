@@ -26,6 +26,7 @@ export default function Search({ className, iconClassName }: SearchProps) {
     posts: [],
     bookmarks: [],
   })
+  const [data, setData] = React.useState(state)
   const handleClick: React.MouseEventHandler<HTMLButtonElement> =
     React.useCallback(() => {
       setSearchMode((open) => !open)
@@ -40,6 +41,10 @@ export default function Search({ className, iconClassName }: SearchProps) {
     document.addEventListener("keydown", down)
     return () => document.removeEventListener("keydown", down)
   }, [setSearchMode])
+  React.useEffect(() => {
+    console.log(state)
+    setData(state)
+  }, [state])
   return (
     <>
       <Button
@@ -62,7 +67,7 @@ export default function Search({ className, iconClassName }: SearchProps) {
         >
           <SearchCommand
             routes={routes}
-            state={state}
+            data={data}
             formRef={formRef}
             onClose={handleClick}
           />

@@ -85,7 +85,7 @@ export default function DetailContainer({
               )}
             />
             <div className="to-primary/0 dark:to-primary/0 from-primary/20 dark:from-primary/30 absolute inset-0 bottom-auto h-[calc(100vh/3)] bg-gradient-to-b" />
-            <div className="to-background dark:to-background from-background/0 dark:from-background/0 via-background/20 dark:via-background/50 absolute inset-0 bottom-auto h-[calc(100vh/3)] bg-gradient-to-b via-50%" />
+            <div className="to-background from-background/0 via-background/30 absolute inset-0 bottom-auto h-[calc(100vh/3)] bg-gradient-to-b via-20%" />
           </div>
         )}
         <div className="flex max-w-full flex-1 flex-col">

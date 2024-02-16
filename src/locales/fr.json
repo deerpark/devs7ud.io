@@ -120,7 +120,8 @@
   "cancel": "Annuler",
   "AUTH": {
     "signin": "Connexion",
-    "signup": "Inscription"
+    "signup": "Inscription",
+    "welcome": "Bonjour {fullName}!"
   },
   "SLIDESHOW": {
     "indicator": "Écrémer le contenu {current} / {count}"
@@ -131,6 +132,7 @@
     "message": "S'il est inconfortable, c'est qu'il n'est pas parfait. Il n'est pas terminé tant qu'il n'est pas parfait."
   },
   "SEARCH": {
-    "placeholder": "Recherche"
+    "placeholder": "Recherche",
+    "notfound": "Aucun résultat trouvé."
   }
 }

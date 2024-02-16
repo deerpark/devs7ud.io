@@ -23,7 +23,7 @@ import { Command } from "cmdk"
 type SearchCommandProps = {
   routes?: Route[]
   formRef: React.RefObject<HTMLFormElement>
-  state:
+  data:
     | {
         errors: string | undefined
         posts: PageObjectResponse[]
@@ -39,7 +39,7 @@ type SearchCommandProps = {
 
 export default function SearchCommand({
   /* routes, */
-  state,
+  data,
   formRef,
   onClose,
 }: SearchCommandProps) {
@@ -83,12 +83,14 @@ export default function SearchCommand({
               <Loading className="h-auto w-full" />
             </Command.Loading>
           ) : (
-            "No results found."
+            <p className="text-background dark:text-foreground py-5 text-center">
+              {t("SEARCH.notfound")}
+            </p>
           )}
         </CommandEmpty>
-        {state.posts.length ? (
-          <CommandGroup heading="Posts">
-            {state.posts.map((post) => (
+        {data.posts.length ? (
+          <CommandGroup heading={t("SYSTEM.navigation.index.posts")}>
+            {data.posts.map((post) => (
               <CommandItem
                 className="text-background dark:text-foreground"
                 key={post.id}
@@ -100,9 +102,9 @@ export default function SearchCommand({
             ))}
           </CommandGroup>
         ) : null}
-        {state.bookmarks.length ? (
-          <CommandGroup heading="Bookmarks">
-            {state.bookmarks.map((bookmark) => (
+        {data.bookmarks.length ? (
+          <CommandGroup heading={t("SYSTEM.navigation.me.bookmarks")}>
+            {data.bookmarks.map((bookmark) => (
               <CommandItem
                 className="text-background dark:text-foreground"
                 key={bookmark.id}

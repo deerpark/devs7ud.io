@@ -120,7 +120,8 @@
   "cancel": "Cancel",
   "AUTH": {
     "signin": "Sign in",
-    "signup": "Sign up"
+    "signup": "Sign up",
+    "welcome": "Hello {fullName}!"
   },
   "SLIDESHOW": {
     "indicator": "Skim content {current} / {count}"
@@ -131,6 +132,7 @@
     "message": "If it's uncomfortable, it's not a perfect design. It's not done until it's perfect."
   },
   "SEARCH": {
-    "placeholder": "Search"
+    "placeholder": "Search",
+    "notfound": "No results found."
   }
 }
