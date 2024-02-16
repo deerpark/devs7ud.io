@@ -19,7 +19,7 @@ export default function SidebarFooter() {
         <FaUserTieIcon className="size-5 lg:size-4" />
         <SignedIn>
           <UserButton afterSignOutUrl="/" />
-          <span className="text-muted-foreground px-2 flex-1 text-left text-base/5 lg:text-sm/5">
+          <span className="text-muted-foreground flex-1 px-2 text-left text-base/5 lg:text-sm/5">
             {t("welcome", { fullName: user?.fullName || "" })}
           </span>
         </SignedIn>
