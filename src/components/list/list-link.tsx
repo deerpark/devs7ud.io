@@ -29,7 +29,7 @@ export default function ListItemLink({
       className={cn(
         "border-border/50 group flex space-x-6 border-b px-6 text-sm transition-all duration-500 last-of-type:border-none lg:rounded-lg lg:px-0 2xl:pl-2 2xl:pr-3 2xl:group-[.post]/item:rounded-2xl",
         isPost
-          ? "ld:pb-2 items-stretch py-2 lg:flex-col lg:space-x-0 lg:space-y-3 lg:pt-0 2xl:flex-row 2xl:space-x-3 2xl:space-y-0 2xl:py-2"
+          ? "ld:pb-2 items-stretch py-2 lg:flex-col lg:space-x-0 lg:space-y-1 lg:pt-0 2xl:flex-row 2xl:space-x-3 2xl:space-y-0 2xl:py-2"
           : "py-3 lg:space-x-3 lg:px-3 lg:py-2",
         active
           ? "bg-primary text-primary-foreground active"

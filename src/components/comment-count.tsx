@@ -16,7 +16,7 @@ export default async function CommentCount({
       <Badge
         variant="outline"
         className={cn(
-          "space-x-1.5 !border-0 px-1 py-0",
+          "flex-none space-x-1.5 !border-0 px-1 py-0",
           commentCounts
             ? "group-[.active]:text-primary-foreground"
             : "group-[.active]:fa-light opacity-0",

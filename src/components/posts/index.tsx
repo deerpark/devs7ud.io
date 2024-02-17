@@ -5,7 +5,7 @@ import type {
   PageObjectResponse,
   UserObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints"
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+/* import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar" */
 import { FaSpinnerThirdIcon } from "../icon-duotone"
 import { getTranslations } from "next-intl/server"
 import ListItemLink from "../list/list-link"
@@ -14,8 +14,7 @@ import CommentCount from "../comment-count"
 import { formatDistance } from "@/lib/date"
 import ListItem from "../list/list-item"
 import { useLocale } from "next-intl"
-import { Badge } from "../ui/badge"
-import { cn } from "@/lib/utils"
+/* import { cn } from "@/lib/utils" */
 
 export interface PostsProps {
   data: PageObjectResponse[]
@@ -37,8 +36,8 @@ export async function Posts(props: PostsProps) {
     const user = users.find((u) => u.id === post.created_by.id)
     const url = `/${segment}/${(post.properties?.Slug as any)?.rich_text[0].plain_text}`
     const title = (post.properties?.Title as any)?.title[0]?.plain_text
-    const description = (post.properties?.Description as any)?.rich_text[0]
-      ?.plain_text
+    /* const description = (post.properties?.Description as any)?.rich_text[0]
+      ?.plain_text */
     const categories: Category[] =
       (post.properties?.Categories as any)?.multi_select || []
     const lastEditedTime = post.last_edited_time
@@ -55,7 +54,7 @@ export async function Posts(props: PostsProps) {
         <ListItemLink segment={segment} url={url} onClick={onClick && onClick}>
           {leadingAccessory}
           {thumbnail && (
-            <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid size-24 flex-none place-content-center overflow-hidden rounded-xl transition-all duration-500 group-hover:shadow-lg lg:m-1 lg:h-28 lg:w-[calc(100%-8px)] lg:rounded-sm lg:group-[.active]:h-40 lg:group-[.active]:ring-1 2xl:m-0 2xl:size-24 2xl:rounded-xl 2xl:group-[.active]:m-0 2xl:group-[.active]:size-24">
+            <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid h-14 w-24 flex-none place-content-center overflow-hidden rounded-xl transition-all duration-500 group-hover:shadow-lg lg:m-1 lg:h-28 lg:w-[calc(100%-8px)] lg:rounded-sm lg:group-[.active]:h-40 lg:group-[.active]:ring-1 2xl:m-0 2xl:h-14 2xl:w-24 2xl:rounded-xl 2xl:group-[.active]:m-0 2xl:group-[.active]:h-14 2xl:group-[.active]:w-24">
               <Image
                 src={thumbnail}
                 width={351}
@@ -71,20 +70,20 @@ export async function Posts(props: PostsProps) {
             >
               {title}
             </div>
-            {description && (
+            {/* {description && (
               <div
                 className={`group-[.active]:text-primary-foreground line-clamp-1 text-base/5 opacity-70 lg:text-xs/4 2xl:line-clamp-2`}
               >
                 {description}
               </div>
-            )}
+            )} */}
             <div
               className={`text-secondary-foreground/40 group-[.active]:text-secondary-foreground flex flex-wrap items-center justify-between pl-0.5`}
             >
-              <div className="my-2 flex items-center space-x-2 2xl:mb-0 2xl:mt-1">
+              <div className="flex flex-1 items-center space-x-2 2xl:mb-0">
                 {byline && user && (
-                  <div className="flex items-center space-x-2">
-                    <Avatar
+                  <div className="flex flex-none items-center space-x-2">
+                    {/* <Avatar
                       className={cn(
                         "ring-foreground group-[.active]:ring-primary-foreground border-1 size-5 rounded-full ring-1 group-hover:!opacity-100 group-[.active]:opacity-100 lg:opacity-50"
                       )}
@@ -97,11 +96,11 @@ export async function Posts(props: PostsProps) {
                       <AvatarFallback className="text-xs font-bold">
                         {user?.name?.slice(0, 1)}
                       </AvatarFallback>
-                    </Avatar>
-                    <span className="group-[.active]:text-primary-foreground truncate text-xs">
+                    </Avatar> */}
+                    <span className="group-[.active]:text-primary-foreground truncate text-sm">
                       {user?.name}
                     </span>
-                    <span className="group-[.active]:text-primary-foreground truncate text-xs">
+                    <span className="group-[.active]:text-primary-foreground truncate text-sm">
                       {lastEditedTimeFormat}
                     </span>
                   </div>
@@ -114,14 +113,10 @@ export async function Posts(props: PostsProps) {
                 >
                   <CommentCount id={post.id} />
                 </React.Suspense>
-              </div>
-              <div className="my-2 flex items-center justify-end space-x-2 lg:mb-0 2xl:mb-0 2xl:mt-1">
-                <Badge
-                  variant="outline"
-                  className="text-muted-foreground group-[.active]:text-primary-foreground block max-w-full truncate"
-                >
+
+                <span className="group-[.active]:text-background flex-1 text-right">
                   {categories.map((category) => t(category.name)).join(", ")}
-                </Badge>
+                </span>
               </div>
             </div>
           </div>
