@@ -38,7 +38,7 @@ export default function List({
             searchAccessory={search}
           />
           <LayoutGroup>
-            <div className="lg:space-y-3 lg:p-3 2xl:space-y-0">{contents}</div>
+            <div className="lg:px-3">{contents}</div>
           </LayoutGroup>
         </div>
       </div>

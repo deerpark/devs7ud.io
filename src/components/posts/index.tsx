@@ -55,25 +55,25 @@ export async function Posts(props: PostsProps) {
         <ListItemLink segment={segment} url={url} onClick={onClick && onClick}>
           {leadingAccessory}
           {thumbnail && (
-            <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid h-16 w-24 flex-none place-content-center overflow-hidden rounded-xl transition-all duration-500 group-hover:shadow-lg lg:m-1 lg:h-28 lg:w-[calc(100%-8px)] lg:rounded-sm lg:group-[.active]:h-40 lg:group-[.active]:ring-1 2xl:m-0 2xl:h-16 2xl:w-24 2xl:rounded-xl 2xl:group-[.active]:m-0 2xl:group-[.active]:h-16 2xl:group-[.active]:w-24">
+            <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid h-16 w-24 flex-none place-content-center overflow-hidden rounded-xl transition-all duration-500 group-hover:shadow-lg">
               <Image
                 src={thumbnail}
                 width={351}
                 height={160}
                 alt=""
-                className="absolute inset-0 size-full object-cover transition-all duration-500 group-hover:opacity-100 group-[.active]:opacity-100 lg:opacity-50"
+                className="absolute inset-0 size-full object-cover transition-all duration-500 group-hover:opacity-100 group-[.active]:opacity-100"
               />
             </div>
           )}
-          <div className="flex w-full flex-1 flex-col justify-center space-y-1 lg:px-3 2xl:px-0">
+          <div className="flex w-full flex-1 flex-col justify-center space-y-1">
             <div
-              className={`group-[.active]:text-primary-foreground line-clamp-3 break-keep text-lg/6 font-bold lg:text-base/5`}
+              className={`group-[.active]:text-primary-foreground line-clamp-3 break-keep text-lg/6 font-bold`}
             >
               {title}
             </div>
             {/* {description && (
               <div
-                className={`group-[.active]:text-primary-foreground line-clamp-1 text-base/5 opacity-70 lg:text-xs/4 2xl:line-clamp-2`}
+                className={`group-[.active]:text-primary-foreground line-clamp-1 text-base/5 opacity-70 2xl:line-clamp-2`}
               >
                 {description}
               </div>
@@ -86,13 +86,13 @@ export async function Posts(props: PostsProps) {
                   <div className="flex flex-none items-center space-x-2">
                     {/* <Avatar
                       className={cn(
-                        "ring-foreground group-[.active]:ring-primary-foreground border-1 size-5 rounded-full ring-1 group-hover:!opacity-100 group-[.active]:opacity-100 lg:opacity-50"
+                        "ring-foreground group-[.active]:ring-primary-foreground border-1 size-5 rounded-full ring-1 group-hover:!opacity-100 group-[.active]:opacity-100"
                       )}
                     >
                       <AvatarImage
                         src="/assets/images/yonn-kim.jpg"
                         alt={`@${user?.name} avatar image`}
-                        className="transition-all group-hover:!grayscale-0 group-[.active]:grayscale-0 lg:grayscale"
+                        className="transition-all group-hover:!grayscale-0 group-[.active]:grayscale-0"
                       />
                       <AvatarFallback className="text-xs font-bold">
                         {user?.name?.slice(0, 1)}

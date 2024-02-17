@@ -202,9 +202,7 @@ export function TitleBar({
             }
             className={cn(
               "transform-gpu",
-              magicTitle
-                ? "flex items-center space-x-2 lg:px-5"
-                : "mx-3 flex-1 lg:mx-0"
+              magicTitle ? "flex items-center space-x-2 lg:px-5" : "flex-1"
             )}
           >
             {tag && <Badge className="block flex-none truncate">{tag}</Badge>}

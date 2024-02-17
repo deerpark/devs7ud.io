@@ -46,7 +46,7 @@ export default function Search({ className, iconClassName }: SearchProps) {
     setData(state)
   }, [state])
   return (
-    <div className="mx-3 mb-2 lg:mx-0">
+    <div className="mx-2 mb-2">
       <Button
         type="button"
         variant="secondary"
