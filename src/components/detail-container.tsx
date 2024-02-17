@@ -53,7 +53,7 @@ export default function DetailContainer({
         className="relative flex max-h-screen w-full flex-1 flex-col overflow-y-auto scroll-smooth transition-all duration-500"
       >
         {poster && (
-          <div className="relative mt-[calc(env(safe-area-inset-top))] h-0 overflow-hidden pt-[calc(100vh/3)]">
+          <div className="relative mt-[calc(-env(safe-area-inset-top))] h-0 overflow-hidden pt-[calc(100vh/3)]">
             <Image
               src={poster}
               fill
@@ -69,7 +69,7 @@ export default function DetailContainer({
             />
           </div>
         )}
-        <div className="bg-background relative -mt-6 flex max-w-full flex-1 flex-col rounded-t-3xl">
+        <div className="bg-background relative -mt-6 flex max-w-full flex-1 flex-col rounded-t-3xl shadow-2xl">
           <TitleBar
             segment={segment}
             backButton

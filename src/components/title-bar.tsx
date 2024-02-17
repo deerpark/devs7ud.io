@@ -150,8 +150,7 @@ export function TitleBar({
       }}
       className={cn(
         "group/bar sticky top-0 z-10 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center overflow-hidden px-3 transition-all",
-        currentScrollOffset !== 0 ? "active" : "",
-        magicTitle ? "rounded-t-3xl" : ""
+        currentScrollOffset !== 0 ? "active" : ""
       )}
     >
       <div
@@ -163,7 +162,12 @@ export function TitleBar({
           "pointer-events-none absolute inset-0 z-0 size-full backdrop-blur-sm transition-all"
         )}
       />
-      <div className="relative flex-none">
+      <div
+        className={cn(
+          "relative flex-none transition-all duration-500",
+          opacity > -0.45 ? "pt-[calc(env(safe-area-inset-top))]" : ""
+        )}
+      >
         <span className="flex min-h-14 w-full items-center">
           {backButton && backButtonHref && (
             <Button
