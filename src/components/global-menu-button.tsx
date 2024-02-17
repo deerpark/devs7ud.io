@@ -10,13 +10,11 @@ import { cn } from "@/lib/utils"
 type GlobalMenuButtonProps = {
   isFloating?: boolean
   isMono?: boolean
-  invert?: boolean
 }
 
 export default function GlobalMenuButton({
   isFloating = false,
   isMono = false,
-  invert = false,
 }: GlobalMenuButtonProps) {
   const { isOpen, setIsOpen } = React.useContext(GlobalNavigationContext)
   return (
@@ -74,15 +72,7 @@ export default function GlobalMenuButton({
           className={cn(
             "transition-all",
             isFloating ? "size-5" : "size-4",
-            isMono
-              ? "fa-light group-hover:fa-default"
-              : isFloating
-                ? ""
-                : isOpen
-                  ? ""
-                  : invert
-                    ? "fa-light group-[.active]/bar:fa-default"
-                    : ""
+            isMono ? "fa-light group-hover:fa-default" : ""
           )}
         />
       </Button>

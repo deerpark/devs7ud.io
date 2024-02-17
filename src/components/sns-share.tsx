@@ -52,11 +52,7 @@ import { Button } from "./ui/button"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
 
-type SnsShareProps = {
-  invert?: boolean
-}
-
-export default function SnsShare({ invert = false }: SnsShareProps) {
+export default function SnsShare() {
   const t = useTranslations()
   const url =
     (typeof window !== "undefined" && window.location.href) || appConfig.url
@@ -74,12 +70,7 @@ export default function SnsShare({ invert = false }: SnsShareProps) {
                 size="icon"
               >
                 <FaArrowUpFromBracketIcon
-                  className={cn(
-                    "size-4 transition-all",
-                    invert
-                      ? "fa-light group-[.active]/bar:fa-default group-hover/button:fa-default"
-                      : ""
-                  )}
+                  className={cn("size-4 transition-all")}
                 />
                 <span className="sr-only">{t("TITLEBAR.share")}</span>
               </Button>

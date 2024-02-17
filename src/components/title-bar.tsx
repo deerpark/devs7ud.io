@@ -21,7 +21,6 @@ interface Props {
   backButton?: boolean
   backButtonHref?: string
   magicTitle?: boolean
-  invert?: boolean
   titleRef?: React.RefObject<HTMLHeadingElement> | null
   scrollContainerRef?: React.RefObject<HTMLElement> | null
   children?: React.ReactNode
@@ -36,7 +35,6 @@ export function TitleBar({
   backButton = false,
   backButtonHref,
   magicTitle = false,
-  invert = false,
   titleRef = null,
   scrollContainerRef = null,
   leadingAccessory = null,
@@ -144,34 +142,29 @@ export function TitleBar({
 
   return (
     <div
-      style={{ boxShadow: `0 1px 20px rgba(0,0,0,${currentScrollOffset / 2})` }}
+      style={{
+        boxShadow:
+          opacity > 0
+            ? `0 1px 20px rgba(0,0,0,${currentScrollOffset})`
+            : "none",
+      }}
       className={cn(
-        "group/bar sticky top-0 z-10 flex flex-col justify-center overflow-hidden px-3 pt-[calc(env(safe-area-inset-top))] transition-all duration-1000",
-        magicTitle
-          ? "top-2 mx-2 min-h-[calc(56px+env(safe-area-inset-top))] rounded-3xl sm:rounded-2xl"
-          : "min-h-[calc(56px+env(safe-area-inset-top))]",
-        currentScrollOffset !== 0 ? "active" : ""
+        "group/bar sticky top-0 z-10 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center overflow-hidden px-3 transition-all",
+        currentScrollOffset !== 0 ? "active" : "",
+        magicTitle ? "rounded-t-3xl" : ""
       )}
     >
       <div
         style={{
-          background: `hsla(var(--background) / ${backgroundColorOpacity / 2}`,
+          background: `hsla(var(--background) / ${backgroundColorOpacity}`,
+          opacity: `${opacity}`,
         }}
         className={cn(
-          "pointer-events-none absolute inset-0 top-[calc(env(safe-area-inset-top))] z-0 size-full transition-all",
-          magicTitle ? "rounded-3xl sm:rounded-2xl" : "",
-          currentScrollOffset !== 0
-            ? "duration-2000 opacity-100 backdrop-blur-sm"
-            : "opacity-0 duration-300"
+          "pointer-events-none absolute inset-0 z-0 size-full backdrop-blur-sm transition-all"
         )}
       />
       <div className="relative flex-none">
-        <span
-          className={cn(
-            "flex w-full items-center",
-            magicTitle ? "min-h-14" : "min-h-[72px]"
-          )}
-        >
+        <span className="flex min-h-14 w-full items-center">
           {backButton && backButtonHref && (
             <Button
               variant="ghost"
@@ -179,14 +172,7 @@ export function TitleBar({
               onClick={handleNavToBack}
               className="text-foreground group/button mr-3 flex items-center justify-center rounded-md p-2 lg:hidden"
             >
-              <FaArrowLeft
-                className={cn(
-                  "size-4",
-                  invert
-                    ? "fa-light group-[.active]/bar:fa-default group-hover/button:fa-default"
-                    : ""
-                )}
-              />
+              <FaArrowLeft className={cn("size-4")} />
             </Button>
           )}
           {leadingAccessory && leadingAccessory}

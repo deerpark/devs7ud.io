@@ -21,7 +21,6 @@ type DetailContainerProps = {
   categories?: Category[]
   poster?: string
   blurDataURL?: string
-  invert?: boolean
 } & React.PropsWithChildren
 
 export default function DetailContainer({
@@ -32,7 +31,6 @@ export default function DetailContainer({
   fancyTitle = false,
   categories,
   poster,
-  invert = false,
 }: DetailContainerProps) {
   const scrollContainerRef = React.useRef(null)
   const [imgLoaded, setImgLoaded] = React.useState(false)
@@ -54,22 +52,8 @@ export default function DetailContainer({
         id="main"
         className="relative flex max-h-screen w-full flex-1 flex-col overflow-y-auto scroll-smooth transition-all duration-500"
       >
-        <TitleBar
-          segment={segment}
-          backButton
-          backButtonHref={`/${segment}`}
-          magicTitle
-          invert={invert}
-          title={title}
-          tag={categories
-            ?.map((category) => t(`POSTS.category.${category.name}`))
-            .join(", ")}
-          titleRef={titleRef}
-          scrollContainerRef={scrollContainerRef}
-          trailingAccessory={<DetailToolbar invert={invert} />}
-        />
         {poster && (
-          <div className="relative mt-[calc(-64px-env(safe-area-inset-top))] h-0 overflow-hidden pt-[calc(100vh/3)] sm:mb-4 md:mb-6 lg:mb-8 xl:mb-12 2xl:mb-16">
+          <div className="relative mt-[calc(env(safe-area-inset-top))] h-0 overflow-hidden pt-[calc(100vh/3)]">
             <Image
               src={poster}
               fill
@@ -83,12 +67,23 @@ export default function DetailContainer({
                 imgLoaded ? "scale-125 opacity-100" : "scale-100 opacity-0"
               )}
             />
-            <div className="to-primary/0 dark:to-primary/0 from-primary/20 dark:from-primary/30 absolute inset-0 bottom-auto h-[calc(100vh/3)] bg-gradient-to-b" />
-            <div className="to-background from-background/0 via-background/30 absolute inset-0 bottom-auto h-[calc(100vh/3)] bg-gradient-to-b via-20%" />
           </div>
         )}
-        <div className="flex max-w-full flex-1 flex-col">
-          <div className="flex flex-1 flex-col p-8">
+        <div className="bg-background relative -mt-6 flex max-w-full flex-1 flex-col rounded-t-3xl">
+          <TitleBar
+            segment={segment}
+            backButton
+            backButtonHref={`/${segment}`}
+            magicTitle
+            title={title}
+            tag={categories
+              ?.map((category) => t(`POSTS.category.${category.name}`))
+              .join(", ")}
+            titleRef={titleRef}
+            scrollContainerRef={scrollContainerRef}
+            trailingAccessory={<DetailToolbar />}
+          />
+          <div className="flex flex-1 flex-col p-8 sm:pt-16 md:pt-20 lg:pt-24">
             <div className="mb-4 flex items-center justify-center space-x-2">
               {categories?.map((category) => (
                 <Badge key={category.id} variant="outline" className="">

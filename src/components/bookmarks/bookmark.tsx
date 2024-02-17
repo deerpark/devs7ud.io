@@ -30,7 +30,6 @@ export function Bookmark(props: BookmarkProps) {
       /* poster={poster} */
       categories={categories}
       blurDataURL={blurDataURL}
-      /* invert={!!poster} */
     >
       <div className="mx-auto max-w-max flex-1 space-y-10">
         <Slideshow items={screenshots} />

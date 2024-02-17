@@ -12,43 +12,27 @@ import { Button } from "./ui/button"
 import SnsShare from "./sns-share"
 import { cn } from "@/lib/utils"
 
-type DetailToolbarProps = {
-  invert?: boolean
-}
-
-export default function DetailToolbar({ invert = false }: DetailToolbarProps) {
+export default function DetailToolbar() {
   const t = useTranslations()
   return (
     <div className="flex items-center px-2">
       <div className="ml-auto flex items-center gap-2">
-        <SnsShare invert={invert} />
+        <SnsShare />
         {/* <Search
           className="group/button size-8"
           iconClassName={
-            invert
-              ? "fa-light group-[.active]/bar:fa-default group-hover/button:fa-default"
-              : ""
-          }
         /> */}
       </div>
       <Separator
         orientation="vertical"
         className={cn(
-          "group-[.active]/bar:bg-border/50 hover:fa-default mx-2 h-4 transition-all",
-          invert ? "bg-border/50" : ""
+          "group-[.active]/bar:bg-border/50 hover:fa-default mx-2 h-4 transition-all"
         )}
       />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button className="group/button size-8" variant="ghost" size="icon">
-            <FaEllipsisVerticalIcon
-              className={cn(
-                "size-4 transition-all",
-                invert
-                  ? "fa-light group-[.active]/bar:fa-default group-hover/button:fa-default"
-                  : ""
-              )}
-            />
+            <FaEllipsisVerticalIcon className={cn("size-4 transition-all")} />
             <span className="sr-only">{t("TITLEBAR.more")}</span>
           </Button>
         </DropdownMenuTrigger>

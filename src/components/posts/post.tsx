@@ -41,7 +41,6 @@ export function Post(props: PostProps) {
       categories={categories}
       poster={poster}
       blurDataURL={blurDataURL}
-      invert={!!poster}
     >
       <div className="mx-auto max-w-max flex-1 space-y-10">
         <div className="text-muted-foreground mb-40 flex flex-col items-center justify-center space-y-20 text-xs/5">

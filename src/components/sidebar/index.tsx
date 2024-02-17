@@ -50,7 +50,7 @@ export function Sidebar({ counts }: SidebarProps) {
           title={
             <Link
               href="/"
-              className="mt-4 flex min-h-6 items-center px-1.5 py-2 lg:px-0"
+              className="flex min-h-6 items-center px-1.5 py-2 lg:px-0"
             >
               <Favicon
                 className={cn(
