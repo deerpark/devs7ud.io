@@ -3,7 +3,6 @@
 import { useTheme } from "next-themes"
 import * as React from "react"
 
-import GlobalMenuButton from "./global-menu-button"
 import { FaArrowLeft } from "./icon-duotone"
 import { useRouter } from "next/navigation"
 import { Button } from "./ui/button"
@@ -19,7 +18,6 @@ interface Props {
   title: React.ReactNode
   segment?: string
   tag?: React.ReactNode
-  globalMenu?: boolean
   backButton?: boolean
   backButtonHref?: string
   magicTitle?: boolean
@@ -29,12 +27,12 @@ interface Props {
   children?: React.ReactNode
   leadingAccessory?: React.ReactNode
   trailingAccessory?: React.ReactNode
+  searchAccessory?: React.ReactNode
 }
 
 export function TitleBar({
   title,
   tag,
-  globalMenu = true,
   backButton = false,
   backButtonHref,
   magicTitle = false,
@@ -43,6 +41,7 @@ export function TitleBar({
   scrollContainerRef = null,
   leadingAccessory = null,
   trailingAccessory = null,
+  searchAccessory = null,
   children,
 }: Props) {
   const { theme } = useTheme()
@@ -147,10 +146,10 @@ export function TitleBar({
     <div
       style={{ boxShadow: `0 1px 20px rgba(0,0,0,${currentScrollOffset / 2})` }}
       className={cn(
-        "group/bar sticky top-0 z-10 flex flex-col justify-center overflow-hidden rounded-3xl px-3 pt-[calc(env(safe-area-inset-top))] transition-all duration-1000 sm:rounded-2xl",
+        "group/bar sticky top-0 z-10 flex flex-col justify-center overflow-hidden px-3 pt-[calc(env(safe-area-inset-top))] transition-all duration-1000",
         magicTitle
-          ? "top-2 mx-2 min-h-[calc(56px+env(safe-area-inset-top))]"
-          : "min-h-[calc(72px+env(safe-area-inset-top))]",
+          ? "top-2 mx-2 min-h-[calc(56px+env(safe-area-inset-top))] rounded-3xl sm:rounded-2xl"
+          : "min-h-[calc(56px+env(safe-area-inset-top))]",
         currentScrollOffset !== 0 ? "active" : ""
       )}
     >
@@ -159,16 +158,20 @@ export function TitleBar({
           background: `hsla(var(--background) / ${backgroundColorOpacity / 2}`,
         }}
         className={cn(
-          "pointer-events-none absolute inset-0 top-[calc(env(safe-area-inset-top))] z-0 size-full rounded-3xl transition-all sm:rounded-2xl",
+          "pointer-events-none absolute inset-0 top-[calc(env(safe-area-inset-top))] z-0 size-full transition-all",
+          magicTitle ? "rounded-3xl sm:rounded-2xl" : "",
           currentScrollOffset !== 0
             ? "duration-2000 opacity-100 backdrop-blur-sm"
             : "opacity-0 duration-300"
         )}
       />
-      <div className="relative flex min-h-14 flex-none items-center justify-between py-2">
-        <span className="flex w-full items-center">
-          {globalMenu && <GlobalMenuButton invert={invert} />}
-
+      <div className="relative flex-none">
+        <span
+          className={cn(
+            "flex w-full items-center",
+            magicTitle ? "min-h-14" : "min-h-[72px]"
+          )}
+        >
           {backButton && backButtonHref && (
             <Button
               variant="ghost"
@@ -186,7 +189,6 @@ export function TitleBar({
               />
             </Button>
           )}
-
           {leadingAccessory && leadingAccessory}
 
           <h2
@@ -200,7 +202,9 @@ export function TitleBar({
             }
             className={cn(
               "transform-gpu",
-              magicTitle ? "flex items-center space-x-2 lg:px-5" : ""
+              magicTitle
+                ? "flex items-center space-x-2 lg:px-5"
+                : "mx-3 flex-1 lg:mx-0"
             )}
           >
             {tag && <Badge className="block flex-none truncate">{tag}</Badge>}
@@ -208,9 +212,10 @@ export function TitleBar({
               {title}
             </span>
           </h2>
+          {magicTitle && <div className="flex-1" />}
+          {trailingAccessory && trailingAccessory}
         </span>
-
-        {trailingAccessory && trailingAccessory}
+        {searchAccessory && searchAccessory}
       </div>
 
       <div>{children}</div>

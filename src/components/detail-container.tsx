@@ -57,7 +57,6 @@ export default function DetailContainer({
         <TitleBar
           segment={segment}
           backButton
-          globalMenu={false}
           backButtonHref={`/${segment}`}
           magicTitle
           invert={invert}

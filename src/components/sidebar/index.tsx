@@ -48,7 +48,10 @@ export function Sidebar({ counts }: SidebarProps) {
           scrollContainerRef={scrollContainerRef}
           leadingAccessory={null}
           title={
-            <Link href="/" className="flex items-center">
+            <Link
+              href="/"
+              className="mt-4 flex min-h-6 items-center px-1.5 py-2 lg:px-0"
+            >
               <Favicon
                 className={cn(
                   "text-primary dark:text-tertiary mr-2 size-5 lg:ml-[7px] lg:mr-3 lg:size-[18px]",

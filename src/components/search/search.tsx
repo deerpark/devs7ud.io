@@ -46,13 +46,12 @@ export default function Search({ className, iconClassName }: SearchProps) {
     setData(state)
   }, [state])
   return (
-    <>
+    <div className="mx-3 mb-2 lg:mx-0">
       <Button
         type="button"
-        variant="ghost"
-        size="icon"
+        variant="secondary"
         className={cn(
-          "fa-dark dark:fa-light px-0 transition-all",
+          "fa-dark dark:fa-light w-full cursor-text justify-start rounded-2xl px-4 transition-all",
           isSearchMode ? "scale-150 opacity-0" : "scale-100 opacity-100",
           className
         )}
@@ -74,6 +73,6 @@ export default function Search({ className, iconClassName }: SearchProps) {
           />
         </form>
       </CommandDialog>
-    </>
+    </div>
   )
 }

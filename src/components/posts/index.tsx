@@ -11,6 +11,7 @@ import { getTranslations } from "next-intl/server"
 import ListItemLink from "../list/list-link"
 import { Category } from "@/types/post.type"
 import CommentCount from "../comment-count"
+import { Separator } from "../ui/separator"
 import { formatDistance } from "@/lib/date"
 import ListItem from "../list/list-item"
 import { useLocale } from "next-intl"
@@ -54,7 +55,7 @@ export async function Posts(props: PostsProps) {
         <ListItemLink segment={segment} url={url} onClick={onClick && onClick}>
           {leadingAccessory}
           {thumbnail && (
-            <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid h-14 w-24 flex-none place-content-center overflow-hidden rounded-xl transition-all duration-500 group-hover:shadow-lg lg:m-1 lg:h-28 lg:w-[calc(100%-8px)] lg:rounded-sm lg:group-[.active]:h-40 lg:group-[.active]:ring-1 2xl:m-0 2xl:h-14 2xl:w-24 2xl:rounded-xl 2xl:group-[.active]:m-0 2xl:group-[.active]:h-14 2xl:group-[.active]:w-24">
+            <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid h-16 w-24 flex-none place-content-center overflow-hidden rounded-xl transition-all duration-500 group-hover:shadow-lg lg:m-1 lg:h-28 lg:w-[calc(100%-8px)] lg:rounded-sm lg:group-[.active]:h-40 lg:group-[.active]:ring-1 2xl:m-0 2xl:h-16 2xl:w-24 2xl:rounded-xl 2xl:group-[.active]:m-0 2xl:group-[.active]:h-16 2xl:group-[.active]:w-24">
               <Image
                 src={thumbnail}
                 width={351}
@@ -66,7 +67,7 @@ export async function Posts(props: PostsProps) {
           )}
           <div className="flex w-full flex-1 flex-col justify-center space-y-1 lg:px-3 2xl:px-0">
             <div
-              className={`group-[.active]:text-primary-foreground line-clamp-3 text-lg/6 font-bold lg:text-base/5`}
+              className={`group-[.active]:text-primary-foreground line-clamp-3 break-keep text-lg/6 font-bold lg:text-base/5`}
             >
               {title}
             </div>
@@ -97,9 +98,18 @@ export async function Posts(props: PostsProps) {
                         {user?.name?.slice(0, 1)}
                       </AvatarFallback>
                     </Avatar> */}
-                    <span className="group-[.active]:text-primary-foreground truncate text-sm">
+                    {/* <span className="group-[.active]:text-primary-foreground truncate text-sm">
                       {user?.name}
+                    </span> */}
+                    <span className="group-[.active]:text-primary-foreground truncate text-sm">
+                      {categories
+                        .map((category) => t(category.name))
+                        .join(", ")}
                     </span>
+                    <Separator
+                      orientation="vertical"
+                      className="size-0.5 rounded-full"
+                    />
                     <span className="group-[.active]:text-primary-foreground truncate text-sm">
                       {lastEditedTimeFormat}
                     </span>
@@ -113,10 +123,6 @@ export async function Posts(props: PostsProps) {
                 >
                   <CommentCount id={post.id} />
                 </React.Suspense>
-
-                <span className="group-[.active]:text-background flex-1 text-right">
-                  {categories.map((category) => t(category.name)).join(", ")}
-                </span>
               </div>
             </div>
           </div>
