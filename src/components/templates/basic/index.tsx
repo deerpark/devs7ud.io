@@ -5,7 +5,7 @@ export default function BookmarkTemplate(
 ) {
   return (
     <div>
-      <div className="rounded-6xl bg-primary text-primary-foreground relative inset-x-0 flex w-full flex-col space-y-2 p-6 shadow-2xl sm:rounded-3xl">
+      <div className="rounded-5xl bg-primary text-primary-foreground relative inset-x-0 flex w-full flex-col space-y-2 p-6 shadow-2xl sm:rounded-3xl">
         <div className="flex-none text-5xl font-black">
           {props.post.icon && "emoji" in props.post.icon
             ? props.post.icon.emoji

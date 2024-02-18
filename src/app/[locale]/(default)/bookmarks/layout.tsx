@@ -25,7 +25,7 @@ export default async function PageLayout({
     <div className="flex w-full">
       <List
         title={
-          <span className="ml-3 text-3xl font-black lg:text-base lg:font-semibold">
+          <span className="ml-3 text-2xl font-black lg:text-base lg:font-semibold">
             {t("SYSTEM.navigation.me.bookmarks")}
           </span>
         }

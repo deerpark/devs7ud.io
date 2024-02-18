@@ -161,7 +161,7 @@ export function TitleBar({
         className={cn(
           "pointer-events-none absolute inset-0 z-0 size-full transition-all",
           backgroundColorOpacity > 0.9 ? "backdrop-blur-sm" : "",
-          magicTitle ? "rounded-t-6xl sm:rounded-t-3xl" : ""
+          magicTitle ? "rounded-t-5xl sm:rounded-t-3xl" : ""
         )}
       />
       <div

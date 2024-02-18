@@ -69,7 +69,7 @@ export default function DetailContainer({
             />
           </div>
         )}
-        <div className="bg-background rounded-t-6xl relative -mt-12 flex max-w-full flex-1 flex-col shadow-2xl sm:rounded-t-3xl">
+        <div className="bg-background rounded-t-5xl relative -mt-12 flex max-w-full flex-1 flex-col shadow-2xl sm:rounded-t-3xl">
           <TitleBar
             segment={segment}
             backButton

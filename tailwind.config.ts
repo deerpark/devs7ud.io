@@ -17,6 +17,18 @@ const config = {
         "2xl": "1400px",
       },
     },
+    borderRadius: {
+      full: "10000px", // 48px
+      "5xl": "3.0rem", // 48px
+      "4xl": "2.0rem", // 32px
+      "3xl": "1.5rem", // 24px
+      "2xl": "1.0rem", // 16px
+      xl: "0.75rem", // 12px
+      lg: "0.5rem", // 8px
+      md: "0.375rem", //6px
+      DEFAULT: "0.25rem", // 4px
+      sm: "0.125rem", // 2px
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -56,14 +68,6 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-      },
-      borderRadius: {
-        "6xl": "calc(var(--radius) - 40px)",
-        "5xl": "calc(var(--radius) - 32px)",
-        "4xl": "calc(var(--radius) - 24px)",
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
         "accordion-down": {
