@@ -31,7 +31,7 @@ export function Bookmark(props: BookmarkProps) {
       categories={categories}
       blurDataURL={blurDataURL}
     >
-      <div className="mx-auto max-w-max flex-1 space-y-10 sm:min-w-96">
+      <div className="max-w-full flex-1 space-y-10 sm:min-w-96 2xl:mx-auto 2xl:max-w-max">
         <Slideshow items={screenshots} />
         <LinkVisit link={link} />
         <Contents {...props} />

@@ -1,5 +1,6 @@
 "use client"
 
+import useDeviceDetaction from "@/hooks/useDeviceDetaction"
 import { Category } from "@/types/post.type"
 import DetailToolbar from "./detail-toolbar"
 import { useTranslations } from "next-intl"
@@ -35,6 +36,7 @@ export default function DetailContainer({
   const scrollContainerRef = React.useRef(null)
   const [imgLoaded, setImgLoaded] = React.useState(false)
   const titleRef = React.useRef<HTMLHeadingElement>(null)
+  const { isIPhone } = useDeviceDetaction()
   const t = useTranslations()
   const { theme } = useTheme()
   const isDarkmode =
@@ -45,6 +47,7 @@ export default function DetailContainer({
   const handleLoadImage = React.useCallback(() => {
     setImgLoaded(true)
   }, [])
+  const roundedTopClassName = isIPhone ? "rounded-t-5xl" : "rounded-t-3xl"
   return (
     <>
       <div
@@ -53,23 +56,37 @@ export default function DetailContainer({
         className="relative flex max-h-screen w-full flex-1 flex-col overflow-y-auto scroll-smooth transition-all duration-500"
       >
         {poster && (
-          <div className="relative mt-[calc(-env(safe-area-inset-top))] h-0 overflow-hidden pt-[calc(100vh/3)]">
-            <Image
-              src={poster}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              alt=""
-              onLoad={handleLoadImage}
-              /* placeholder="blur"
-            blurDataURL={blurDataURL} */
+          <>
+            <div
               className={cn(
-                "from-primary/20 to-primary/0 zoom-in-75 duration-2000 absolute inset-0 size-full h-[calc(100vh/3)] max-w-full bg-gradient-to-b object-cover transition-all",
-                imgLoaded ? "scale-125 opacity-100" : "scale-100 opacity-0"
+                "fixed inset-0 h-0 overflow-hidden pt-[calc(100vh/3)] sm:relative",
+                roundedTopClassName,
+                "lg:rounded-t-none"
               )}
-            />
-          </div>
+            >
+              <Image
+                src={poster}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                alt=""
+                onLoad={handleLoadImage}
+                /* placeholder="blur"
+            blurDataURL={blurDataURL} */
+                className={cn(
+                  "from-primary/20 to-primary/0 zoom-in-75 duration-2000 absolute inset-0 size-full h-[calc(100vh/3)] max-w-full bg-gradient-to-b object-cover transition-all",
+                  imgLoaded ? "scale-125 opacity-100" : "scale-100 opacity-0"
+                )}
+              />
+            </div>
+            <div className="pointer-events-none relative mt-[calc(-env(safe-area-inset-top))] block h-0 overflow-hidden pt-[calc(100vh/3)] sm:hidden" />
+          </>
         )}
-        <div className="bg-background rounded-t-5xl relative -mt-12 flex max-w-full flex-1 flex-col shadow-2xl sm:rounded-t-3xl">
+        <div
+          className={cn(
+            "bg-background relative -mt-12 flex max-w-full flex-1 flex-col shadow-2xl",
+            roundedTopClassName
+          )}
+        >
           <TitleBar
             segment={segment}
             backButton

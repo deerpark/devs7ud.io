@@ -5,6 +5,7 @@ import * as React from "react"
 import LogoTypo from "@/public/assets/icons/logo-typo-mono.svg"
 import Favicon from "@/public/assets/icons/favicon-mono.svg"
 import useToggleClassname from "@/hooks/useToggleClassname"
+import useDeviceDetaction from "@/hooks/useDeviceDetaction"
 import { GlobalNavigationContext } from "../providers"
 import { ThemeSwitcher } from "../theme-switcher"
 import { SidebarNavigation } from "./navigation"
@@ -26,6 +27,7 @@ type SidebarProps = {
 export function Sidebar({ counts }: SidebarProps) {
   const navigationContext = React.useContext(GlobalNavigationContext)
   const navIsOpen = navigationContext.isOpen
+  const { isIPhone, isMobile } = useDeviceDetaction()
   const scrollContainerRef = React.useRef<HTMLElement>(null)
   const t = useTranslations()
   useToggleClassname(
@@ -35,13 +37,19 @@ export function Sidebar({ counts }: SidebarProps) {
       (document.getElementById("main") || document.getElementById("list"))) ||
       null
   )
+  const roundedRightClassName = isIPhone
+    ? "rounded-r-5xl"
+    : isMobile
+      ? "rounded-r-3xl"
+      : ""
   return (
     <>
       <nav
         ref={scrollContainerRef}
         className={cn(
           `3xl:w-80 bg-background ease-expo-in-out fixed inset-y-0 z-30 flex h-full min-h-[100vw+env(safe-area-inset-top)+env(safe-area-inset-bottom)] w-3/4 flex-none flex-col overflow-y-auto overflow-x-hidden border-r transition-all duration-500 sm:w-1/2 md:w-1/3 lg:relative lg:inset-y-auto lg:z-auto lg:max-h-screen lg:min-h-screen lg:w-56 lg:translate-x-0 2xl:w-72`,
-          navIsOpen ? "left-0 translate-x-0 shadow-lg" : "-translate-x-full"
+          navIsOpen ? "left-0 translate-x-0 shadow-lg" : "-translate-x-full",
+          roundedRightClassName
         )}
       >
         <TitleBar

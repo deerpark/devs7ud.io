@@ -24,7 +24,7 @@ export default async function CommentCount({
         )}
       >
         <FaCommentIcon
-          className="size-4"
+          className="group-[.active]:fa-light size-4"
           style={{ transform: "rotateY(180deg)" }}
         />
         <span className="text-tertiary group-[.active]:text-primary-foreground leading-4">

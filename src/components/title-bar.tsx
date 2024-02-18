@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes"
 import * as React from "react"
 
+import useDeviceDetaction from "@/hooks/useDeviceDetaction"
 import { FaArrowLeft } from "./icon-duotone"
 import { useRouter } from "next/navigation"
 import { Button } from "./ui/button"
@@ -49,6 +50,9 @@ export function TitleBar({
   const [currentScrollOffset, _setCurrentScrollOffset] = React.useState(0)
   const [backgroundColorOpacity, setBackgroundColorOpacity] = React.useState(0)
   const router = useRouter()
+  const { isIPhone } = useDeviceDetaction()
+
+  const roundedTopClassName = isIPhone ? "rounded-t-5xl" : "rounded-t-3xl"
 
   const isDarkmode = React.useMemo(
     () =>
@@ -161,7 +165,7 @@ export function TitleBar({
         className={cn(
           "pointer-events-none absolute inset-0 z-0 size-full transition-all",
           backgroundColorOpacity > 0.9 ? "backdrop-blur-sm" : "",
-          magicTitle ? "rounded-t-5xl sm:rounded-t-3xl" : ""
+          magicTitle ? roundedTopClassName : ""
         )}
       />
       <div

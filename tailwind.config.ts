@@ -28,6 +28,7 @@ const config = {
       md: "0.375rem", //6px
       DEFAULT: "0.25rem", // 4px
       sm: "0.125rem", // 2px
+      none: "unset", // 2px
     },
     extend: {
       colors: {
