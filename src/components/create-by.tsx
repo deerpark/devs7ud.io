@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 type CreateByProps = {
-  name: string | null
+  name?: string | null
 }
 
 export default function CreateBy({ name }: CreateByProps) {
@@ -12,11 +12,13 @@ export default function CreateBy({ name }: CreateByProps) {
           src="/assets/images/yonn-kim.jpg"
           alt={`${name} avatar image`}
         />
-        <AvatarFallback className="text-xs font-bold">
-          {name?.slice(0, 1)}
-        </AvatarFallback>
+        {name && (
+          <AvatarFallback className="text-xs font-bold">
+            {name?.slice(0, 1)}
+          </AvatarFallback>
+        )}
       </Avatar>
-      <div className="truncate">{name}</div>
+      {name && <div className="truncate">{name}</div>}
     </div>
   )
 }

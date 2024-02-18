@@ -1,16 +1,48 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BookmarkProps } from "@/types/bookmark.type"
+import { P } from "@/components/ui/typography"
+import Image from "next/image"
 
 export default function BookmarkTemplate(
   props: Omit<BookmarkProps, "page" | "users" | "comments">
 ) {
   return (
-    <div className="pb-20">
+    <div className="space-y-10 pb-20">
       {/* {props.post.icon && "emoji" in props.post.icon
                 ? props.post.icon.emoji
                 : "Grid"} */}
-      <Tabs defaultValue="Anycons" className="mb-10 text-center">
-        <TabsList className="sticky top-16 z-10 mx-auto mb-10">
+      <div className="relative aspect-video overflow-hidden rounded-3xl">
+        <Image
+          src="/assets/images/niagara/ShowcaseCollage.jpeg"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          alt="Niagara luncher app - iconic update"
+          className="absolute inset-0 size-full object-cover"
+        />
+      </div>
+      <P className="text-center">
+        수 많은 안드로이드 런처중에서 단연 돋보이는 런처가 있습니다.
+        <br />
+        현재 안드로이드 사용자 사이에서 심플하고 직관적이며 사용성을 면에서 높은
+        점수를 받고 있습니다.
+        <br />
+        테마 작업을 간소화하는 아이콘 팩, 심플한 앱서랍과 홈 화면, 알림 요약등..
+        사용자에게 어필할 많은 많은 기능들이 있습니다.
+        <br />
+        프로기능을 인앱에서 결재해야 하지만 무료버전으로도 충분히 타 런처를
+        대체할 만한 기능들을 갖추고 있습니다.
+      </P>
+      <div className="pb-5 pt-10">
+        <Image
+          src="/assets/images/niagara/LogoWithoutShadow.svg"
+          width={256}
+          height={256}
+          alt="Niagara luncher app"
+          className="mx-auto"
+        />
+      </div>
+      <Tabs defaultValue="Anycons" className="text-center">
+        <TabsList className="sticky top-16 mx-auto mb-10">
           <TabsTrigger value="Anycons">애니콘</TabsTrigger>
           <TabsTrigger value="HomeScreen">홈스크린</TabsTrigger>
           <TabsTrigger value="Misc">기타 기능</TabsTrigger>
@@ -29,12 +61,6 @@ export default function BookmarkTemplate(
               allowFullScreen
               className="aspect-video rounded-t-2xl lg:mx-auto"
             />
-            <div className="flex flex-col space-y-6 p-6">
-              <div className="flex flex-col">
-                테마 작업을 간소화하는 아이콘 팩 가족으로, 모든 앱을 지원하는
-                다양한 아이콘 팩이 포함되어 있습니다.
-              </div>
-            </div>
           </div>
           <div className="bg-card text-card-foreground mx-auto flex w-full flex-col space-y-2 overflow-hidden rounded-3xl shadow-lg">
             <div className="flex flex-col space-y-6 p-6">
