@@ -32,6 +32,7 @@ interface Props {
 export function TitleBar({
   title,
   tag,
+  segment,
   backButton = false,
   backButtonHref,
   magicTitle = false,
@@ -160,13 +161,15 @@ export function TitleBar({
         className={cn(
           "pointer-events-none absolute inset-0 z-0 size-full transition-all",
           backgroundColorOpacity > 0.9 ? "backdrop-blur-sm" : "",
-          magicTitle ? "rounded-t-[48px] sm:rounded-t-3xl" : ""
+          magicTitle ? "rounded-t-6xl sm:rounded-t-3xl" : ""
         )}
       />
       <div
         className={cn(
           "relative flex-none transition-all duration-500",
-          !magicTitle || (opacity !== 0 && opacity > -0.45)
+          segment !== "posts" ||
+            !magicTitle ||
+            (opacity !== 0 && opacity > -0.45)
             ? "pt-[calc(env(safe-area-inset-top))]"
             : ""
         )}
