@@ -67,7 +67,7 @@ export async function Posts(props: PostsProps) {
           )}
           <div className="flex w-full flex-1 flex-col justify-center space-y-1">
             <div
-              className={`group-[.active]:text-primary-foreground line-clamp-3 break-keep text-lg/6 font-bold`}
+              className={`group-[.active]:text-primary-foreground line-clamp-1 break-keep text-lg/6 font-bold`}
             >
               {title}
             </div>

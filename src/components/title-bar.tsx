@@ -156,16 +156,19 @@ export function TitleBar({
       <div
         style={{
           background: `hsla(var(--background) / ${backgroundColorOpacity}`,
-          opacity: `${opacity}`,
         }}
         className={cn(
-          "pointer-events-none absolute inset-0 z-0 size-full backdrop-blur-sm transition-all"
+          "pointer-events-none absolute inset-0 z-0 size-full transition-all",
+          backgroundColorOpacity > 0.9 ? "backdrop-blur-sm" : "",
+          magicTitle ? "rounded-t-[48px] sm:rounded-t-3xl" : ""
         )}
       />
       <div
         className={cn(
           "relative flex-none transition-all duration-500",
-          opacity > -0.45 ? "pt-[calc(env(safe-area-inset-top))]" : ""
+          !magicTitle || (opacity !== 0 && opacity > -0.45)
+            ? "pt-[calc(env(safe-area-inset-top))]"
+            : ""
         )}
       >
         <span className="flex min-h-14 w-full items-center">
