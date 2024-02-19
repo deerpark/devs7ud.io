@@ -1,4 +1,4 @@
-import { FaCommentIcon } from "../icon-duotone"
+import { FaMessageLinesIcon } from "../icon-duotone"
 import { getComments } from "@/lib/notion"
 import { Badge } from "../ui/badge"
 import { cn } from "@/lib/utils"
@@ -23,7 +23,7 @@ export default async function CommentCount({
           className
         )}
       >
-        <FaCommentIcon
+        <FaMessageLinesIcon
           className="group-[.active]:fa-light dark:group-[.active]:fa-dark size-4"
           style={{ transform: "rotateY(180deg)" }}
         />

@@ -14,7 +14,7 @@ import {
   faSun as faSunIcon,
   faBomb as faBombIcon,
   faDoNotEnter as faDoNotEnterIcon,
-  faComment as faCommentIcon,
+  faMessageLines as faMessageLinesIcon,
   faMessages as faMessagesIcon,
   faSpinnerThird as faSpinnerThirdIcon,
   faAnglesUpDown as faAnglesUpDownIcon,
@@ -94,8 +94,8 @@ export const FaDoNotEnterIcon = (props: IconProps) => (
 export const FaBombIcon = (props: IconProps) => (
   <FaIcon icon={faBombIcon} {...props} />
 )
-export const FaCommentIcon = (props: IconProps) => (
-  <FaIcon icon={faCommentIcon} {...props} />
+export const FaMessageLinesIcon = (props: IconProps) => (
+  <FaIcon icon={faMessageLinesIcon} {...props} />
 )
 export const FaSpinnerThirdIcon = (props: IconProps) => (
   <FaIcon icon={faSpinnerThirdIcon} {...props} />

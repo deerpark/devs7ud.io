@@ -32,7 +32,11 @@ export default async function DefaultLayout({
       disableTransitionOnChange
       locale={params.locale}
       messages={messages}
-      user={user}
+      user={
+        user
+          ? { id: user.id, imageUrl: user.imageUrl, username: user.username }
+          : null
+      }
     >
       <div id="root" className="flex size-full min-h-screen">
         <Sidebar
