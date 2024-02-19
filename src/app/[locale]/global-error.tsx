@@ -49,6 +49,7 @@ export default function GlobalError(props: GlobalErrorProps) {
           url={env.NEXT_PUBLIC_HOST}
           locale={props.params.locale}
           messages={messages}
+          user={null}
         >
           <ErrorComponent reset={props.reset} className="min-h-screen">
             {/* This is the default Next.js error component but it doesn't allow omitting the statusCode property yet. */}
