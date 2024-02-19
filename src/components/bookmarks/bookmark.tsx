@@ -37,7 +37,7 @@ export function Bookmark(props: BookmarkProps) {
         <Contents {...props} />
         <Tags items={tags} />
       </div>
-      <Comments comments={comments} />
+      <Comments comments={comments} page_id={post.id} />
     </DetailContainer>
   )
 }

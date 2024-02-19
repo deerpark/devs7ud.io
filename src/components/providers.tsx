@@ -9,12 +9,14 @@ import * as React from "react"
 
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { Toaster } from "@/components/ui/sonner"
+import { User } from "@clerk/nextjs/server"
 import { env } from "@/lib/env"
 
 const globalNavigationContext = {
   isOpen: false,
   setIsOpen: (_: boolean) => {},
   url: env.NEXT_PUBLIC_HOST,
+  user: null as User | null,
 }
 
 export const GlobalNavigationContext = React.createContext(
@@ -24,16 +26,19 @@ export const GlobalNavigationContext = React.createContext(
 export function ThemeProvider({
   children,
   url,
+  user,
   ...props
 }: ThemeProviderProps & {
   locale?: string
   url: string
   messages?: AbstractIntlMessages | undefined
+  user: User | null
 }) {
   const initialState = {
     isOpen: false,
     setIsOpen,
     url,
+    user,
   }
 
   const [state, setState] = React.useState(initialState)

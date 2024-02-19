@@ -27,6 +27,7 @@ import {
   faUpToLine as faUpToLineIcon,
   faSwatchbook as faSwatchbookIcon,
   faSearch as faSearchIcon,
+  faUserLock as faUserLockIcon,
 } from "@fortawesome/pro-duotone-svg-icons"
 import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome"
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core"
@@ -130,4 +131,7 @@ export const FaSwatchbookIcon = (props: IconProps) => (
 )
 export const FaSearchIcon = (props: IconProps) => (
   <FaIcon icon={faSearchIcon} {...props} />
+)
+export const FaUserLockIcon = (props: IconProps) => (
+  <FaIcon icon={faUserLockIcon} {...props} />
 )

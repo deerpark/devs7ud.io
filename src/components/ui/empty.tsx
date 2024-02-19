@@ -1,4 +1,5 @@
 import { Heading, P } from "@/components/ui/typography"
+import { cn } from "@/lib/utils"
 import * as React from "react"
 
 type EmptyProps = {
@@ -6,6 +7,7 @@ type EmptyProps = {
   title?: React.ReactNode
   description?: React.ReactNode
   action?: React.ReactNode
+  className?: string
 }
 
 export default function Empty({
@@ -13,9 +15,15 @@ export default function Empty({
   action,
   title,
   description,
+  className,
 }: EmptyProps) {
   return (
-    <div className="flex flex-1 flex-col items-center space-y-5 py-10">
+    <div
+      className={cn(
+        "flex flex-1 flex-col items-center space-y-5 py-10",
+        className
+      )}
+    >
       {icon}
       <div className="flex flex-col items-center space-y-3">
         {title && <Heading tag="h1">{title}</Heading>}

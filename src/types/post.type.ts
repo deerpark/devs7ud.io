@@ -1,4 +1,7 @@
-import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
+import {
+  CommentObjectResponse,
+  PageObjectResponse,
+} from "@notionhq/client/build/src/api-endpoints"
 import { PageProps } from "./common.type"
 
 export type CategoryColor = "blue" | "orange" | "purple" | "green"
@@ -16,13 +19,29 @@ export interface PostProps extends PageProps<PostProps> {
 }
 
 export type PostsResponse = {
-  errors?: string;
-  posts: PageObjectResponse[];
+  errors?: string
+  posts: PageObjectResponse[]
 }
 export type Posts = {
-  posts: PageObjectResponse[];
+  posts: PageObjectResponse[]
 }
 export type RequestParams = {
   locale: string
 }
-export type OnSearch = (params: Pick<RequestParams, "locale">, prevState: Posts, formData: FormData) => Promise<PostsResponse>
+export type OnSearch = (
+  params: Pick<RequestParams, "locale">,
+  prevState: Posts,
+  formData: FormData
+) => Promise<PostsResponse>
+
+export type AddCommentResponse = {
+  comments: CommentObjectResponse[]
+}
+export type AddCommentErrorResponse = {
+  errors:
+    | {
+        page_id?: string[] | undefined
+        comment?: string[] | undefined
+      }
+    | string[]
+}

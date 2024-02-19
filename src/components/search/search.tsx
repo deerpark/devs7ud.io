@@ -42,7 +42,7 @@ export default function Search({ className, iconClassName }: SearchProps) {
     return () => document.removeEventListener("keydown", down)
   }, [setSearchMode])
   React.useEffect(() => {
-    console.log(state)
+    // console.log(state)
     setData(state)
   }, [state])
   return (

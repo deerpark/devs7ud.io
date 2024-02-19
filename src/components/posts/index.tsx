@@ -5,12 +5,12 @@ import type {
   PageObjectResponse,
   UserObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints"
+import CommentCount from "../comments/comment-count"
 /* import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar" */
 import { FaSpinnerThirdIcon } from "../icon-duotone"
 import { getTranslations } from "next-intl/server"
 import ListItemLink from "../list/list-link"
 import { Category } from "@/types/post.type"
-import CommentCount from "../comment-count"
 import { Separator } from "../ui/separator"
 import { formatDistance } from "@/lib/date"
 import ListItem from "../list/list-item"

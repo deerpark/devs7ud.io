@@ -41,7 +41,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const content = await getPageContent(post.id)
   const comments = await getComments({ parent: post.id })
 
-  console.log("Bookmark: ", post)
+  // console.log("Bookmark: ", post)
   // console.log("Users:", users)
   // console.log("Html: ", html)
   // console.log("Comments: ", comments)

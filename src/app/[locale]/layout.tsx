@@ -4,12 +4,9 @@ import { frFR, koKR, enUS } from "@clerk/localizations"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { ClerkProvider } from "@clerk/nextjs"
 import { notFound } from "next/navigation"
-import { useMessages } from "next-intl"
-import { headers } from "next/headers"
 import "@/styles/global.css"
 
 import SkipToContent from "@/components/skip-to-content"
-import { ThemeProvider } from "@/components/providers"
 import * as Fonts from "@/lib/fonts"
 
 export { metadata } from "@/lib/metadata"
@@ -37,11 +34,6 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
   // Validate that the incoming `locale` parameter is valid
   if (!appConfig.locales.includes(params.locale)) notFound()
 
-  // Using internationalization in Client Components
-  const messages = useMessages()
-  const headersList = headers()
-  const url = headersList.get("Referer") || ""
-
   return (
     <ClerkProvider
       localization={
@@ -57,17 +49,7 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
       >
         <body className="overflow-hidden">
           <SkipToContent />
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            url={url}
-            enableSystem
-            disableTransitionOnChange
-            locale={params.locale}
-            messages={messages}
-          >
-            {children}
-          </ThemeProvider>
+          {children}
           <Bootstrap />
           <GoogleAnalytics />
           <MicrosoftClarity />

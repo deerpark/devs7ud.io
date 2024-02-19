@@ -1,10 +1,11 @@
+"use client"
+
 import * as React from "react"
 
 import { CommentObjectResponse } from "@notionhq/client/build/src/api-endpoints"
-import { FaSpinnerThirdIcon } from "./icon-duotone"
-import CommentCreatedBy from "./created-by"
+import { FaUserTieIcon } from "../icon-duotone"
+import { Separator } from "../ui/separator"
 import { formatDistance } from "@/lib/date"
-import { Separator } from "./ui/separator"
 import { useLocale } from "next-intl"
 
 type CommentProps = {
@@ -24,13 +25,7 @@ export default function Comment({ comment }: CommentProps) {
   return (
     <div className="space-y-2 pt-5 first-of-type:pt-0" key={comment.id}>
       <div className="flex items-center space-x-2 text-sm">
-        <React.Suspense
-          fallback={
-            <FaSpinnerThirdIcon className="text-primary size-6 animate-spin" />
-          }
-        >
-          <CommentCreatedBy userId={comment.created_by.id} />
-        </React.Suspense>
+        <FaUserTieIcon className="size-4" />
         <Separator orientation="vertical" className="size-0.5 rounded-full" />
         <span className="text-muted-foreground">{createdDateTime}</span>
       </div>

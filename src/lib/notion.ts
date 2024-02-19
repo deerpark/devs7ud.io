@@ -1,13 +1,14 @@
-import "server-only"
-
 import type {
   BlockObjectResponse,
+  CreateCommentParameters,
+  CreateCommentResponse,
   PageObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints"
 import {
   APIErrorCode,
   Client,
   ClientErrorCode,
+  LogLevel,
   isNotionClientError,
 } from "@notionhq/client"
 import { cache } from "react"
@@ -22,6 +23,7 @@ const notionEnv = {
 
 export const notionClient = new Client({
   auth: notionEnv.auth,
+  logLevel: process.env.NODE_ENV !== "production" ? LogLevel.DEBUG : undefined,
 })
 
 export const getUsers = cache(async () => {
@@ -51,6 +53,50 @@ export const getComments = cache(
     } catch (error) {
       resolveError(error)
       return []
+    }
+  }
+)
+
+export const postComment = cache(
+  async ({
+    page_id,
+    content = "",
+  }: {
+    page_id?: string
+    content: string
+  }): Promise<CreateCommentResponse> => {
+    console.log("page_id", page_id)
+    try {
+      if (!page_id)
+        return {
+          object: "comment",
+          id: "",
+        }
+
+      const params: CreateCommentParameters = {
+        parent: {
+          page_id,
+        },
+        rich_text: [
+          {
+            text: {
+              content,
+            },
+          },
+        ],
+      }
+
+      console.log("params", params)
+      const response = await notionClient.comments.create(params)
+      console.log("response", response)
+      return response
+    } catch (error) {
+      console.log("error", error)
+      resolveError(error)
+      return {
+        object: "comment",
+        id: page_id || "",
+      }
     }
   }
 )
@@ -182,7 +228,7 @@ export const searchPages = cache(
                   property: "Description",
                 },
               ],
-            }
+            },
           ],
         },
         database_id,

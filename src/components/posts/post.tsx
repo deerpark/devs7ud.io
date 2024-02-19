@@ -54,7 +54,7 @@ export function Post(props: PostProps) {
         <Contents {...props} />
         <Tags items={tags} />
       </div>
-      <Comments comments={comments} />
+      <Comments comments={comments} page_id={post.id} />
     </DetailContainer>
   )
 }
