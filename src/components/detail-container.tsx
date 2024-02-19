@@ -22,6 +22,8 @@ type DetailContainerProps = {
   categories?: Category[]
   poster?: string
   blurDataURL?: string
+  createdBy?: React.ReactNode
+  byLine?: React.ReactNode
 } & React.PropsWithChildren
 
 export default function DetailContainer({
@@ -32,6 +34,8 @@ export default function DetailContainer({
   fancyTitle = false,
   categories,
   poster,
+  createdBy,
+  byLine,
 }: DetailContainerProps) {
   const scrollContainerRef = React.useRef(null)
   const [imgLoaded, setImgLoaded] = React.useState(false)
@@ -59,9 +63,10 @@ export default function DetailContainer({
           <>
             <div
               className={cn(
-                "fixed inset-0 h-0 overflow-hidden pt-[calc(100vh/3)] sm:relative",
+                "inset-0 h-0 overflow-hidden pt-[calc(100vh/3)]",
                 roundedTopClassName,
-                "lg:rounded-t-none"
+                "sm:rounded-t-none",
+                isIPhone ? "fixed" : "relative"
               )}
             >
               <Image
@@ -73,18 +78,28 @@ export default function DetailContainer({
                 /* placeholder="blur"
             blurDataURL={blurDataURL} */
                 className={cn(
-                  "from-primary/20 to-primary/0 zoom-in-75 duration-2000 absolute inset-0 size-full h-[calc(100vh/3)] max-w-full bg-gradient-to-b object-cover transition-all",
+                  "from-primary/20 to-primary/0 zoom-in-75 duration-2000 absolute inset-0 size-full max-h-[calc(100vh/3)] max-w-full bg-gradient-to-b object-cover transition-all",
                   imgLoaded ? "scale-125 opacity-100" : "scale-100 opacity-0"
                 )}
               />
+              {createdBy && (
+                <div className="bg-background/20 ring-background/20 text-foreground/70 absolute right-5 top-3 z-20 flex size-8 items-center justify-center rounded-full ring-2 backdrop-blur-sm">
+                  {createdBy}
+                </div>
+              )}
+              {byLine && (
+                <div className="bg-background/20 text-foreground/70 absolute left-5 top-3 z-20 flex h-8 items-center rounded-2xl p-0.5 px-4 text-sm/8 backdrop-blur-sm">
+                  {byLine}
+                </div>
+              )}
             </div>
-            <div className="pointer-events-none relative mt-[calc(-env(safe-area-inset-top))] block h-0 overflow-hidden pt-[calc(100vh/3)] sm:hidden" />
           </>
         )}
         <div
           className={cn(
-            "bg-background relative -mt-12 flex max-w-full flex-1 flex-col shadow-2xl",
-            roundedTopClassName
+            "bg-background relative flex max-w-full flex-1 flex-col shadow-2xl",
+            roundedTopClassName,
+            isIPhone ? "mt-[calc(100vh/3-46px)]" : "-mt-12"
           )}
         >
           <TitleBar
@@ -100,7 +115,11 @@ export default function DetailContainer({
             scrollContainerRef={scrollContainerRef}
             trailingAccessory={<DetailToolbar />}
           />
-          <div className="flex flex-1 flex-col p-8 sm:pt-16 md:pt-20 lg:pt-24">
+          <div
+            className={cn(
+              "flex flex-1 flex-col p-8 sm:pt-16 md:pt-20 lg:pt-24"
+            )}
+          >
             <div className="mb-4 flex items-center justify-center space-x-2">
               {categories?.map((category) => (
                 <Badge key={category.id} variant="outline" className="">
@@ -136,8 +155,8 @@ export default function DetailContainer({
             )}
             <P
               className={cn(
-                "text-muted-foreground !mt-3 mb-20 flex-none break-keep text-center text-sm 2xl:px-1",
-                fancyTitle ? "mt-20" : ""
+                "text-muted-foreground !mt-3 flex-none break-keep text-center text-sm 2xl:px-1",
+                fancyTitle ? "mt-20" : "mb-20 sm:mb-32 md:mb-36 lg:mb-40"
               )}
             >
               {description}

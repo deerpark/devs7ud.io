@@ -41,16 +41,16 @@ export function Post(props: PostProps) {
       categories={categories}
       poster={poster}
       blurDataURL={blurDataURL}
+      createdBy={createdBy && <CreateBy />}
+      byLine={
+        <ByLine
+          updateAt={updateAt}
+          lastEditDateTime={lastEditDateTime}
+          updateDateTime={updateDateTime}
+        />
+      }
     >
       <div className="max-w-full flex-1 space-y-10 sm:min-w-96 2xl:mx-auto 2xl:max-w-max">
-        <div className="text-muted-foreground mb-40 flex flex-col items-center justify-center space-y-20 text-xs/5">
-          {createdBy && <CreateBy />}
-          <ByLine
-            updateAt={updateAt}
-            lastEditDateTime={lastEditDateTime}
-            updateDateTime={updateDateTime}
-          />
-        </div>
         <Contents {...props} />
         <Tags items={tags} />
       </div>

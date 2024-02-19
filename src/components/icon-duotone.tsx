@@ -28,6 +28,7 @@ import {
   faSwatchbook as faSwatchbookIcon,
   faSearch as faSearchIcon,
   faUserLock as faUserLockIcon,
+  faCalendarClock as faCalendarClockIcon,
 } from "@fortawesome/pro-duotone-svg-icons"
 import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome"
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core"
@@ -134,4 +135,7 @@ export const FaSearchIcon = (props: IconProps) => (
 )
 export const FaUserLockIcon = (props: IconProps) => (
   <FaIcon icon={faUserLockIcon} {...props} />
+)
+export const FaCalendarClockIcon = (props: IconProps) => (
+  <FaIcon icon={faCalendarClockIcon} {...props} />
 )

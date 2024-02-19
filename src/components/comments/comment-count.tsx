@@ -19,12 +19,12 @@ export default async function CommentCount({
           "flex-none space-x-1.5 !border-0 px-1 py-0",
           commentCounts
             ? "group-[.active]:text-primary-foreground"
-            : "group-[.active]:fa-light opacity-0",
+            : "opacity-0",
           className
         )}
       >
         <FaCommentIcon
-          className="group-[.active]:fa-light size-4"
+          className="group-[.active]:fa-light dark:group-[.active]:fa-dark size-4"
           style={{ transform: "rotateY(180deg)" }}
         />
         <span className="text-tertiary group-[.active]:text-primary-foreground leading-4">

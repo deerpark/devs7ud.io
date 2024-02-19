@@ -7,7 +7,7 @@ type CreateByProps = {
 export default function CreateBy({ name }: CreateByProps) {
   return (
     <div className="flex flex-col items-center space-y-2">
-      <Avatar className="ring-foreground group-[.active]:ring-primary-foreground border-1 border-background size-16 rounded-full border-2 ring">
+      <Avatar className="size-8 rounded-full">
         <AvatarImage
           src="/assets/images/yonn-kim.jpg"
           alt={`${name} avatar image`}

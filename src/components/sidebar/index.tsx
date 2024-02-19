@@ -32,23 +32,23 @@ export function Sidebar({ counts }: SidebarProps) {
   const t = useTranslations()
   useToggleClassname(
     navIsOpen,
-    "shrink-left",
+    "shrink-right",
     (typeof document !== "undefined" &&
       (document.getElementById("main") || document.getElementById("list"))) ||
       null
   )
   const roundedRightClassName = isIPhone
-    ? "rounded-r-5xl"
+    ? "rounded-r-lg"
     : isMobile
-      ? "rounded-r-3xl"
+      ? "rounded-r-md"
       : ""
   return (
     <>
       <nav
         ref={scrollContainerRef}
         className={cn(
-          `3xl:w-80 bg-background ease-expo-in-out fixed inset-y-0 z-30 flex h-full min-h-[100vw+env(safe-area-inset-top)+env(safe-area-inset-bottom)] w-3/4 flex-none flex-col overflow-y-auto overflow-x-hidden border-r transition-all duration-500 sm:w-1/2 md:w-1/3 lg:relative lg:inset-y-auto lg:z-auto lg:max-h-screen lg:min-h-screen lg:w-56 lg:translate-x-0 2xl:w-72`,
-          navIsOpen ? "left-0 translate-x-0 shadow-lg" : "-translate-x-full",
+          `3xl:w-80 bg-background ease-expo-in-out fixed inset-y-0 left-0 z-30 flex h-full min-h-[100vw+env(safe-area-inset-top)+env(safe-area-inset-bottom)] w-3/4 flex-none flex-col overflow-y-auto overflow-x-hidden border-r transition-all duration-500 sm:w-1/2 md:w-1/3 lg:relative lg:inset-y-auto lg:z-auto lg:max-h-screen lg:min-h-screen lg:w-56 lg:translate-x-0 2xl:w-72`,
+          navIsOpen ? "translate-x-0 shadow-lg" : "-translate-x-full",
           roundedRightClassName
         )}
       >
