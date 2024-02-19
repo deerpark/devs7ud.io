@@ -83,12 +83,12 @@ export default function DetailContainer({
                 )}
               />
               {createdBy && (
-                <div className="bg-background/20 ring-background/20 text-foreground/70 absolute right-5 top-3 z-20 flex size-8 items-center justify-center rounded-full ring-2 backdrop-blur-sm">
+                <div className="bg-background/20 ring-background/20 text-foreground/70 absolute right-5 top-[calc(12px+env(safe-area-inset-top))] z-20 flex size-8 items-center justify-center rounded-full ring-2 backdrop-blur-sm">
                   {createdBy}
                 </div>
               )}
               {byLine && (
-                <div className="bg-background/20 text-foreground/70 absolute left-5 top-3 z-20 flex h-8 items-center rounded-2xl p-0.5 px-4 text-sm/8 backdrop-blur-sm">
+                <div className="bg-background/20 text-foreground/70 absolute left-5 top-[calc(12px+env(safe-area-inset-top))] z-20 flex h-8 items-center rounded-2xl p-0.5 px-4 text-sm/8 backdrop-blur-sm">
                   {byLine}
                 </div>
               )}
@@ -165,7 +165,11 @@ export default function DetailContainer({
           </div>
         </div>
       </div>
-      <FloatingMenu scrollContainerRef={scrollContainerRef} />
+      <FloatingMenu
+        scrollContainerRef={scrollContainerRef}
+        backButton
+        backButtonHref={`/${segment}`}
+      />
     </>
   )
 }

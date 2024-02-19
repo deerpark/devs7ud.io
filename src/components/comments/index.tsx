@@ -16,7 +16,7 @@ export default function Comments({ comments, page_id }: CommentsProps) {
         orientation="horizontal"
         className="2xl:from-border/20 2xl:via-border 2xl:to-border/20 2xl:bg-transparent 2xl:bg-gradient-to-r"
       />
-      <div className="space-y-10 p-8">
+      <div className="max-w-full flex-1 space-y-10 p-8 sm:min-w-96 2xl:mx-auto 2xl:max-w-max">
         <CommentForm
           page_id={page_id}
           comments={comments}

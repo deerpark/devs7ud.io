@@ -22,14 +22,26 @@ export default function Comment({ comment }: CommentProps) {
       addSuffix: true,
     }
   )
+  const rawText = comment.rich_text[0]?.plain_text.split("__7__") || []
+  const name = rawText[0]
+  const text = rawText[1]
   return (
     <div className="space-y-2 pt-5 first-of-type:pt-0" key={comment.id}>
       <div className="flex items-center space-x-2 text-sm">
         <FaUserTieIcon className="size-4" />
+        {name && (
+          <>
+            <Separator
+              orientation="vertical"
+              className="size-0.5 rounded-full"
+            />
+            <span className="bold">{name}</span>
+          </>
+        )}
         <Separator orientation="vertical" className="size-0.5 rounded-full" />
         <span className="text-muted-foreground">{createdDateTime}</span>
       </div>
-      <div>{comment.rich_text[0]?.plain_text}</div>
+      {text && <div>{text}</div>}
     </div>
   )
 }

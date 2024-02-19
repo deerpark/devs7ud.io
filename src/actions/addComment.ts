@@ -13,6 +13,7 @@ export async function addComment(
   const parse = schemaComment.safeParse({
     page_id: formData.get("page_id"),
     comment: formData.get("comment"),
+    name: formData.get("name"),
   })
 
   console.log("parse.success", parse.success)
@@ -27,7 +28,7 @@ export async function addComment(
   try {
     const comment = await postComment({
       page_id: data.page_id,
-      content: data.comment,
+      content: `${data.name}__7__${data.comment}`,
     })
 
     if (!comment.id) return _

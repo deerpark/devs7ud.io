@@ -10,7 +10,12 @@ export const schemaComment = z.object({
   page_id: z.string({
     invalid_type_error: "Invalid page_id",
   }),
-  comment: z.string({
-    invalid_type_error: "Invalid comment",
+  comment: z
+    .string({
+      invalid_type_error: "Invalid comment",
+    })
+    .min(1),
+  name: z.string({
+    invalid_type_error: "Invalid name",
   }),
 })

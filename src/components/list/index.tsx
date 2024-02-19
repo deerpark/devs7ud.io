@@ -38,7 +38,9 @@ export default function List({
             searchAccessory={search}
           />
           <LayoutGroup>
-            <div className="lg:px-3">{contents}</div>
+            <div className="divide-border/30 divide-y py-3 lg:divide-y-0 lg:px-3">
+              {contents}
+            </div>
           </LayoutGroup>
         </div>
       </div>

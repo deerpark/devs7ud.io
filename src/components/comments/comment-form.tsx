@@ -12,6 +12,7 @@ import { CommentObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 import { FaMessagesIcon, FaUserLockIcon } from "../icon-duotone"
 import { Button, buttonVariants } from "../ui/button"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
+import CommentUsername from "./comment-username"
 import CommentSubmit from "./comment-submit"
 import { Separator } from "../ui/separator"
 import { useTranslations } from "next-intl"
@@ -47,7 +48,7 @@ export default function CommentForm({
   }, [state])
   return (
     <>
-      <div className="text-card-foreground divide-border space-y-5 divide-y">
+      <div className="text-card-foreground divide-border/50 space-y-5 divide-y lg:min-w-96">
         {state?.map((comment) => (
           <Comment key={comment.id} comment={comment} />
         ))}
@@ -68,6 +69,9 @@ export default function CommentForm({
             <CardContent>
               <div className="grid gap-2">
                 <input type="hidden" name="page_id" value={page_id} />
+                <React.Suspense>
+                  <CommentUsername />
+                </React.Suspense>
                 <Textarea
                   ref={commentRef}
                   id="comment"
@@ -113,7 +117,7 @@ export default function CommentForm({
               </Link>
             </div>
           }
-          className="border-t"
+          className="border-border/50 border-t"
         />
       </SignedOut>
     </>
