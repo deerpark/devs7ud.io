@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@/components/providers"
 import { Sidebar } from "@/components/sidebar"
 import { getMessages } from "next-intl/server"
+import { currentUser } from "@clerk/nextjs"
 import { getPages } from "@/lib/notion"
 import { headers } from "next/headers"
 
@@ -15,6 +16,7 @@ export default async function DefaultLayout({
 }: DefaultLayoutProps) {
   const pages = await getPages(params.locale)
   const bookmarks = await getPages(params.locale, "bookmarks")
+  const user = await currentUser()
 
   // Using internationalization in Client Components
   const messages = await getMessages()
@@ -30,6 +32,7 @@ export default async function DefaultLayout({
       disableTransitionOnChange
       locale={params.locale}
       messages={messages}
+      user={user}
     >
       <div id="root" className="flex size-full min-h-screen">
         <Sidebar

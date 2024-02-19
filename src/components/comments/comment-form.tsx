@@ -10,9 +10,9 @@ import {
 } from "../ui/card"
 import { CommentObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 import { FaMessagesIcon, FaUserLockIcon } from "../icon-duotone"
+import { GlobalNavigationContext } from "../providers"
 import { Button, buttonVariants } from "../ui/button"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
-import CommentUsername from "./comment-username"
 import CommentSubmit from "./comment-submit"
 import { Separator } from "../ui/separator"
 import { useTranslations } from "next-intl"
@@ -41,6 +41,8 @@ export default function CommentForm({
   const t = useTranslations()
   const commentRef = React.useRef<HTMLTextAreaElement>(null)
   const [state, formAction] = useFormState(addComment, comments)
+  const navigationContext = React.useContext(GlobalNavigationContext)
+  const user = navigationContext.user
   React.useEffect(() => {
     if (commentRef.current) {
       commentRef.current.form?.reset()
@@ -69,9 +71,7 @@ export default function CommentForm({
             <CardContent>
               <div className="grid gap-2">
                 <input type="hidden" name="page_id" value={page_id} />
-                <React.Suspense>
-                  <CommentUsername />
-                </React.Suspense>
+                <input type="hidden" name="name" value={user?.username || ""} />
                 <Textarea
                   ref={commentRef}
                   id="comment"
