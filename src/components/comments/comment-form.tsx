@@ -73,7 +73,11 @@ export default function CommentForm({
             <CardContent>
               <div className="grid gap-2">
                 <input type="hidden" name="page_id" value={page_id} />
-                <input type="hidden" name="name" value={user?.username || ""} />
+                <input
+                  type="hidden"
+                  name="name"
+                  value={user?.username || user?.id || ""}
+                />
                 <Textarea
                   ref={commentRef}
                   id="comment"

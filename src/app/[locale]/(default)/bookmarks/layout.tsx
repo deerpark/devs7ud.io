@@ -34,7 +34,7 @@ export default async function PageLayout({
             <Bookmarks data={pages.results as PageObjectResponse[]} />
           ) : (
             <div id="list" className="min-h-screen w-full">
-              <div className="bg-popover relative size-full max-h-screen min-h-screen flex-none overflow-y-auto border-r px-6 py-3 lg:w-80 xl:w-96">
+              <div className="mx-3 flex flex-1">
                 <span className="text-muted-foreground">
                   {t("BOOKMARKS.empty")}
                 </span>
