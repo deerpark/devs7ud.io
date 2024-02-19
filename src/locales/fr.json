@@ -82,6 +82,14 @@
       "Food": "Nourriture",
       "Travel": "Voyage",
       "Sports": "Sports"
+    },
+    "comments": {
+      "form": {
+        "title": "Laisser un commentaire",
+        "description": "Les contenus inappropriés peuvent être supprimés.",
+        "placeholder": "Veuillez saisir un maximum de 1000 caractères.",
+        "submit": "Économiser"
+      }
     }
   },
   "BOOKMARKS": {

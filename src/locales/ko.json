@@ -83,6 +83,14 @@
       "Travel": "여행",
       "Design": "디자인",
       "Sports": "스포츠"
+    },
+    "comments": {
+      "form": {
+        "title": "댓글 남기기",
+        "description": "부적절한 내용은 삭제될 수 있습니다.",
+        "placeholder": "1000자 이내로 입력해 주세요.",
+        "submit": "저장"
+      }
     }
   },
   "BOOKMARKS": {

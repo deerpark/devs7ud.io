@@ -11,8 +11,8 @@ import {
 import { CommentObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 import { FaMessagesIcon, FaUserLockIcon } from "../icon-duotone"
 import { GlobalNavigationContext } from "../providers"
-import { Button, buttonVariants } from "../ui/button"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
+import { buttonVariants } from "../ui/button"
 import CommentSubmit from "./comment-submit"
 import { Separator } from "../ui/separator"
 import { useTranslations } from "next-intl"
@@ -65,8 +65,10 @@ export default function CommentForm({
         <form className="" action={formAction}>
           <Card>
             <CardHeader>
-              <CardTitle>Leave a comment</CardTitle>
-              <CardDescription>Leave a comment</CardDescription>
+              <CardTitle>{t("POSTS.comments.form.title")}</CardTitle>
+              <CardDescription>
+                {t("POSTS.comments.form.description")}
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid gap-2">
@@ -76,12 +78,11 @@ export default function CommentForm({
                   ref={commentRef}
                   id="comment"
                   name="comment"
-                  placeholder="Please comment."
+                  placeholder={t("POSTS.comments.form.placeholder")}
                 />
               </div>
             </CardContent>
-            <CardFooter className="justify-between space-x-2">
-              <Button variant="ghost">Cancel</Button>
+            <CardFooter className="justify-end space-x-2">
               <CommentSubmit />
             </CardFooter>
           </Card>

@@ -82,6 +82,14 @@
       "Food": "Food",
       "Travel": "Travel",
       "Sports": "Sports"
+    },
+    "comments": {
+      "form": {
+        "title": "Leave a comment",
+        "description": "Inappropriate content may be removed.",
+        "placeholder": "Please enter no more than 1000 characters.",
+        "submit": "Save"
+      }
     }
   },
   "BOOKMARKS": {

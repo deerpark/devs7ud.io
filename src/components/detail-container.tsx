@@ -63,7 +63,7 @@ export default function DetailContainer({
           <>
             <div
               className={cn(
-                "inset-0 h-0 overflow-hidden pt-[calc(100vh/3)]",
+                "from-primary to-tertiary inset-0 h-0 overflow-hidden bg-gradient-to-b pt-[calc(100vh/3)]",
                 roundedTopClassName,
                 "sm:rounded-t-none",
                 isIPhone ? "fixed" : "relative"
