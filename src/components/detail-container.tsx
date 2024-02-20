@@ -38,6 +38,7 @@ export default function DetailContainer({
   byLine,
 }: DetailContainerProps) {
   const scrollContainerRef = React.useRef(null)
+  const [imgLoaded, setImgLoaded] = React.useState(false)
   const titleRef = React.useRef<HTMLHeadingElement>(null)
   const { isIPhone } = useDeviceDetaction()
   const t = useTranslations()
@@ -47,6 +48,9 @@ export default function DetailContainer({
     (theme === "system" &&
       window?.matchMedia &&
       window?.matchMedia("(prefers-color-scheme: dark)").matches)
+  const handleLoadImage = React.useCallback(() => {
+    setImgLoaded(true)
+  }, [])
   const roundedTopClassName = isIPhone ? "rounded-t-5xl" : "rounded-t-3xl"
   const posterSrc = poster?.length
     ? poster[1] && poster[0] && isDarkmode
@@ -75,11 +79,14 @@ export default function DetailContainer({
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 alt=""
+                onLoad={handleLoadImage}
                 /* placeholder="blur"
             blurDataURL={blurDataURL} */
                 className={cn(
                   "from-primary/20 to-primary/0 absolute inset-0 size-full max-h-[calc(100vh/3)] max-w-full bg-gradient-to-b object-cover transition-all",
-                  "animate-gradient-mask"
+                  imgLoaded
+                    ? "animate-gradient-mask fill-mode-both opacity-0"
+                    : "opacity-0"
                 )}
               />
               {createdBy && (

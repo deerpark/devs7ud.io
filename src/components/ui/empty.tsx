@@ -28,7 +28,7 @@ export default function Empty({
       <div className="flex flex-col items-center space-y-3">
         {title && <Heading tag="h1">{title}</Heading>}
         {description && <P className="text-muted-foreground">{description}</P>}
-        {action && <P className="flex items-center space-x-1">{action}</P>}
+        {action && <div className="flex items-center space-x-1">{action}</div>}
       </div>
     </div>
   )

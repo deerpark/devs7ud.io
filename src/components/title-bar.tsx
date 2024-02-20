@@ -165,6 +165,18 @@ export function TitleBar({
         magicTitle && offset > 40 ? roundedContinerTopClassName : ""
       )}
     >
+      {magicTitle && segment === "posts" && (
+        <div
+          style={{
+            opacity: opacity + 1 === 1 ? 0 : opacity + 1,
+          }}
+          // eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values
+          className={cn(
+            "from-background via-background to-background/0 pointer-events-none absolute inset-0 -top-[calc(100vh/3+24px)] z-0 h-[calc(100vh/3+24px)] w-full bg-gradient-to-b via-70% transition-all",
+            roundedTopClassName
+          )}
+        />
+      )}
       <div
         style={{
           background: `hsla(var(--background) / ${backgroundColorOpacity}`,
@@ -175,18 +187,6 @@ export function TitleBar({
           magicTitle && offset > 40 ? roundedContinerTopClassName : ""
         )}
       />
-      {magicTitle && segment === "posts" && (
-        <div
-          style={{
-            opacity: opacity + 1 === 1 ? 0 : opacity + 1,
-          }}
-          // eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values
-          className={cn(
-            "bg-background pointer-events-none absolute inset-0 -top-[calc(100vh/3)] z-0 h-[calc(100vh/3)] w-full transition-all",
-            roundedTopClassName
-          )}
-        />
-      )}
       <div
         className={cn(
           "relative flex-none transition-all duration-500",

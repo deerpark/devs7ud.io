@@ -104,20 +104,20 @@ const config = {
         "gradient-mask": {
           from: {
             mask: "linear-gradient(90deg, #000 25%, #000000e6 50%, #00000000) 150% 0 /  400% no-repeat",
-            opacity: "0.2",
+            opacity: "0",
           },
           to: {
             mask: "linear-gradient(90deg, #000 25%, #000000e6 50%, #00000000) 0 / 400% no-repeat",
-            opacity: "0.2",
+            opacity: "1",
           },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "lights-on": "lights-on 0.5s ease-expo-out",
-        "ken-burns": "ken-burns 0.5s ease-expo-in",
-        "gradient-mask": "gradient-mask 0.5s ease-expo-out",
+        "lights-on": "lights-on 2s ease-out",
+        "ken-burns": "ken-burns 2s ease-in",
+        "gradient-mask": "gradient-mask 3s ease-out",
       },
       fontFamily: {
         sans: ["var(--font-inter)"],
