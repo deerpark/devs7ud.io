@@ -17,6 +17,7 @@ export function Post(props: PostProps) {
   const title = (post.properties.Title as any).title[0].plain_text
   const poster =
     (post?.cover as any)?.file?.url || (post?.cover as any)?.external?.url
+  const posterDarkmode = (post.properties?.Darkmode as any)?.files[0]?.file?.url
   const description = (post.properties?.Description as any)?.rich_text[0]
     ?.plain_text
   // const dateTime = post.created_time
@@ -39,7 +40,7 @@ export function Post(props: PostProps) {
       title={title}
       description={description}
       categories={categories}
-      poster={poster}
+      poster={[poster, posterDarkmode]}
       blurDataURL={blurDataURL}
       createdBy={createdBy && <CreateBy />}
       byLine={

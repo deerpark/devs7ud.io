@@ -79,10 +79,45 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "lights-on": {
+          from: {
+            opacity: "0",
+            "clip-path": "inset(5%)",
+            transform: "scale(111.11%)",
+          },
+          to: { opacity: "1", "clip-path": "inset(0)", transform: "scale(1)" },
+        },
+        "ken-burns": {
+          "0%": {
+            opacity: "0",
+            filter: "brightness(1) blur(20px)",
+          },
+          "10%": {
+            opacity: "1",
+            filter: "brightness(2) blur(10px)",
+          },
+          "100%": {
+            opacity: "1",
+            filter: "brightness(1) blur(0)",
+          },
+        },
+        "gradient-mask": {
+          from: {
+            mask: "linear-gradient(90deg, #000 25%, #000000e6 50%, #00000000) 150% 0 /  400% no-repeat",
+            opacity: "0.2",
+          },
+          to: {
+            mask: "linear-gradient(90deg, #000 25%, #000000e6 50%, #00000000) 0 / 400% no-repeat",
+            opacity: "0.2",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "lights-on": "lights-on 0.5s ease-expo-out",
+        "ken-burns": "ken-burns 0.5s ease-expo-in",
+        "gradient-mask": "gradient-mask 0.5s ease-expo-out",
       },
       fontFamily: {
         sans: ["var(--font-inter)"],

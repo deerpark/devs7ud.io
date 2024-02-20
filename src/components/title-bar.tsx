@@ -52,7 +52,10 @@ export function TitleBar({
   const router = useRouter()
   const { isIPhone } = useDeviceDetaction()
 
-  const roundedTopClassName = isIPhone ? "rounded-t-5xl" : "rounded-t-3xl"
+  const roundedTopClassName = isIPhone ? "rounded-t-5xl" : ""
+  const roundedContinerTopClassName = isIPhone
+    ? "rounded-t-5xl"
+    : "rounded-t-3xl"
 
   const isDarkmode = React.useMemo(
     () =>
@@ -154,8 +157,12 @@ export function TitleBar({
             : "none",
       }}
       className={cn(
-        "group/bar sticky top-0 z-10 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center overflow-hidden px-3 transition-all",
-        currentScrollOffset !== 0 ? "active" : ""
+        "group/bar sticky top-0 z-10 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 transition-all",
+        currentScrollOffset !== 0 ? "active" : "",
+        magicTitle && offset > 40
+          ? "border-foreground/10 dark:border-foreground/20 border-t"
+          : "",
+        magicTitle && offset > 40 ? roundedContinerTopClassName : ""
       )}
     >
       <div
@@ -165,9 +172,21 @@ export function TitleBar({
         className={cn(
           "pointer-events-none absolute inset-0 z-0 size-full transition-all",
           backgroundColorOpacity > 0.9 ? "backdrop-blur-sm" : "",
-          magicTitle ? roundedTopClassName : ""
+          magicTitle && offset > 40 ? roundedContinerTopClassName : ""
         )}
       />
+      {magicTitle && segment === "posts" && (
+        <div
+          style={{
+            opacity: opacity + 1 === 1 ? 0 : opacity + 1,
+          }}
+          // eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values
+          className={cn(
+            "bg-background pointer-events-none absolute inset-0 -top-[calc(100vh/3)] z-0 h-[calc(100vh/3)] w-full transition-all",
+            roundedTopClassName
+          )}
+        />
+      )}
       <div
         className={cn(
           "relative flex-none transition-all duration-500",

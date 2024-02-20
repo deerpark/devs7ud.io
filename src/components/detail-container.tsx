@@ -20,7 +20,7 @@ type DetailContainerProps = {
   description: string
   fancyTitle?: boolean
   categories?: Category[]
-  poster?: string
+  poster?: string[]
   blurDataURL?: string
   createdBy?: React.ReactNode
   byLine?: React.ReactNode
@@ -38,7 +38,6 @@ export default function DetailContainer({
   byLine,
 }: DetailContainerProps) {
   const scrollContainerRef = React.useRef(null)
-  const [imgLoaded, setImgLoaded] = React.useState(false)
   const titleRef = React.useRef<HTMLHeadingElement>(null)
   const { isIPhone } = useDeviceDetaction()
   const t = useTranslations()
@@ -48,10 +47,12 @@ export default function DetailContainer({
     (theme === "system" &&
       window?.matchMedia &&
       window?.matchMedia("(prefers-color-scheme: dark)").matches)
-  const handleLoadImage = React.useCallback(() => {
-    setImgLoaded(true)
-  }, [])
   const roundedTopClassName = isIPhone ? "rounded-t-5xl" : "rounded-t-3xl"
+  const posterSrc = poster?.length
+    ? poster[1] && poster[0] && isDarkmode
+      ? poster[1]
+      : poster[0]
+    : ""
   return (
     <>
       <div
@@ -59,27 +60,26 @@ export default function DetailContainer({
         id="main"
         className="relative flex max-h-screen w-full flex-1 flex-col overflow-y-auto scroll-smooth transition-all duration-500"
       >
-        {poster && (
+        {posterSrc && (
           <>
             <div
               className={cn(
-                "from-primary to-tertiary inset-0 h-0 overflow-hidden bg-gradient-to-b pt-[calc(100vh/3)]",
+                "from-primary to-tertiary absolute inset-0 h-0 overflow-hidden bg-gradient-to-b pt-[calc(100vh/3)]",
                 roundedTopClassName,
                 "sm:rounded-t-none",
                 isIPhone ? "fixed" : "relative"
               )}
             >
               <Image
-                src={poster}
+                src={posterSrc}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 alt=""
-                onLoad={handleLoadImage}
                 /* placeholder="blur"
             blurDataURL={blurDataURL} */
                 className={cn(
-                  "from-primary/20 to-primary/0 zoom-in-75 duration-2000 absolute inset-0 size-full max-h-[calc(100vh/3)] max-w-full bg-gradient-to-b object-cover transition-all",
-                  imgLoaded ? "scale-125 opacity-100" : "scale-100 opacity-0"
+                  "from-primary/20 to-primary/0 absolute inset-0 size-full max-h-[calc(100vh/3)] max-w-full bg-gradient-to-b object-cover transition-all",
+                  "animate-gradient-mask"
                 )}
               />
               {createdBy && (
