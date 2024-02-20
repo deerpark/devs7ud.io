@@ -2,6 +2,9 @@
 
 // 이 함수는 CSS의 safe-area-inset 값들을 체크합니다.
 export default function useSafeAreaInsets() {
+  if (typeof document !== "object")
+    return { hasInset: false, insets: { top: 0, left: 0, bottom: 0, right: 0 } }
+
   // DOM에 임시 요소를 생성
   const div = document.createElement("div")
 
@@ -23,7 +26,7 @@ export default function useSafeAreaInsets() {
     right,
     bottom,
   }
-  const hasInset = !!(top + left + right + bottom || 0)
+  const hasInset = !!(parseInt(top, 10) + parseInt(bottom, 10) || 0)
 
   // 요소를 제거합니다.
   document.body.removeChild(div)

@@ -1,6 +1,6 @@
 import {
   faAddressCard as faAddressCardIcon,
-  faArrowLeft as faArrowLeftIcon,
+  faLeftToLine as faLeftToLineIcon,
   faArrowRight as faArrowRightIcon,
   faBars as faBarsIcon,
   faBlog as faBlogIcon,
@@ -49,8 +49,8 @@ const FaIcon = ({ icon, ...props }: FaIconProps) => (
 )
 
 // 각 아이콘을 위한 특정 컴포넌트 생성
-export const FaArrowLeft = (props: IconProps) => (
-  <FaIcon icon={faArrowLeftIcon} {...props} />
+export const FaLeftToLine = (props: IconProps) => (
+  <FaIcon icon={faLeftToLineIcon} {...props} />
 )
 export const FaArrowRight = (props: IconProps) => (
   <FaIcon icon={faArrowRightIcon} {...props} />

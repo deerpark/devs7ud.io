@@ -5,7 +5,7 @@ import useEmblaCarousel, {
 } from "embla-carousel-react"
 import * as React from "react"
 
-import { FaArrowLeft, FaArrowRight } from "../icon-duotone"
+import { FaLeftToLine, FaArrowRight } from "../icon-duotone"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -216,7 +216,7 @@ const CarouselPrevious = React.forwardRef<
       onClick={scrollPrev}
       {...props}
     >
-      <FaArrowLeft
+      <FaLeftToLine
         className={cn("fa-light dark:fa-dark group-hover:fa-default size-5")}
       />
       <span className="sr-only">Previous slide</span>

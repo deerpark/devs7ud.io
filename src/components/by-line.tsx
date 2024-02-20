@@ -15,7 +15,7 @@ export default function ByLine({
 }: ByLineProps) {
   const t = useTranslations()
   return (
-    <div className="flex flex-wrap items-center space-x-2">
+    <div className="flex items-center space-x-2">
       <FaCalendarClockIcon className="fa-dark dark:fa-light size-4" />
       <Separator
         orientation="vertical"

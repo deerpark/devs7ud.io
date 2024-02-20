@@ -40,7 +40,8 @@ export default function DetailContainer({
   const scrollContainerRef = React.useRef(null)
   const titleRef = React.useRef<HTMLHeadingElement>(null)
   const [imgLoaded, setImgLoaded] = React.useState(false)
-  const { hasInset = false } = useSafeAreaInsets()
+  const { hasInset = false, insets } = useSafeAreaInsets()
+  console.log(insets)
   const t = useTranslations()
   const { theme } = useTheme()
   const isDarkmode =
@@ -73,7 +74,7 @@ export default function DetailContainer({
             <div
               className={cn(
                 "from-primary to-tertiary inset-0 z-0 h-0 overflow-hidden bg-gradient-to-b pt-[calc(100vh/3)] transition",
-                hasInset ? "fixed" : "relative"
+                hasInset ? "fixed sm:relative" : "relative"
               )}
             >
               <Image
@@ -97,7 +98,7 @@ export default function DetailContainer({
                 </div>
               )}
               {byLine && (
-                <div className="bg-background/20 text-foreground/70 absolute left-5 top-[calc(12px+env(safe-area-inset-top))] z-20 flex h-8 items-center rounded-2xl p-0.5 px-4 text-sm/8 backdrop-blur-sm">
+                <div className="bg-background/20 text-foreground/70 absolute bottom-16 left-1/2 z-20 flex h-8 -translate-x-1/2 items-center rounded-2xl p-0.5 px-4 text-sm/8 backdrop-blur-sm">
                   {byLine}
                 </div>
               )}
@@ -108,7 +109,7 @@ export default function DetailContainer({
           className={cn(
             "bg-background relative flex max-w-full flex-1 flex-col shadow-2xl",
             roundedTopClassName,
-            hasInset ? "mt-[calc(100vh/3-46px)]" : "-mt-12"
+            hasInset ? "mt-[calc(100vh/3-46px)] sm:-mt-12" : "-mt-12"
           )}
         >
           <TitleBar

@@ -1,7 +1,7 @@
 "use client"
 
 import GlobalMenuButton from "./global-menu-button"
-import { FaArrowLeft } from "./icon-duotone"
+import { FaLeftToLine } from "./icon-duotone"
 import { useRouter } from "next/navigation"
 import ScrollToTop from "./scroll-to-top"
 import { Button } from "./ui/button"
@@ -61,7 +61,7 @@ export default function FloatingMenu({
           onClick={handleNavToBack}
           className="border-background group/button size-12 rounded-full lg:hidden"
         >
-          <FaArrowLeft className={cn("fa-light size-6")} />
+          <FaLeftToLine className={cn("fa-light size-6")} />
         </Button>
       )}
       <GlobalMenuButton isFloating />

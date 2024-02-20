@@ -4,7 +4,7 @@ import { useTheme } from "next-themes"
 import * as React from "react"
 
 import useSafeAreaInsets from "@/hooks/useSafeAreaInsets"
-import { FaArrowLeft } from "./icon-duotone"
+import { FaLeftToLine } from "./icon-duotone"
 import { useRouter } from "next/navigation"
 import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"
@@ -158,12 +158,12 @@ export function TitleBar({
               : "none",
         }}
         className={cn(
-          "group/bar sticky top-0 z-10 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 transition-all",
+          "group/bar sticky top-0 z-10 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 transition-all duration-500",
           currentScrollOffset !== 0 ? "active" : "",
-          magicTitle && offset > 40
+          magicTitle && offset >= 100
             ? "border-foreground/10 dark:border-foreground/20 border-t"
             : "",
-          magicTitle && offset > 40 ? roundedContinerTopClassName : ""
+          magicTitle && offset >= 100 ? roundedContinerTopClassName : ""
         )}
       >
         {magicTitle && segment === "posts" && (
@@ -174,7 +174,7 @@ export function TitleBar({
             }}
             // eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values
             className={cn(
-              "from-background via-background to-background/0 pointer-events-none absolute inset-0 -top-[calc(100vh/3+24px)] z-0 h-[calc(100vh/3+24px)] w-full bg-gradient-to-b via-70% backdrop-blur-sm transition-all",
+              "pointer-events-none absolute inset-0 -top-[calc(100vh/3+24px)] z-0 h-[calc(100vh/3+24px)] w-full backdrop-blur-sm transition-all",
               roundedTopClassName
             )}
           />
@@ -184,9 +184,9 @@ export function TitleBar({
             background: `hsla(var(--background) / ${backgroundColorOpacity || 1}`,
           }}
           className={cn(
-            "pointer-events-none absolute inset-0 z-0 size-full transition-all",
-            opacity !== 0 && opacity > -0.45 ? "backdrop-blur-sm" : "",
-            magicTitle && offset > 80 ? roundedContinerTopClassName : ""
+            "pointer-events-none absolute inset-0 z-0 size-full transition-all duration-500",
+            offset < 100 ? "backdrop-blur-sm" : "",
+            magicTitle && offset >= 100 ? roundedContinerTopClassName : ""
           )}
         />
         <div
@@ -207,7 +207,7 @@ export function TitleBar({
                 onClick={handleNavToBack}
                 className="text-foreground group/button mr-3 flex items-center justify-center rounded-md p-2 lg:hidden"
               >
-                <FaArrowLeft className={cn("size-4")} />
+                <FaLeftToLine className={cn("size-4")} />
               </Button>
             )}
             {leadingAccessory && leadingAccessory}
