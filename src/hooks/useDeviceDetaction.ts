@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 
 // 모바일 디바이스인지 확인하는 커스텀 훅

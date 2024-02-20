@@ -1,6 +1,6 @@
 "use client"
 
-import useDeviceDetaction from "@/hooks/useDeviceDetaction"
+import useSafeAreaInsets from "@/hooks/useSafeAreaInsets"
 import { Category } from "@/types/post.type"
 import DetailToolbar from "./detail-toolbar"
 import { useTranslations } from "next-intl"
@@ -38,9 +38,9 @@ export default function DetailContainer({
   byLine,
 }: DetailContainerProps) {
   const scrollContainerRef = React.useRef(null)
-  const [imgLoaded, setImgLoaded] = React.useState(false)
   const titleRef = React.useRef<HTMLHeadingElement>(null)
-  const { isIPhone } = useDeviceDetaction()
+  const [imgLoaded, setImgLoaded] = React.useState(false)
+  const { hasInset = false } = useSafeAreaInsets()
   const t = useTranslations()
   const { theme } = useTheme()
   const isDarkmode =
@@ -48,15 +48,19 @@ export default function DetailContainer({
     (theme === "system" &&
       window?.matchMedia &&
       window?.matchMedia("(prefers-color-scheme: dark)").matches)
-  const handleLoadImage = React.useCallback(() => {
-    setImgLoaded(true)
-  }, [])
-  const roundedTopClassName = isIPhone ? "rounded-t-5xl" : "rounded-t-3xl"
+  const roundedTopClassName = hasInset ? "rounded-t-5xl" : "rounded-t-3xl"
   const posterSrc = poster?.length
     ? poster[1] && poster[0] && isDarkmode
       ? poster[1]
       : poster[0]
     : ""
+  const tag = categories
+    ?.map((category) => t(`POSTS.category.${category.name}`))
+    .join(", ")
+
+  const handleLoadImage = React.useCallback(() => {
+    setImgLoaded(true)
+  }, [])
   return (
     <>
       <div
@@ -68,10 +72,8 @@ export default function DetailContainer({
           <>
             <div
               className={cn(
-                "from-primary to-tertiary absolute inset-0 h-0 overflow-hidden bg-gradient-to-b pt-[calc(100vh/3)]",
-                roundedTopClassName,
-                "sm:rounded-t-none",
-                isIPhone ? "fixed" : "relative"
+                "from-primary to-tertiary inset-0 z-0 h-0 overflow-hidden bg-gradient-to-b pt-[calc(100vh/3)] transition",
+                hasInset ? "fixed" : "relative"
               )}
             >
               <Image
@@ -106,7 +108,7 @@ export default function DetailContainer({
           className={cn(
             "bg-background relative flex max-w-full flex-1 flex-col shadow-2xl",
             roundedTopClassName,
-            isIPhone ? "mt-[calc(100vh/3-46px)]" : "-mt-12"
+            hasInset ? "mt-[calc(100vh/3-46px)]" : "-mt-12"
           )}
         >
           <TitleBar
@@ -115,9 +117,7 @@ export default function DetailContainer({
             backButtonHref={`/${segment}`}
             magicTitle
             title={title}
-            tag={categories
-              ?.map((category) => t(`POSTS.category.${category.name}`))
-              .join(", ")}
+            tag={tag}
             titleRef={titleRef}
             scrollContainerRef={scrollContainerRef}
             trailingAccessory={<DetailToolbar />}

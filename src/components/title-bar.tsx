@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes"
 import * as React from "react"
 
-import useDeviceDetaction from "@/hooks/useDeviceDetaction"
+import useSafeAreaInsets from "@/hooks/useSafeAreaInsets"
 import { FaArrowLeft } from "./icon-duotone"
 import { useRouter } from "next/navigation"
 import { Button } from "./ui/button"
@@ -50,10 +50,10 @@ export function TitleBar({
   const [currentScrollOffset, _setCurrentScrollOffset] = React.useState(0)
   const [backgroundColorOpacity, setBackgroundColorOpacity] = React.useState(0)
   const router = useRouter()
-  const { isIPhone } = useDeviceDetaction()
+  const { hasInset } = useSafeAreaInsets()
 
-  const roundedTopClassName = isIPhone ? "rounded-t-5xl" : ""
-  const roundedContinerTopClassName = isIPhone
+  const roundedTopClassName = hasInset ? "rounded-t-5xl" : ""
+  const roundedContinerTopClassName = hasInset
     ? "rounded-t-5xl"
     : "rounded-t-3xl"
 
@@ -149,93 +149,96 @@ export function TitleBar({
   }, [titleRef, scrollContainerRef, setOpacity, setInitialTitleOffsets])
 
   return (
-    <div
-      style={{
-        boxShadow:
-          opacity > 0
-            ? `0 1px 20px rgba(0,0,0,${currentScrollOffset})`
-            : "none",
-      }}
-      className={cn(
-        "group/bar sticky top-0 z-10 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 transition-all",
-        currentScrollOffset !== 0 ? "active" : "",
-        magicTitle && offset > 40
-          ? "border-foreground/10 dark:border-foreground/20 border-t"
-          : "",
-        magicTitle && offset > 40 ? roundedContinerTopClassName : ""
-      )}
-    >
-      {magicTitle && segment === "posts" && (
-        <div
-          style={{
-            opacity: opacity + 1 === 1 ? 0 : opacity + 1,
-          }}
-          // eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values
-          className={cn(
-            "from-background via-background to-background/0 pointer-events-none absolute inset-0 -top-[calc(100vh/3+24px)] z-0 h-[calc(100vh/3+24px)] w-full bg-gradient-to-b via-70% transition-all",
-            roundedTopClassName
-          )}
-        />
-      )}
+    <>
       <div
         style={{
-          background: `hsla(var(--background) / ${backgroundColorOpacity}`,
+          boxShadow:
+            opacity > 0
+              ? `0 1px 20px rgba(0,0,0,${currentScrollOffset})`
+              : "none",
         }}
         className={cn(
-          "pointer-events-none absolute inset-0 z-0 size-full transition-all",
-          backgroundColorOpacity > 0.9 ? "backdrop-blur-sm" : "",
+          "group/bar sticky top-0 z-10 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 transition-all",
+          currentScrollOffset !== 0 ? "active" : "",
+          magicTitle && offset > 40
+            ? "border-foreground/10 dark:border-foreground/20 border-t"
+            : "",
           magicTitle && offset > 40 ? roundedContinerTopClassName : ""
         )}
-      />
-      <div
-        className={cn(
-          "relative flex-none transition-all duration-500",
-          segment !== "posts" ||
-            !magicTitle ||
-            (opacity !== 0 && opacity > -0.45)
-            ? "pt-[calc(env(safe-area-inset-top))]"
-            : ""
-        )}
       >
-        <span className="flex min-h-14 w-full items-center">
-          {backButton && backButtonHref && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={handleNavToBack}
-              className="text-foreground group/button mr-3 flex items-center justify-center rounded-md p-2 lg:hidden"
-            >
-              <FaArrowLeft className={cn("size-4")} />
-            </Button>
-          )}
-          {leadingAccessory && leadingAccessory}
-
-          <h2
-            style={
-              magicTitle
-                ? {
-                    transform: `translateY(${offset}%)`,
-                    opacity: `${opacity}`,
-                  }
-                : {}
-            }
+        {magicTitle && segment === "posts" && (
+          <div
+            data-opacity={opacity}
+            style={{
+              opacity: opacity + 1 === 1 ? 0 : opacity + 1.3,
+            }}
+            // eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values
             className={cn(
-              "transform-gpu",
-              magicTitle ? "flex items-center space-x-2 lg:px-5" : "flex-1"
+              "from-background via-background to-background/0 pointer-events-none absolute inset-0 -top-[calc(100vh/3+24px)] z-0 h-[calc(100vh/3+24px)] w-full bg-gradient-to-b via-70% backdrop-blur-sm transition-all",
+              roundedTopClassName
             )}
-          >
-            {tag && <Badge className="block flex-none truncate">{tag}</Badge>}
-            <span className="text-foreground line-clamp-1 text-base font-bold">
-              {title}
-            </span>
-          </h2>
-          {magicTitle && <div className="flex-1" />}
-          {trailingAccessory && trailingAccessory}
-        </span>
-        {searchAccessory && searchAccessory}
-      </div>
+          />
+        )}
+        <div
+          style={{
+            background: `hsla(var(--background) / ${backgroundColorOpacity || 1}`,
+          }}
+          className={cn(
+            "pointer-events-none absolute inset-0 z-0 size-full transition-all",
+            opacity !== 0 && opacity > -0.45 ? "backdrop-blur-sm" : "",
+            magicTitle && offset > 80 ? roundedContinerTopClassName : ""
+          )}
+        />
+        <div
+          className={cn(
+            "relative flex-none transition-all duration-500",
+            segment !== "posts" ||
+              !magicTitle ||
+              (opacity !== 0 && opacity > -0.45)
+              ? "pt-[calc(env(safe-area-inset-top))]"
+              : ""
+          )}
+        >
+          <span className="flex min-h-14 w-full items-center">
+            {backButton && backButtonHref && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleNavToBack}
+                className="text-foreground group/button mr-3 flex items-center justify-center rounded-md p-2 lg:hidden"
+              >
+                <FaArrowLeft className={cn("size-4")} />
+              </Button>
+            )}
+            {leadingAccessory && leadingAccessory}
 
-      <div>{children}</div>
-    </div>
+            <h2
+              style={
+                magicTitle
+                  ? {
+                      transform: `translateY(${offset}%)`,
+                      opacity: `${opacity}`,
+                    }
+                  : {}
+              }
+              className={cn(
+                "transform-gpu",
+                magicTitle ? "flex items-center space-x-2 lg:px-5" : "flex-1"
+              )}
+            >
+              {tag && <Badge className="block flex-none truncate">{tag}</Badge>}
+              <span className="text-foreground line-clamp-1 text-base font-bold">
+                {title}
+              </span>
+            </h2>
+            {magicTitle && <div className="flex-1" />}
+            {trailingAccessory && trailingAccessory}
+          </span>
+          {searchAccessory && searchAccessory}
+        </div>
+
+        <div>{children}</div>
+      </div>
+    </>
   )
 }
