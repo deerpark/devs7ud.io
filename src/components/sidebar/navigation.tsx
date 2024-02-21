@@ -6,7 +6,7 @@ import {
   FaArrowUpRightIcon,
   FaWreathLaurelIcon,
 } from "../icon-duotone"
-import { /* FaGithubIcon,  */ FaTwitterIcon } from "../icon-brand"
+import { FaGithubIcon /* FaTwitterIcon */ } from "../icon-brand"
 import { NavigationLink } from "./navigation-link"
 import { usePathname } from "next/navigation"
 import { useTranslations } from "next-intl"
@@ -89,7 +89,7 @@ export function SidebarNavigation({ counts }: SidebarNavigationProps) {
     {
       label: t("online.label"),
       items: [
-        {
+        /* {
           href: "https://twitter.com/deerpark7",
           label: t("online.twitter"),
           icon: FaTwitterIcon,
@@ -98,7 +98,7 @@ export function SidebarNavigation({ counts }: SidebarNavigationProps) {
           trailingAction: null,
           isExternal: true,
         },
-        /* 
+ */
         {
           href: "https://github.com/deerpark",
           label: t("online.github"),
@@ -107,7 +107,7 @@ export function SidebarNavigation({ counts }: SidebarNavigationProps) {
           isActive: false,
           trailingAction: null,
           isExternal: true,
-        }, */
+        },
       ],
     },
   ]
