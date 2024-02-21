@@ -43,15 +43,15 @@ export default function LocaleSwitcher() {
           variant="ghost"
           role="combobox"
           aria-expanded={open}
-          className="group h-auto w-full items-center space-x-3 rounded-md p-2 lg:py-1.5"
+          className="text-foreground hover:bg-accent group h-auto w-full items-center rounded-md p-0"
         >
-          <span className="flex w-5 items-center justify-center lg:w-4">
-            <FaLanguageIcon className="text-tertiary size-5 lg:size-4" />
+          <span className="flex flex-none items-center p-1.5">
+            <FaLanguageIcon className="size-5" />
           </span>
-          <span className="text-muted-foreground flex-1 text-left text-base/5 lg:text-sm/5">
-            {t("label")}
+          <span className="flex-1 p-1.5 text-left">{t("label")}</span>
+          <span className="flex flex-none items-center p-1.5">
+            <FaAnglesUpDownIcon className="fa-inherit size-3 opacity-40 group-hover:opacity-100" />
           </span>
-          <FaAnglesUpDownIcon className="fa-dark dark:fa-light size-4 shrink-0 opacity-40 group-hover:opacity-100 lg:size-3" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="max-w-[200px] p-0" align="start">

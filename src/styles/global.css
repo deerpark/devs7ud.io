@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 255 100% 10%;
+    --foreground: 255 3% 45%;
     --card: 255 10% 97%;
     --card-foreground: 255 100% 10%;
     --popover: 0 0% 100%;
@@ -30,11 +30,13 @@
     --fa-secondary-color: hsl(195 100% 55%);
     --fa-primary-opacity: 1;
     --fa-secondary-opacity: 1;
+    --fa-inherit: inherit;
+    --fa-inherit: inherit;
   }
 
   .dark {
     --background: 255 50% 5%;
-    --foreground: 255 40% 98%;
+    --foreground: 255 3% 55%;
     --card: 255 60% 13%;
     --card-foreground: 255 40% 98%;
     --popover: 255 50% 5%;
@@ -58,6 +60,8 @@
     --fa-secondary-color: hsl(195 70% 65%);
     --fa-primary-opacity: 1;
     --fa-secondary-opacity: 1;
+    --fa-inherit: inherit;
+    --fa-inherit: inherit;
   }
 }
 
@@ -98,6 +102,19 @@
     --fa-secondary-color: hsl(255 50% 5%);
     --fa-primary-opacity: 1;
     --fa-secondary-opacity: 0.4;
+  }
+
+  .fa-inherit {
+    --fa-primary-color: currentColor;
+    --fa-secondary-color: currentColor;
+    --fa-primary-opacity: inherit;
+    --fa-secondary-opacity: inherit;
+  }
+  .dark.fa-inherit {
+    --fa-primary-color: currentColor;
+    --fa-secondary-color: currentColor;
+    --fa-primary-opacity: inherit;
+    --fa-secondary-opacity: inherit;
   }
 
   .fa-default {

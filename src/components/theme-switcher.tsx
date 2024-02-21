@@ -38,16 +38,16 @@ export function ThemeSwitcher() {
           variant="ghost"
           role="combobox"
           aria-expanded={open}
-          className="group h-auto w-full items-center space-x-3 rounded-md p-2 lg:py-1.5"
+          className="text-foreground hover:bg-accent group h-auto w-full items-center rounded-md p-0"
         >
-          <span className="flex w-5 items-center justify-center lg:w-4">
-            <FaSunIcon className="size-5 rotate-0 scale-100 transition-all lg:size-4 dark:-rotate-90 dark:scale-0" />
-            <FaMoonStarsIcon className="absolute size-5 rotate-90 scale-0 transition-all lg:size-4 dark:rotate-0 dark:scale-100" />
+          <span className="flex flex-none items-center p-1.5">
+            <FaSunIcon className="size-5 dark:hidden" />
+            <FaMoonStarsIcon className="hidden size-5 dark:block" />
           </span>
-          <span className="text-muted-foreground flex-1 text-left text-base/5 lg:text-sm/5">
-            {t("toggle")}
+          <span className="flex-1 p-1.5 text-left">{t("toggle")}</span>
+          <span className="flex flex-none items-center p-1.5">
+            <FaAnglesUpDownIcon className="fa-inherit size-3 opacity-40 group-hover:opacity-100" />
           </span>
-          <FaAnglesUpDownIcon className="fa-dark dark:fa-light size-4 shrink-0 opacity-40 group-hover:opacity-100 lg:size-3" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="max-w-[200px] p-0" align="start">

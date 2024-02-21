@@ -1,3 +1,4 @@
+import { ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
 import { ThemeProvider } from "@/components/providers"
 import { Sidebar } from "@/components/sidebar"
 import { getMessages } from "next-intl/server"
@@ -38,20 +39,26 @@ export default async function DefaultLayout({
           : null
       }
     >
-      <div id="root" className="flex size-full min-h-screen">
+      <ResizablePanelGroup
+        direction="horizontal"
+        id="root"
+        className="flex size-full min-h-screen items-stretch lg:overflow-hidden"
+      >
         <Sidebar
           counts={{
             posts: pages?.results?.length || 0,
             bookmarks: bookmarks?.results?.length || 0,
           }}
         />
-        <div
-          id="contents"
-          className="relative flex max-h-screen flex-1 overflow-y-auto"
-        >
-          {children}
-        </div>
-      </div>
+        <ResizablePanel defaultSize={50}>
+          <div
+            id="contents"
+            className="relative flex flex-1 lg:max-h-screen lg:overflow-y-auto"
+          >
+            {children}
+          </div>
+        </ResizablePanel>
+      </ResizablePanelGroup>
     </ThemeProvider>
   )
 }

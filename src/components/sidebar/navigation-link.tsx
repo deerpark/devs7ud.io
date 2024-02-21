@@ -3,7 +3,6 @@
 import * as React from "react"
 import Link from "next/link"
 
-import { GlobalNavigationContext } from "../providers"
 import { RouteItem } from "@/types/common.type"
 import { Badge } from "../ui/badge"
 
@@ -22,40 +21,31 @@ export function NavigationLink({
     count,
   },
 }: NavigationLinkProps) {
-  const { setIsOpen } = React.useContext(GlobalNavigationContext)
   return (
-    <li>
+    <li className="px-3">
       <Link
         href={href}
         target={isExternal ? "_blank" : undefined}
         rel={isExternal ? "noopener noreferrer" : undefined}
-        className={`group flex flex-1 items-center space-x-3 rounded-md p-2 text-sm font-medium lg:py-1.5  ${
+        className={`group flex items-center rounded-md ${
           isActive
-            ? "text-primary-foreground bg-primary fa-light dark:fa-dark"
-            : "text-muted-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-accent-foreground/50 dark:hover:text-accent-foreground"
+            ? "text-primary bg-primary/20 fa-inherit font-bold"
+            : "text-foreground hover:bg-accent"
         }`}
-        onClick={() => setIsOpen(false)}
       >
-        <span className="flex w-5 items-center justify-center lg:w-4">
-          <NavIcon className="text-tertiary size-5 lg:size-4" />
+        <span className="flex flex-none items-center justify-center p-1.5">
+          <NavIcon className="size-5" />
         </span>
-        <span className="flex-1 text-base/5 lg:text-sm/5">{label}</span>
+        <span className="flex-1 p-1.5">{label}</span>
         {Accessory && (
-          <span className="flex w-5 items-center justify-center opacity-40 group-hover:opacity-100 lg:w-4">
-            <Accessory className="fa-dark dark:fa-light size-4 lg:size-3" />
+          <span className="flex flex-none items-center p-1.5">
+            <Accessory className="size-4" />
           </span>
         )}
         {typeof count === "number" && (
-          <Badge
-            variant="outline"
-            className={
-              isActive
-                ? "text-primary-foreground"
-                : "text-primary/70 dark:text-muted-foreground border-primary/20"
-            }
-          >
-            {count}
-          </Badge>
+          <span className="flex flex-none items-center p-1.5">
+            <Badge variant="outline">{count}</Badge>
+          </span>
         )}
       </Link>
     </li>
