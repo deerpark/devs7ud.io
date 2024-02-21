@@ -5,16 +5,16 @@ import {
   FaArrowUpRightIcon,
   FaWreathLaurelIcon,
 } from "../icon-duotone"
-import { FaGithubIcon, FaTwitterIcon } from "../icon-brand"
 import { NavigationLink } from "./navigation-link"
 import { usePathname } from "next/navigation"
+import { FaGithubIcon } from "../icon-brand"
 import { useTranslations } from "next-intl"
 import * as React from "react"
 
 type SidebarNavigationProps = {
   counts: {
-    posts: number
-    bookmarks: number
+    posts?: number
+    bookmarks?: number
   }
 }
 
@@ -59,7 +59,7 @@ export function SidebarNavigation({ counts }: SidebarNavigationProps) {
       trailingAction: null,
       isExternal: true,
     },
-    {
+    /* {
       href: "https://twitter.com/deerpark7",
       label: t("online.twitter"),
       icon: FaTwitterIcon,
@@ -67,8 +67,7 @@ export function SidebarNavigation({ counts }: SidebarNavigationProps) {
       isActive: false,
       trailingAction: null,
       isExternal: true,
-    },
-
+    }, */
     {
       href: "https://github.com/deerpark",
       label: t("online.github"),

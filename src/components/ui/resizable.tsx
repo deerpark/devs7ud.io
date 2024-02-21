@@ -1,8 +1,8 @@
 "use client"
 
 import * as ResizablePrimitive from "react-resizable-panels"
-import { GripVertical } from "lucide-react"
 
+import { FaDistrifaDistributeSpacingHorizontal } from "../icon-solid"
 import { cn } from "@/lib/utils"
 
 const ResizablePanelGroup = ({
@@ -35,8 +35,8 @@ const ResizableHandle = ({
     {...props}
   >
     {withHandle && (
-      <div className="bg-border z-10 flex h-4 w-3 items-center justify-center rounded-sm border">
-        <GripVertical className="size-2.5" />
+      <div className="z-10 flex size-4 items-center justify-center rounded-sm">
+        <FaDistrifaDistributeSpacingHorizontal className="text-muted-foreground/70 size-4" />
       </div>
     )}
   </ResizablePrimitive.PanelResizeHandle>

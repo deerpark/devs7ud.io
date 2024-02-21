@@ -76,7 +76,7 @@ export default function CommentForm({
                 <input
                   type="hidden"
                   name="name"
-                  value={user?.username || user?.id || ""}
+                  value={user?.username || user?.emailAddresses.join() || ""}
                 />
                 <Textarea
                   ref={commentRef}

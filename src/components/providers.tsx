@@ -16,7 +16,10 @@ const globalNavigationContext = {
   isOpen: false,
   setIsOpen: (_: boolean) => {},
   url: env.NEXT_PUBLIC_HOST,
-  user: null as Pick<User, "id" | "imageUrl" | "username"> | null,
+  user: null as Pick<
+    User,
+    "id" | "imageUrl" | "username" | "emailAddresses"
+  > | null,
 }
 
 export const GlobalNavigationContext = React.createContext(
@@ -31,7 +34,7 @@ export function ThemeProvider({
 }: ThemeProviderProps & {
   locale?: string
   url: string
-  user: Pick<User, "id" | "imageUrl" | "username"> | null
+  user: Pick<User, "id" | "imageUrl" | "username" | "emailAddresses"> | null
   messages?: AbstractIntlMessages | undefined
 }) {
   const initialState = {

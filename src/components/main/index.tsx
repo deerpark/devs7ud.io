@@ -13,7 +13,7 @@ export default function MainContainer({ title, children }: MainContainerProps) {
     <div
       id="main"
       ref={scrollContainerRef}
-      className="relative flex max-h-screen w-full flex-1 flex-col overflow-y-auto transition-all duration-500"
+      className="relative flex max-h-screen w-full flex-1 flex-col overflow-y-auto"
     >
       <TitleBar scrollContainerRef={scrollContainerRef} title={title} />
       <div className="space-y-1 p-3">{children}</div>

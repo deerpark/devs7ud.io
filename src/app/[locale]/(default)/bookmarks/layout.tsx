@@ -4,6 +4,7 @@ import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import { Bookmarks } from "@/components/bookmarks"
 import Search from "@/components/search/search"
 import { getPages } from "@/lib/notion"
+import { cookies } from "next/headers"
 import List from "@/components/list"
 import * as React from "react"
 
@@ -20,33 +21,35 @@ export default async function PageLayout({
   const pages = await getPages(params.locale, "bookmarks")
   // console.log(pages)
   const t = await getTranslations()
+  const layout = JSON.parse(
+    cookies().get("react-resizable-panels:container")?.value || "[30, 70]"
+  )
 
   return (
-    <div className="flex w-full">
-      <List
-        title={
-          <span className="ml-3 text-2xl font-black lg:text-base lg:font-semibold">
-            {t("SYSTEM.navigation.me.bookmarks")}
-          </span>
-        }
-        contents={
-          pages.results.length ? (
-            <Bookmarks data={pages.results as PageObjectResponse[]} />
-          ) : (
-            <div id="list" className="min-h-screen w-full">
-              <div className="mx-3 flex flex-1">
-                <span className="text-muted-foreground">
-                  {t("BOOKMARKS.empty")}
-                </span>
-              </div>
+    <List
+      title={
+        <span className="ml-3 text-2xl font-black lg:text-base lg:font-semibold">
+          {t("SYSTEM.navigation.me.bookmarks")}
+        </span>
+      }
+      contents={
+        pages.results.length ? (
+          <Bookmarks data={pages.results as PageObjectResponse[]} />
+        ) : (
+          <div id="list" className="min-h-screen w-full">
+            <div className="mx-3 flex flex-1">
+              <span className="text-muted-foreground">
+                {t("BOOKMARKS.empty")}
+              </span>
             </div>
-          )
-        }
-        search={!params.slug ? <Search /> : undefined}
-      >
-        {children}
-      </List>
-    </div>
+          </div>
+        )
+      }
+      search={!params.slug ? <Search /> : undefined}
+      layout={layout}
+    >
+      {children}
+    </List>
   )
 }
 

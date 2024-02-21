@@ -1,10 +1,11 @@
-import { ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
+import MainLayout from "@/components/main/main-layout"
 import { ThemeProvider } from "@/components/providers"
-import { Sidebar } from "@/components/sidebar"
 import { getMessages } from "next-intl/server"
 import { currentUser } from "@clerk/nextjs"
 import { getPages } from "@/lib/notion"
+import { cookies } from "next/headers"
 import { headers } from "next/headers"
+import * as React from "react"
 
 type DefaultLayoutProps = Readonly<{
   children: React.ReactNode
@@ -18,6 +19,9 @@ export default async function DefaultLayout({
   const pages = await getPages(params.locale)
   const bookmarks = await getPages(params.locale, "bookmarks")
   const user = await currentUser()
+  const layout = JSON.parse(
+    cookies().get("react-resizable-panels:root")?.value || "[20, 80]"
+  )
 
   // Using internationalization in Client Components
   const messages = await getMessages()
@@ -35,30 +39,24 @@ export default async function DefaultLayout({
       messages={messages}
       user={
         user
-          ? { id: user.id, imageUrl: user.imageUrl, username: user.username }
+          ? {
+              id: user.id,
+              imageUrl: user.imageUrl,
+              username: user.username,
+              emailAddresses: user.emailAddresses,
+            }
           : null
       }
     >
-      <ResizablePanelGroup
-        direction="horizontal"
-        id="root"
-        className="flex size-full min-h-screen items-stretch lg:overflow-hidden"
+      <MainLayout
+        counts={{
+          posts: pages?.results?.length || 0,
+          bookmarks: bookmarks?.results?.length || 0,
+        }}
+        layout={layout}
       >
-        <Sidebar
-          counts={{
-            posts: pages?.results?.length || 0,
-            bookmarks: bookmarks?.results?.length || 0,
-          }}
-        />
-        <ResizablePanel defaultSize={50}>
-          <div
-            id="contents"
-            className="relative flex flex-1 lg:max-h-screen lg:overflow-y-auto"
-          >
-            {children}
-          </div>
-        </ResizablePanel>
-      </ResizablePanelGroup>
+        {children}
+      </MainLayout>
     </ThemeProvider>
   )
 }

@@ -38,7 +38,7 @@ export function ThemeSwitcher() {
           variant="ghost"
           role="combobox"
           aria-expanded={open}
-          className="text-foreground hover:bg-accent group h-auto w-full items-center rounded-md p-0"
+          className="text-foreground/60 hover:bg-accent hover:text-foreground/100 group h-auto w-full items-center rounded-md p-0"
         >
           <span className="flex flex-none items-center p-1.5">
             <FaSunIcon className="size-5 dark:hidden" />
