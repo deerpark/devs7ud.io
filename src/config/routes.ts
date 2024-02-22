@@ -5,8 +5,8 @@ import {
   FaHouseIcon,
   FaArrowUpRightIcon,
   FaWreathLaurelIcon,
-} from "../components/icon-duotone"
-import { FaGithubIcon, FaTwitterIcon } from "../components/icon-brand"
+} from "@/components/icon-duotone"
+import { FaGithubIcon, FaTwitterIcon } from "@/components/icon-brand"
 import { useTranslations as getTranslations } from "next-intl"
 import { Route } from "@/types/common.type"
 

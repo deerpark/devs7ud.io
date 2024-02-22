@@ -5,7 +5,6 @@ import * as React from "react"
 import Favicon from "@/public/assets/icons/favicon-mono.svg"
 import { useLocale, useTranslations } from "next-intl"
 import { ThemeSwitcher } from "../theme-switcher"
-import { ResizablePanel } from "../ui/resizable"
 import { SidebarNavigation } from "./navigation"
 import LocaleSwitcher from "../locale-switcher"
 import SidebarFooter from "./footer"
@@ -17,29 +16,19 @@ type SidebarProps = {
     posts: number
     bookmarks: number
   }
-  defaultSize: number
-  minMaxSize: number[]
 }
 
-export function Sidebar({
-  counts,
-  defaultSize,
-  minMaxSize: [minSize, maxSize],
-}: SidebarProps) {
+export function Sidebar({ counts }: SidebarProps) {
   const t = useTranslations()
   const locale = useLocale()
   return (
     <>
-      <ResizablePanel
+      <div
         id="sidebar"
-        defaultSize={defaultSize}
-        minSize={minSize}
-        maxSize={maxSize}
         className={cn(
           "bg-background",
           "relative flex flex-none flex-col space-y-5 overflow-y-auto overflow-x-hidden text-sm"
         )}
-        order={1}
       >
         <div className="sticky top-0 flex min-h-14 flex-none items-center px-3">
           <Link href={`/${locale}`} className="flex items-center space-x-1">
@@ -62,7 +51,7 @@ export function Sidebar({
           <ThemeSwitcher />
         </div>
         <SidebarFooter />
-      </ResizablePanel>
+      </div>
     </>
   )
 }

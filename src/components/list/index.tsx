@@ -1,10 +1,5 @@
 "use client"
 
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "../ui/resizable"
 import useWindowSize from "@/hooks/useWindowSize"
 import { useParams } from "next/navigation"
 import { LayoutGroup } from "framer-motion"
@@ -12,14 +7,10 @@ import { TitleBar } from "../title-bar"
 import { cn } from "@/lib/utils"
 import * as React from "react"
 
-const MIN_SIZE_IN_PIXELS = 340
-const MAX_SIZE_IN_PIXELS = 448
-
 type ListProps = {
   title: React.ReactNode
   contents: React.ReactNode
   search: React.ReactNode
-  layout: number[]
 } & React.PropsWithChildren
 
 export default function List({
@@ -27,52 +18,11 @@ export default function List({
   title,
   contents,
   search,
-  layout,
   ...rest
 }: ListProps) {
   const params = useParams<{ slug: string; locale: string }>()
-  const [minSize, setMinSize] = React.useState(10)
-  const [maxSize, setMaxSize] = React.useState(30)
   const scrollContainerRef = React.useRef(null)
   const { windowWidth, handleResize } = useWindowSize()
-
-  const onLayout = (sizes: number[]) => {
-    document.cookie = `react-resizable-panels:container=${JSON.stringify(sizes)}`
-  }
-
-  React.useLayoutEffect(() => {
-    const panelGroup = document.querySelector<HTMLDivElement>(
-      '[data-panel-group-id="container"]'
-    )
-    const resizeHandle = document.querySelector<HTMLDivElement>(
-      '[id="container-handle"]'
-    )
-
-    if (!panelGroup) return
-
-    const observer = new ResizeObserver(() => {
-      let width = panelGroup.offsetWidth
-
-      if (resizeHandle) {
-        width -= resizeHandle.offsetWidth
-      }
-
-      setMinSize((MIN_SIZE_IN_PIXELS / width) * 100)
-      setMaxSize((MAX_SIZE_IN_PIXELS / width) * 100)
-    })
-    observer.observe(panelGroup)
-    if (resizeHandle) {
-      observer.observe(resizeHandle)
-    }
-
-    return () => {
-      observer.unobserve(panelGroup)
-      if (resizeHandle) {
-        observer.unobserve(resizeHandle)
-      }
-      observer.disconnect()
-    }
-  }, [])
 
   React.useLayoutEffect(() => {
     if (typeof window !== "object") return
@@ -87,24 +37,14 @@ export default function List({
   }, [handleResize])
 
   return (
-    <ResizablePanelGroup
-      autoSaveId="container"
-      onLayout={onLayout}
-      direction="horizontal"
-      id="container"
-      className="flex max-w-full flex-1"
-    >
+    <div id="container" className="flex max-w-full flex-1">
       {windowWidth > 767 && (
-        <ResizablePanel
+        <div
           id="list"
-          defaultSize={layout[0] || 30}
-          minSize={minSize}
-          maxSize={maxSize}
           className={cn(
             "flex-none transition-all duration-500",
             params.slug ? "" : "min-h-screen"
           )}
-          order={1}
         >
           <div
             ref={scrollContainerRef}
@@ -125,21 +65,13 @@ export default function List({
               </div>
             </LayoutGroup>
           </div>
-        </ResizablePanel>
-      )}
-      {(windowWidth > 767 || params.slug) && (
-        <ResizableHandle id="container-handle" withHandle />
+        </div>
       )}
       {params.slug && (
-        <ResizablePanel
-          id="main"
-          defaultSize={layout[1] || 70}
-          order={2}
-          className="flex flex-1 flex-col"
-        >
+        <div id="main" className="flex flex-1 flex-col">
           {children}
-        </ResizablePanel>
+        </div>
       )}
-    </ResizablePanelGroup>
+    </div>
   )
 }

@@ -1,70 +1,19 @@
 "use client"
 
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable"
 import useWindowSize from "@/hooks/useWindowSize"
 import { Sidebar } from "@/components/sidebar"
+import GlobalNavigation from "../navigation"
 import * as React from "react"
-
-const MIN_SIZE_IN_PIXELS = 240
-const MAX_SIZE_IN_PIXELS = 340
 
 type MainLayoutProps = {
   counts: {
     posts: number
     bookmarks: number
   }
-  layout: number[]
 } & React.PropsWithChildren
 
-export default function MainLayout({
-  children,
-  counts,
-  layout,
-}: MainLayoutProps) {
-  const [minSize, setMinSize] = React.useState(10)
-  const [maxSize, setMaxSize] = React.useState(30)
+export default function MainLayout({ children, counts }: MainLayoutProps) {
   const { windowWidth, handleResize } = useWindowSize()
-
-  const onLayout = (sizes: number[]) => {
-    document.cookie = `react-resizable-panels:root=${JSON.stringify(sizes)}`
-  }
-
-  React.useLayoutEffect(() => {
-    const panelGroup = document.querySelector<HTMLDivElement>(
-      '[data-panel-group-id="root"]'
-    )
-    const resizeHandle =
-      document.querySelector<HTMLDivElement>('[id="root-handle"]')
-
-    if (!panelGroup) return
-
-    const observer = new ResizeObserver(() => {
-      let width = panelGroup.offsetWidth
-
-      if (resizeHandle) {
-        width -= resizeHandle.offsetWidth
-      }
-
-      setMinSize((MIN_SIZE_IN_PIXELS / width) * 100)
-      setMaxSize((MAX_SIZE_IN_PIXELS / width) * 100)
-    })
-    observer.observe(panelGroup)
-    if (resizeHandle) {
-      observer.observe(resizeHandle)
-    }
-
-    return () => {
-      observer.unobserve(panelGroup)
-      if (resizeHandle) {
-        observer.unobserve(resizeHandle)
-      }
-      observer.disconnect()
-    }
-  }, [])
 
   React.useLayoutEffect(() => {
     if (typeof window !== "object") return
@@ -79,31 +28,23 @@ export default function MainLayout({
   }, [handleResize])
 
   return (
-    <ResizablePanelGroup
-      autoSaveId="root"
-      onLayout={onLayout}
-      direction="horizontal"
+    <div
       id="root"
       className="flex size-full min-h-screen items-stretch lg:overflow-hidden"
     >
-      {windowWidth > 1023 && (
+      {windowWidth > 1023 ? (
         <>
-          <Sidebar
-            counts={counts}
-            defaultSize={layout[0] || 10}
-            minMaxSize={[minSize, maxSize]}
-          />
-          <ResizableHandle id="root-handle" withHandle />
+          <Sidebar counts={counts} />
         </>
+      ) : (
+        <GlobalNavigation />
       )}
-      <ResizablePanel
+      <div
         id="contents"
-        defaultSize={layout[1]}
-        order={2}
         className="relative flex flex-1 lg:max-h-screen lg:overflow-y-auto"
       >
         {children}
-      </ResizablePanel>
-    </ResizablePanelGroup>
+      </div>
+    </div>
   )
 }
