@@ -6,6 +6,8 @@ import { getPages } from "@/lib/notion"
 import { headers } from "next/headers"
 import * as React from "react"
 
+import "@/styles/global.css"
+
 type DefaultLayoutProps = Readonly<{
   children: React.ReactNode
   params: { locale: string }
