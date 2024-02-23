@@ -1,7 +1,6 @@
 import * as React from "react"
 
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
-import { getTranslations } from "next-intl/server"
 import ListItemLink from "../list/list-link"
 import { Category } from "@/types/post.type"
 import { Separator } from "../ui/separator"
@@ -19,9 +18,8 @@ export interface BookmarksProps {
 
 const segment = "bookmarks"
 
-export async function Bookmarks(props: BookmarksProps) {
+export function Bookmarks(props: BookmarksProps) {
   const { data, onClick, leadingAccessory = null } = props
-  const t = await getTranslations("POSTS.category")
   // const locale = useLocale()
 
   return data.map((item) => {
@@ -79,9 +77,7 @@ export async function Bookmarks(props: BookmarksProps) {
                 )}
                 {categories?.length && (
                   <span className="line-clamp-1">
-                    {categories
-                      .map((category) => t(category.name) || category.name)
-                      .join(", ")}
+                    {categories.map((category) => category.name).join(", ")}
                   </span>
                 )}
               </div>

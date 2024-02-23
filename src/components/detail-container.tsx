@@ -3,7 +3,6 @@
 import useSafeAreaInsets from "@/hooks/useSafeAreaInsets"
 import { Category } from "@/types/post.type"
 import DetailToolbar from "./detail-toolbar"
-import { useTranslations } from "next-intl"
 import FloatingMenu from "./floating-menu"
 import Scratch from "./filters/scratch"
 import { TitleBar } from "./title-bar"
@@ -42,7 +41,6 @@ export default function DetailContainer({
   const [imgLoaded, setImgLoaded] = React.useState(false)
   const { hasInset = false, insets } = useSafeAreaInsets()
   console.log(insets)
-  const t = useTranslations()
   const { theme } = useTheme()
   const isDarkmode =
     theme === "dark" ||
@@ -55,9 +53,7 @@ export default function DetailContainer({
       ? poster[1]
       : poster[0]
     : ""
-  const tag = categories
-    ?.map((category) => t(`POSTS.category.${category.name}`))
-    .join(", ")
+  const tag = categories?.map((category) => category.name).join(", ")
 
   const handleLoadImage = React.useCallback(() => {
     setImgLoaded(true)
@@ -131,7 +127,7 @@ export default function DetailContainer({
             <div className="mb-4 flex items-center justify-center space-x-2">
               {categories?.map((category) => (
                 <Badge key={category.id} variant="outline" className="">
-                  {t(`POSTS.category.${category.name}`)}
+                  {category.name}
                 </Badge>
               ))}
             </div>

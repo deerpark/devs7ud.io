@@ -8,7 +8,6 @@ import type {
 import CommentCount from "../comments/comment-count"
 /* import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar" */
 import { FaSpinnerThirdIcon } from "../icon-duotone"
-import { getTranslations } from "next-intl/server"
 import ListItemLink from "../list/list-link"
 import { Category } from "@/types/post.type"
 import { Separator } from "../ui/separator"
@@ -28,9 +27,8 @@ export interface PostsProps {
 
 const segment = "posts"
 
-export async function Posts(props: PostsProps) {
+export function Posts(props: PostsProps) {
   const { data, onClick, leadingAccessory = null, byline, users = [] } = props
-  const t = await getTranslations("POSTS.category")
   const locale = useLocale()
 
   return data.map((post) => {
@@ -102,9 +100,7 @@ export async function Posts(props: PostsProps) {
                       {user?.name}
                     </span> */}
                     <span className="group-[.active]:text-primary-foreground truncate text-sm">
-                      {categories
-                        .map((category) => t(category.name))
-                        .join(", ")}
+                      {categories.map((category) => category.name).join(", ")}
                     </span>
                     <Separator
                       orientation="vertical"
