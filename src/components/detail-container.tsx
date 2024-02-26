@@ -63,7 +63,7 @@ export default function DetailContainer({
       <div
         ref={scrollContainerRef}
         id="main"
-        className="relative flex max-h-screen w-full flex-1 flex-col overflow-y-auto scroll-smooth transition-all duration-500"
+        className="relative flex max-h-screen w-full flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth transition-all duration-500"
       >
         {posterSrc && (
           <>
