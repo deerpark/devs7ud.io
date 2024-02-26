@@ -46,7 +46,7 @@ export function Sidebar({ counts }: SidebarProps) {
       : ""
   return (
     <>
-      {width > 480 ? (
+      {width > 1024 ? (
         <>
           <nav
             ref={scrollContainerRef}
@@ -66,14 +66,14 @@ export function Sidebar({ counts }: SidebarProps) {
                 >
                   <Favicon
                     className={cn(
-                      "text-primary dark:text-tertiary mr-2 size-5 lg:ml-[7px] lg:mr-3 lg:size-[18px]",
+                      "text-primary dark:text-primary-alt mr-2 size-5 lg:ml-[7px] lg:mr-3 lg:size-[18px]",
                       navIsOpen ? "ml-0.5 mr-2.5" : "ml-1 mr-2"
                     )}
                     viewBox="0 0 140 138"
                     preserveAspectRatio="xMidYMid meet"
                   />
                   <LogoTypo
-                    className="text-primary dark:text-tertiary w-28 lg:w-24"
+                    className="text-primary dark:text-primary-alt w-28 lg:w-24"
                     viewBox="0 0 141 18"
                     preserveAspectRatio="xMidYMid meet"
                     title={t("SIDEBAR.title")}
@@ -94,11 +94,9 @@ export function Sidebar({ counts }: SidebarProps) {
           <SidebarOverlay />
         </>
       ) : (
-        <div className="bg-background fixed inset-x-0 bottom-0 z-50 rounded-t-3xl p-4 shadow-2xl ring-1">
-          <div className="mx-auto w-full max-w-sm">
-            <div className="p-4 pb-0">
-              <SidebarNavigation counts={counts} global />
-            </div>
+        <div className="bg-background ring-border fixed inset-x-0 bottom-0 z-50 rounded-t-lg p-4 shadow-2xl ring-1">
+          <div className="mx-auto w-full max-w-lg">
+            <SidebarNavigation counts={counts} global />
           </div>
         </div>
       )}

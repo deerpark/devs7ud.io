@@ -38,6 +38,11 @@
         "label": "En ligne",
         "twitter": "Twitter",
         "github": "Github"
+      },
+      "extra": {
+        "label": "supplémentaire",
+        "twitter": "Twitter",
+        "github": "Github"
       }
     },
     "notfound": {

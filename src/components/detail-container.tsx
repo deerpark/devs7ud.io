@@ -69,7 +69,7 @@ export default function DetailContainer({
           <>
             <div
               className={cn(
-                "from-primary to-tertiary inset-0 z-0 h-0 overflow-hidden bg-gradient-to-b pt-[calc(100vh/3)] transition",
+                "from-primary to-primary-alt inset-0 z-0 h-0 overflow-hidden bg-gradient-to-b pt-[calc(100vh/3)] transition",
                 hasInset ? "fixed sm:relative" : "relative"
               )}
             >
