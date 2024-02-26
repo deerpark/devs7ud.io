@@ -7,19 +7,24 @@ import {
   FaWreathLaurelIcon,
 } from "../icon-duotone"
 import { FaGithubIcon /* FaTwitterIcon */ } from "../icon-brand"
+import { GlobalNavigationLink } from "./global-navigation-link"
 import { NavigationLink } from "./navigation-link"
 import { usePathname } from "next/navigation"
 import { useTranslations } from "next-intl"
 import * as React from "react"
 
 type SidebarNavigationProps = {
+  global?: boolean
   counts: {
     posts: number
     bookmarks: number
   }
 }
 
-export function SidebarNavigation({ counts }: SidebarNavigationProps) {
+export function SidebarNavigation({
+  counts,
+  global = false,
+}: SidebarNavigationProps) {
   const pathname = usePathname()
   const t = useTranslations("SYSTEM.navigation")
   const sections = [
@@ -112,7 +117,16 @@ export function SidebarNavigation({ counts }: SidebarNavigationProps) {
     },
   ]
 
-  return (
+  return global ? (
+    <ul className="flex h-14 items-stretch">
+      {sections
+        .map((section) => section.items)
+        .flat()
+        .map((item) => (
+          <GlobalNavigationLink key={item.label} link={item} />
+        ))}
+    </ul>
+  ) : (
     <div className="flex-1 space-y-1 p-3">
       {sections.map((section) => {
         return (
