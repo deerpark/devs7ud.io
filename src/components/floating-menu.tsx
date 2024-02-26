@@ -1,6 +1,5 @@
 "use client"
 
-import GlobalMenuButton from "./global-menu-button"
 import { FaLeftToLine } from "./icon-duotone"
 import { useRouter } from "next/navigation"
 import ScrollToTop from "./scroll-to-top"
@@ -51,7 +50,7 @@ export default function FloatingMenu({
   return (
     <div
       className={cn(
-        "ease-expo-in-out fixed bottom-9 right-5 z-50 flex flex-col space-y-2 transition-all duration-500",
+        "ease-expo-in-out fixed bottom-28 right-5 z-50 flex flex-col space-y-2 transition-all duration-500 lg:bottom-9",
         isShow ? "translate-y-0 " : "translate-y-11"
       )}
     >
@@ -64,7 +63,6 @@ export default function FloatingMenu({
           <FaLeftToLine className={cn("fa-light size-6")} />
         </Button>
       )}
-      <GlobalMenuButton isFloating />
       <ScrollToTop isShow={isShow} handleScrollToTop={handleScrollToTop} />
     </div>
   )

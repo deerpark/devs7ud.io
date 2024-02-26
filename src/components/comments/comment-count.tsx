@@ -27,7 +27,7 @@ export default async function CommentCount({
           className="group-[.active]:fa-light dark:group-[.active]:fa-dark size-4"
           style={{ transform: "rotateY(180deg)" }}
         />
-        <span className="text-tertiary group-[.active]:text-primary-foreground leading-4">
+        <span className="text-primary-alt group-[.active]:text-primary-foreground leading-4">
           {commentCounts}
         </span>
       </Badge>

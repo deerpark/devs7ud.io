@@ -38,6 +38,11 @@
         "label": "온라인",
         "twitter": "트위터",
         "github": "깃허브"
+      },
+      "extra": {
+        "label": "더보기",
+        "twitter": "트위터",
+        "github": "깃허브"
       }
     },
     "notfound": {

@@ -37,7 +37,7 @@ export function NavigationLink({
         onClick={() => setIsOpen(false)}
       >
         <span className="flex w-5 items-center justify-center lg:w-4">
-          <NavIcon className="text-tertiary size-5 lg:size-4" />
+          <NavIcon className="text-primary-alt size-5 lg:size-4" />
         </span>
         <span className="flex-1 text-base/5 lg:text-sm/5">{label}</span>
         {Accessory && (

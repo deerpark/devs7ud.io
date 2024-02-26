@@ -1,10 +1,10 @@
 import {
-  FaAddressCardIcon,
-  FaBlogIcon,
-  FaBookmarkIcon,
-  FaHouseIcon,
+  FaHeadSideIcon,
+  FaFeatherIcon,
+  FaPinataIcon,
+  FaCampgroundIcon,
   FaArrowUpRightIcon,
-  FaWreathLaurelIcon,
+  FaAwardIcon,
 } from "../components/icon-duotone"
 import { FaGithubIcon, FaTwitterIcon } from "../components/icon-brand"
 import { useTranslations as getTranslations } from "next-intl"
@@ -25,7 +25,7 @@ export function getRoutes(
         {
           href: "/",
           label: t("index.home"),
-          icon: FaHouseIcon,
+          icon: FaCampgroundIcon,
           trailingAccessory: null,
           isActive: pathname.replace(/en|ko|fr/g, "") === "/",
           trailingAction: null,
@@ -35,7 +35,7 @@ export function getRoutes(
         {
           href: "/posts",
           label: t("index.posts"),
-          icon: FaBlogIcon,
+          icon: FaFeatherIcon,
           trailingAccessory: null,
           isActive: pathname.replace(/en|ko|fr/g, "").indexOf("/posts") >= 0,
           trailingAction: null,
@@ -50,7 +50,7 @@ export function getRoutes(
         {
           href: "/bookmarks",
           label: t("me.bookmarks"),
-          icon: FaBookmarkIcon,
+          icon: FaPinataIcon,
           trailingAccessory: null,
           isActive:
             pathname.replace(/en|ko|fr/g, "").indexOf("/bookmarks") >= 0,
@@ -60,7 +60,7 @@ export function getRoutes(
         {
           href: "/about",
           label: t("me.about"),
-          icon: FaAddressCardIcon,
+          icon: FaHeadSideIcon,
           trailingAccessory: null,
           isActive: pathname.replace(/en|ko|fr/g, "").indexOf("/about") >= 0,
           trailingAction: null,
@@ -74,7 +74,7 @@ export function getRoutes(
         {
           href: "https://coni.gsretail.com",
           label: t("projects.coni"),
-          icon: FaWreathLaurelIcon,
+          icon: FaAwardIcon,
           trailingAccessory: FaArrowUpRightIcon,
           isActive: false,
           trailingAction: null,

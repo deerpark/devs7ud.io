@@ -1,15 +1,15 @@
 import {
-  faAddressCard as faAddressCardIcon,
+  faHeadSide as faHeadSideIcon,
   faLeftToLine as faLeftToLineIcon,
   faArrowRight as faArrowRightIcon,
   faBars as faBarsIcon,
-  faBlog as faBlogIcon,
-  faBookmark as faBookmarkIcon,
+  faFeather as faFeatherIcon,
+  faPinata as faPinataIcon,
   faCircleXmark as faCircleXmarkIcon,
   faXmark as faXmarkIcon,
-  faHouse as faHouseIcon,
+  faCampground as faCampgroundIcon,
   faArrowUpRight as faArrowUpRightIcon,
-  faWreathLaurel as faWreathLaurelIcon,
+  faAward as faAwardIcon,
   faMoonStars as faMoonStarsIcon,
   faSun as faSunIcon,
   faBomb as faBombIcon,
@@ -64,20 +64,20 @@ export const FaCircleXmark = (props: IconProps) => (
 export const FaXmark = (props: IconProps) => (
   <FaIcon icon={faXmarkIcon} {...props} />
 )
-export const FaHouseIcon = (props: IconProps) => (
-  <FaIcon icon={faHouseIcon} {...props} />
+export const FaCampgroundIcon = (props: IconProps) => (
+  <FaIcon icon={faCampgroundIcon} {...props} />
 )
-export const FaBlogIcon = (props: IconProps) => (
-  <FaIcon icon={faBlogIcon} {...props} />
+export const FaFeatherIcon = (props: IconProps) => (
+  <FaIcon icon={faFeatherIcon} {...props} />
 )
-export const FaBookmarkIcon = (props: IconProps) => (
-  <FaIcon icon={faBookmarkIcon} {...props} />
+export const FaPinataIcon = (props: IconProps) => (
+  <FaIcon icon={faPinataIcon} {...props} />
 )
-export const FaAddressCardIcon = (props: IconProps) => (
-  <FaIcon icon={faAddressCardIcon} {...props} />
+export const FaHeadSideIcon = (props: IconProps) => (
+  <FaIcon icon={faHeadSideIcon} {...props} />
 )
-export const FaWreathLaurelIcon = (props: IconProps) => (
-  <FaIcon icon={faWreathLaurelIcon} {...props} />
+export const FaAwardIcon = (props: IconProps) => (
+  <FaIcon icon={faAwardIcon} {...props} />
 )
 export const FaArrowUpRightIcon = (props: IconProps) => (
   <FaIcon icon={faArrowUpRightIcon} {...props} />
