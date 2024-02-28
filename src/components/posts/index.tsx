@@ -67,6 +67,7 @@ export function Posts(props: PostsProps) {
                 src={thumbnail}
                 width={96}
                 height={64}
+                sizes="(max-width: 96px) 100vw"
                 alt=""
                 className="absolute inset-0 size-full bg-[url('/assets/images/cool-background.png')] bg-cover object-cover transition-all duration-500 group-hover:opacity-100 group-[.active]:opacity-100"
               />

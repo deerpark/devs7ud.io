@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { default as NextImage } from "next/image"
 import { getPageBySlug } from "@/lib/notion"
 import { appConfig } from "@/config/app"
 import { ImageResponse } from "next/og"
@@ -39,12 +40,13 @@ export default async function Image({
         }}
       >
         {imageUrl ? (
-          <img
-            alt="Image"
+          <NextImage
             src={imageUrl}
-            width="100%"
-            height="100%"
-            style={{ objectFit: "cover" }}
+            width={1200}
+            height={630}
+            sizes="(max-width: 1200px) 100vw"
+            alt=""
+            className="absolute inset-0 object-cover"
           />
         ) : (
           <img

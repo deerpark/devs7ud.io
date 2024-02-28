@@ -53,6 +53,7 @@ export function Bookmarks(props: BookmarksProps) {
               // width={banner.width}
               width={48}
               height={48}
+              sizes="(max-width: 48px) 100vw"
               className="ring-border size-12 rounded-lg bg-[url('/assets/images/cool-background.png')] bg-cover object-cover ring-1 lg:size-8 lg:rounded-md"
             />
           </div>

@@ -53,6 +53,7 @@ export default function Slideshow({ items = [] }: SlideshowProps) {
                       // width={banner.width}
                       width={720}
                       height={400}
+                      sizes="(max-width: 720px) 100vw"
                       className="via-primary/30 to-primary/50 size-full max-w-full bg-gradient-to-b object-cover"
                     />
                   </CardContent>

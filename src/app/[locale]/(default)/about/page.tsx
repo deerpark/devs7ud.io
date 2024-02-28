@@ -14,6 +14,7 @@ export default function AboutPage() {
             src="/assets/images/me-ai-light.jpg"
             width={704}
             height={1536}
+            sizes="(max-width: 704px) 100vw"
             alt="Yonn Kim"
             className="ease-expo-in-out absolute inset-0 block size-full object-cover opacity-70 transition-all duration-1000 group-hover:opacity-0 dark:opacity-30 dark:invert"
           />
@@ -21,6 +22,7 @@ export default function AboutPage() {
             src="/assets/images/me.jpg"
             width={704}
             height={1536}
+            sizes="(max-width: 704px) 100vw"
             alt="Yonn Kim"
             className="ease-expo-in-out absolute inset-0 block size-full object-cover opacity-0 grayscale transition-all duration-1000 group-hover:opacity-70 dark:group-hover:opacity-50"
           />

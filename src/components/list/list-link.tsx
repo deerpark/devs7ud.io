@@ -42,7 +42,7 @@ export default function ListItemLink({
       </Link>
       {active && (
         <motion.div
-          className="bg-primary absolute inset-0.5 z-0 rounded-lg"
+          className="bg-primary absolute inset-0.5 z-0 rounded-2xl"
           layoutId="list-hilight"
         />
       )}

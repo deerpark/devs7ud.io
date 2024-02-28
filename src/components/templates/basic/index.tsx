@@ -37,6 +37,7 @@ export default function BookmarkTemplate(
           src="/assets/images/niagara/LogoWithoutShadow.svg"
           width={256}
           height={256}
+          sizes="(max-width: 256px) 100vw"
           alt="Niagara luncher app"
           className="mx-auto"
         />
