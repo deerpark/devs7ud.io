@@ -49,8 +49,17 @@ export function Posts(props: PostsProps) {
     const thumbnail =
       (post?.cover as any)?.file?.url || (post?.cover as any)?.external?.url
     return (
-      <ListItem key={post.id} layoutKey={post.id} className="group/item post">
-        <ListItemLink segment={segment} url={url} onClick={onClick && onClick}>
+      <ListItem
+        key={post.id}
+        layoutKey={post.id}
+        className="group/item post relative"
+      >
+        <ListItemLink
+          segment={segment}
+          url={url}
+          onClick={onClick && onClick}
+          className="relative z-10"
+        >
           {leadingAccessory}
           {thumbnail && (
             <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid h-16 w-24 flex-none place-content-center overflow-hidden rounded-xl shadow-lg transition-all duration-500">

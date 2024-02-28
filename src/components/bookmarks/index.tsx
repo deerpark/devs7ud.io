@@ -37,13 +37,13 @@ export function Bookmarks(props: BookmarksProps) {
       <ListItem
         key={item.id}
         layoutKey={item.id}
-        className="group/item bookmark"
+        className="group/item bookmark relative"
       >
         <ListItemLink
           segment={segment}
           url={url}
           onClick={onClick && onClick}
-          className=""
+          className="relative z-10"
         >
           {leadingAccessory}
           <div className="flex flex-none items-center justify-center">
