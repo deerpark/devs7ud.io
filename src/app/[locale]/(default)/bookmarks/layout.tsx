@@ -24,18 +24,18 @@ export default async function PageLayout({
   const posts = await Promise.all(
     (pages.results as PageObjectResponse[]).map(async (post) => {
       const url = (post.properties?.Favicon as any)?.files[0]?.file?.url
-      let plaiceholder: any
+      let base64: any
 
       if (url) {
         const buffer = await fetch(url).then(async (res) =>
           Buffer.from(await res.arrayBuffer())
         )
-        // plaiceholder = url ? await getPlaiceholder(url) : undefined
-        plaiceholder = await getPlaiceholder(buffer)
+        // base64 = url ? await getPlaiceholder(url) : undefined
+        base64 = (await getPlaiceholder(buffer)).base64
       }
       return {
         ...post,
-        plaiceholder,
+        base64,
       }
     })
   )
@@ -51,7 +51,7 @@ export default async function PageLayout({
         contents={
           pages.results.length ? (
             <Bookmarks
-              data={posts as (PageObjectResponse & { plaiceholder: any })[]}
+              data={posts as (PageObjectResponse & { base64: string })[]}
             />
           ) : (
             <div id="list" className="min-h-screen w-full">

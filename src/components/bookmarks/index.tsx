@@ -10,7 +10,7 @@ import Image from "next/image"
 /* import { cn } from "@/lib/utils" */
 
 export interface BookmarksProps {
-  data: (PageObjectResponse & { plaiceholder: any })[]
+  data: (PageObjectResponse & { base64: string })[]
   onClick?: () => void
   leadingAccessory?: React.ReactElement | null
   slug?: string | string[] | undefined
@@ -33,7 +33,7 @@ export function Bookmarks(props: BookmarksProps) {
     const favicon = (item.properties?.Favicon as any)?.files[0]?.file?.url
     const categories: Category[] =
       (item.properties?.Categories as any)?.multi_select || []
-    const thumbnail = item?.plaiceholder
+    const thumbnail = item?.base64
     return (
       <ListItem
         key={item.id}
@@ -47,18 +47,20 @@ export function Bookmarks(props: BookmarksProps) {
           className="relative z-10"
         >
           {leadingAccessory}
-          <div className="flex flex-none items-center justify-center">
-            <Image
-              alt="Favicon"
-              src={favicon}
-              placeholder="blur"
-              blurDataURL={thumbnail.base64}
-              width={48}
-              height={48}
-              sizes="(max-width: 48px) 100vw"
-              className="ring-border bg-background size-12 rounded-lg object-cover ring-1 lg:size-8 lg:rounded-md"
-            />
-          </div>
+          {thumbnail && favicon && (
+            <div className="flex flex-none items-center justify-center">
+              <Image
+                alt="Favicon"
+                src={favicon}
+                placeholder="blur"
+                blurDataURL={thumbnail}
+                width={48}
+                height={48}
+                sizes="(max-width: 48px) 100vw"
+                className="ring-border bg-background size-12 rounded-lg object-cover ring-1 lg:size-8 lg:rounded-md"
+              />
+            </div>
+          )}
           <div className="flex w-full flex-col justify-center">
             <div
               className={`text-secondary-foreground/70 group-[.active]:text-primary-foreground flex items-center justify-between`}

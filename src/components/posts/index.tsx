@@ -17,7 +17,7 @@ import { useLocale } from "next-intl"
 /* import { cn } from "@/lib/utils" */
 
 export interface PostsProps {
-  data: (PageObjectResponse & { plaiceholder: any })[]
+  data: (PageObjectResponse & { base64: string })[]
   onClick?: () => void
   leadingAccessory?: React.ReactElement | null
   byline?: boolean
@@ -46,7 +46,7 @@ export function Posts(props: PostsProps) {
       locale,
       { addSuffix: true }
     )
-    const thumbnail = post?.plaiceholder
+    const thumbnail = post?.base64
     const thumbnailSrc =
       (post?.cover as any)?.file?.url || (post?.cover as any)?.external?.url
     return (
@@ -62,12 +62,12 @@ export function Posts(props: PostsProps) {
           className="relative z-10"
         >
           {leadingAccessory}
-          {thumbnail && thumbnailSrc && thumbnail.base64 && (
+          {thumbnail && thumbnailSrc && (
             <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid h-16 w-24 flex-none place-content-center overflow-hidden rounded-xl shadow-lg transition-all duration-500">
               <Image
                 src={thumbnailSrc}
                 placeholder="blur"
-                blurDataURL={thumbnail.base64}
+                blurDataURL={thumbnail}
                 width={96}
                 height={64}
                 sizes="(max-width: 96px) 100vw"
