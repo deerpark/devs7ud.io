@@ -158,7 +158,7 @@ export function TitleBar({
               : "none",
         }}
         className={cn(
-          "group/bar sticky top-0 z-10 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 transition-all duration-500",
+          "group/bar sticky top-0 z-30 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 transition-all duration-500",
           currentScrollOffset !== 0 ? "active" : "",
           magicTitle && offset >= 100
             ? "border-foreground/10 dark:border-foreground/20 border-t"
@@ -174,7 +174,7 @@ export function TitleBar({
             }}
             // eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values
             className={cn(
-              "pointer-events-none absolute inset-0 -top-[calc(100vh/3+24px)] z-0 h-[calc(100vh/3+24px)] w-full backdrop-blur-sm transition-all",
+              "pointer-events-none absolute inset-0 -top-[calc(100vh/2.5+24px)] z-0 h-[calc(100vh/2.5+24px)] w-full backdrop-blur-sm transition-all",
               roundedTopClassName
             )}
           />

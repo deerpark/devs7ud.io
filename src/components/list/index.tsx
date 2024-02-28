@@ -1,7 +1,6 @@
 "use client"
 
 import { useParams } from "next/navigation"
-import { LayoutGroup } from "framer-motion"
 import { TitleBar } from "../title-bar"
 import * as React from "react"
 
@@ -37,11 +36,9 @@ export default function List({
             title={title}
             searchAccessory={search}
           />
-          <LayoutGroup>
-            <div className="divide-border/30 divide-y py-3 lg:divide-y-0 lg:px-3">
-              {contents}
-            </div>
-          </LayoutGroup>
+          <div className="divide-border/30 divide-y py-3 lg:divide-y-0 lg:px-3">
+            {contents}
+          </div>
         </div>
       </div>
       {children}

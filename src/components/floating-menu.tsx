@@ -50,17 +50,18 @@ export default function FloatingMenu({
   return (
     <div
       className={cn(
-        "ease-expo-in-out fixed bottom-28 right-5 z-50 flex flex-col space-y-2 transition-all duration-500 lg:bottom-9",
+        "ease-expo-in-out fixed bottom-[calc(112px+env(safe-area-inset-bottom))] right-7 z-50 flex flex-col space-y-2 transition-all duration-500 lg:bottom-9",
         isShow ? "translate-y-0 " : "translate-y-11"
       )}
     >
       {backButton && backButtonHref && (
         <Button
           size="icon"
+          variant="outline"
           onClick={handleNavToBack}
-          className="border-background group/button size-12 rounded-full lg:hidden"
+          className="border-background group/button size-12 rounded-full shadow-2xl lg:hidden"
         >
-          <FaLeftToLine className={cn("fa-light size-6")} />
+          <FaLeftToLine className={cn("size-6")} />
         </Button>
       )}
       <ScrollToTop isShow={isShow} handleScrollToTop={handleScrollToTop} />

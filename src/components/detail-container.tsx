@@ -39,7 +39,7 @@ export default function DetailContainer({
   const scrollContainerRef = React.useRef(null)
   const titleRef = React.useRef<HTMLHeadingElement>(null)
   const [imgLoaded, setImgLoaded] = React.useState(false)
-  const { hasInset = false, insets } = useSafeAreaInsets()
+  const { hasInset = false } = useSafeAreaInsets()
   const { theme } = useTheme()
   const isDarkmode =
     theme === "dark" ||
@@ -68,7 +68,7 @@ export default function DetailContainer({
           <>
             <div
               className={cn(
-                "from-primary to-primary-alt inset-0 z-0 h-0 overflow-hidden bg-gradient-to-b pt-[calc(100vh/3)] transition",
+                "from-primary to-primary-alt inset-0 z-0 h-0 overflow-hidden bg-gradient-to-b pt-[calc(100vh/2.5)] transition",
                 hasInset ? "fixed sm:relative" : "relative"
               )}
             >
@@ -81,7 +81,7 @@ export default function DetailContainer({
                 /* placeholder="blur"
             blurDataURL={blurDataURL} */
                 className={cn(
-                  "from-primary/20 to-primary/0 absolute inset-0 size-full max-h-[calc(100vh/3)] max-w-full bg-gradient-to-b object-cover transition-all",
+                  "from-primary/20 to-primary/0 absolute inset-0 size-full max-h-[calc(100vh/2.5)] max-w-full bg-gradient-to-b object-cover transition-all",
                   imgLoaded
                     ? "animate-gradient-mask fill-mode-both opacity-0"
                     : "opacity-0"
@@ -104,7 +104,7 @@ export default function DetailContainer({
           className={cn(
             "bg-background relative flex max-w-full flex-1 flex-col shadow-2xl",
             roundedTopClassName,
-            hasInset ? "mt-[calc(100vh/3-46px)] sm:-mt-12" : "-mt-12"
+            hasInset ? "mt-[calc(100vh/2.5-46px)] sm:-mt-12" : "-mt-12"
           )}
         >
           <TitleBar
