@@ -3,7 +3,6 @@ import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoint
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import { getPages, getUsers } from "@/lib/notion"
 import Search from "@/components/search/search"
-import { getPlaiceholder } from "plaiceholder"
 import { Posts } from "@/components/posts"
 import List from "@/components/list"
 import * as React from "react"
@@ -21,25 +20,6 @@ export default async function PageLayout({
   const pages = await getPages(params.locale)
   const users = await getUsers()
   const t = await getTranslations()
-  const posts = await Promise.all(
-    (pages.results as PageObjectResponse[]).map(async (post) => {
-      const url =
-        (post?.cover as any)?.file?.url || (post?.cover as any)?.external?.url
-      let base64: any
-
-      if (url) {
-        const buffer = await fetch(url).then(async (res) =>
-          Buffer.from(await res.arrayBuffer())
-        )
-        // base64 = url ? await getPlaiceholder(url) : undefined
-        base64 = (await getPlaiceholder(buffer)).base64
-      }
-      return {
-        ...post,
-        base64,
-      }
-    })
-  )
 
   return (
     <div className="flex w-full">
@@ -50,9 +30,9 @@ export default async function PageLayout({
           </span>
         }
         contents={
-          posts.length ? (
+          pages.results.length ? (
             <Posts
-              data={posts as (PageObjectResponse & { base64: string })[]}
+              data={pages.results as PageObjectResponse[]}
               byline
               users={"results" in users ? users.results : []}
             />

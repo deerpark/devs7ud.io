@@ -17,7 +17,7 @@ import { useLocale } from "next-intl"
 /* import { cn } from "@/lib/utils" */
 
 export interface PostsProps {
-  data: (PageObjectResponse & { base64: string })[]
+  data: PageObjectResponse[]
   onClick?: () => void
   leadingAccessory?: React.ReactElement | null
   byline?: boolean
@@ -46,33 +46,20 @@ export function Posts(props: PostsProps) {
       locale,
       { addSuffix: true }
     )
-    const thumbnail = post?.base64
-    const thumbnailSrc =
+    const thumbnail =
       (post?.cover as any)?.file?.url || (post?.cover as any)?.external?.url
     return (
-      <ListItem
-        key={post.id}
-        layoutKey={post.id}
-        className="group/item post relative"
-      >
-        <ListItemLink
-          segment={segment}
-          url={url}
-          onClick={onClick && onClick}
-          className="relative z-10"
-        >
+      <ListItem key={post.id} layoutKey={post.id} className="group/item post">
+        <ListItemLink segment={segment} url={url} onClick={onClick && onClick}>
           {leadingAccessory}
-          {thumbnail && thumbnailSrc && (
+          {thumbnail && (
             <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid h-16 w-24 flex-none place-content-center overflow-hidden rounded-xl shadow-lg transition-all duration-500">
               <Image
-                src={thumbnailSrc}
-                placeholder="blur"
-                blurDataURL={thumbnail}
+                src={thumbnail}
                 width={96}
                 height={64}
-                sizes="(max-width: 96px) 100vw"
-                alt="Thumbnail"
-                className="absolute inset-0 size-full object-cover transition-all duration-500 group-hover:opacity-100 group-[.active]:opacity-100"
+                alt=""
+                className="absolute inset-0 size-full bg-[url('/assets/images/cool-background.png')] bg-cover object-cover transition-all duration-500 group-hover:opacity-100 group-[.active]:opacity-100"
               />
             </div>
           )}
