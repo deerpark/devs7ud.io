@@ -5,10 +5,12 @@ import Link from "next/link"
 
 import { GlobalNavigationContext } from "../providers"
 import { RouteItem } from "@/types/common.type"
+import { motion } from "framer-motion"
 import { Badge } from "../ui/badge"
 
 interface NavigationLinkProps {
   link: RouteItem
+  badge?: boolean
 }
 
 export function NavigationLink({
@@ -21,17 +23,18 @@ export function NavigationLink({
     isExternal,
     count,
   },
+  badge,
 }: NavigationLinkProps) {
   const { setIsOpen } = React.useContext(GlobalNavigationContext)
   return (
-    <li>
+    <li className="relative">
       <Link
         href={href}
         target={isExternal ? "_blank" : undefined}
         rel={isExternal ? "noopener noreferrer" : undefined}
-        className={`group flex flex-1 items-center space-x-3 rounded-md p-2 text-sm font-medium lg:py-1.5  ${
+        className={`group relative z-10 flex flex-1 items-center space-x-3 rounded-md p-2 text-sm font-medium lg:py-1.5 ${
           isActive
-            ? "text-primary-foreground bg-primary fa-light dark:fa-dark"
+            ? "text-primary-foreground fa-light dark:fa-dark"
             : "text-muted-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-accent-foreground/50 dark:hover:text-accent-foreground"
         }`}
         onClick={() => setIsOpen(false)}
@@ -45,7 +48,7 @@ export function NavigationLink({
             <Accessory className="fa-dark dark:fa-light size-4 lg:size-3" />
           </span>
         )}
-        {typeof count === "number" && (
+        {typeof count === "number" && badge && (
           <Badge
             variant="outline"
             className={
@@ -58,6 +61,12 @@ export function NavigationLink({
           </Badge>
         )}
       </Link>
+      {isActive && (
+        <motion.div
+          className="bg-primary absolute inset-0.5 z-0 rounded-lg"
+          layoutId="sidebar-hilight"
+        />
+      )}
     </li>
   )
 }

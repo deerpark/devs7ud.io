@@ -3,6 +3,7 @@ import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoint
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import { Bookmarks } from "@/components/bookmarks"
 import Search from "@/components/search/search"
+import { getPlaiceholder } from "plaiceholder"
 import { getPages } from "@/lib/notion"
 import List from "@/components/list"
 import * as React from "react"
@@ -20,6 +21,24 @@ export default async function PageLayout({
   const pages = await getPages(params.locale, "bookmarks")
   // console.log(pages)
   const t = await getTranslations()
+  const posts = await Promise.all(
+    (pages.results as PageObjectResponse[]).map(async (post) => {
+      const url = (post.properties?.Favicon as any)?.files[0]?.file?.url
+      let plaiceholder: any
+
+      if (url) {
+        const buffer = await fetch(url).then(async (res) =>
+          Buffer.from(await res.arrayBuffer())
+        )
+        // plaiceholder = url ? await getPlaiceholder(url) : undefined
+        plaiceholder = await getPlaiceholder(buffer)
+      }
+      return {
+        ...post,
+        plaiceholder,
+      }
+    })
+  )
 
   return (
     <div className="flex w-full">
@@ -31,7 +50,9 @@ export default async function PageLayout({
         }
         contents={
           pages.results.length ? (
-            <Bookmarks data={pages.results as PageObjectResponse[]} />
+            <Bookmarks
+              data={posts as (PageObjectResponse & { plaiceholder: any })[]}
+            />
           ) : (
             <div id="list" className="min-h-screen w-full">
               <div className="mx-3 flex flex-1">

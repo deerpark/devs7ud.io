@@ -1,6 +1,7 @@
 "use client"
 
 import { useParams } from "next/navigation"
+import { motion } from "framer-motion"
 import { PostsProps } from "../posts"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
@@ -25,18 +26,26 @@ export default function ListItemLink({
     "border-border/50 group flex space-x-3 border-b px-6 py-3 text-sm transition-all duration-500 last-of-type:border-none lg:rounded-2xl lg:p-2 2xl:group-[.post]/item:rounded-2xl"
   /* const isPost = segment === "posts" */
   return (
-    <Link
-      href={url}
-      onClick={onClick && onClick}
-      className={cn(
-        newLocal,
-        active
-          ? "bg-primary text-primary-foreground active"
-          : "text-secondary-foreground/70 hover:bg-accent hover:text-accent-foreground",
-        className
+    <>
+      <Link
+        href={url}
+        onClick={onClick && onClick}
+        className={cn(
+          newLocal,
+          active
+            ? "text-primary-foreground active"
+            : "text-secondary-foreground/70 hover:bg-accent hover:text-accent-foreground",
+          className
+        )}
+      >
+        {children}
+      </Link>
+      {active && (
+        <motion.div
+          className="bg-primary absolute inset-0.5 z-0 rounded-lg"
+          layoutId="list-hilight"
+        />
       )}
-    >
-      {children}
-    </Link>
+    </>
   )
 }

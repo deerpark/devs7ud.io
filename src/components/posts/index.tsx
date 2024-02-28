@@ -17,7 +17,7 @@ import { useLocale } from "next-intl"
 /* import { cn } from "@/lib/utils" */
 
 export interface PostsProps {
-  data: PageObjectResponse[]
+  data: (PageObjectResponse & { plaiceholder: any })[]
   onClick?: () => void
   leadingAccessory?: React.ReactElement | null
   byline?: boolean
@@ -46,19 +46,32 @@ export function Posts(props: PostsProps) {
       locale,
       { addSuffix: true }
     )
-    const thumbnail =
+    const thumbnail = post?.plaiceholder
+    const thumbnailSrc =
       (post?.cover as any)?.file?.url || (post?.cover as any)?.external?.url
     return (
-      <ListItem key={post.id} layoutKey={post.id} className="group/item post">
-        <ListItemLink segment={segment} url={url} onClick={onClick && onClick}>
+      <ListItem
+        key={post.id}
+        layoutKey={post.id}
+        className="group/item post relative"
+      >
+        <ListItemLink
+          segment={segment}
+          url={url}
+          onClick={onClick && onClick}
+          className="relative z-10"
+        >
           {leadingAccessory}
-          {thumbnail && (
+          {thumbnail && thumbnailSrc && thumbnail.base64 && (
             <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid h-16 w-24 flex-none place-content-center overflow-hidden rounded-xl shadow-lg transition-all duration-500">
               <Image
-                src={thumbnail}
+                src={thumbnailSrc}
+                placeholder="blur"
+                blurDataURL={thumbnail.base64}
                 width={96}
                 height={64}
-                alt=""
+                sizes="(max-width: 96px) 100vw"
+                alt="Thumbnail"
                 className="absolute inset-0 size-full object-cover transition-all duration-500 group-hover:opacity-100 group-[.active]:opacity-100"
               />
             </div>

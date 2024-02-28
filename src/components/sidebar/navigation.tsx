@@ -22,6 +22,7 @@ import { ThemeSwitcher } from "../theme-switcher"
 import LocaleSwitcher from "../locale-switcher"
 import { usePathname } from "next/navigation"
 import { useTranslations } from "next-intl"
+import { motion } from "framer-motion"
 import { Button } from "../ui/button"
 import SidebarFooter from "./footer"
 import * as React from "react"
@@ -55,6 +56,7 @@ export function SidebarNavigation({
           isActive: pathname.replace(/en|ko|fr/g, "") === "/",
           trailingAction: null,
           isExternal: false,
+          global: true,
         },
 
         {
@@ -67,6 +69,7 @@ export function SidebarNavigation({
           trailingAction: null,
           isExternal: false,
           count: counts.posts,
+          global: true,
         },
       ],
     },
@@ -85,6 +88,7 @@ export function SidebarNavigation({
             pathname.replace(/en|ko|fr/g, "").indexOf("/bookmarks") >= 0,
           isExternal: false,
           count: counts.bookmarks,
+          global: true,
         },
         {
           href: "/about",
@@ -95,6 +99,7 @@ export function SidebarNavigation({
           isActive: pathname.replace(/en|ko|fr/g, "").indexOf("/about") >= 0,
           trailingAction: null,
           isExternal: false,
+          global: false,
         },
       ],
     },
@@ -112,6 +117,7 @@ export function SidebarNavigation({
           isActive: false,
           trailingAction: null,
           isExternal: false,
+          global: true,
         },
       ],
     },
@@ -129,6 +135,7 @@ export function SidebarNavigation({
           isActive: false,
           trailingAction: null,
           isExternal: true,
+          global: true,
         },
         {
           href: "https://github.com/deerpark",
@@ -139,6 +146,7 @@ export function SidebarNavigation({
           isActive: false,
           trailingAction: null,
           isExternal: true,
+          global: true,
         },
       ],
     },
@@ -156,6 +164,7 @@ export function SidebarNavigation({
           isActive: false,
           trailingAction: null,
           isExternal: true,
+          global: true,
         },
         {
           href: "https://github.com/deerpark",
@@ -166,6 +175,7 @@ export function SidebarNavigation({
           isActive: false,
           trailingAction: null,
           isExternal: true,
+          global: true,
         },
       ],
     },
@@ -177,6 +187,7 @@ export function SidebarNavigation({
         .filter((s) => !s.extra && s.global)
         .map((section) => section.items)
         .flat()
+        .filter((s) => s.global)
         .map((item) => (
           <GlobalNavigationLink key={item.label} link={item} />
         ))}
@@ -192,18 +203,31 @@ export function SidebarNavigation({
                 <Button
                   type="button"
                   variant="ghost"
-                  className="text-tertiary-foreground group flex w-full flex-1 items-center justify-center rounded-md p-2 text-sm font-medium"
+                  className="text-tertiary-foreground group flex w-full flex-1 items-center justify-center rounded-md !bg-transparent p-2 text-sm font-medium"
                 >
-                  <FaEllipsisVerticalIcon className="size-8" />
+                  <motion.span
+                    key="default-icon"
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{
+                      scale: 0.5,
+                      opacity: 0,
+                      transition: { duration: 0.1 },
+                    }}
+                  >
+                    <FaEllipsisVerticalIcon className="size-8 transition-all group-hover:size-10 group-active:size-6" />
+                  </motion.span>
                 </Button>
               </DrawerTrigger>
               <DrawerContent>
                 <div className="mx-auto w-full max-w-sm">
-                  <div className="flex flex-col p-4">
+                  <div className="flex flex-col p-4 pb-0">
                     <ul className="text-alt-foreground flex-none space-y-1 p-3">
-                      {section.items.map((item) => (
-                        <NavigationLink key={item.label} link={item} />
-                      ))}
+                      {section.items
+                        .filter((s) => s.global)
+                        .map((item) => (
+                          <NavigationLink key={item.label} link={item} />
+                        ))}
                     </ul>
                     <div className="flex-none space-y-1 p-3">
                       <h4 className="text-muted-foreground/50 px-2 pb-2 pt-5 text-xs font-semibold">
@@ -236,7 +260,7 @@ export function SidebarNavigation({
                 </h4>
               )}
               {section.items.map((item) => (
-                <NavigationLink key={item.label} link={item} />
+                <NavigationLink key={item.label} link={item} badge />
               ))}
             </ul>
           )

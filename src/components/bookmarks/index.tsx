@@ -10,7 +10,7 @@ import Image from "next/image"
 /* import { cn } from "@/lib/utils" */
 
 export interface BookmarksProps {
-  data: PageObjectResponse[]
+  data: (PageObjectResponse & { plaiceholder: any })[]
   onClick?: () => void
   leadingAccessory?: React.ReactElement | null
   slug?: string | string[] | undefined
@@ -33,26 +33,29 @@ export function Bookmarks(props: BookmarksProps) {
     const favicon = (item.properties?.Favicon as any)?.files[0]?.file?.url
     const categories: Category[] =
       (item.properties?.Categories as any)?.multi_select || []
+    const thumbnail = item?.plaiceholder
     return (
       <ListItem
         key={item.id}
         layoutKey={item.id}
-        className="group/item bookmark"
+        className="group/item bookmark relative"
       >
         <ListItemLink
           segment={segment}
           url={url}
           onClick={onClick && onClick}
-          className=""
+          className="relative z-10"
         >
           {leadingAccessory}
           <div className="flex flex-none items-center justify-center">
             <Image
-              alt="Image"
+              alt="Favicon"
               src={favicon}
-              // width={banner.width}
+              placeholder="blur"
+              blurDataURL={thumbnail.base64}
               width={48}
               height={48}
+              sizes="(max-width: 48px) 100vw"
               className="ring-border bg-background size-12 rounded-lg object-cover ring-1 lg:size-8 lg:rounded-md"
             />
           </div>
