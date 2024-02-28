@@ -24,7 +24,7 @@ export default function ListItemLink({
   const active = `/${segment}/${params.slug}` === url
   const newLocal =
     "border-border/50 group flex space-x-3 border-b px-6 py-3 text-sm transition-all duration-500 last-of-type:border-none lg:rounded-2xl lg:p-2 2xl:group-[.post]/item:rounded-2xl"
-  /* const isPost = segment === "posts" */
+  const isPost = segment === "posts"
   return (
     <>
       <Link
@@ -42,7 +42,7 @@ export default function ListItemLink({
       </Link>
       {active && (
         <motion.div
-          className="bg-primary absolute inset-0.5 z-0 rounded-2xl"
+          className={cn("bg-primary absolute inset-0.5 z-0", isPost ? "lg:rounded-2xl" : "lg:rounded-xl")}
           layoutId="list-hilight"
         />
       )}

@@ -40,7 +40,6 @@ export default function DetailContainer({
   const titleRef = React.useRef<HTMLHeadingElement>(null)
   const [imgLoaded, setImgLoaded] = React.useState(false)
   const { hasInset = false, insets } = useSafeAreaInsets()
-  console.log(insets)
   const { theme } = useTheme()
   const isDarkmode =
     theme === "dark" ||
