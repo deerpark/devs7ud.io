@@ -18,7 +18,7 @@ import { useLocale } from "next-intl"
 
 export interface PostsProps {
   data: PageObjectResponse[]
-  onClick?: () => void
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>
   leadingAccessory?: React.ReactElement | null
   byline?: boolean
   slug?: string | string[] | undefined
@@ -75,19 +75,19 @@ export function Posts(props: PostsProps) {
           )}
           <div className="flex w-full flex-1 flex-col justify-center space-y-1">
             <div
-              className={`group-[.active]:text-primary-foreground line-clamp-1 break-keep text-lg/6 font-bold`}
+              className={`text-foreground/70 group-[.active]:text-foreground/100 line-clamp-1 break-keep text-lg/6 font-bold`}
             >
               {title}
             </div>
             {/* {description && (
               <div
-                className={`group-[.active]:text-primary-foreground line-clamp-1 text-base/5 opacity-70 2xl:line-clamp-2`}
+                className={`text-foreground/60 group-[.active]:text-foreground/80 line-clamp-1 text-base/5 2xl:line-clamp-2`}
               >
                 {description}
               </div>
             )} */}
             <div
-              className={`text-secondary-foreground/40 group-[.active]:text-secondary-foreground flex flex-wrap items-center justify-between pl-0.5`}
+              className={`text-text-foreground/60 group-[.active]:text-foreground/80 flex flex-wrap items-center justify-between pl-0.5`}
             >
               <div className="flex flex-1 items-center space-x-2 2xl:mb-0">
                 {byline && user && (
@@ -106,17 +106,17 @@ export function Posts(props: PostsProps) {
                         {user?.name?.slice(0, 1)}
                       </AvatarFallback>
                     </Avatar> */}
-                    {/* <span className="group-[.active]:text-primary-foreground truncate text-sm">
+                    {/* <span className="runcate text-sm">
                       {user?.name}
                     </span> */}
-                    <span className="group-[.active]:text-primary-foreground truncate text-sm">
+                    <span className="truncate text-sm">
                       {categories.map((category) => category.name).join(", ")}
                     </span>
                     <Separator
                       orientation="vertical"
                       className="size-0.5 rounded-full"
                     />
-                    <span className="group-[.active]:text-primary-foreground truncate text-sm">
+                    <span className="truncate text-sm">
                       {lastEditedTimeFormat}
                     </span>
                   </div>

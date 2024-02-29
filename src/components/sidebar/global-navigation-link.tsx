@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { FaSpinnerThirdIcon } from "../icon-duotone"
 import { RouteItem } from "@/types/common.type"
 import { buttonVariants } from "../ui/button"
+import { useRouter } from "next/navigation"
 import { Badge } from "../ui/badge"
 import { cn } from "@/lib/utils"
 
@@ -28,13 +29,27 @@ export function GlobalNavigationLink({
   },
   badge,
 }: GlobalNavigationLinkProps) {
-  const [isPending] = React.useTransition()
+  const [isPending, setIsPending] = React.useTransition()
+  const router = useRouter()
+  const handleClick: React.MouseEventHandler<HTMLAnchorElement> =
+    React.useCallback(
+      (e) => {
+        const href = e.currentTarget.dataset.href
+        if (!href) return
+        e.preventDefault()
+        setIsPending(() => {
+          router.push(href)
+        })
+      },
+      [router]
+    )
   return (
     <li className="relative flex flex-1 flex-col items-center justify-center">
       <Tooltip>
         <TooltipTrigger asChild>
           <Link
             href={href}
+            dara-href={href}
             target={isExternal ? "_blank" : undefined}
             rel={isExternal ? "noopener noreferrer" : undefined}
             className={cn(
@@ -42,6 +57,7 @@ export function GlobalNavigationLink({
               `group flex w-full flex-1 items-center justify-center rounded-md !bg-transparent p-2 text-sm font-medium`,
               isActive ? "text-foreground" : "text-tertiary-foreground"
             )}
+            onClick={handleClick}
           >
             <span className="relative z-10 flex size-fit items-center justify-center">
               <AnimatePresence mode="wait">

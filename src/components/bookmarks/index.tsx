@@ -11,7 +11,7 @@ import Image from "next/image"
 
 export interface BookmarksProps {
   data: PageObjectResponse[]
-  onClick?: () => void
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>
   leadingAccessory?: React.ReactElement | null
   slug?: string | string[] | undefined
 }
@@ -54,12 +54,12 @@ export function Bookmarks(props: BookmarksProps) {
               width={48}
               height={48}
               sizes="(max-width: 48px) 100vw"
-              className="ring-border size-12 rounded-lg bg-[url('/assets/images/cool-background.png')] bg-cover object-cover ring-1 lg:size-8 lg:rounded-md"
+              className="ring-border size-12 rounded-lg bg-[url('/assets/images/cool-background.png')] bg-cover object-cover ring-1 lg:size-8 lg:rounded-full"
             />
           </div>
           <div className="flex w-full flex-col justify-center">
             <div
-              className={`text-secondary-foreground/70 group-[.active]:text-primary-foreground flex items-center justify-between`}
+              className={`text-foreground/70 group-[.active]:text-foreground/100 flex items-center justify-between`}
             >
               <span className="line-clamp-3 text-base font-bold lg:text-sm/[1.15]">
                 {title}
