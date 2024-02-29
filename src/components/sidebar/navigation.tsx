@@ -203,7 +203,7 @@ export function SidebarNavigation({
                 <Button
                   type="button"
                   variant="ghost"
-                  className="text-tertiary-foreground group flex w-full flex-1 items-center justify-center rounded-md !bg-transparent p-2 text-sm font-medium"
+                  className="text-foreground/50 group flex w-full flex-1 items-center justify-center rounded-md !bg-transparent p-2 text-sm font-medium"
                 >
                   <motion.span
                     key="default-icon"

@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation"
 import { TitleBar } from "../title-bar"
 import * as React from "react"
+import { cn } from "@/lib/utils"
 
 type ListProps = {
   title: React.ReactNode
@@ -24,17 +25,18 @@ export default function List({
     <div className="flex max-w-full flex-1">
       <div
         id="list"
-        className={`flex-none transition-all duration-500 ${params.slug ? "hidden lg:flex" : "min-h-screen w-full"}`}
+        className={cn('flex-none transition-all duration-500', params.slug ? "hidden lg:flex" : "min-h-screen w-full")}
       >
         <div
           ref={scrollContainerRef}
-          className="bg-popover lg:bg-card/30 relative size-full max-h-screen min-h-screen flex-none overflow-y-auto pb-20 transition-all lg:w-80 lg:border-r xl:w-96"
+          className={cn("lg:bg-card/30 relative size-full max-h-screen min-h-screen flex-none overflow-y-auto pb-20 transition-all lg:w-80 lg:border-r xl:w-96", params.slug ? "bg-popover" : "bg-background")}
           {...rest}
         >
           <TitleBar
             scrollContainerRef={scrollContainerRef}
             title={title}
             searchAccessory={search}
+            background="--card"
           />
           <div className="divide-border/30 divide-y py-3 lg:divide-y-0 lg:px-3">
             {contents}

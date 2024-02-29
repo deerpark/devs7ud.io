@@ -28,6 +28,7 @@ interface Props {
   leadingAccessory?: React.ReactNode
   trailingAccessory?: React.ReactNode
   searchAccessory?: React.ReactNode
+  background?: "--background" | "--card"
 }
 
 export function TitleBar({
@@ -42,6 +43,7 @@ export function TitleBar({
   leadingAccessory = null,
   trailingAccessory = null,
   searchAccessory = null,
+  background = "--background",
   children,
 }: Props) {
   const { theme } = useTheme()
@@ -181,7 +183,7 @@ export function TitleBar({
         )}
         <div
           style={{
-            background: `hsla(var(--background) / ${backgroundColorOpacity || 1}`,
+            background: `hsla(var(${background}) / ${(background !== '--card' ? backgroundColorOpacity : 1) || 1}`,
           }}
           className={cn(
             "pointer-events-none absolute inset-0 z-0 size-full transition-all duration-500",

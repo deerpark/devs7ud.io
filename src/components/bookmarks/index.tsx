@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
@@ -42,7 +44,7 @@ export function Bookmarks(props: BookmarksProps) {
         <ListItemLink
           segment={segment}
           url={url}
-          onClick={onClick && onClick}
+          onClick={onClick}
           className="relative z-10"
         >
           {leadingAccessory}
@@ -54,19 +56,19 @@ export function Bookmarks(props: BookmarksProps) {
               width={48}
               height={48}
               sizes="(max-width: 48px) 100vw"
-              className="ring-border size-12 rounded-lg bg-[url('/assets/images/cool-background.png')] bg-cover object-cover ring-1 lg:size-8 lg:rounded-full"
+              className="ring-border size-12 rounded-full bg-[url('/assets/images/cool-background.png')] bg-cover object-cover ring-1 lg:size-8"
             />
           </div>
           <div className="flex w-full flex-col justify-center">
             <div
-              className={`text-foreground/70 group-[.active]:text-foreground/100 flex items-center justify-between`}
+              className={`text-foreground/70 group-[.active]:text-primary-foreground/100 flex items-center justify-between`}
             >
               <span className="line-clamp-3 text-base font-bold lg:text-sm/[1.15]">
                 {title}
               </span>
             </div>
             {(link || categories) && (
-              <div className="text-muted-foreground/70 group-[.active]:text-primary-foreground/70 flex items-center space-x-1 text-sm lg:text-xs/[1.15]">
+              <div className="text-foreground/50 group-[.active]:text-primary-foreground/70 flex items-center space-x-1 text-sm lg:text-xs/[1.15]">
                 {link && (
                   <>
                     <span className="line-clamp-1">{link[1]}</span>

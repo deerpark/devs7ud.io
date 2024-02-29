@@ -1,8 +1,8 @@
 "use client"
 
+import { AnimatePresence, motion } from "framer-motion"
 import { useParams, useRouter } from "next/navigation"
-import { Skeleton } from "../ui/skeleton"
-import { motion } from "framer-motion"
+import { FaSpinnerThirdIcon } from "../icon-duotone"
 import { PostsProps } from "../posts"
 import { cn } from "@/lib/utils"
 import * as React from "react"
@@ -56,29 +56,32 @@ export default function ListItemLink({
           className
         )}
       >
-        {isPending ? (
-          <div className="flex items-center space-x-3">
-            <Skeleton
+        <AnimatePresence mode="wait">
+          {isPending && (
+            <motion.div
+              key="loading-thumbnail"
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{
+                scale: 0.5,
+                opacity: 0,
+                transition: { duration: 0.1 },
+              }}
               className={cn(
-                "shadow-2xl ring",
-                isPost
-                  ? "h-16 w-24 rounded-xl"
-                  : "size-12 rounded-full lg:size-8"
+                "absolute inset-0 right-auto flex items-center justify-center",
+                isPost ? "h-16 w-24 rounded-xl" : "size-12 rounded-full lg:w-8"
               )}
-            />
-            <div className="flex w-full flex-1 flex-col justify-center space-y-1">
-              <Skeleton className="h-6" />
-              <Skeleton className="mr-[10%] h-5" />
-            </div>
-          </div>
-        ) : (
-          children
-        )}
+            >
+              <FaSpinnerThirdIcon className="text-primary size-6 animate-spin" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        {children}
       </Link>
       {active && (
         <motion.div
           className={cn(
-            "bg-primary absolute inset-0.5 z-0",
+            "bg-primary/50 absolute inset-0 z-0",
             isPost ? "lg:rounded-2xl" : "lg:rounded-xl"
           )}
           layoutId="list-hilight"

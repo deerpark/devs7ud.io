@@ -29,7 +29,7 @@ export default function Home({
             preserveAspectRatio="xMidYMid meet"
             title={t("title")}
           />
-          <p className="text-muted-foreground/50 max-w-60 break-keep pt-20 text-center">
+          <p className="text-muted-foreground max-w-60 break-keep pt-20 text-center">
             {t("description")}
           </p>
         </div>
