@@ -49,9 +49,9 @@ export default function Search({ className, iconClassName }: SearchProps) {
     <div className="mx-2 mb-2">
       <Button
         type="button"
-        variant="secondary"
+        variant="outline"
         className={cn(
-          "fa-dark dark:fa-light h-12 w-full cursor-text justify-start rounded-2xl px-4 transition-all",
+          "fa-dark dark:fa-light bg-card lg:bg-background h-12 w-full cursor-text justify-start rounded-2xl px-4 transition-all",
           isSearchMode ? "scale-150 opacity-0" : "scale-100 opacity-100",
           className
         )}

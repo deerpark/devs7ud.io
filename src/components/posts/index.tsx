@@ -62,7 +62,7 @@ export function Posts(props: PostsProps) {
         >
           {leadingAccessory}
           {thumbnail && (
-            <div className="ring-foreground/25 dark:ring-background/25 relative my-auto grid h-16 w-24 flex-none place-content-center overflow-hidden rounded-xl shadow-lg transition-all duration-500">
+            <div className="relative my-auto grid h-16 w-24 flex-none place-content-center overflow-hidden rounded-xl shadow-lg transition-all duration-500">
               <Image
                 src={thumbnail}
                 width={96}
@@ -74,9 +74,7 @@ export function Posts(props: PostsProps) {
             </div>
           )}
           <div className="flex w-full flex-1 flex-col justify-center space-y-1">
-            <div
-              className={`text-foreground/70 group-[.active]:text-foreground/100 line-clamp-1 break-keep text-lg/6 font-bold`}
-            >
+            <div className={`line-clamp-1 break-keep text-lg/6 font-bold`}>
               {title}
             </div>
             {/* {description && (
@@ -87,7 +85,7 @@ export function Posts(props: PostsProps) {
               </div>
             )} */}
             <div
-              className={`text-text-foreground/60 group-[.active]:text-foreground/80 flex flex-wrap items-center justify-between pl-0.5`}
+              className={`flex flex-wrap items-center justify-between pl-0.5`}
             >
               <div className="flex flex-1 items-center space-x-2 2xl:mb-0">
                 {byline && user && (

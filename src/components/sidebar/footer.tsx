@@ -18,7 +18,7 @@ export default function SidebarFooter() {
       <div className="flex min-h-14 w-full items-center justify-between space-x-1">
         <SignedIn>
           <UserButton afterSignOutUrl="/" />
-          <span className="text-muted-foreground flex-1 truncate px-2 py-3 text-left text-base/5 lg:text-sm/5">
+          <span className="flex-1 truncate px-2 py-3 text-left text-base/5 lg:text-sm/5">
             {t("welcome", { fullName: user?.fullName || "" })}
           </span>
         </SignedIn>
@@ -26,20 +26,14 @@ export default function SidebarFooter() {
           <FaUserTieIcon className="size-5 lg:size-4" />
           <Link
             href="/sign-in"
-            className={cn(
-              buttonVariants({ variant: "link" }),
-              "text-muted-foreground px-2"
-            )}
+            className={cn(buttonVariants({ variant: "link" }), "px-2")}
           >
             {t("signin")}
           </Link>
           <Separator orientation="vertical" className="size-0.5 rounded-full" />
           <Link
             href="/sign-up"
-            className={cn(
-              buttonVariants({ variant: "link" }),
-              "text-muted-foreground px-2"
-            )}
+            className={cn(buttonVariants({ variant: "link" }), "px-2")}
           >
             {t("signup")}
           </Link>

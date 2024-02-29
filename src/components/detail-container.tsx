@@ -88,12 +88,12 @@ export default function DetailContainer({
                 )}
               />
               {createdBy && (
-                <div className="bg-background/20 ring-background/20 text-foreground/70 absolute right-5 top-[calc(12px+env(safe-area-inset-top))] z-20 flex size-8 items-center justify-center rounded-full ring-2 backdrop-blur-sm">
+                <div className="bg-background/20 ring-background/20 absolute right-5 top-[calc(12px+env(safe-area-inset-top))] z-20 flex size-8 items-center justify-center rounded-full ring-2 backdrop-blur-sm">
                   {createdBy}
                 </div>
               )}
               {byLine && (
-                <div className="bg-background/20 text-foreground/70 absolute bottom-16 left-1/2 z-20 flex h-8 -translate-x-1/2 items-center rounded-2xl p-0.5 px-4 text-sm/8 backdrop-blur-sm">
+                <div className="bg-background/20 absolute bottom-16 left-1/2 z-20 flex h-8 -translate-x-1/2 items-center rounded-2xl p-0.5 px-4 text-sm/8 backdrop-blur-sm">
                   {byLine}
                 </div>
               )}
@@ -119,9 +119,7 @@ export default function DetailContainer({
             trailingAccessory={<DetailToolbar />}
           />
           <div
-            className={cn(
-              "flex flex-1 flex-col p-8 sm:pt-16 md:pt-20 lg:pt-24"
-            )}
+            className={cn("flex flex-1 flex-col p-8 pt-16 md:pt-20 lg:pt-24")}
           >
             <div className="mb-4 flex items-center justify-center space-x-2">
               {categories?.map((category) => (
@@ -145,7 +143,7 @@ export default function DetailContainer({
               <h1
                 ref={titleRef}
                 className={cn(
-                  "font-heading from-foreground to-foreground/70 flex-none break-keep bg-gradient-to-r bg-clip-text pb-2 text-center font-black text-transparent",
+                  "font-heading from-primary to-primary/70 flex-none break-keep bg-gradient-to-r bg-clip-text pb-2 text-center font-black text-transparent",
                   title.length >= 20
                     ? "text-4xl/[1.05]"
                     : title.length >= 15

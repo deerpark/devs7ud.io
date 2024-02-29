@@ -18,7 +18,7 @@ export default async function CommentCount({
         className={cn(
           "flex-none space-x-1.5 !border-0 px-1 py-0",
           commentCounts
-            ? "group-[.active]:text-primary-foreground"
+            ? "group-[.active]:text-secondary-foreground"
             : "opacity-0",
           className
         )}
@@ -27,7 +27,7 @@ export default async function CommentCount({
           className="group-[.active]:fa-light dark:group-[.active]:fa-dark size-4"
           style={{ transform: "rotateY(180deg)" }}
         />
-        <span className="text-primary-alt group-[.active]:text-primary-foreground leading-4">
+        <span className="text-foreground group-[.active]:text-secondary-foreground leading-4">
           {commentCounts}
         </span>
       </Badge>

@@ -48,7 +48,7 @@ export function Bookmarks(props: BookmarksProps) {
           className="relative z-10"
         >
           {leadingAccessory}
-          <div className="flex flex-none items-center justify-center">
+          <div className="flex flex-none items-center justify-center rounded-full shadow-lg">
             <Image
               alt="Image"
               src={favicon}
@@ -61,14 +61,14 @@ export function Bookmarks(props: BookmarksProps) {
           </div>
           <div className="flex w-full flex-col justify-center">
             <div
-              className={`text-foreground/70 group-[.active]:text-primary-foreground/100 flex items-center justify-between`}
+              className={`text-foreground group-[.active]:text-secondary-foreground flex items-center justify-between`}
             >
               <span className="line-clamp-3 text-base font-bold lg:text-sm/[1.15]">
                 {title}
               </span>
             </div>
             {(link || categories) && (
-              <div className="text-foreground/50 group-[.active]:text-primary-foreground/70 flex items-center space-x-1 text-sm lg:text-xs/[1.15]">
+              <div className="flex items-center space-x-1 text-sm lg:text-xs/[1.15]">
                 {link && (
                   <>
                     <span className="line-clamp-1">{link[1]}</span>
@@ -85,13 +85,6 @@ export function Bookmarks(props: BookmarksProps) {
                 )}
               </div>
             )}
-            {/* {description && (
-              <div
-                className={`text-muted-foreground group-[.active]:text-primary-foreground/70 line-clamp-2 text-base/5 lg:text-sm/4`}
-              >
-                {description}
-              </div>
-            )} */}
           </div>
         </ListItemLink>
       </ListItem>

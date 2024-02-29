@@ -50,7 +50,7 @@ export default function CommentForm({
   }, [state])
   return (
     <>
-      <div className="text-card-foreground divide-border/50 space-y-5 divide-y lg:min-w-96">
+      <div className="text-foreground divide-border/50 space-y-5 divide-y lg:min-w-96">
         {state?.map((comment) => (
           <Comment key={comment.id} comment={comment} />
         ))}

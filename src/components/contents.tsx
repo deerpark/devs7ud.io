@@ -8,7 +8,7 @@ export default function Contents(props: PostProps) {
     <>
       {content && !PageComponent ? (
         <div
-          className="prose dark:prose-invert prose-p:text-secondary-foreground prose-headings:text-foreground mx-auto max-w-3xl text-lg/7"
+          className="prose dark:prose-invert prose-p:text-foreground prose-headings:text-secondary-foreground mx-auto max-w-3xl text-lg/7"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: content }}
         />

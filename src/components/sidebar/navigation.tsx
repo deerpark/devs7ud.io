@@ -215,13 +215,13 @@ export function SidebarNavigation({
                       transition: { duration: 0.1 },
                     }}
                   >
-                    <FaEllipsisVerticalIcon className="size-8 transition-all group-hover:size-10 group-active:size-6" />
+                    <FaEllipsisVerticalIcon className="size-6 transition-all group-hover:size-8 group-active:size-4" />
                   </motion.span>
                 </Button>
               </DrawerTrigger>
               <DrawerContent>
                 <div className="mx-auto w-full max-w-sm">
-                  <div className="flex flex-col p-4 pb-0">
+                  <div className="flex flex-col p-4">
                     <ul className="text-alt-foreground flex-none space-y-1 p-3">
                       {section.items
                         .filter((s) => s.global)
@@ -230,7 +230,7 @@ export function SidebarNavigation({
                         ))}
                     </ul>
                     <div className="flex-none space-y-1 p-3">
-                      <h4 className="text-muted-foreground/50 px-2 pb-2 pt-5 text-xs font-semibold">
+                      <h4 className="text-muted-foreground px-2 pb-2 pt-5 text-xs font-semibold">
                         {t("settings.label")}
                       </h4>
                       <LocaleSwitcher />
@@ -254,7 +254,7 @@ export function SidebarNavigation({
               {section.label && (
                 <h4
                   key={section.label}
-                  className="text-muted-foreground/50 px-2 pb-2 pt-5 text-xs font-semibold"
+                  className="text-muted-foreground px-2 pb-2 pt-5 text-xs font-semibold"
                 >
                   {section.label}
                 </h4>

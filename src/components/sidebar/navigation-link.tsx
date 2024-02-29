@@ -54,19 +54,19 @@ export function NavigationLink({
         className={cn(
           "group relative z-10 flex flex-1 items-center space-x-3 rounded-md p-2 text-sm font-medium lg:py-1.5",
           isActive
-            ? "text-primary-foreground fa-light dark:fa-dark"
-            : "text-foreground/70 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-foreground/100"
+            ? "text-secondary-foreground fa-light dark:fa-dark"
+            : "text-foreground hover:bg-accent hover:text-accent-foreground"
         )}
         onClick={handleClick}
       >
         <span className="flex w-5 items-center justify-center lg:w-4">
           {isPending ? (
-            <FaSpinnerThirdIcon className="text-primary-foreground size-5 animate-spin lg:size-4" />
+            <FaSpinnerThirdIcon className="text-primary size-5 animate-spin lg:size-4" />
           ) : (
             <NavIcon
               className={cn(
                 "size-5 lg:size-4",
-                isActive ? "text-primary-foreground" : "text-foreground"
+                isActive ? "text-secondary-foreground" : "text-foreground"
               )}
             />
           )}
@@ -74,7 +74,9 @@ export function NavigationLink({
         <span
           className={cn(
             "flex-1 text-base/5 lg:text-sm/5",
-            isActive ? "text-primary-foreground" : ""
+            isActive
+              ? "text-secondary-foreground transition-color delay-100 duration-500"
+              : ""
           )}
         >
           {label}
@@ -89,8 +91,8 @@ export function NavigationLink({
             variant="outline"
             className={
               isActive
-                ? "text-primary-foreground border-primary-foreground"
-                : "text-primary/70 dark:text-foreground border-primary/20"
+                ? "text-secondary-foreground border-secondary-foreground"
+                : "text-foreground border-foreground"
             }
           >
             {count}
@@ -99,7 +101,7 @@ export function NavigationLink({
       </Link>
       {isActive && (
         <motion.div
-          className="bg-primary/50 absolute inset-0 z-0 rounded-lg"
+          className="bg-accent absolute inset-0 z-0 rounded-lg"
           layoutId="sidebar-hilight"
         />
       )}

@@ -44,7 +44,7 @@ export function ThemeSwitcher() {
             <FaSunIcon className="size-5 rotate-0 scale-100 transition-all lg:size-4 dark:-rotate-90 dark:scale-0" />
             <FaMoonStarsIcon className="absolute size-5 rotate-90 scale-0 transition-all lg:size-4 dark:rotate-0 dark:scale-100" />
           </span>
-          <span className="text-muted-foreground flex-1 text-left text-base/5 lg:text-sm/5">
+          <span className="flex-1 text-left text-base/5 lg:text-sm/5">
             {t("toggle")}
           </span>
           <FaAnglesUpDownIcon className="fa-dark dark:fa-light size-4 shrink-0 opacity-40 group-hover:opacity-100 lg:size-3" />

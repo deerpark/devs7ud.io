@@ -46,9 +46,9 @@ export default function LocaleSwitcher() {
           className="group h-auto w-full items-center space-x-3 rounded-md p-2 lg:py-1.5"
         >
           <span className="flex w-5 items-center justify-center lg:w-4">
-            <FaLanguageIcon className="text-primary-alt size-5 lg:size-4" />
+            <FaLanguageIcon className="size-5 lg:size-4" />
           </span>
-          <span className="text-muted-foreground flex-1 text-left text-base/5 lg:text-sm/5">
+          <span className="flex-1 text-left text-base/5 lg:text-sm/5">
             {t("label")}
           </span>
           <FaAnglesUpDownIcon className="fa-dark dark:fa-light size-4 shrink-0 opacity-40 group-hover:opacity-100 lg:size-3" />

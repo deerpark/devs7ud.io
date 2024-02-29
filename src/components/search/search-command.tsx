@@ -62,7 +62,7 @@ export default function SearchCommand({
   return (
     <>
       <CommandInput
-        className="bg-popover text-popover-foreground placehoder:!font-semibold min-h-14 rounded-3xl border pl-14 !text-lg/8 !font-black md:rounded-2xl"
+        className="bg-popover text-foreground placehoder:!font-semibold min-h-14 rounded-3xl border pl-14 !text-lg/8 !font-black md:rounded-2xl"
         icon={
           <FaSearchIcon
             className={cn(

@@ -148,25 +148,25 @@ const config = {
         DEFAULT: {
           css: {
             h1: {
-              color: "hsl(var(--foreground)) !important",
+              color: "hsl(var(--secondary-foreground)) !important",
             },
             h2: {
-              color: "hsl(var(--foreground)) !important",
+              color: "hsl(var(--secondary-foreground)) !important",
             },
             h3: {
-              color: "hsl(var(--foreground)) !important",
+              color: "hsl(var(--secondary-foreground)) !important",
             },
             h4: {
-              color: "hsl(var(--foreground)) !important",
+              color: "hsl(var(--secondary-foreground)) !important",
             },
             h5: {
-              color: "hsl(var(--foreground)) !important",
+              color: "hsl(var(--secondary-foreground)) !important",
             },
             h6: {
-              color: "hsl(var(--foreground)) !important",
+              color: "hsl(var(--secondary-foreground)) !important",
             },
             b: {
-              color: "hsl(var(--foreground)) !important",
+              color: "hsl(var(--secondary-foreground)) !important",
             },
             p: {
               marginTop: "3rem",

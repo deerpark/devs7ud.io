@@ -5,61 +5,61 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 255 100% 10%;
-    --card: 255 10% 97%;
-    --card-foreground: 255 100% 10%;
+    --foreground: 240 2% 32%;
+    --card: 240 7% 97%;
+    --card-foreground: 240 2% 32%;
     --popover: 0 0% 100%;
-    --popover-foreground: 255 100% 10%;
+    --popover-foreground: 240 2% 32%;
     --primary: 255 0% 0%;
     --primary-foreground: 255 0% 100%;
-    --secondary: 255 40% 96.1%;
-    --secondary-foreground: 240 1% 39%;
-    --tertiary: 210 40% 98%;
-    --tertiary-foreground: 215 20% 65%;
-    --primary-alt: 195 100% 55%;
-    --primary-alt-foreground: 195 65% 23%;
-    --muted: 255 40% 96.1%;
-    --muted-foreground: 255 10% 46.9%;
-    --accent: 255 40% 96.1%;
-    --accent-foreground: 255 47.4% 11.2%;
+    --secondary: 240 7% 97%;
+    --secondary-foreground: 240 2% 2%;
+    --tertiary: 240 7% 97%;
+    --tertiary-foreground: 240 2% 32%;
+    --primary-alt: 216 93% 42%;
+    --primary-alt-foreground: 216 36% 93%;
+    --muted: 240 5% 98%;
+    --muted-foreground: 240 4% 74%;
+    --accent: 240 12% 95%;
+    --accent-foreground: 240 2% 32%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 255 40% 98%;
-    --border: 255 31.8% 91.4%;
-    --input: 255 31.8% 91.4%;
-    --ring: 255 100% 68%;
+    --border: 240 2% 87%;
+    --input: 240 6% 85%;
+    --ring: 0 0% 15%;
     --radius: 0.5rem;
-    --fa-primary-color: hsl(255 0% 0%);
-    --fa-secondary-color: hsl(255 0% 40%);
+    --fa-primary-color: hsl(255 0% 30%);
+    --fa-secondary-color: hsl(255 0% 70%);
     --fa-primary-opacity: 1;
     --fa-secondary-opacity: 1;
   }
 
   .dark {
     --background: 195 5% 15%;
-    --foreground: 255 40% 98%;
-    --card: 200 2% 25%;
-    --card-foreground: 255 40% 98%;
-    --popover: 200 2% 25%;
-    --popover-foreground: 255 40% 98%;
-    --primary: 255 0% 100%;
-    --primary-foreground: 255 0% 0%;
-    --secondary: 195 5% 20%;
-    --secondary-foreground: 240 2% 52%;
+    --foreground: 240 2% 85%;
+    --card: 240 2% 25%;
+    --card-foreground: 240 2% 85%;
+    --popover: 240 2% 25%;
+    --popover-foreground: 240 2% 85%;
+    --primary: 240 0% 100%;
+    --primary-foreground: 240 0% 0%;
+    --secondary: 240 2% 25%;
+    --secondary-foreground: 240 2% 98%;
     --tertiary: 229 84% 5%;
     --tertiary-foreground: 217 33% 57%;
     --primary-alt: 195 100% 55%;
     --primary-alt-foreground: 195 65% 23%;
-    --muted: 220 3% 25%;
+    --muted: 240 3% 25%;
     --muted-foreground: 240 3% 40%;
-    --accent: 210 1% 28%;
-    --accent-foreground: 255 40% 98%;
+    --accent: 240 1% 28%;
+    --accent-foreground: 240 2% 85%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 255 40% 98%;
-    --border: 210 1% 33%;
-    --input: 255 32.6% 17.5%;
-    --ring: 255 76.3% 48%;
+    --destructive-foreground: 240 2% 85%;
+    --border: 240 1% 23%;
+    --input: 240 1% 18%;
+    --ring: 240 76.3% 48%;
     --fa-primary-color: hsl(255 0% 100%);
-    --fa-secondary-color: hsl(255 0% 80%);
+    --fa-secondary-color: hsl(255 0% 50%);
     --fa-primary-opacity: 1;
     --fa-secondary-opacity: 1;
   }
@@ -105,14 +105,14 @@
   }
 
   .fa-default {
-    --fa-primary-color: hsl(255 0% 0%);
-    --fa-secondary-color: hsl(255 0% 40%);
+    --fa-primary-color: hsl(255 0% 30%);
+    --fa-secondary-color: hsl(255 0% 70%);
     --fa-primary-opacity: 1;
     --fa-secondary-opacity: 1;
   }
   .dark.fa-default {
     --fa-primary-color: hsl(255 0% 100%);
-    --fa-secondary-color: hsl(255 0% 80%);
+    --fa-secondary-color: hsl(255 0% 50%);
     --fa-primary-opacity: 1;
     --fa-secondary-opacity: 1;
   }

@@ -183,11 +183,10 @@ export function TitleBar({
         )}
         <div
           style={{
-            background: `hsla(var(${background}) / ${(background !== '--card' ? backgroundColorOpacity : 1) || 1}`,
+            background: `hsla(var(${background}) / ${backgroundColorOpacity || (magicTitle ? 1 : 0)})`,
           }}
           className={cn(
-            "pointer-events-none absolute inset-0 z-0 size-full transition-all duration-500",
-            offset < 100 ? "backdrop-blur-sm" : "",
+            "pointer-events-none absolute inset-0 z-0 size-full backdrop-blur-sm transition-all duration-500",
             magicTitle && offset >= 100 ? roundedContinerTopClassName : ""
           )}
         />
@@ -207,7 +206,7 @@ export function TitleBar({
                 variant="ghost"
                 size="icon"
                 onClick={handleNavToBack}
-                className="text-foreground group/button mr-3 flex items-center justify-center rounded-md p-2 lg:hidden"
+                className="group/button mr-3 flex items-center justify-center rounded-md p-2 lg:hidden"
               >
                 <FaLeftToLine className={cn("size-4")} />
               </Button>
@@ -224,14 +223,12 @@ export function TitleBar({
                   : {}
               }
               className={cn(
-                "transform-gpu",
+                "transform-gpu py-5 md:py-0",
                 magicTitle ? "flex items-center space-x-2 lg:px-5" : "flex-1"
               )}
             >
               {tag && <Badge className="block flex-none truncate">{tag}</Badge>}
-              <span className="text-foreground line-clamp-1 text-base font-bold">
-                {title}
-              </span>
+              <span className="line-clamp-1 text-base font-bold">{title}</span>
             </h2>
             {magicTitle && <div className="flex-1" />}
             {trailingAccessory && trailingAccessory}

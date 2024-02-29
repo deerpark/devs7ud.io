@@ -55,7 +55,7 @@ export function GlobalNavigationLink({
             className={cn(
               buttonVariants({ variant: "ghost" }),
               `group flex w-full flex-1 items-center justify-center rounded-md !bg-transparent p-2 text-sm font-medium`,
-              isActive ? "text-foreground" : "text-foreground/50"
+              isActive ? "text-secondary-foreground" : "text-foreground"
             )}
             onClick={handleClick}
           >
@@ -72,7 +72,7 @@ export function GlobalNavigationLink({
                       transition: { duration: 0.1 },
                     }}
                   >
-                    <FaSpinnerThirdIcon className="text-primary size-6 animate-spin" />
+                    <FaSpinnerThirdIcon className="text-primary size-5 animate-spin" />
                   </motion.span>
                 ) : isActive && NavActiveIcon ? (
                   <motion.span
@@ -87,8 +87,10 @@ export function GlobalNavigationLink({
                   >
                     <NavActiveIcon
                       className={cn(
-                        "size-8 transition-all group-hover:size-10 group-active:size-6",
-                        isActive ? "size-10" : ""
+                        "size-6 transition-all group-active:size-4",
+                        isActive
+                          ? "size-8 group-hover:size-8"
+                          : "group-hover:size-7"
                       )}
                     />
                   </motion.span>
@@ -104,8 +106,10 @@ export function GlobalNavigationLink({
                   >
                     <NavIcon
                       className={cn(
-                        "size-8 transition-all group-hover:size-10 group-active:size-6",
-                        isActive ? "size-10" : ""
+                        "size-6 transition-all group-active:size-4",
+                        isActive
+                          ? "size-8 group-hover:size-8"
+                          : "group-hover:size-7"
                       )}
                     />
                   </motion.span>
@@ -129,6 +133,12 @@ export function GlobalNavigationLink({
               <motion.div
                 className="bg-accent absolute inset-0.5 z-0 rounded-lg"
                 layoutId="hilight"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{
+                  opacity: 0,
+                  transition: { duration: 0.1 },
+                }}
               />
             )}
           </Link>
