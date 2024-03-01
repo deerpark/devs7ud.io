@@ -4,8 +4,6 @@ import * as React from "react"
 
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 import ListItemLink from "../list/list-link"
-import { Category } from "@/types/post.type"
-import { Separator } from "../ui/separator"
 import ListItem from "../list/list-item"
 /* import { useLocale } from "next-intl" */
 import Image from "next/image"
@@ -27,14 +25,10 @@ export function Bookmarks(props: BookmarksProps) {
   return data.map((item) => {
     const url = `/${segment}/${(item.properties?.Slug as any)?.rich_text[0].plain_text}`
     const title = (item.properties?.Title as any)?.title[0]?.plain_text
-    /* const description = (item.properties?.Description as any)?.rich_text[0]
-      ?.plain_text */
-    const link = (item.properties?.Link as any)?.url?.match(
-      /^(?:https?:\/\/)?(?:www\.)?([^\/:]+)/
-    )
+    const description = (item.properties?.Description as any)?.rich_text[0]
+      ?.plain_text
     const favicon = (item.properties?.Favicon as any)?.files[0]?.file?.url
-    const categories: Category[] =
-      (item.properties?.Categories as any)?.multi_select || []
+    const screeshot = (item.properties?.Screenshot as any)?.files[0]?.file?.url
     return (
       <ListItem
         key={item.id}
@@ -45,7 +39,7 @@ export function Bookmarks(props: BookmarksProps) {
           segment={segment}
           url={url}
           onClick={onClick}
-          className="relative z-10"
+          className="relative z-10 items-start"
         >
           {leadingAccessory}
           <div className="flex flex-none items-center justify-center rounded-full shadow-lg">
@@ -63,26 +57,26 @@ export function Bookmarks(props: BookmarksProps) {
             <div
               className={`text-foreground group-[.active]:text-secondary-foreground flex items-center justify-between`}
             >
-              <span className="line-clamp-1 text-base/tight font-semibold group-[.active]:font-bold lg:text-sm/tight">
+              <span className="line-clamp-1 pt-1 text-base/tight font-semibold group-[.active]:font-bold lg:text-sm/tight">
                 {title}
               </span>
             </div>
-            {(link || categories) && (
-              <div className="flex items-center space-x-1 text-xs/tight opacity-50">
-                {link && (
-                  <>
-                    <span className="line-clamp-1">{link[1]}</span>
-                    <Separator
-                      orientation="vertical"
-                      className="size-0.5 rounded-full"
-                    />
-                  </>
-                )}
-                {categories?.length && (
-                  <span className="line-clamp-1">
-                    {categories.map((category) => category.name).join(", ")}
-                  </span>
-                )}
+            {description && (
+              <div className="line-clamp-2 text-xs/tight opacity-50">
+                {description}
+              </div>
+            )}
+            {screeshot && (
+              <div className="relative mt-3 flex aspect-[2/1] w-full max-w-[290px] items-center justify-center rounded-lg shadow-sm">
+                <Image
+                  alt="Screenshot"
+                  src={screeshot}
+                  // width={banner.width}
+                  width={290}
+                  height={48}
+                  sizes="(max-width: 290px) 100vw"
+                  className="ring-border bg-primary/25 size-full rounded-lg object-cover opacity-50 ring-1 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 group-[.active]:opacity-100 group-[.active]:grayscale-0"
+                />
               </div>
             )}
           </div>

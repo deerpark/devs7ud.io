@@ -2,7 +2,7 @@
 
 import { Category } from "@/types/post.type"
 import DetailToolbar from "./detail-toolbar"
-import FloatingMenu from "./floating-menu"
+/* import FloatingMenu from "./floating-menu" */
 import Scratch from "./filters/scratch"
 import { TitleBar } from "./title-bar"
 import { useTheme } from "next-themes"
@@ -157,11 +157,11 @@ export default function DetailContainer({
           </div>
         </div>
       </div>
-      <FloatingMenu
+      {/* <FloatingMenu
         scrollContainerRef={scrollContainerRef}
         backButton
         backButtonHref={`/${segment}`}
-      />
+      /> */}
     </>
   )
 }

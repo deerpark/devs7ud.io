@@ -89,7 +89,7 @@ export function MobileNavigationLink({
                   >
                     <NavActiveIcon
                       className={cn(
-                        "fa-dark dark:fa-light size-8 transition-all group-hover:size-8 group-active:size-4"
+                        "fa-default size-8 transition-all group-hover:size-8 group-active:size-4"
                       )}
                     />
                   </motion.span>

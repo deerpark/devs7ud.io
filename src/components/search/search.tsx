@@ -51,13 +51,15 @@ export default function Search({ className, iconClassName }: SearchProps) {
         type="button"
         variant="outline"
         className={cn(
-          "fa-dark dark:fa-light bg-card lg:bg-background h-12 w-full cursor-text justify-start rounded-2xl px-4 transition-all",
+          "bg-card border-border/70 lg:bg-background h-12 w-full cursor-text justify-start rounded-2xl px-4 transition-all",
           isSearchMode ? "scale-150 opacity-0" : "scale-100 opacity-100",
           className
         )}
         onClick={handleClick}
       >
-        <FaSearchIcon className={cn("size-4", iconClassName)} />
+        <FaSearchIcon
+          className={cn("fa-black dark:fa-white size-4", iconClassName)}
+        />
       </Button>
       <CommandDialog open={isSearchMode} onOpenChange={setSearchMode}>
         <form
