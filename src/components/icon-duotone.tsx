@@ -21,7 +21,7 @@ import {
   faCheck as faCheckIcon,
   faLanguage as faLanguageIcon,
   faUserTie as faUserTieIcon,
-  faLink as faLinkIcon,
+  faLinkSimple as faLinkSimpleIcon,
   faEllipsisVertical as faEllipsisVerticalIcon,
   faArrowUpFromBracket as faArrowUpFromBracketIcon,
   faUpToLine as faUpToLineIcon,
@@ -115,8 +115,8 @@ export const FaLanguageIcon = (props: IconProps) => (
 export const FaUserTieIcon = (props: IconProps) => (
   <FaIcon icon={faUserTieIcon} {...props} />
 )
-export const FaLinkIcon = (props: IconProps) => (
-  <FaIcon icon={faLinkIcon} {...props} />
+export const FaLinkSimple = (props: IconProps) => (
+  <FaIcon icon={faLinkSimpleIcon} {...props} />
 )
 export const FaEllipsisVerticalIcon = (props: IconProps) => (
   <FaIcon icon={faEllipsisVerticalIcon} {...props} />

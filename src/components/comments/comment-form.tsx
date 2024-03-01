@@ -95,7 +95,7 @@ export default function CommentForm({
       <SignedOut>
         <Empty
           icon={<FaUserLockIcon className="text-muted-foreground size-12" />}
-          description="댓글을 작성하시려면 로그인 해주세요."
+          description={t("POSTS.comments.form.require")}
           action={
             <div className="flex items-center space-x-2">
               <Link

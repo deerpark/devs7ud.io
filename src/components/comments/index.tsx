@@ -11,7 +11,7 @@ type CommentsProps = {
 
 export default function Comments({ comments, page_id }: CommentsProps) {
   return (
-    <div className="bg-card/50 -mx-8 -mb-8 mt-60 flex-none pb-20">
+    <div className="bg-card/50 -mx-8 -mb-8 mt-40 flex-none pb-20">
       <Separator
         orientation="horizontal"
         className="2xl:from-border/20 2xl:via-border 2xl:to-border/20 2xl:bg-transparent 2xl:bg-gradient-to-r"

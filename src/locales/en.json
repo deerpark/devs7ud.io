@@ -93,6 +93,7 @@
         "title": "Leave a comment",
         "description": "Inappropriate content may be removed.",
         "placeholder": "Please enter no more than 1000 characters.",
+        "require": "Please login to comment.",
         "submit": "Save"
       }
     }

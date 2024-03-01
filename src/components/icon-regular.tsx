@@ -1,6 +1,6 @@
 import {
   faMailbox as faMailboxIcon,
-  faLink as faLinkIcon,
+  faLinkSimple as faLinkSimpleIcon,
   faHeadSide as faHeadSideIcon,
   faFeather as faFeatherIcon,
   faPinata as faPinataIcon,
@@ -20,8 +20,8 @@ const FaIcon = ({ icon, ...props }: FaIconProps) => (
 export const FaMailbox = (props: IconProps) => (
   <FaIcon icon={faMailboxIcon} {...props} />
 )
-export const FaLinkIcon = (props: IconProps) => (
-  <FaIcon icon={faLinkIcon} {...props} />
+export const FaLinkSimple = (props: IconProps) => (
+  <FaIcon icon={faLinkSimpleIcon} {...props} />
 )
 export const FaHeadSideIcon = (props: IconProps) => (
   <FaIcon icon={faHeadSideIcon} {...props} />

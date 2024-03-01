@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes"
 import * as React from "react"
 
+import useWindowSize from "@/hooks/useWindowSize"
 import { FaLeftToLine } from "./icon-duotone"
 import { useRouter } from "next/navigation"
 import { Button } from "./ui/button"
@@ -51,6 +52,7 @@ export function TitleBar({
   const [currentScrollOffset, _setCurrentScrollOffset] = React.useState(0)
   const [backgroundColorOpacity, setBackgroundColorOpacity] = React.useState(0)
   const router = useRouter()
+  const { width } = useWindowSize()
 
   const isDarkmode = React.useMemo(
     () =>
@@ -87,9 +89,14 @@ export function TitleBar({
     currentScrollOffsetRef.current = data
     _setCurrentScrollOffset(data)
   }, [])
+  const scrollingElementRef = React.useMemo(
+    () => (width >= 1024 ? scrollContainerRef : { current: document.body }),
+    [width, scrollContainerRef]
+  )
 
   const handler = React.useCallback(() => {
-    const shadowOpacity = scrollContainerRef?.current?.scrollTop ?? 0 / 200
+    const shadowOpacity = scrollingElementRef?.current?.scrollTop ?? 0 / 200
+    console.log(shadowOpacity)
     setCurrentScrollOffset(shadowOpacity > 0.12 ? 0.12 : shadowOpacity)
 
     if (!titleRef?.current || !initialTitleOffsetsRef?.current) return
@@ -106,7 +113,7 @@ export function TitleBar({
 
     setOffset(Math.min(Math.max(offsetAmount, 0), 100))
     setOpacity(opacityOffset)
-  }, [scrollContainerRef, setCurrentScrollOffset, titleRef, setOpacity])
+  }, [scrollingElementRef, setCurrentScrollOffset, titleRef, setOpacity])
 
   const handleNavToBack = React.useCallback(() => {
     if (!backButtonHref) return
@@ -124,24 +131,32 @@ export function TitleBar({
   }, [currentScrollOffset, isDarkmode])
 
   React.useEffect(() => {
+    console.log("React.useEffect")
     // eslint-disable-next-line no-underscore-dangle
-    const _scrollContainerRef = scrollContainerRef?.current
+    const _scrollContainerRef = scrollingElementRef?.current
+    console.log("_scrollContainerRef", _scrollContainerRef)
     _scrollContainerRef?.addEventListener("scroll", handler)
     return () => _scrollContainerRef?.removeEventListener("scroll", handler)
-  }, [scrollContainerRef, handler])
+  }, [scrollingElementRef, handler])
 
   React.useEffect(() => {
-    if (!titleRef?.current || !scrollContainerRef?.current) return
-    if (scrollContainerRef && "current" in scrollContainerRef) {
-      // eslint-disable-next-line no-param-reassign
-      scrollContainerRef.current.scrollTop = 0
+    if (!titleRef?.current || !scrollingElementRef) return
+    if (scrollingElementRef && "current" in scrollingElementRef) {
+      if (!scrollingElementRef.current) return
+      scrollingElementRef.current.scrollTop = 0
     }
     setOpacity(0)
     setInitialTitleOffsets({
       bottom: titleRef.current.getBoundingClientRect().bottom - 56,
       top: titleRef.current.getBoundingClientRect().top - 48,
     })
-  }, [titleRef, scrollContainerRef, setOpacity, setInitialTitleOffsets])
+  }, [
+    titleRef,
+    scrollingElementRef,
+    setOpacity,
+    setInitialTitleOffsets,
+    scrollContainerRef,
+  ])
 
   return (
     <>
@@ -154,10 +169,7 @@ export function TitleBar({
         }}
         className={cn(
           "group/bar sticky top-0 z-30 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 transition-all duration-500",
-          currentScrollOffset !== 0 ? "active" : "",
-          magicTitle && offset >= 100
-            ? "border-foreground/10 dark:border-foreground/20 border-b"
-            : ""
+          currentScrollOffset !== 0 ? "active" : ""
         )}
       >
         <div

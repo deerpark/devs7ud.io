@@ -69,12 +69,12 @@ export function Posts(props: PostsProps) {
                 height={64}
                 sizes="(max-width: 96px) 100vw"
                 alt=""
-                className="bg-primary-alt absolute inset-0 size-full object-cover transition-all duration-500 group-hover:opacity-100 group-[.active]:opacity-100"
+                className="bg-primary/25 absolute inset-0 size-full object-cover transition-all duration-500 group-hover:opacity-100 group-[.active]:opacity-100"
               />
             </div>
           )}
           <div className="flex w-full flex-1 flex-col justify-center space-y-1">
-            <div className="line-clamp-1 break-keep text-base/tight group-[.active]:font-bold">
+            <div className="line-clamp-1 break-keep text-base/tight font-semibold group-[.active]:font-bold">
               {title}
             </div>
             {/* {description && (

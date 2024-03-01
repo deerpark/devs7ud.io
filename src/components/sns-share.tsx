@@ -44,7 +44,7 @@ import {
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 import { FaArrowUpFromBracketIcon } from "./icon-duotone"
-import { FaLinkIcon } from "./icon-regular"
+import { FaLinkSimple } from "./icon-regular"
 import { useTranslations } from "next-intl"
 import { FaMailbox } from "./icon-regular"
 import { appConfig } from "@/config/app"
@@ -96,7 +96,7 @@ export default function SnsShare() {
                     <TooltipTrigger asChild>
                       <Button size="icon" variant="ghost">
                         <span>
-                          <FaLinkIcon className="size-5" />
+                          <FaLinkSimple className="size-5" />
                         </span>
                       </Button>
                     </TooltipTrigger>

@@ -51,7 +51,7 @@ export function Post(props: PostProps) {
         />
       }
     >
-      <div className="max-w-full flex-1 space-y-10 sm:min-w-96 2xl:mx-auto 2xl:max-w-max">
+      <div className="max-w-full flex-1 space-y-40 sm:min-w-96 2xl:mx-auto 2xl:max-w-max">
         <Contents {...props} />
         <Tags items={tags} />
       </div>

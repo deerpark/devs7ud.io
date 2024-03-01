@@ -15,7 +15,7 @@ import {
   FaAwardIcon,
 } from "../icon-duotone"
 import { Drawer, DrawerContent, DrawerTrigger } from "../ui/drawer"
-import { GlobalNavigationLink } from "./global-navigation-link"
+import { MobileNavigationLink } from "./mobile-navigation-link"
 import { FaGithubIcon, FaTwitterIcon } from "../icon-brand"
 import { NavigationLink } from "./navigation-link"
 import { ThemeSwitcher } from "../theme-switcher"
@@ -27,18 +27,20 @@ import { Button } from "../ui/button"
 import SidebarFooter from "./footer"
 import * as React from "react"
 
-type SidebarNavigationProps = {
+type NavigationProps = {
   global?: boolean
-  counts: {
+  counts?: {
     posts: number
     bookmarks: number
   }
+  scrollDir?: "UP" | "DOWN"
 }
 
-export function SidebarNavigation({
+export function Navigation({
   counts,
   global = false,
-}: SidebarNavigationProps) {
+  scrollDir,
+}: NavigationProps) {
   const pathname = usePathname()
   const t = useTranslations("SYSTEM")
   const sections = [
@@ -68,7 +70,7 @@ export function SidebarNavigation({
           isActive: pathname.replace(/en|ko|fr/g, "").indexOf("/posts") >= 0,
           trailingAction: null,
           isExternal: false,
-          count: counts.posts,
+          count: counts?.posts,
           global: true,
         },
       ],
@@ -87,7 +89,7 @@ export function SidebarNavigation({
           isActive:
             pathname.replace(/en|ko|fr/g, "").indexOf("/bookmarks") >= 0,
           isExternal: false,
-          count: counts.bookmarks,
+          count: counts?.bookmarks,
           global: true,
         },
         {
@@ -189,7 +191,11 @@ export function SidebarNavigation({
         .flat()
         .filter((s) => s.global)
         .map((item) => (
-          <GlobalNavigationLink key={item.label} link={item} />
+          <MobileNavigationLink
+            key={item.label}
+            link={item}
+            scrollDir={scrollDir}
+          />
         ))}
       {sections
         .filter((s) => s.extra)
@@ -203,7 +209,7 @@ export function SidebarNavigation({
                 <Button
                   type="button"
                   variant="ghost"
-                  className="text-foreground/50 group flex w-full flex-1 items-center justify-center rounded-md !bg-transparent p-2 text-sm font-medium"
+                  className="text-foreground group flex w-full flex-1 items-center justify-center rounded-md !bg-transparent p-2 text-sm font-medium"
                 >
                   <motion.span
                     key="default-icon"

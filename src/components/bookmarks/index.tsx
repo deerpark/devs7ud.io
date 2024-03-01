@@ -56,14 +56,14 @@ export function Bookmarks(props: BookmarksProps) {
               width={48}
               height={48}
               sizes="(max-width: 48px) 100vw"
-              className="ring-border bg-primary-alt size-12 rounded-full object-cover ring-1 lg:size-10"
+              className="ring-border bg-primary/25 size-12 rounded-full object-cover ring-1 lg:size-10"
             />
           </div>
           <div className="flex w-full flex-col justify-center">
             <div
               className={`text-foreground group-[.active]:text-secondary-foreground flex items-center justify-between`}
             >
-              <span className="line-clamp-1 text-base/tight group-[.active]:font-bold lg:text-sm/tight">
+              <span className="line-clamp-1 text-base/tight font-semibold group-[.active]:font-bold lg:text-sm/tight">
                 {title}
               </span>
             </div>

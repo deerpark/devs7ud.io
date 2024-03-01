@@ -12,12 +12,13 @@ import { useRouter } from "next/navigation"
 import { Badge } from "../ui/badge"
 import { cn } from "@/lib/utils"
 
-interface GlobalNavigationLinkProps {
+interface MobileNavigationLinkProps {
   link: RouteItem
   badge?: boolean
+  scrollDir?: "UP" | "DOWN"
 }
 
-export function GlobalNavigationLink({
+export function MobileNavigationLink({
   link: {
     href,
     label,
@@ -28,7 +29,8 @@ export function GlobalNavigationLink({
     count,
   },
   badge,
-}: GlobalNavigationLinkProps) {
+  scrollDir,
+}: MobileNavigationLinkProps) {
   const [isPending, setIsPending] = React.useTransition()
   const router = useRouter()
   const handleClick: React.MouseEventHandler<HTMLAnchorElement> =
@@ -125,7 +127,10 @@ export function GlobalNavigationLink({
             </span>
             {isActive && (
               <motion.div
-                className="bg-accent absolute inset-0.5 z-0 rounded-lg"
+                className={cn(
+                  "border-border/50 absolute inset-0.5 z-0 rounded-lg border shadow-2xl backdrop-blur-md",
+                  scrollDir === "DOWN" ? "bg-accent/30" : "bg-accent/50"
+                )}
                 layoutId="hilight"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

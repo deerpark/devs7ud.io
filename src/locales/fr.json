@@ -93,6 +93,7 @@
         "title": "Laisser un commentaire",
         "description": "Les contenus inappropriés peuvent être supprimés.",
         "placeholder": "Veuillez saisir un maximum de 1000 caractères.",
+        "require": "Veuillez vous connecter pour commenter.",
         "submit": "Économiser"
       }
     }
