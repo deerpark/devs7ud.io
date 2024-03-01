@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 2% 32%;
+    --foreground: 240 2% 52%;
     --card: 240 7% 97%;
     --card-foreground: 240 2% 32%;
     --popover: 0 0% 100%;
@@ -90,16 +90,28 @@
 }
 
 @layer utilities {
+  .fa-white {
+    --fa-primary-color: hsl(255 0% 100%);
+    --fa-secondary-color: hsl(195 0% 100%);
+    --fa-primary-opacity: 1;
+    --fa-secondary-opacity: 0.4;
+  }
   .fa-light {
-    --fa-primary-color: hsl(255 100% 100%);
-    --fa-secondary-color: hsl(195 100% 100%);
+    --fa-primary-color: hsl(255 0% 100%);
+    --fa-secondary-color: hsl(195 0% 40%);
     --fa-primary-opacity: 1;
     --fa-secondary-opacity: 0.4;
   }
 
+  .fa-black {
+    --fa-primary-color: hsl(255 0% 0%);
+    --fa-secondary-color: hsl(255 0% 00%);
+    --fa-primary-opacity: 1;
+    --fa-secondary-opacity: 0.4;
+  }
   .fa-dark {
-    --fa-primary-color: hsl(255 50% 5%);
-    --fa-secondary-color: hsl(255 50% 5%);
+    --fa-primary-color: hsl(255 0% 0%);
+    --fa-secondary-color: hsl(255 0% 40%);
     --fa-primary-opacity: 1;
     --fa-secondary-opacity: 0.4;
   }

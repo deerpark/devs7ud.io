@@ -33,7 +33,7 @@ export default function List({
         <div
           ref={scrollContainerRef}
           className={cn(
-            "lg:bg-card/30 relative size-full max-h-screen min-h-screen flex-none overflow-y-auto pb-20 transition-all lg:w-80 lg:border-r xl:w-96",
+            "lg:bg-card/30 relative size-full min-h-screen flex-none pb-20 transition-all lg:max-h-screen lg:w-80 lg:overflow-y-auto lg:border-r xl:w-96",
             params.slug ? "bg-popover" : "bg-background"
           )}
           {...rest}
@@ -44,7 +44,7 @@ export default function List({
             searchAccessory={search}
             background="--card"
           />
-          <div className="divide-border/30 lg:divide-border/0 divide-y py-3 lg:px-3">
+          <div className="divide-border/30 lg:divide-border/0 divide-y pb-[84px] pt-3 lg:px-3 lg:pb-3">
             {contents}
           </div>
         </div>

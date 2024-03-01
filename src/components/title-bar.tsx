@@ -3,7 +3,6 @@
 import { useTheme } from "next-themes"
 import * as React from "react"
 
-import useSafeAreaInsets from "@/hooks/useSafeAreaInsets"
 import { FaLeftToLine } from "./icon-duotone"
 import { useRouter } from "next/navigation"
 import { Button } from "./ui/button"
@@ -52,12 +51,6 @@ export function TitleBar({
   const [currentScrollOffset, _setCurrentScrollOffset] = React.useState(0)
   const [backgroundColorOpacity, setBackgroundColorOpacity] = React.useState(0)
   const router = useRouter()
-  const { hasInset } = useSafeAreaInsets()
-
-  const roundedTopClassName = hasInset ? "rounded-t-5xl" : ""
-  const roundedContinerTopClassName = hasInset
-    ? "rounded-t-5xl"
-    : "rounded-t-3xl"
 
   const isDarkmode = React.useMemo(
     () =>
@@ -163,31 +156,16 @@ export function TitleBar({
           "group/bar sticky top-0 z-30 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 transition-all duration-500",
           currentScrollOffset !== 0 ? "active" : "",
           magicTitle && offset >= 100
-            ? "border-foreground/10 dark:border-foreground/20 border-t"
-            : "",
-          magicTitle && offset >= 100 ? roundedContinerTopClassName : ""
+            ? "border-foreground/10 dark:border-foreground/20 border-b"
+            : ""
         )}
       >
-        {magicTitle && segment === "posts" && (
-          <div
-            data-opacity={opacity}
-            style={{
-              opacity: opacity + 1 === 1 ? 0 : opacity + 1.3,
-            }}
-            // eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values
-            className={cn(
-              "pointer-events-none absolute inset-0 -top-[calc(100vh/2.5+24px)] z-0 h-[calc(100vh/2.5+24px)] w-full backdrop-blur-sm transition-all",
-              roundedTopClassName
-            )}
-          />
-        )}
         <div
           style={{
             background: `hsla(var(${background}) / ${backgroundColorOpacity || (magicTitle ? 1 : 0)})`,
           }}
           className={cn(
-            "pointer-events-none absolute inset-0 z-0 size-full backdrop-blur-sm transition-all duration-500",
-            magicTitle && offset >= 100 ? roundedContinerTopClassName : ""
+            "pointer-events-none absolute inset-0 z-0 size-full backdrop-blur-sm transition-all duration-500"
           )}
         />
         <div
@@ -223,7 +201,7 @@ export function TitleBar({
                   : {}
               }
               className={cn(
-                "transform-gpu py-5 md:py-0",
+                "text-secondary-foreground transform-gpu py-5 md:py-0",
                 magicTitle ? "flex items-center space-x-2 lg:px-5" : "flex-1"
               )}
             >

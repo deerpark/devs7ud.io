@@ -47,7 +47,7 @@ export default async function DefaultLayout({
         />
         <div
           id="contents"
-          className="relative flex max-h-screen flex-1 overflow-y-auto"
+          className="relative flex flex-1 lg:max-h-screen lg:overflow-y-auto"
         >
           {children}
         </div>

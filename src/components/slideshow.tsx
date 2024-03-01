@@ -38,7 +38,7 @@ export default function Slideshow({ items = [] }: SlideshowProps) {
     })
   }, [api])
   return items.length ? (
-    <div className="-mx-8 max-w-3xl md:mx-auto">
+    <div className="mx-auto max-w-3xl">
       <Carousel setApi={setApi} className="w-full max-w-full">
         <CarouselContent>
           {items
@@ -46,7 +46,7 @@ export default function Slideshow({ items = [] }: SlideshowProps) {
             .map((item, index) => (
               <CarouselItem key={index}>
                 <Card className="overflow-hidden rounded-none border-0">
-                  <CardContent className="flex aspect-video items-center justify-center p-0">
+                  <CardContent className="flex aspect-square items-center justify-center p-0 lg:aspect-video">
                     <Image
                       alt="Image"
                       src={item.file.url}
@@ -54,7 +54,7 @@ export default function Slideshow({ items = [] }: SlideshowProps) {
                       width={720}
                       height={400}
                       sizes="(max-width: 720px) 100vw"
-                      className="via-primary/30 to-primary/50 size-full max-w-full bg-gradient-to-b object-cover"
+                      className="via-primary/30 to-primary/50 size-full max-w-full rounded-3xl bg-gradient-to-b object-cover"
                     />
                   </CardContent>
                 </Card>

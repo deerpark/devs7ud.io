@@ -69,52 +69,35 @@ export function Posts(props: PostsProps) {
                 height={64}
                 sizes="(max-width: 96px) 100vw"
                 alt=""
-                className="absolute inset-0 size-full bg-[url('/assets/images/cool-background.png')] bg-cover object-cover transition-all duration-500 group-hover:opacity-100 group-[.active]:opacity-100"
+                className="bg-primary-alt absolute inset-0 size-full object-cover transition-all duration-500 group-hover:opacity-100 group-[.active]:opacity-100"
               />
             </div>
           )}
           <div className="flex w-full flex-1 flex-col justify-center space-y-1">
-            <div className={`line-clamp-1 break-keep text-lg/6 font-bold`}>
+            <div className="line-clamp-1 break-keep text-base/tight group-[.active]:font-bold">
               {title}
             </div>
             {/* {description && (
               <div
-                className={`text-foreground/60 group-[.active]:text-foreground/80 line-clamp-1 text-base/5 2xl:line-clamp-2`}
+              className={`text-foreground/60 group-[.active]:text-foreground/80 line-clamp-1 text-base/5 2xl:line-clamp-2`}
               >
-                {description}
+              {description}
               </div>
             )} */}
             <div
-              className={`flex flex-wrap items-center justify-between pl-0.5`}
+              className={`flex flex-wrap items-center justify-between text-xs/tight`}
             >
-              <div className="flex flex-1 items-center space-x-2 2xl:mb-0">
+              <div className="flex flex-1 items-center space-x-1 2xl:mb-0">
                 {byline && user && (
                   <div className="flex flex-none items-center space-x-2">
-                    {/* <Avatar
-                      className={cn(
-                        "ring-foreground group-[.active]:ring-primary-foreground border-1 size-5 rounded-full ring-1 group-hover:!opacity-100 group-[.active]:opacity-100"
-                      )}
-                    >
-                      <AvatarImage
-                        src="/assets/images/yonn-kim.jpg"
-                        alt={`@${user?.name} avatar image`}
-                        className="transition-all group-hover:!grayscale-0 group-[.active]:grayscale-0"
-                      />
-                      <AvatarFallback className="text-xs font-bold">
-                        {user?.name?.slice(0, 1)}
-                      </AvatarFallback>
-                    </Avatar> */}
-                    {/* <span className="runcate text-sm">
-                      {user?.name}
-                    </span> */}
-                    <span className="truncate text-sm">
+                    <span className="truncate opacity-50">
                       {categories.map((category) => category.name).join(", ")}
                     </span>
                     <Separator
                       orientation="vertical"
                       className="size-0.5 rounded-full"
                     />
-                    <span className="truncate text-sm">
+                    <span className="truncate opacity-50">
                       {lastEditedTimeFormat}
                     </span>
                   </div>

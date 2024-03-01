@@ -87,10 +87,7 @@ export function GlobalNavigationLink({
                   >
                     <NavActiveIcon
                       className={cn(
-                        "size-6 transition-all group-active:size-4",
-                        isActive
-                          ? "size-8 group-hover:size-8"
-                          : "group-hover:size-7"
+                        "fa-dark dark:fa-light size-8 transition-all group-hover:size-8 group-active:size-4"
                       )}
                     />
                   </motion.span>
@@ -106,10 +103,7 @@ export function GlobalNavigationLink({
                   >
                     <NavIcon
                       className={cn(
-                        "size-6 transition-all group-active:size-4",
-                        isActive
-                          ? "size-8 group-hover:size-8"
-                          : "group-hover:size-7"
+                        "size-6 transition-all group-hover:size-7 group-active:size-4"
                       )}
                     />
                   </motion.span>

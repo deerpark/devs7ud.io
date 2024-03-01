@@ -215,7 +215,7 @@ export function SidebarNavigation({
                       transition: { duration: 0.1 },
                     }}
                   >
-                    <FaEllipsisVerticalIcon className="size-6 transition-all group-hover:size-8 group-active:size-4" />
+                    <FaEllipsisVerticalIcon className="fa-dark dark:fa-light size-6 transition-all group-hover:size-8 group-active:size-4" />
                   </motion.span>
                 </Button>
               </DrawerTrigger>

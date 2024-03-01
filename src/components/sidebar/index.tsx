@@ -59,7 +59,7 @@ export function Sidebar({ counts }: SidebarProps) {
               transition: { duration: 0.5 },
             }}
             className={cn(
-              `3xl:w-80 bg-background ease-expo-in-out fixed inset-y-0 left-0 z-30 flex h-full min-h-[100vw+env(safe-area-inset-top)+env(safe-area-inset-bottom)] w-3/4 flex-none flex-col overflow-y-auto overflow-x-hidden border-r transition-all duration-500 sm:w-1/2 md:w-1/3 lg:relative lg:inset-y-auto lg:z-auto lg:max-h-screen lg:min-h-screen lg:w-56 2xl:w-72`,
+              `3xl:w-80 bg-background text-card-foreground ease-expo-in-out fixed inset-y-0 left-0 z-30 flex h-full min-h-[100vw+env(safe-area-inset-top)+env(safe-area-inset-bottom)] w-3/4 flex-none flex-col overflow-y-auto overflow-x-hidden border-r transition-all duration-500 sm:w-1/2 md:w-1/3 lg:relative lg:inset-y-auto lg:z-auto lg:max-h-screen lg:min-h-screen lg:w-56 2xl:w-72`,
               roundedRightClassName
             )}
           >
@@ -101,7 +101,7 @@ export function Sidebar({ counts }: SidebarProps) {
           <SidebarOverlay />
         </AnimatePresence>
       ) : (
-        <div className="bg-card ring-border fixed inset-x-0 bottom-0 z-50 rounded-t-lg p-2 pb-[calc(8px+env(safe-area-inset-bottom))] shadow-2xl ring-1">
+        <div className="ring-border text-card-foreground fixed inset-x-0 bottom-0 z-50 rounded-t-lg bg-white/70 p-2 pb-[calc(8px+env(safe-area-inset-bottom))] shadow-2xl ring-1 backdrop-blur-md dark:bg-black/70">
           <div className="mx-auto w-full max-w-lg">
             <SidebarNavigation counts={counts} global />
           </div>
