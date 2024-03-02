@@ -28,11 +28,8 @@
       "me": {
         "label": "Me",
         "bookmarks": "Bookmarks",
+        "projects": "Projects",
         "about": "About"
-      },
-      "projects": {
-        "label": "Projects",
-        "coni": "CONI"
       },
       "online": {
         "label": "Online",
@@ -110,6 +107,9 @@
       "Sports": "Sports"
     },
     "visit": "Visit"
+  },
+  "PROJECTS": {
+    "empty": "There are no registered bookmark."
   },
   "COMMENT": {
     "empty": {

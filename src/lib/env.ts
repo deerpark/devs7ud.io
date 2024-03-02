@@ -11,6 +11,7 @@ export const env = createEnv({
     NOTION_TOKEN: z.string().min(1),
     NOTION_DATABASE_ID: z.string().min(1),
     NOTION_BOOKMARKS_DATABASE_ID: z.string().min(1),
+    NOTION_PROJECTS_DATABASE_ID: z.string().min(1),
     CLERK_SECRET_KEY: z.string().min(1),
   },
   client: {
@@ -42,6 +43,7 @@ export const env = createEnv({
     NOTION_TOKEN: process.env.NOTION_TOKEN,
     NOTION_DATABASE_ID: process.env.NOTION_DATABASE_ID,
     NOTION_BOOKMARKS_DATABASE_ID: process.env.NOTION_BOOKMARKS_DATABASE_ID,
+    NOTION_PROJECTS_DATABASE_ID: process.env.NOTION_PROJECTS_DATABASE_ID,
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
   },
 })

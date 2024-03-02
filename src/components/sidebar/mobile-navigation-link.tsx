@@ -129,7 +129,9 @@ export function MobileNavigationLink({
               <motion.div
                 className={cn(
                   "border-border/50 absolute inset-0.5 z-0 rounded-lg border shadow-2xl backdrop-blur-md",
-                  scrollDir === "DOWN" ? "bg-accent/30" : "bg-accent/50"
+                  scrollDir === "DOWN"
+                    ? "bg-backdround/30"
+                    : "bg-backdround/100"
                 )}
                 layoutId="hilight"
                 initial={{ opacity: 0 }}

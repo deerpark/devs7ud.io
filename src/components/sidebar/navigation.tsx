@@ -1,18 +1,18 @@
 import {
   FaHeadSideIcon as FarImagePolaroidUserIcon,
-  FaFeatherIcon as FarFeatherIcon,
+  FaNewspaperIcon as FarNewspaperIcon,
   FaPinataIcon as FarBookmarkIcon,
   FaCampgroundIcon as FarHouseIcon,
-  FaAwardIcon as FarWreathLaurelIcon,
+  FaBoxHeartIcon as FarBoxHeartIcon,
   FaEllipsisVerticalIcon,
 } from "../icon-regular"
 import {
   FaHeadSideIcon,
-  FaFeatherIcon,
+  FaNewspaperIcon,
   FaPinataIcon,
   FaCampgroundIcon,
   FaArrowUpRightIcon,
-  FaAwardIcon,
+  FaBoxHeartIcon,
 } from "../icon-duotone"
 import { Drawer, DrawerContent, DrawerTrigger } from "../ui/drawer"
 import { MobileNavigationLink } from "./mobile-navigation-link"
@@ -64,8 +64,8 @@ export function Navigation({
         {
           href: "/posts",
           label: t("navigation.index.posts"),
-          icon: FarFeatherIcon,
-          activeIcon: FaFeatherIcon,
+          icon: FarNewspaperIcon,
+          activeIcon: FaNewspaperIcon,
           trailingAccessory: null,
           isActive: pathname.replace(/en|ko|fr/g, "").indexOf("/posts") >= 0,
           trailingAction: null,
@@ -80,6 +80,17 @@ export function Navigation({
       extra: false,
       global: true,
       items: [
+        {
+          href: "/projects",
+          label: t("navigation.me.projects"),
+          icon: FarBoxHeartIcon,
+          activeIcon: FaBoxHeartIcon,
+          trailingAccessory: null,
+          isActive: pathname.replace(/en|ko|fr/g, "").indexOf("/projects") >= 0,
+          trailingAction: null,
+          isExternal: false,
+          global: true,
+        },
         {
           href: "/bookmarks",
           label: t("navigation.me.bookmarks"),
@@ -102,24 +113,6 @@ export function Navigation({
           trailingAction: null,
           isExternal: false,
           global: false,
-        },
-      ],
-    },
-    {
-      label: t("navigation.projects.label"),
-      extra: false,
-      global: true,
-      items: [
-        {
-          href: "/projects",
-          label: t("navigation.projects.label"),
-          icon: FarWreathLaurelIcon,
-          activeIcon: FaAwardIcon,
-          trailingAccessory: null,
-          isActive: false,
-          trailingAction: null,
-          isExternal: false,
-          global: true,
         },
       ],
     },

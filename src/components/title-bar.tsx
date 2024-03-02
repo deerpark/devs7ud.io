@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes"
 import * as React from "react"
 
+import { useScrollDirection } from "@/hooks/useScrollDirection"
 import { FaLeftToLine } from "./icon-duotone"
 import { useRouter } from "next/navigation"
 import { Button } from "./ui/button"
@@ -33,7 +34,7 @@ interface Props {
 export function TitleBar({
   title,
   tag,
-  segment,
+  /* segment, */
   backButton = false,
   backButtonHref,
   magicTitle = false,
@@ -51,6 +52,7 @@ export function TitleBar({
   const [currentScrollOffset, _setCurrentScrollOffset] = React.useState(0)
   const [backgroundColorOpacity, setBackgroundColorOpacity] = React.useState(0)
   const router = useRouter()
+  const scrollDir = useScrollDirection()
 
   const isDarkmode = React.useMemo(
     () =>
@@ -154,7 +156,10 @@ export function TitleBar({
         }}
         className={cn(
           "group/bar sticky top-0 z-30 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 transition-all duration-500",
-          currentScrollOffset !== 0 ? "active" : ""
+          currentScrollOffset !== 0 ? "active" : "",
+          scrollDir === "DOWN"
+            ? "-translate-y-full opacity-0"
+            : "translate-y-0 opacity-100"
         )}
       >
         <div
@@ -167,12 +172,7 @@ export function TitleBar({
         />
         <div
           className={cn(
-            "relative flex-none transition-all duration-500",
-            segment !== "posts" ||
-              !magicTitle ||
-              (opacity !== 0 && opacity > -0.45)
-              ? "pt-[calc(env(safe-area-inset-top))]"
-              : ""
+            "relative flex-none pt-[calc(env(safe-area-inset-top))] transition-all duration-500"
           )}
         >
           <span className="flex min-h-14 w-full items-center">

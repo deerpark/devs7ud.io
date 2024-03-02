@@ -2,11 +2,12 @@ import {
   faMailbox as faMailboxIcon,
   faLinkSimple as faLinkSimpleIcon,
   faHeadSide as faHeadSideIcon,
-  faFeather as faFeatherIcon,
+  faNewspaper as faNewspaperIcon,
   faPinata as faPinataIcon,
   faCampground as faCampgroundIcon,
   faAward as faAwardIcon,
   faEllipsisVertical as faEllipsisVerticalIcon,
+  faBoxHeart as faBoxHeartIcon,
 } from "@fortawesome/pro-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { FaIconProps, IconProps } from "./icon-duotone"
@@ -26,8 +27,8 @@ export const FaLinkSimple = (props: IconProps) => (
 export const FaHeadSideIcon = (props: IconProps) => (
   <FaIcon icon={faHeadSideIcon} {...props} />
 )
-export const FaFeatherIcon = (props: IconProps) => (
-  <FaIcon icon={faFeatherIcon} {...props} />
+export const FaNewspaperIcon = (props: IconProps) => (
+  <FaIcon icon={faNewspaperIcon} {...props} />
 )
 export const FaPinataIcon = (props: IconProps) => (
   <FaIcon icon={faPinataIcon} {...props} />
@@ -40,4 +41,7 @@ export const FaAwardIcon = (props: IconProps) => (
 )
 export const FaEllipsisVerticalIcon = (props: IconProps) => (
   <FaIcon icon={faEllipsisVerticalIcon} {...props} />
+)
+export const FaBoxHeartIcon = (props: IconProps) => (
+  <FaIcon icon={faBoxHeartIcon} {...props} />
 )

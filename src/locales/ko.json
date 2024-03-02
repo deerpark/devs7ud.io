@@ -28,11 +28,8 @@
       "me": {
         "label": "개인",
         "bookmarks": "북마크",
+        "projects": "프로젝트",
         "about": "소개"
-      },
-      "projects": {
-        "label": "프로젝트",
-        "coni": "코니"
       },
       "online": {
         "label": "온라인",
@@ -110,6 +107,9 @@
       "Sports": "스포츠"
     },
     "visit": "방문하기"
+  },
+  "PROJECTS": {
+    "empty": "등록된 프로젝트가 없습니다."
   },
   "COMMENT": {
     "empty": {

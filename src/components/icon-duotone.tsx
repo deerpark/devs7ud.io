@@ -3,7 +3,7 @@ import {
   faLeftToLine as faLeftToLineIcon,
   faArrowRight as faArrowRightIcon,
   faBars as faBarsIcon,
-  faFeather as faFeatherIcon,
+  faNewspaper as faNewspaperIcon,
   faPinata as faPinataIcon,
   faCircleXmark as faCircleXmarkIcon,
   faXmark as faXmarkIcon,
@@ -29,6 +29,7 @@ import {
   faSearch as faSearchIcon,
   faUserLock as faUserLockIcon,
   faCalendarClock as faCalendarClockIcon,
+  faBoxHeart as faBoxHeartIcon,
 } from "@fortawesome/pro-duotone-svg-icons"
 import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome"
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core"
@@ -67,8 +68,8 @@ export const FaXmark = (props: IconProps) => (
 export const FaCampgroundIcon = (props: IconProps) => (
   <FaIcon icon={faCampgroundIcon} {...props} />
 )
-export const FaFeatherIcon = (props: IconProps) => (
-  <FaIcon icon={faFeatherIcon} {...props} />
+export const FaNewspaperIcon = (props: IconProps) => (
+  <FaIcon icon={faNewspaperIcon} {...props} />
 )
 export const FaPinataIcon = (props: IconProps) => (
   <FaIcon icon={faPinataIcon} {...props} />
@@ -138,4 +139,7 @@ export const FaUserLockIcon = (props: IconProps) => (
 )
 export const FaCalendarClockIcon = (props: IconProps) => (
   <FaIcon icon={faCalendarClockIcon} {...props} />
+)
+export const FaBoxHeartIcon = (props: IconProps) => (
+  <FaIcon icon={faBoxHeartIcon} {...props} />
 )

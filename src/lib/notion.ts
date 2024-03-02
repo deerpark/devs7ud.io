@@ -19,6 +19,7 @@ const notionEnv = {
   auth: env.NOTION_TOKEN,
   posts: env.NOTION_DATABASE_ID,
   bookmarks: env.NOTION_BOOKMARKS_DATABASE_ID,
+  projects: env.NOTION_PROJECTS_DATABASE_ID,
 }
 
 export const notionClient = new Client({

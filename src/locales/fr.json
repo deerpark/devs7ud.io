@@ -28,11 +28,8 @@
       "me": {
         "label": "Moi",
         "bookmarks": "Signets",
+        "projects": "Projets",
         "about": "À propos"
-      },
-      "projects": {
-        "label": "Projets",
-        "coni": "CONI"
       },
       "online": {
         "label": "En ligne",
@@ -110,6 +107,9 @@
       "Sports": "Sports"
     },
     "visit": "Visiter"
+  },
+  "PROJECTS": {
+    "empty": "Il n'y a pas de projets enregistrés."
   },
   "COMMENT": {
     "empty": {
