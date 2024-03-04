@@ -1,6 +1,5 @@
 import { Category, PostProps } from "@/types/post.type"
 import { format, formatDistance } from "@/lib/date"
-import { useLocale } from "next-intl"
 import { P } from "./ui/typography"
 import Loading from "./loading"
 import Image from "next/image"
@@ -14,15 +13,16 @@ export default function Contents(props: PostProps) {
     page: PageComponent,
     comments,
     extra = undefined,
+    locale = "ko",
   } = props
   const poster =
     (post?.cover as any)?.file?.url || (post?.cover as any)?.external?.url
   const title = (post.properties.Title as any).title[0].plain_text
   const description = (post.properties?.Description as any)?.rich_text[0]
+    .plain_text
   const categories: Category[] =
     (post.properties?.Categories as any)?.multi_select || []
   const lastEditDateTime = post.last_edited_time
-  const locale = useLocale()
   const updateDateTime = formatDistance(
     new Date(lastEditDateTime),
     new Date(),
@@ -35,7 +35,7 @@ export default function Contents(props: PostProps) {
   return (
     <>
       {poster && (
-        <div className="relative mx-auto aspect-square max-h-[calc(100vh/1.5)] w-full max-w-7xl lg:aspect-video">
+        <div className="relative -mx-8 aspect-square max-h-[calc(100vh/1.5)] w-[calc(100%+64px)] max-w-7xl lg:aspect-video 2xl:mx-auto 2xl:w-full">
           <Image
             src={poster}
             fill
@@ -47,20 +47,23 @@ export default function Contents(props: PostProps) {
           />
         </div>
       )}
-      <h1 className="font-heading from-primary to-primary/70 flex-none break-all bg-gradient-to-r bg-clip-text text-xl font-black text-transparent lg:break-keep">
-        {title}
-      </h1>
-      <div className="text-muted-foreground flex items-center text-sm">
-        <ByLine
-          updateAt={updateAt}
-          lastEditDateTime={lastEditDateTime}
-          updateDateTime={updateDateTime}
-        />
+      <div className="!mt-0 flex flex-col space-y-2 py-8">
+        <h1 className="from-primary to-primary/70 flex-none break-all bg-gradient-to-r bg-clip-text text-3xl/normal font-black text-transparent lg:break-keep">
+          {title}
+        </h1>
+        <div className="text-secondary-foreground flex items-center">
+          <ByLine
+            className="text-tertiary-foreground"
+            updateAt={updateAt}
+            lastEditDateTime={lastEditDateTime}
+            updateDateTime={updateDateTime}
+          />
+        </div>
+        <div className="text-sm font-semibold">
+          {categories?.map((category) => category.name).join(", ")}
+        </div>
       </div>
-      <div className="text-muted-foreground text-sm">
-        {categories?.map((category) => category.name).join(", ")}
-      </div>
-      <P className="text-muted-foreground !mt-3 flex-none break-keep text-center text-sm 2xl:px-1">
+      <P className="border-border/50 text-muted-foreground !mt-0 flex-none break-keep border-b pb-8 text-sm">
         {description}
       </P>
       {extra ? extra : null}
@@ -74,7 +77,7 @@ export default function Contents(props: PostProps) {
         PageComponent
       ) : (
         <React.Suspense fallback={<Loading />}>
-          <PageComponent {...{ post, comments, content }} />
+          <PageComponent {...{ post, comments, content, locale }} />
         </React.Suspense>
       )}
     </>

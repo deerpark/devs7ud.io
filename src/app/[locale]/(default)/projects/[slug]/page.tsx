@@ -30,7 +30,11 @@ export async function generateStaticParams({
   }))
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: { slug: string; locale: string }
+}) {
   const t = await getTranslations()
   const post = await getPageBySlug(params.slug, "projects")
   const users = await getUsers()
@@ -69,6 +73,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <Project
+      locale={params.locale}
       post={post}
       content={html}
       users={users}

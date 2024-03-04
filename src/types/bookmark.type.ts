@@ -12,4 +12,5 @@ export type Screenshot = {
 
 export interface BookmarkProps extends PageProps<BookmarkProps> {
   post: PageObjectResponse
+  locale: string
 }

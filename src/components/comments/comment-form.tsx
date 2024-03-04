@@ -9,9 +9,9 @@ import {
   CardTitle,
 } from "../ui/card"
 import { CommentObjectResponse } from "@notionhq/client/build/src/api-endpoints"
-import { FaMessagesIcon, FaUserLockIcon } from "../icon-duotone"
 import { GlobalNavigationContext } from "../providers"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
+import { FaMessagesIcon } from "../icon-duotone"
 import { buttonVariants } from "../ui/button"
 import CommentSubmit from "./comment-submit"
 import { Separator } from "../ui/separator"
@@ -94,7 +94,6 @@ export default function CommentForm({
       </SignedIn>
       <SignedOut>
         <Empty
-          icon={<FaUserLockIcon className="text-muted-foreground size-12" />}
           description={t("POSTS.comments.form.require")}
           action={
             <div className="flex items-center space-x-2">

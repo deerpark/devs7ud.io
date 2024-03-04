@@ -2,7 +2,6 @@
 
 import * as React from "react"
 
-import { useScrollDirection } from "@/hooks/useScrollDirection"
 import { FaLeftToLine } from "./icon-duotone"
 import { useRouter } from "next/navigation"
 import { Button } from "./ui/button"
@@ -35,7 +34,6 @@ export function TitleBar({
   searchAccessory = null,
   children,
 }: Props) {
-  const scrollDir = useScrollDirection()
   const router = useRouter()
   const handleNavToBack = React.useCallback(() => {
     if (!backButtonHref) return
@@ -46,17 +44,9 @@ export function TitleBar({
     <>
       <div
         className={cn(
-          "group/bar sticky top-0 z-30 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 shadow-2xl transition-all duration-500",
-          scrollDir === "DOWN"
-            ? "-translate-y-full opacity-0"
-            : "translate-y-0 opacity-100"
+          "bg-background/80 group/bar sticky top-0 z-30 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 backdrop-blur-sm transition-all duration-500"
         )}
       >
-        <div
-          className={cn(
-            "bg-background pointer-events-none absolute inset-0 z-0 size-full backdrop-blur-sm transition-all duration-500"
-          )}
-        />
         <div
           className={cn(
             "relative flex-none pt-[calc(env(safe-area-inset-top))] transition-all duration-500"
@@ -78,7 +68,7 @@ export function TitleBar({
             <h2
               className={cn(
                 "text-secondary-foreground transform-gpu py-5 md:py-0",
-                magicTitle ? "flex items-center space-x-2 lg:px-5" : "flex-1"
+                magicTitle ? "hidden" : "flex-1"
               )}
             >
               {tag && <Badge className="block flex-none truncate">{tag}</Badge>}
