@@ -42,7 +42,6 @@ export default function List({
             scrollContainerRef={scrollContainerRef}
             title={title}
             searchAccessory={search}
-            background="--card"
           />
           <div className="divide-border/30 lg:divide-border/0 divide-y pb-[84px] pt-3 lg:px-3 lg:pb-3">
             {contents}
