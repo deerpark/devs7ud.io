@@ -8,6 +8,7 @@ import {
   faAward as faAwardIcon,
   faEllipsisVertical as faEllipsisVerticalIcon,
   faBoxHeart as faBoxHeartIcon,
+  faCalendarClock as faCalendarClockIcon,
 } from "@fortawesome/pro-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { FaIconProps, IconProps } from "./icon-duotone"
@@ -44,4 +45,7 @@ export const FaEllipsisVerticalIcon = (props: IconProps) => (
 )
 export const FaBoxHeartIcon = (props: IconProps) => (
   <FaIcon icon={faBoxHeartIcon} {...props} />
+)
+export const FaCalendarClockIcon = (props: IconProps) => (
+  <FaIcon icon={faCalendarClockIcon} {...props} />
 )

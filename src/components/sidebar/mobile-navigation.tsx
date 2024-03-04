@@ -3,6 +3,7 @@
 import { useScrollDirection } from "@/hooks/useScrollDirection"
 import { Navigation } from "./navigation"
 import { cn } from "@/lib/utils"
+import * as React from "react"
 
 export default function MobileNavigation() {
   const scrollDir = useScrollDirection()

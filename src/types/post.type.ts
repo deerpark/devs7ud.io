@@ -16,6 +16,8 @@ export type MultiSelect = { id: string; name: string; color: string }
 
 export interface PostProps extends PageProps<PostProps> {
   post: PageObjectResponse
+  locale: string
+  extra?: React.ReactNode
 }
 
 export type PostsResponse = {

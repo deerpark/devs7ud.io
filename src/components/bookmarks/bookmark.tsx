@@ -8,13 +8,8 @@ import Contents from "../contents"
 import Tags from "../tags"
 
 export function Bookmark(props: BookmarkProps) {
-  const { post, comments, blurDataURL } = props
-  const title = (post.properties.Title as any).title[0].plain_text
-  /* const poster =
-    (post?.cover as any)?.file?.url ||
-    (post?.cover as any)?.external?.url */
-  const description = (post.properties?.Description as any)?.rich_text[0]
-    ?.plain_text
+  const { post, comments } = props
+  const title = (post.properties.Title as any).title[0].plain_text?.plain_text
   const link = (post.properties?.Link as any)?.url
   const screenshots: Screenshot[] =
     (post.properties?.Screenshot as any)?.files || []
@@ -23,18 +18,17 @@ export function Bookmark(props: BookmarkProps) {
     (post.properties?.Categories as any)?.multi_select || []
   const tags: MultiSelect[] = (post.properties?.Tags as any)?.multi_select || []
   return (
-    <DetailContainer
-      title={title}
-      segment="bookmarks"
-      description={description}
-      /* poster={poster} */
-      categories={categories}
-      blurDataURL={blurDataURL}
-    >
+    <DetailContainer title={title} segment="bookmarks" categories={categories}>
       <div className="max-w-full flex-1 space-y-40 sm:min-w-96 2xl:mx-auto 2xl:max-w-max">
-        <Slideshow items={screenshots} />
-        <LinkVisit link={link} />
-        <Contents {...props} />
+        <Contents
+          {...props}
+          extra={
+            <div>
+              <Slideshow items={screenshots} />
+              <LinkVisit link={link} />
+            </div>
+          }
+        />
         <Tags items={tags} />
       </div>
       <Comments comments={comments} page_id={post.id} />
