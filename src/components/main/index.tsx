@@ -14,9 +14,7 @@ export default function MainContainer({ title, children }: MainContainerProps) {
       className="relative flex w-full flex-1 flex-col transition-all duration-500 lg:max-h-screen lg:overflow-y-auto"
     >
       <TitleBar title={title} />
-      <div className="mt-[calc(env(safe-area-inset-top))] space-y-1 p-3 lg:mt-0">
-        {children}
-      </div>
+      <div className="pt-14 space-y-1 p-3 lg:pt-3">{children}</div>
     </div>
   )
 }

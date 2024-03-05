@@ -91,16 +91,16 @@ export function TitleBar({
 
             <h2
               className={cn(
-                "text-secondary-foreground flex transform-gpu items-center space-x-3 transition-all duration-500 md:py-0",
+                "flex-1 text-secondary-foreground flex transform-gpu items-center space-x-3 transition-all duration-500 md:py-0 opacity-0",
                 !magicTitle || (magicTitle && !inviewCover)
-                  ? "flex-1 translate-y-0 opacity-100"
-                  : "translate-y-1 opacity-0"
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-1"
               )}
             >
               {tag && <Badge className="block flex-none truncate">{tag}</Badge>}
               <span className="line-clamp-1 text-base font-bold">{title}</span>
+              {magicTitle && <div className="flex-1" />}
             </h2>
-            {magicTitle && <div className="flex-1" />}
             {trailingAccessory && trailingAccessory}
           </span>
           {searchAccessory && searchAccessory}
