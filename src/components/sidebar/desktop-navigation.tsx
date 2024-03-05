@@ -20,7 +20,6 @@ interface DesktopNavigationProps {
 }
 
 export default function DesktopNavigation({ counts }: DesktopNavigationProps) {
-  const scrollContainerRef = React.useRef(null)
   const t = useTranslations()
   const { isIPhone, isMobile } = useDeviceDetaction()
   const roundedRightClassName = isIPhone
@@ -31,7 +30,6 @@ export default function DesktopNavigation({ counts }: DesktopNavigationProps) {
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        ref={scrollContainerRef}
         key="sidebar"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -45,7 +43,6 @@ export default function DesktopNavigation({ counts }: DesktopNavigationProps) {
         )}
       >
         <TitleBar
-          scrollContainerRef={scrollContainerRef}
           leadingAccessory={null}
           title={
             <Link

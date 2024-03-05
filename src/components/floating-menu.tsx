@@ -75,7 +75,7 @@ export default function FloatingMenu({
   const handleNavToBack = React.useCallback(() => {
     if (!backButtonHref) return
     router.push(backButtonHref)
-  }, [backButtonHref])
+  }, [router, backButtonHref])
   return (
     <div
       className={cn(

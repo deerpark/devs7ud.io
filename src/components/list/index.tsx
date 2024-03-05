@@ -19,7 +19,6 @@ export default function List({
   ...rest
 }: ListProps) {
   const params = useParams<{ slug: string; locale: string }>()
-  const scrollContainerRef = React.useRef(null)
 
   return (
     <div className="flex max-w-full flex-1">
@@ -31,18 +30,13 @@ export default function List({
         )}
       >
         <div
-          ref={scrollContainerRef}
           className={cn(
             "lg:bg-card/30 relative size-full min-h-screen flex-none pb-20 transition-all lg:max-h-screen lg:w-80 lg:overflow-y-auto lg:border-r xl:w-96",
             params.slug ? "bg-popover" : "bg-background"
           )}
           {...rest}
         >
-          <TitleBar
-            scrollContainerRef={scrollContainerRef}
-            title={title}
-            searchAccessory={search}
-          />
+          <TitleBar title={title} searchAccessory={search} />
           <div className="divide-border/30 lg:divide-border/0 divide-y pb-[84px] pt-3 lg:px-3 lg:pb-3">
             {contents}
           </div>

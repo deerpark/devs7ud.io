@@ -8,14 +8,12 @@ type MainContainerProps = {
 } & React.PropsWithChildren
 
 export default function MainContainer({ title, children }: MainContainerProps) {
-  const scrollContainerRef = React.useRef(null)
   return (
     <div
       id="main"
-      ref={scrollContainerRef}
       className="relative flex w-full flex-1 flex-col transition-all duration-500 lg:max-h-screen lg:overflow-y-auto"
     >
-      <TitleBar scrollContainerRef={scrollContainerRef} title={title} />
+      <TitleBar title={title} />
       <div className="space-y-1 p-3">{children}</div>
     </div>
   )
