@@ -67,7 +67,7 @@ export function TitleBar({
             ? "bg-background/80 backdrop-blur-sm"
             : "bg-gradient-to-b from-black/20 to-black/0 2xl:from-black/0",
           magicTitle && !inviewCover ? "shadow-2xl" : "",
-          magicTitle ? "pl-8 pr-3" : "px-3"
+          magicTitle && !(backButton && backButtonHref) ? "pl-8 pr-3" : "px-3"
         )}
       >
         <div
