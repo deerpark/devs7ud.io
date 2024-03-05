@@ -28,10 +28,12 @@ type SearchCommandProps = {
         errors: string | undefined
         posts: PageObjectResponse[]
         bookmarks: PageObjectResponse[]
+        projects: PageObjectResponse[]
       }
     | {
         posts: PageObjectResponse[]
         bookmarks: PageObjectResponse[]
+        projects: PageObjectResponse[]
         errors?: undefined
       }
   onClose: any
@@ -112,6 +114,20 @@ export default function SearchCommand({
                 onSelect={handleSelectItem}
               >
                 {(bookmark.properties.Title as any).title[0].plain_text}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        ) : null}
+        {data.projects.length ? (
+          <CommandGroup heading={t("SYSTEM.navigation.me.projects")}>
+            {data.projects.map((project) => (
+              <CommandItem
+                className="text-background dark:text-foreground"
+                key={project.id}
+                value={`projects/${(project.properties?.Slug as any)?.rich_text[0].plain_text}`}
+                onSelect={handleSelectItem}
+              >
+                {(project.properties.Title as any).title[0].plain_text}
               </CommandItem>
             ))}
           </CommandGroup>

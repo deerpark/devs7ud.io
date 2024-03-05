@@ -25,6 +25,7 @@ export default function Search({ className, iconClassName }: SearchProps) {
   const [state, formAction] = useFormState(search.bind(null, { locale }), {
     posts: [],
     bookmarks: [],
+    projects: [],
   })
   const [data, setData] = React.useState(state)
   const handleClick: React.MouseEventHandler<HTMLButtonElement> =

@@ -21,6 +21,7 @@ export async function search(
       errors: parse.error.flatten().fieldErrors.keyword?.join(),
       posts: [] as PageObjectResponse[],
       bookmarks: [] as PageObjectResponse[],
+      projects: [] as PageObjectResponse[],
     }
   }
 
@@ -37,17 +38,24 @@ export async function search(
       "bookmarks",
       data.keyword
     )) as QueryDatabaseResponse
+    const projects = (await searchPages(
+      params.locale,
+      "projects",
+      data.keyword
+    )) as QueryDatabaseResponse
 
     // revalidatePath("/posts")
     return {
       posts: posts.results as PageObjectResponse[],
       bookmarks: bookmarks.results as PageObjectResponse[],
+      projects: projects.results as PageObjectResponse[],
     }
   } catch (e) {
     return {
       errors: "Failed to load posts",
       posts: [] as PageObjectResponse[],
       bookmarks: [] as PageObjectResponse[],
+      projects: [] as PageObjectResponse[],
     }
   }
 }
