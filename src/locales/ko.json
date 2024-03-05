@@ -138,7 +138,8 @@
     "welcome": "안녕하세요 {fullName}!"
   },
   "SLIDESHOW": {
-    "indicator": "컨텐츠 훑어보기 {current} / {count}"
+    "indicator": "컨텐츠 훑어보기 {current} / {count}",
+    "screenshot": "스크린샷"
   },
   "ABOUT": {
     "title": "DEVS7UDIO를 소개합니다.",

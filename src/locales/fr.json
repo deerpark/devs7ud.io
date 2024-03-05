@@ -138,7 +138,8 @@
     "welcome": "Bonjour {fullName}!"
   },
   "SLIDESHOW": {
-    "indicator": "Écrémer le contenu {current} / {count}"
+    "indicator": "Écrémer le contenu {current} / {count}",
+    "screenshot": "Capture d'écran"
   },
   "ABOUT": {
     "title": "Voici DEVS7UDIO.",

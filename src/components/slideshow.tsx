@@ -16,9 +16,10 @@ import * as React from "react"
 
 type SlideshowProps = {
   items: Screenshot[]
+  label?: string
 }
 
-export default function Slideshow({ items = [] }: SlideshowProps) {
+export default function Slideshow({ items = [], label }: SlideshowProps) {
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
@@ -71,7 +72,7 @@ export default function Slideshow({ items = [] }: SlideshowProps) {
         />
       </Carousel>
       <div className="text-muted-foreground py-2 text-center text-sm">
-        {t("SLIDESHOW.indicator", { current, count })}
+        {label || t("SLIDESHOW.indicator", { current, count })}
       </div>
     </div>
   ) : null

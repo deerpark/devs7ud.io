@@ -23,7 +23,7 @@ export function Bookmark(props: BookmarkProps) {
         <Contents
           {...props}
           extra={
-            <div>
+            <div className="space-y-5">
               <Slideshow items={screenshots} />
               <LinkVisit link={link} />
             </div>

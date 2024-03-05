@@ -69,7 +69,7 @@ export function TitleBar({
           magicTitle && !inviewCover ? "shadow-2xl" : "",
           (magicTitle && !(backButton && backButtonHref)) ||
             (magicTitle && !tag)
-            ? "pl-8 pr-3"
+            ? "px-3 lg:pl-8 lg:pr-3"
             : "px-3"
         )}
       >

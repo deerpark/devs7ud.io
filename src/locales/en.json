@@ -138,7 +138,8 @@
     "welcome": "Hello {fullName}!"
   },
   "SLIDESHOW": {
-    "indicator": "Skim content {current} / {count}"
+    "indicator": "Skim content {current} / {count}",
+    "screenshot": "Screenshot"
   },
   "ABOUT": {
     "title": "Introducing DEVS7UDIO.",
