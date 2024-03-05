@@ -11,7 +11,7 @@ export function Project(props: PostProps) {
     (post.properties?.Categories as any)?.multi_select || []
   const tags: MultiSelect[] = (post.properties?.Tags as any)?.multi_select || []
   return (
-    <DetailContainer title={title} categories={categories}>
+    <DetailContainer title={title} categories={categories} segment="projects">
       <div className="max-w-full flex-1 space-y-20 sm:min-w-96 2xl:mx-auto 2xl:max-w-max">
         <Contents {...props} />
         <Tags items={tags} />
