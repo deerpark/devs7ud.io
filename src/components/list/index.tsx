@@ -37,7 +37,7 @@ export default function List({
           {...rest}
         >
           <TitleBar title={title} searchAccessory={search} />
-          <div className="divide-border/30 lg:divide-border/0 pt-[124px] divide-y pb-[84px] lg:pt-3 lg:px-3 lg:pb-3">
+          <div className="divide-border/30 lg:divide-border/0 divide-y pb-[84px] pt-[124px] lg:p-3">
             {contents}
           </div>
         </div>

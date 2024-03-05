@@ -62,13 +62,17 @@ export default function Contents(props: PostProps) {
             updateDateTime={updateDateTime}
           />
         </div>
-        <div className="text-sm font-semibold">
-          {categories?.map((category) => category.name).join(", ")}
-        </div>
+        {categories.length ? (
+          <div className="text-sm font-semibold">
+            {categories?.map((category) => category.name).join(", ")}
+          </div>
+        ) : null}
       </div>
-      <P className="border-border/50 text-muted-foreground !mt-0 flex-none break-keep border-b pb-8 text-sm">
-        {description}
-      </P>
+      {description ? (
+        <P className="border-border/50 text-muted-foreground !mt-0 flex-none break-keep border-b pb-8 text-sm">
+          {description}
+        </P>
+      ) : null}
       {extra ? extra : null}
       {content && !PageComponent ? (
         <div

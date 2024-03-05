@@ -9,8 +9,6 @@ import CommentCount from "../comments/comment-count"
 /* import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar" */
 import { FaSpinnerThirdIcon } from "../icon-duotone"
 import ListItemLink from "../list/list-link"
-import { Category } from "@/types/post.type"
-import { Separator } from "../ui/separator"
 import { formatDistance } from "@/lib/date"
 import ListItem from "../list/list-item"
 import { useLocale } from "next-intl"
@@ -27,18 +25,15 @@ export interface PostsProps {
 
 const segment = "projects"
 
-export function Posts(props: PostsProps) {
-  const { data, onClick, leadingAccessory = null, byline, users = [] } = props
+export function Projects(props: PostsProps) {
+  const { data, onClick, leadingAccessory = null } = props
   const locale = useLocale()
 
   return data.map((post) => {
-    const user = users.find((u) => u.id === post.created_by.id)
     const url = `/${segment}/${(post.properties?.Slug as any)?.rich_text[0].plain_text}`
     const title = (post.properties?.Title as any)?.title[0]?.plain_text
-    /* const description = (post.properties?.Description as any)?.rich_text[0]
-      ?.plain_text */
-    const categories: Category[] =
-      (post.properties?.Categories as any)?.multi_select || []
+    const description = (post.properties?.Description as any)?.rich_text[0]
+      ?.plain_text
     const lastEditedTime = post.last_edited_time
     const lastEditedTimeFormat = formatDistance(
       new Date(lastEditedTime),
@@ -58,45 +53,41 @@ export function Posts(props: PostsProps) {
           segment={segment}
           url={url}
           onClick={onClick && onClick}
-          className="relative z-10"
+          className="relative z-10 flex-col space-x-0 space-y-3"
         >
           {leadingAccessory}
           {thumbnail && (
-            <div className="relative my-auto grid h-16 w-24 flex-none place-content-center overflow-hidden rounded-xl shadow-lg transition-all duration-500">
+            <div className="relative grid aspect-video size-full flex-none place-content-center overflow-hidden rounded-xl shadow-lg transition-all duration-500">
               <Image
                 src={thumbnail}
-                width={96}
-                height={64}
-                sizes="(max-width: 96px) 100vw"
+                width={280}
+                height={180}
+                sizes="(max-width: 280px) 100vw"
                 alt=""
                 className="bg-primary/25 absolute inset-0 size-full object-cover transition-all duration-500 group-hover:opacity-100 group-[.active]:opacity-100"
               />
             </div>
           )}
-          <div className="flex w-full flex-1 flex-col justify-center space-y-1">
-            <div className="line-clamp-1 break-keep text-base/tight font-semibold group-[.active]:font-bold">
-              {title}
+          <div className="flex w-full flex-col justify-center space-y-1 px-2">
+            <div className="line-clamp-1 flex items-center space-x-2 break-keep">
+              <span className="text-base/tight font-semibold group-[.active]:font-bold">
+                {title}
+              </span>
+              {description && (
+                <span
+                  className={`text-foreground/60 group-[.active]:text-foreground/80 truncate text-base/5`}
+                >
+                  {description}
+                </span>
+              )}
             </div>
-            {/* {description && (
-              <div
-              className={`text-foreground/60 group-[.active]:text-foreground/80 line-clamp-1 text-base/5 2xl:line-clamp-2`}
-              >
-              {description}
-              </div>
-            )} */}
+
             <div
               className={`flex flex-wrap items-center justify-between text-xs/tight`}
             >
               <div className="flex flex-1 items-center space-x-1 2xl:mb-0">
-                {byline && user && (
+                {lastEditedTimeFormat && (
                   <div className="flex flex-none items-center space-x-2">
-                    <span className="truncate opacity-50">
-                      {categories.map((category) => category.name).join(", ")}
-                    </span>
-                    <Separator
-                      orientation="vertical"
-                      className="size-0.5 rounded-full"
-                    />
                     <span className="truncate opacity-50">
                       {lastEditedTimeFormat}
                     </span>

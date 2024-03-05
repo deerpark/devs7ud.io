@@ -67,7 +67,10 @@ export function TitleBar({
             ? "bg-background/80 backdrop-blur-sm"
             : "bg-gradient-to-b from-black/20 to-black/0 2xl:from-black/0",
           magicTitle && !inviewCover ? "shadow-2xl" : "",
-          magicTitle && !(backButton && backButtonHref) ? "pl-8 pr-3" : "px-3"
+          (magicTitle && !(backButton && backButtonHref)) ||
+            (magicTitle && !tag)
+            ? "pl-8 pr-3"
+            : "px-3"
         )}
       >
         <div
@@ -91,7 +94,7 @@ export function TitleBar({
 
             <h2
               className={cn(
-                "flex-1 text-secondary-foreground flex transform-gpu items-center space-x-3 transition-all duration-500 md:py-0 opacity-0",
+                "text-secondary-foreground flex flex-1 transform-gpu items-center space-x-3 opacity-0 transition-all duration-500 md:py-0",
                 !magicTitle || (magicTitle && !inviewCover)
                   ? "translate-y-0 opacity-100"
                   : "translate-y-1"

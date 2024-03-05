@@ -2,8 +2,8 @@ import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoint
 
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import { getPages, getUsers } from "@/lib/notion"
+import { Projects } from "@/components/projects"
 import Search from "@/components/search/search"
-import { Posts } from "@/components/posts"
 import List from "@/components/list"
 import * as React from "react"
 
@@ -31,7 +31,7 @@ export default async function PageLayout({
         }
         contents={
           pages.results.length ? (
-            <Posts
+            <Projects
               data={pages.results as PageObjectResponse[]}
               byline
               users={"results" in users ? users.results : []}
