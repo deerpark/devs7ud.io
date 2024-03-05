@@ -105,7 +105,7 @@ export function Posts(props: PostsProps) {
 
                 <React.Suspense
                   fallback={
-                    <FaSpinnerThirdIcon className="text-primary size-4 animate-spin" />
+                    <FaSpinnerThirdIcon className="size-4 animate-spin" />
                   }
                 >
                   <CommentCount id={post.id} />

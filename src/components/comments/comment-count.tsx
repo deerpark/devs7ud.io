@@ -1,4 +1,4 @@
-import { FaMessageLinesIcon } from "../icon-duotone"
+import { FaMessageLinesIcon } from "../icon-regular"
 import { getComments } from "@/lib/notion"
 import { Badge } from "../ui/badge"
 import { cn } from "@/lib/utils"
@@ -13,6 +13,7 @@ export default async function CommentCount({
   const commentCounts = "results" in comments ? comments.results.length : 0
   return (
     <>
+      <div className="flex-1" />
       <Badge
         variant="outline"
         className={cn(
@@ -24,12 +25,10 @@ export default async function CommentCount({
         )}
       >
         <FaMessageLinesIcon
-          className="group-[.active]:fa-light dark:group-[.active]:fa-dark size-4"
+          className="size-3"
           style={{ transform: "rotateY(180deg)" }}
         />
-        <span className="text-foreground group-[.active]:text-secondary-foreground leading-4">
-          {commentCounts}
-        </span>
+        <span className="leading-4">{commentCounts}</span>
       </Badge>
     </>
   )

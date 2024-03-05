@@ -71,7 +71,7 @@ export default function ListItemLink({
               transition: { duration: 0.1 },
             }}
             className={cn(
-              "pointer-events-none absolute inset-y-0 left-auto right-3 flex h-full items-center justify-center",
+              "pointer-events-none absolute inset-y-0 left-auto right-0 flex h-full items-center justify-center",
               isPost ? "w-24 rounded-xl" : "w-12 rounded-full lg:w-8"
             )}
           >

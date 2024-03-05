@@ -65,8 +65,9 @@ export function TitleBar({
         className={cn(
           "group/bar sticky top-0 z-30 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 transition-all duration-500",
           !magicTitle || (magicTitle && !inviewCover)
-            ? "bg-background/80 shadow-2xl backdrop-blur-sm"
-            : "bg-gradient-to-b from-black/20 to-black/0"
+            ? "bg-background/80 backdrop-blur-sm"
+            : "bg-gradient-to-b from-black/20 to-black/0",
+          magicTitle && !inviewCover ? "shadow-2xl" : ""
         )}
       >
         <div
@@ -90,7 +91,7 @@ export function TitleBar({
 
             <h2
               className={cn(
-                "text-secondary-foreground flex transform-gpu items-center space-x-1 transition-all duration-500 md:py-0",
+                "text-secondary-foreground flex transform-gpu items-center space-x-3 transition-all duration-500 md:py-0",
                 !magicTitle || (magicTitle && !inviewCover)
                   ? "flex-1 translate-y-0 opacity-100"
                   : "translate-y-1 opacity-0"
