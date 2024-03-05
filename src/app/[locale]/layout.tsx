@@ -43,11 +43,12 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
       <html
         lang={params.locale}
         className={cn(
+          "scroll-smooth",
           Fonts.inter.variable,
           params.locale === "ko" ? Fonts.oaGothic.variable : ""
         )}
       >
-        <body className="lg:overflow-hidden">
+        <body className="scroll-smooth lg:overflow-hidden">
           <SkipToContent />
           {children}
           <Bootstrap />

@@ -15,7 +15,6 @@ interface Props {
   backButton?: boolean
   backButtonHref?: string
   magicTitle?: boolean
-  scrollContainerRef?: React.RefObject<HTMLElement> | null
   children?: React.ReactNode
   leadingAccessory?: React.ReactNode
   trailingAccessory?: React.ReactNode
@@ -63,17 +62,18 @@ export function TitleBar({
     <>
       <div
         className={cn(
-          "group/bar sticky top-0 z-30 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 transition-all duration-500",
+          "group/bar fixed inset-x-0 top-0 z-30 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center transition-all duration-500 lg:sticky lg:inset-x-auto",
           !magicTitle || (magicTitle && !inviewCover)
             ? "bg-background/80 backdrop-blur-sm"
-            : "bg-gradient-to-b from-black/20 to-black/0",
-          magicTitle && !inviewCover ? "shadow-2xl" : ""
+            : "bg-gradient-to-b from-black/20 to-black/0 2xl:from-black/0",
+          magicTitle && !inviewCover ? "shadow-2xl" : "",
+          magicTitle ? "pl-8 pr-3" : "px-3"
         )}
       >
         <div
           className={cn(
             "relative flex-none pt-[calc(env(safe-area-inset-top))] transition-all duration-500",
-            inviewCover ? "fa-white" : ""
+            inviewCover ? "fa-white 2xl:fa-black dark:2xl:fa-white" : ""
           )}
         >
           <span className="flex min-h-14 w-full items-center">

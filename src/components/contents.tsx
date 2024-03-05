@@ -37,7 +37,7 @@ export default function Contents(props: PostProps) {
       {poster && (
         <div
           id="cover"
-          className="relative -mx-8 aspect-square max-h-[calc(100vh/1.5)] w-[calc(100%+64px)] max-w-7xl lg:aspect-video 2xl:mx-auto 2xl:w-full"
+          className="relative -mx-8 aspect-square max-h-[calc(100vh/1.5)] w-screen overflow-hidden lg:aspect-video lg:w-[calc(100%+64px)] 2xl:mx-auto 2xl:w-full 2xl:rounded-t-3xl"
         >
           <Image
             src={poster}

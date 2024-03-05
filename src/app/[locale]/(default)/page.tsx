@@ -1,7 +1,7 @@
 import Logo from "@/public/assets/icons/logo-background-white.svg"
 import LogoTypo from "@/public/assets/icons/logo-typo-mono.svg"
 import { unstable_setRequestLocale } from "next-intl/server"
-/* import FloatingMenu from "@/components/floating-menu" */
+import FloatingMenu from "@/components/floating-menu"
 import MainContainer from "@/components/main"
 import { useTranslations } from "next-intl"
 
@@ -34,7 +34,7 @@ export default function Home({
           </p>
         </div>
       </MainContainer>
-      {/* <FloatingMenu /> */}
+      <FloatingMenu />
     </>
   )
 }

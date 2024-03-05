@@ -1,5 +1,6 @@
 "use client"
 
+import useWindowSize from "@/hooks/useWindowSize"
 import { FaLeftToLine } from "./icon-duotone"
 import { useRouter } from "next/navigation"
 import ScrollToTop from "./scroll-to-top"
@@ -11,42 +12,70 @@ import * as React from "react"
 type FloatingMenuProps = {
   backButton?: boolean
   backButtonHref?: string
-  scrollContainerRef?: React.RefObject<HTMLElement> | null
 }
 
 export default function FloatingMenu({
   backButton = false,
   backButtonHref,
-  scrollContainerRef = null,
 }: FloatingMenuProps) {
   const router = useRouter()
+  const { width } = useWindowSize()
   const [isShow, setShow] = React.useState<boolean>(false)
+
+  const isMobile = width <= 1024
 
   const handleScrollToTop: React.MouseEventHandler<HTMLButtonElement> =
     React.useCallback(() => {
-      if (!scrollContainerRef?.current) return
-      scrollContainerRef.current.scrollTop = 0
-    }, [scrollContainerRef])
+      if (isMobile) {
+        ;(document.scrollingElement || document.documentElement).scrollTop = 0
+      } else {
+        const element = document.getElementById("main")
+        if (!element) return
+        console.log(element.scrollTop)
+        element.scrollTop = 0
+      }
+    }, [isMobile])
 
-  const handleScroll = throttle<(this: HTMLElement, ev: Event) => any>(() => {
-    if (!scrollContainerRef?.current) return
-    setShow(scrollContainerRef.current.scrollTop > 50)
-  }, 100)
+  // 스로틀링을 useCallback 밖에서 적용
+  const handleScroll = React.useCallback(() => {
+    let scrollY = 0
+    if (isMobile) {
+      scrollY = window.scrollY
+    } else {
+      const element = document.getElementById("main")
+      if (!element) return
+      scrollY = element.scrollTop
+    }
+    setShow(scrollY > 50)
+  }, [isMobile])
+
+  // 스로틀링 적용
+  const throttledHandleScroll = React.useMemo(
+    () => throttle(handleScroll, 100),
+    [handleScroll]
+  )
+
+  React.useLayoutEffect(() => {
+    if (isMobile) {
+      if (!window) return
+      window.addEventListener("scroll", throttledHandleScroll, {
+        passive: true,
+      })
+      return () => window.removeEventListener("scroll", throttledHandleScroll)
+    } else {
+      const element = document.getElementById("main")
+      if (!element) return
+      element.addEventListener("scroll", throttledHandleScroll, {
+        passive: true,
+      })
+      return () => element.removeEventListener("scroll", throttledHandleScroll)
+    }
+  }, [throttledHandleScroll, isMobile])
 
   const handleNavToBack = React.useCallback(() => {
     if (!backButtonHref) return
     router.push(backButtonHref)
-  }, [backButtonHref, router])
-
-  React.useEffect(() => {
-    const element = scrollContainerRef?.current
-    if (!element) return
-
-    element.addEventListener("scroll", handleScroll)
-
-    // 이벤트 리스너 제거 시 함수 참조를 직접 전달
-    return () => element.removeEventListener("scroll", handleScroll)
-  }, [handleScroll, scrollContainerRef])
+  }, [backButtonHref])
   return (
     <div
       className={cn(

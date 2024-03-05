@@ -38,7 +38,10 @@ export default async function DefaultLayout({
           : null
       }
     >
-      <div id="root" className="flex size-full min-h-screen">
+      <div
+        id="root"
+        className="max-w-screen flex size-full min-h-screen overflow-x-hidden"
+      >
         <Sidebar
           counts={{
             posts: pages?.results?.length || 0,
