@@ -1,4 +1,3 @@
-import { FaCalendarClockIcon } from "./icon-regular"
 import { useTranslations } from "next-intl"
 import { Separator } from "./ui/separator"
 import { cn } from "@/lib/utils"
@@ -19,11 +18,6 @@ export default function ByLine({
   const t = useTranslations()
   return (
     <div className={cn("flex items-center space-x-2", className)}>
-      <FaCalendarClockIcon className="size-4" />
-      <Separator
-        orientation="vertical"
-        className="bg-foreground/50 size-0.5 rounded-full"
-      />
       <span className="truncate">{updateAt}</span>
       {lastEditDateTime ? (
         <>

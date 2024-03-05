@@ -46,7 +46,9 @@ export default function DetailContainer({
             scrollContainerRef={scrollContainerRef}
             trailingAccessory={<DetailToolbar />}
           />
-          <div className="flex flex-1 flex-col p-8 pt-0">{children}</div>
+          <div className="mt-[calc(-56px-env(safe-area-inset-top))] flex flex-1 flex-col p-8 pt-0">
+            {children}
+          </div>
         </div>
       </div>
       {/* <FloatingMenu

@@ -49,7 +49,6 @@ import { useTranslations } from "next-intl"
 import { FaMailbox } from "./icon-regular"
 import { appConfig } from "@/config/app"
 import { Button } from "./ui/button"
-import { cn } from "@/lib/utils"
 import { toast } from "sonner"
 
 export default function SnsShare() {
@@ -69,9 +68,7 @@ export default function SnsShare() {
                 variant="ghost"
                 size="icon"
               >
-                <FaArrowUpFromBracketIcon
-                  className={cn("size-4 transition-all")}
-                />
+                <FaArrowUpFromBracketIcon className="size-4" />
                 <span className="sr-only">{t("TITLEBAR.share")}</span>
               </Button>
             </TooltipTrigger>

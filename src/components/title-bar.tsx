@@ -35,21 +35,44 @@ export function TitleBar({
   children,
 }: Props) {
   const router = useRouter()
+  const [inviewCover, setInviewCover] = React.useState(false)
   const handleNavToBack = React.useCallback(() => {
     if (!backButtonHref) return
     router.push(backButtonHref)
   }, [backButtonHref, router])
 
+  React.useLayoutEffect(() => {
+    const coverRef = document.getElementById("cover")
+    if (!coverRef) return
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        setInviewCover(entry.isIntersecting)
+      })
+    })
+
+    observer.observe(coverRef)
+
+    return () => {
+      if (coverRef) {
+        observer.unobserve(coverRef)
+      }
+    }
+  }, [])
+
   return (
     <>
       <div
         className={cn(
-          "bg-background/80 group/bar sticky top-0 z-30 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 backdrop-blur-sm transition-all duration-500"
+          "group/bar sticky top-0 z-30 flex min-h-[calc(56px+env(safe-area-inset-top))] flex-col justify-center px-3 transition-all duration-500",
+          !magicTitle || (magicTitle && !inviewCover)
+            ? "bg-background/80 shadow-2xl backdrop-blur-sm"
+            : "bg-gradient-to-b from-black/20 to-black/0"
         )}
       >
         <div
           className={cn(
-            "relative flex-none pt-[calc(env(safe-area-inset-top))] transition-all duration-500"
+            "relative flex-none pt-[calc(env(safe-area-inset-top))] transition-all duration-500",
+            inviewCover ? "fa-white" : ""
           )}
         >
           <span className="flex min-h-14 w-full items-center">
@@ -67,8 +90,10 @@ export function TitleBar({
 
             <h2
               className={cn(
-                "text-secondary-foreground transform-gpu py-5 md:py-0",
-                magicTitle ? "hidden" : "flex-1"
+                "text-secondary-foreground flex transform-gpu items-center space-x-1 transition-all duration-500 md:py-0",
+                !magicTitle || (magicTitle && !inviewCover)
+                  ? "flex-1 translate-y-0 opacity-100"
+                  : "translate-y-1 opacity-0"
               )}
             >
               {tag && <Badge className="block flex-none truncate">{tag}</Badge>}
