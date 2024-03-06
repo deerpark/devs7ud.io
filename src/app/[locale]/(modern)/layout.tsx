@@ -37,7 +37,7 @@ export default async function DefaultLayout({
     >
       <div
         id="root"
-        className="max-w-screen flex flex-col size-full min-h-screen overflow-x-hidden"
+        className="max-w-screen flex size-full min-h-screen flex-col overflow-x-hidden"
       >
         <Navigation />
         <div
