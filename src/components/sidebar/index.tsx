@@ -7,7 +7,7 @@ import MobileNavigation from "./mobile-navigation"
 import useWindowSize from "@/hooks/useWindowSize"
 
 type SidebarProps = {
-  counts: {
+  counts?: {
     posts: number
     bookmarks: number
   }

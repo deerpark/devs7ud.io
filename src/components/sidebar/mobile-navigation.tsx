@@ -1,7 +1,7 @@
 "use client"
 
 import { useScrollDirection } from "@/hooks/useScrollDirection"
-import { Navigation } from "./navigation"
+import { GlobalMenu } from "./global-menu"
 import { cn } from "@/lib/utils"
 import * as React from "react"
 
@@ -19,7 +19,7 @@ export default function MobileNavigation() {
       )}
     >
       <div className="mx-auto w-full max-w-lg">
-        <Navigation global scrollDir={scrollDir} />
+        <GlobalMenu global scrollDir={scrollDir} />
       </div>
     </div>
   )

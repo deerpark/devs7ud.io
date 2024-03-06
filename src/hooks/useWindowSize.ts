@@ -1,4 +1,3 @@
-import { useIsomorphicLayoutEffect } from "framer-motion"
 import * as React from "react"
 
 export default function useWindowSize() {
@@ -6,7 +5,7 @@ export default function useWindowSize() {
     typeof window === "undefined" ? 0 : window.innerWidth
   )
 
-  useIsomorphicLayoutEffect(() => {
+  React.useEffect(() => {
     if (typeof window === "undefined") return
     const handleResize = () => setWidth(window.innerWidth)
     window.addEventListener("resize", handleResize)

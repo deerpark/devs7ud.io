@@ -36,7 +36,7 @@ type NavigationProps = {
   scrollDir?: "UP" | "DOWN"
 }
 
-export function Navigation({
+export function GlobalMenu({
   counts,
   global = false,
   scrollDir,

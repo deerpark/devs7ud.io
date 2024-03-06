@@ -7,8 +7,8 @@ import { AnimatePresence, motion } from "framer-motion"
 import { ThemeSwitcher } from "../theme-switcher"
 import LocaleSwitcher from "../locale-switcher"
 import { useTranslations } from "next-intl"
+import { GlobalMenu } from "./global-menu"
 import { SidebarOverlay } from "./overlay"
-import { Navigation } from "./navigation"
 import { TitleBar } from "../title-bar"
 import SidebarFooter from "./footer"
 import { cn } from "@/lib/utils"
@@ -16,7 +16,7 @@ import * as React from "react"
 import Link from "next/link"
 
 interface DesktopNavigationProps {
-  counts: { posts: number; bookmarks: number }
+  counts?: { posts: number; bookmarks: number }
 }
 
 export default function DesktopNavigation({ counts }: DesktopNavigationProps) {
@@ -65,7 +65,7 @@ export default function DesktopNavigation({ counts }: DesktopNavigationProps) {
             </Link>
           }
         />
-        <Navigation counts={counts} />
+        <GlobalMenu counts={counts} />
         <div className="flex-none space-y-1 p-3">
           <h4 className="text-muted-foreground px-2 pb-2 pt-5 text-xs font-semibold">
             {t("SYSTEM.settings.label")}
