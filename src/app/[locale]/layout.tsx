@@ -48,7 +48,7 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
           params.locale === "ko" ? Fonts.oaGothic.variable : ""
         )}
       >
-        <body className="scroll-smooth lg:overflow-hidden">
+        <body className="scroll-smooth">
           <SkipToContent />
           {children}
           <Bootstrap />

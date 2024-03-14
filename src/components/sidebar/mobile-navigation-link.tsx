@@ -56,8 +56,8 @@ export function MobileNavigationLink({
             rel={isExternal ? "noopener noreferrer" : undefined}
             className={cn(
               buttonVariants({ variant: "ghost" }),
-              `group flex w-full flex-1 items-center justify-center rounded-md !bg-transparent p-2 text-sm font-medium`,
-              isActive ? "text-secondary-foreground" : "text-foreground"
+              `text-accent-foreground group flex w-full flex-1 items-center justify-center rounded-md p-2 text-sm font-medium active:scale-95`,
+              isActive ? "hover:!bg-transparent" : "!bg-transparent"
             )}
             onClick={handleClick}
           >
@@ -88,9 +88,7 @@ export function MobileNavigationLink({
                     }}
                   >
                     <NavActiveIcon
-                      className={cn(
-                        "fa-default size-8 transition-all group-hover:size-8 group-active:size-4"
-                      )}
+                      className={cn("fa-default size-8 transition-all")}
                     />
                   </motion.span>
                 ) : (
@@ -103,11 +101,7 @@ export function MobileNavigationLink({
                       transition: { duration: 0.1 },
                     }}
                   >
-                    <NavIcon
-                      className={cn(
-                        "size-6 transition-all group-hover:size-7 group-active:size-4"
-                      )}
-                    />
+                    <NavIcon className={cn("size-6 transition-all")} />
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -142,6 +136,12 @@ export function MobileNavigationLink({
                 }}
               />
             )}
+            <span
+              className={cn(
+                "ease-expo-in-out pointer-events-none absolute inset-0 scale-75 rounded-lg opacity-0 transition-all group-hover:scale-100 group-hover:opacity-100",
+                isActive ? "hidden" : "bg-accent"
+              )}
+            />
           </Link>
         </TooltipTrigger>
         <TooltipContent className="tooltip">{label}</TooltipContent>

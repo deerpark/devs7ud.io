@@ -35,15 +35,9 @@ export default async function DefaultLayout({
           : null
       }
     >
-      <div
-        id="root"
-        className="max-w-screen flex size-full min-h-screen flex-col overflow-x-hidden"
-      >
+      <div id="root" className="max-w-screen relative size-full min-h-screen">
         <Navigation />
-        <div
-          id="contents"
-          className="relative flex flex-1 lg:max-h-screen lg:overflow-y-auto"
-        >
+        <div id="contents" className="flex flex-col items-center">
           {children}
         </div>
       </div>

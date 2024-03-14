@@ -14,9 +14,11 @@ import {
   notionClient,
 } from "@/lib/notion"
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
+import { MultiSelect, PostProps } from "@/types/post.type"
 import { getTranslations } from "next-intl/server"
-import { Post } from "@/components/posts/post"
-import { PostProps } from "@/types/post.type"
+import Comments from "@/components/comments"
+import Contents from "@/components/contents"
+import Tags from "@/components/tags"
 
 export async function generateStaticParams({
   params,
@@ -43,7 +45,7 @@ export default async function Page({
   if (!post) notFound()
 
   const content = await getPageContent(post.id)
-  const comments = await getComments({ parent: post.id })
+  const commentsResults = await getComments({ parent: post.id })
 
   console.log("Post: ", post)
   // console.log("content: ", content)
@@ -71,14 +73,23 @@ export default async function Page({
     pageComponent = t("SYSTEM.server.error.template")
   }
 
+  const comments = "results" in commentsResults ? commentsResults.results : []
+  const tags: MultiSelect[] = (post.properties?.Tags as any)?.multi_select || []
+
   return (
-    <Post
-      locale={params.locale}
-      post={post}
-      content={html}
-      users={users}
-      page={pageComponent}
-      comments={"results" in comments ? comments.results : []}
-    />
+    <>
+      <div className="max-w-full flex-1 space-y-20 sm:min-w-96 2xl:mx-auto 2xl:max-w-max">
+        <Contents
+          post={post}
+          locale={params.locale}
+          content={html}
+          users={users}
+          page={pageComponent}
+          comments={comments}
+        />
+        <Tags items={tags} />
+      </div>
+      <Comments comments={comments} page_id={post.id} />
+    </>
   )
 }

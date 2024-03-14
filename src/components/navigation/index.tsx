@@ -13,19 +13,18 @@ export default function Navigation() {
   return (
     <div
       className={cn(
-        "animate-in fade-in-0 fill-mode-both text-card-foreground flex-none p-2 transition-all",
-        isMobile && scrollDir === "UP"
-          ? "bg-white/70 backdrop-blur-md dark:bg-black/70"
-          : "bg-white/50 dark:bg-black/50 ",
-        scrollDir === "DOWN" && "backdrop-blur-none",
-        "hover:bg-white hover:backdrop-blur-none dark:hover:bg-black",
+        "animate-in fade-in-0 fill-mode-both text-card-foreground z-50 flex-none rounded-lg backdrop-blur-md transition-all",
+        scrollDir === "UP"
+          ? "dark:bg-background/100 bg-white/100"
+          : "dark:bg-background/90 bg-white/90 ",
+        "dark:hover:bg-background hover:bg-white hover:backdrop-blur-none",
         isMobile
-          ? "ring-border slide-in-from-bottom-5 fixed inset-x-2 bottom-[calc(8px+env(safe-area-inset-bottom))] z-50 rounded-lg shadow-2xl ring-1"
-          : "slide-in-from-top-5 mx-auto mb-8 mt-[calc(32px+env(safe-area-inset-top))] bg-transparent"
+          ? "ring-border slide-in-from-bottom-5 fixed inset-x-2 bottom-[calc(8px+env(safe-area-inset-bottom))] p-2 shadow-2xl ring-1 md:px-2 md:py-3"
+          : "slide-in-from-top-5 sticky top-0 mx-auto mb-8 w-full pb-2 pt-[calc(8px+env(safe-area-inset-top))]"
       )}
     >
-      <div className="mx-auto min-w-80 max-w-lg">
-        <GlobalMenu global scrollDir={scrollDir} />
+      <div className="mx-auto min-w-96 max-w-lg">
+        <GlobalMenu global scrollDir={scrollDir} width={width} />
       </div>
     </div>
   )

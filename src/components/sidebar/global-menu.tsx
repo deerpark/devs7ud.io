@@ -1,18 +1,11 @@
 import {
-  FaHeadSideIcon as FarImagePolaroidUserIcon,
-  FaNewspaperIcon as FarNewspaperIcon,
-  FaPinataIcon as FarBookmarkIcon,
-  FaCampgroundIcon as FarHouseIcon,
-  FaBoxHeartIcon as FarBoxHeartIcon,
-  FaEllipsisVerticalIcon,
-} from "../icon-regular"
-import {
   FaHeadSideIcon,
   FaNewspaperIcon,
   FaPinataIcon,
   FaCampgroundIcon,
   FaArrowUpRightIcon,
   FaBoxHeartIcon,
+  FaEllipsisVerticalIcon,
 } from "../icon-duotone"
 import { Drawer, DrawerContent, DrawerTrigger } from "../ui/drawer"
 import { MobileNavigationLink } from "./mobile-navigation-link"
@@ -34,15 +27,18 @@ type NavigationProps = {
     bookmarks: number
   }
   scrollDir?: "UP" | "DOWN"
+  width: number
 }
 
 export function GlobalMenu({
   counts,
   global = false,
   scrollDir,
+  width,
 }: NavigationProps) {
   const pathname = usePathname()
   const t = useTranslations("SYSTEM")
+  const isMobile = width <= 1024
   const sections = [
     {
       label: null,
@@ -52,7 +48,7 @@ export function GlobalMenu({
         {
           href: "/",
           label: t("navigation.index.home"),
-          icon: FarHouseIcon,
+          icon: FaCampgroundIcon,
           activeIcon: FaCampgroundIcon,
           trailingAccessory: null,
           isActive: pathname.replace(/en|ko|fr/g, "") === "/",
@@ -64,7 +60,7 @@ export function GlobalMenu({
         {
           href: "/posts",
           label: t("navigation.index.posts"),
-          icon: FarNewspaperIcon,
+          icon: FaNewspaperIcon,
           activeIcon: FaNewspaperIcon,
           trailingAccessory: null,
           isActive: pathname.replace(/en|ko|fr/g, "").indexOf("/posts") >= 0,
@@ -83,7 +79,7 @@ export function GlobalMenu({
         {
           href: "/projects",
           label: t("navigation.me.projects"),
-          icon: FarBoxHeartIcon,
+          icon: FaBoxHeartIcon,
           activeIcon: FaBoxHeartIcon,
           trailingAccessory: null,
           isActive: pathname.replace(/en|ko|fr/g, "").indexOf("/projects") >= 0,
@@ -94,7 +90,7 @@ export function GlobalMenu({
         {
           href: "/bookmarks",
           label: t("navigation.me.bookmarks"),
-          icon: FarBookmarkIcon,
+          icon: FaPinataIcon,
           activeIcon: FaPinataIcon,
           trailingAccessory: null,
           isActive:
@@ -106,7 +102,7 @@ export function GlobalMenu({
         {
           href: "/about",
           label: t("navigation.me.about"),
-          icon: FarImagePolaroidUserIcon,
+          icon: FaHeadSideIcon,
           activeIcon: FaHeadSideIcon,
           trailingAccessory: null,
           isActive: pathname.replace(/en|ko|fr/g, "").indexOf("/about") >= 0,
@@ -177,7 +173,7 @@ export function GlobalMenu({
   ]
 
   return global ? (
-    <ul className="flex h-14 w-full items-stretch">
+    <ul className="flex h-16 w-full items-stretch space-x-1">
       {sections
         .filter((s) => !s.extra && s.global)
         .map((section) => section.items)
@@ -197,12 +193,12 @@ export function GlobalMenu({
             key={section.label}
             className="relative flex flex-1 flex-col items-center justify-center"
           >
-            <Drawer>
+            <Drawer direction={isMobile ? "bottom" : "top"}>
               <DrawerTrigger asChild>
                 <Button
                   type="button"
                   variant="ghost"
-                  className="text-foreground group flex w-full flex-1 items-center justify-center rounded-md !bg-transparent p-2 text-sm font-medium"
+                  className="text-accent-foreground group flex w-full flex-1 items-center justify-center rounded-md p-2 text-sm font-medium active:scale-95"
                 >
                   <motion.span
                     key="default-icon"
@@ -213,12 +209,16 @@ export function GlobalMenu({
                       opacity: 0,
                       transition: { duration: 0.1 },
                     }}
+                    className="relative z-20"
                   >
-                    <FaEllipsisVerticalIcon className="fa-dark dark:fa-light size-6 transition-all group-hover:size-8 group-active:size-4" />
+                    <FaEllipsisVerticalIcon className="size-6 transition-all" />
                   </motion.span>
+                  <span className="bg-accent ease-expo-in-out pointer-events-none absolute inset-0 z-10 scale-75 rounded-lg opacity-0 transition-all group-hover:scale-100 group-hover:opacity-100" />
                 </Button>
               </DrawerTrigger>
-              <DrawerContent>
+              <DrawerContent
+                className={isMobile ? "bottom-5" : "bottom-auto top-5"}
+              >
                 <div className="mx-auto w-full max-w-sm">
                   <div className="flex flex-col p-4">
                     <ul className="text-alt-foreground flex-none space-y-1 p-3">
