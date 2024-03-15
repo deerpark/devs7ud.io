@@ -1,3 +1,5 @@
+"use client"
+
 import {
   FaHeadSideIcon,
   FaNewspaperIcon,
@@ -27,18 +29,17 @@ type NavigationProps = {
     bookmarks: number
   }
   scrollDir?: "UP" | "DOWN"
-  width: number
+  isMobile?: boolean
 }
 
 export function GlobalMenu({
   counts,
   global = false,
   scrollDir,
-  width,
+  isMobile,
 }: NavigationProps) {
   const pathname = usePathname()
   const t = useTranslations("SYSTEM")
-  const isMobile = width <= 1024
   const sections = [
     {
       label: null,
@@ -211,7 +212,7 @@ export function GlobalMenu({
                     }}
                     className="relative z-20"
                   >
-                    <FaEllipsisVerticalIcon className="size-6 transition-all" />
+                    <FaEllipsisVerticalIcon className="fa-alt size-6 transition-all" />
                   </motion.span>
                   <span className="bg-accent ease-expo-in-out pointer-events-none absolute inset-0 z-10 scale-75 rounded-lg opacity-0 transition-all group-hover:scale-100 group-hover:opacity-100" />
                 </Button>

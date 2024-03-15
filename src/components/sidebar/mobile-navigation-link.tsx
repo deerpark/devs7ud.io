@@ -101,7 +101,7 @@ export function MobileNavigationLink({
                       transition: { duration: 0.1 },
                     }}
                   >
-                    <NavIcon className={cn("size-6 transition-all")} />
+                    <NavIcon className={cn("fa-alt size-6 transition-all")} />
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -122,7 +122,7 @@ export function MobileNavigationLink({
             {isActive && (
               <motion.div
                 className={cn(
-                  "border-border/50 absolute inset-0.5 z-0 rounded-lg border shadow-2xl backdrop-blur-md",
+                  "absolute inset-0.5 z-0 rounded-lg backdrop-blur-md",
                   scrollDir === "DOWN"
                     ? "bg-backdround/30"
                     : "bg-backdround/100"

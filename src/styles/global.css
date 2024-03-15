@@ -117,16 +117,29 @@
   }
 
   .fa-default {
-    --fa-primary-color: hsl(210 100% 52%);
-    --fa-secondary-color: hsl(48 100% 52%);
+    --fa-primary-color: hsl(230, 10%, 12%);
+    --fa-secondary-color: hsl(230, 10%, 12%);
     --fa-primary-opacity: 1;
-    --fa-secondary-opacity: 1;
+    --fa-secondary-opacity: 0.7;
   }
-  .dark.fa-default {
-    --fa-primary-color: hsl(48 100% 52%);
-    --fa-secondary-color: hsl(210 100% 52%);
+  .dark .fa-default {
+    --fa-primary-color: hsl(230, 10%, 82%);
+    --fa-secondary-color: hsl(230, 10%, 82%);
     --fa-primary-opacity: 1;
-    --fa-secondary-opacity: 1;
+    --fa-secondary-opacity: 0.5;
+  }
+
+  .fa-alt {
+    --fa-primary-color: hsl(230, 10%, 42%);
+    --fa-secondary-color: hsl(230, 10%, 42%);
+    --fa-primary-opacity: 0.4;
+    --fa-secondary-opacity: 0.5;
+  }
+  .dark .fa-alt {
+    --fa-primary-color: hsl(230, 10%, 72%);
+    --fa-secondary-color: hsl(230, 10%, 72%);
+    --fa-primary-opacity: 0.4;
+    --fa-secondary-opacity: 0.5;
   }
 }
 

@@ -2,8 +2,8 @@ type PageLayoutProps = Readonly<{
   children: React.ReactNode
 }>
 
-export default async function PageLayout({ children }: PageLayoutProps) {
-  return <div className="">{children}</div>
+export default function PageLayout({ children }: PageLayoutProps) {
+  return children
 }
 
 // export const runtime = 'edge';

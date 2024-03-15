@@ -35,9 +35,15 @@ export default async function DefaultLayout({
           : null
       }
     >
-      <div id="root" className="max-w-screen relative size-full min-h-screen">
+      <div
+        id="root"
+        className="max-w-screen relative flex size-full min-h-screen flex-col"
+      >
         <Navigation />
-        <div id="contents" className="flex flex-col items-center">
+        <div
+          id="contents"
+          className="mx-auto flex w-full max-w-lg flex-1 flex-col items-center"
+        >
           {children}
         </div>
       </div>
