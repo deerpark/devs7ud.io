@@ -15,7 +15,7 @@ const fontSans = FontSans({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Next.js Blog",
+    template: "%s | devs7ud.io",
     default: seoData.title,
     absolute: seoData.absoluteTitle,
   },
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
 
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "ko-KR",
     url: getUrl(),
     title: seoData.title,
     description: seoData.description,
@@ -127,7 +127,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ko" suppressHydrationWarning>
       <body className={fontSans.variable}>
         <div className="bg-white font-sans">
           {children}
