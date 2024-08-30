@@ -44,6 +44,7 @@ const SettingsPage = async () => {
     notFound;
     console.log("Cound't find User profile.");
   }
+  console.log("profiles user", data);
 
   return (
     <div className="max-w-3xl px-10">

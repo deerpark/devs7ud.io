@@ -39,6 +39,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Uppy from "@uppy/core";
 import "@uppy/core/dist/style.min.css";
 import "@uppy/dashboard/dist/style.min.css";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 import { DashboardModal } from "@uppy/react";
 import Tus from "@uppy/tus";
 import { SparklesIcon, Loader2 as SpinnerIcon } from "lucide-react";
@@ -95,6 +97,8 @@ const Editor: FC<EditorProps> = ({
 
   const [content, setContent] = useState<string | null>(post?.content || null);
 
+  const [status, setStatus] = useState<boolean>(post?.status !== "draft");
+
   // Setup Uppy with Supabase
   const bucketNamePosts =
     process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET_POSTS || "posts";
@@ -123,6 +127,7 @@ const Editor: FC<EditorProps> = ({
     endpoint: supabaseUploadURL,
     headers: {
       authorization: `Bearer ${token}`,
+      "x-upsert": "true",
     },
     chunkSize: 6 * 1024 * 1024,
     allowedMetaFields: [
@@ -166,6 +171,7 @@ const Editor: FC<EditorProps> = ({
     endpoint: supabaseUploadURL,
     headers: {
       authorization: `Bearer ${token}`,
+      "x-upsert": "true",
     },
     chunkSize: 6 * 1024 * 1024,
     allowedMetaFields: [
@@ -204,6 +210,7 @@ const Editor: FC<EditorProps> = ({
     categoryId: post.category_id ?? protectedEditorConfig.defaultCategoryId,
     description: post.description ?? "Post description",
     content: content ?? protectedEditorConfig.placeholderContent,
+    status: status ? "draft" : "publish",
   };
 
   const form = useForm<EditorFormValues>({
@@ -224,6 +231,7 @@ const Editor: FC<EditorProps> = ({
       description: data.description,
       content: content,
       categoryId: data.categoryId,
+      status: status ? "draft" : "publish",
     });
 
     if (response) {
@@ -245,7 +253,19 @@ const Editor: FC<EditorProps> = ({
           {/* General information */}
           <Card className="max-w-2xl">
             <CardHeader>
-              <CardTitle>{protectedEditorConfig.generalTitle}</CardTitle>
+              <CardTitle className="flex items-center">
+                <span className="grow">
+                  {protectedEditorConfig.generalTitle}
+                </span>
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    id="airplane-mode"
+                    checked={status}
+                    onCheckedChange={setStatus}
+                  />
+                  <Label htmlFor="airplane-mode">Publish</Label>
+                </div>
+              </CardTitle>
               <CardDescription>
                 {protectedEditorConfig.generalDescription}
               </CardDescription>

@@ -162,6 +162,7 @@ export type Database = {
           image: string | null
           published: boolean | null
           slug: string | null
+          status: string | null
           title: string | null
           updated_at: string | null
         }
@@ -175,6 +176,7 @@ export type Database = {
           image?: string | null
           published?: boolean | null
           slug?: string | null
+          status?: string | null
           title?: string | null
           updated_at?: string | null
         }
@@ -188,6 +190,7 @@ export type Database = {
           image?: string | null
           published?: boolean | null
           slug?: string | null
+          status?: string | null
           title?: string | null
           updated_at?: string | null
         }

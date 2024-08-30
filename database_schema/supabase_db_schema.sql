@@ -92,6 +92,7 @@ create table
     updated_at timestamp without time zone null,
     author_id uuid null,
     published boolean null default false,
+    status text null default 'draft'::text
     constraint drafts_pkey primary key (id),
     constraint drafts_author_id_fkey foreign key (author_id) references profiles (id),
     constraint drafts_category_id_fkey foreign key (category_id) references categories (id) on delete cascade
