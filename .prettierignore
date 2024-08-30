@@ -1,9 +1,4 @@
-.snapshots/
-build/
-dist/
-node_modules/
-.next/
-.vercel/
-
-.demo/
-.renderer/
+dist
+node_modules
+.next
+build

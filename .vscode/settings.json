@@ -1,7 +1,11 @@
 {
-  "i18n-ally.keystyle": "nested",
-  "tailwindCSS.experimental.classRegex": [
-    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "deno.enablePaths": [
+    "supabase/functions"
   ],
-  "i18n-ally.localesPaths": ["src/locales"]
+  "deno.lint": true,
+  "deno.unstable": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
