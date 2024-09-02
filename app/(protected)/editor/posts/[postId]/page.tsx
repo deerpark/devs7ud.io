@@ -33,7 +33,7 @@ async function getPost(postId: string, userId: string) {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
   const { data, error } = await supabase
-    .from("drafts")
+    .from("posts")
     .select("*")
     .match({ id: postId, author_id: userId })
     .single<Draft>();

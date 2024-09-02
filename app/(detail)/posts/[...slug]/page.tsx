@@ -5,6 +5,8 @@ import {
   DetailPostHeading,
 } from "@/components/detail/post";
 import { DetailPostScrollUpButton } from "@/components/detail/post/buttons";
+import { WysiwygContents } from "@/components/protected/editor/contents";
+import { defaultExtensions } from "@/components/protected/editor/wysiwyg/extensions";
 import { seoData } from "@/config/root/seo";
 import { getOgImageUrl, getUrl } from "@/lib/utils";
 import {
@@ -13,6 +15,7 @@ import {
 } from "@/types/collection";
 import type { Database } from "@/types/supabase";
 import { createClient } from "@/utils/supabase/server";
+import { generateHTML } from "@tiptap/react";
 import { format, parseISO } from "date-fns";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
@@ -51,7 +54,8 @@ async function getPost(params: { slug: string[] }) {
     .single<PostWithCategoryWithProfile>();
 
   if (!response.data) {
-    notFound;
+    console.log("getPost", "no response data");
+    notFound();
   }
 
   return response.data;
@@ -122,6 +126,7 @@ async function getComments(postId: string) {
     .returns<CommentWithProfile[]>();
 
   if (error) {
+    console.log("getComments", error.message);
     console.error(error.message);
   }
   return comments;
@@ -133,6 +138,7 @@ export default async function PostPage({ params }: PostPageProps) {
   // Get post data
   const post = await getPost(params);
   if (!post) {
+    console.log("PostPage", "no post");
     notFound();
   }
   // Set post views
@@ -163,46 +169,24 @@ export default async function PostPage({ params }: PostPageProps) {
   const readTime = readingTime(post.content ? post.content : "");
 
   return (
-    <>
-      <div className="min-h-full bg-gray-100 py-3">
-        <div className="mx-auto max-w-7xl px-0 sm:px-8">
-          <div className="mx-auto max-w-4xl">
-            <div className="mx-auto max-w-4xl rounded-lg bg-white px-6 py-4 shadow-sm shadow-gray-300 ring-1 ring-black/5 sm:px-14 sm:py-10">
-              <div className="relative mx-auto max-w-4xl py-2">
-                {/* Heading */}
-                <DetailPostHeading
-                  id={post.id}
-                  title={post.title as string}
-                  image={post.image as string}
-                  authorName={post.profiles.full_name as string}
-                  authorImage={post.profiles.avatar_url as string}
-                  date={format(parseISO(post.updated_at!), "MMMM dd, yyyy")}
-                  category={post.categories?.title as string}
-                  readTime={readTime as ReadTimeResults}
-                />
-                {/* Top Floatingbar */}
-                <div className="mx-auto">
-                  <DetailPostFloatingBar
-                    id={post.id as string}
-                    title={post.title as string}
-                    text={post.description as string}
-                    url={`${getUrl()}${encodeURIComponent(
-                      `/posts/${post.slug}`,
-                    )}`}
-                    totalComments={comments?.length}
-                    isBookmarked={isBookmarked}
-                  />
-                </div>
-              </div>
-              {/* Content */}
-              <div className="relative mx-auto max-w-3xl border-slate-500/50 py-5">
-                <div
-                  className="lg:prose-md prose"
-                  dangerouslySetInnerHTML={{ __html: post.content || "" }}
-                />
-              </div>
-              <div className="mx-auto mt-10">
-                {/* Bottom Floatingbar */}
+    <div className="min-h-full bg-gray-100 py-3">
+      <div className="mx-auto max-w-7xl px-0 sm:px-8">
+        <div className="mx-auto max-w-4xl">
+          <div className="mx-auto max-w-4xl rounded-lg bg-white px-6 py-4 shadow-sm shadow-gray-300 ring-1 ring-black/5 sm:px-14 sm:py-10">
+            <div className="relative mx-auto max-w-4xl py-2">
+              {/* Heading */}
+              <DetailPostHeading
+                id={post.id}
+                title={post.title as string}
+                image={post.image as string | null}
+                authorName={post.profiles.full_name as string}
+                authorImage={post.profiles.avatar_url as string}
+                date={format(parseISO(post.updated_at!), "MMMM dd, yyyy")}
+                category={post.categories?.title as string}
+                readTime={readTime as ReadTimeResults}
+              />
+              {/* Top Floatingbar */}
+              <div className="mx-auto">
                 <DetailPostFloatingBar
                   id={post.id as string}
                   title={post.title as string}
@@ -215,14 +199,27 @@ export default async function PostPage({ params }: PostPageProps) {
                 />
               </div>
             </div>
+            {/* Content */}
+            <WysiwygContents content={post.content} />
+            <div className="mx-auto mt-10">
+              {/* Bottom Floatingbar */}
+              <DetailPostFloatingBar
+                id={post.id as string}
+                title={post.title as string}
+                text={post.description as string}
+                url={`${getUrl()}${encodeURIComponent(`/posts/${post.slug}`)}`}
+                totalComments={comments?.length}
+                isBookmarked={isBookmarked}
+              />
+            </div>
           </div>
-          <DetailPostComment
-            postId={post.id as string}
-            comments={comments as CommentWithProfile[]}
-          />
         </div>
-        <DetailPostScrollUpButton />
+        <DetailPostComment
+          postId={post.id as string}
+          comments={comments as CommentWithProfile[]}
+        />
       </div>
-    </>
+      <DetailPostScrollUpButton />
+    </div>
   );
 }

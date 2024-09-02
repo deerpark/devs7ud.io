@@ -97,7 +97,7 @@ const Editor: FC<EditorProps> = ({
 
   const [content, setContent] = useState<string | null>(post?.content || null);
 
-  const [status, setStatus] = useState<boolean>(post?.status !== "draft");
+  const [published, setPublished] = useState<boolean>(Boolean(post?.published));
 
   // Setup Uppy with Supabase
   const bucketNamePosts =
@@ -210,7 +210,7 @@ const Editor: FC<EditorProps> = ({
     categoryId: post.category_id ?? protectedEditorConfig.defaultCategoryId,
     description: post.description ?? "Post description",
     content: content ?? protectedEditorConfig.placeholderContent,
-    status: status ? "draft" : "publish",
+    published,
   };
 
   const form = useForm<EditorFormValues>({
@@ -231,7 +231,7 @@ const Editor: FC<EditorProps> = ({
       description: data.description,
       content: content,
       categoryId: data.categoryId,
-      status: status ? "draft" : "publish",
+      published,
     });
 
     if (response) {
@@ -260,8 +260,8 @@ const Editor: FC<EditorProps> = ({
                 <div className="flex items-center space-x-2">
                   <Switch
                     id="airplane-mode"
-                    checked={status}
-                    onCheckedChange={setStatus}
+                    checked={published}
+                    onCheckedChange={setPublished}
                   />
                   <Label htmlFor="airplane-mode">Publish</Label>
                 </div>

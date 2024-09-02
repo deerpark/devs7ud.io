@@ -4,7 +4,7 @@ import PostTableTitle from "@/components/protected/post/post-table-title";
 import { columns } from "@/components/protected/post/table/columns";
 import { DataTable } from "@/components/protected/post/table/data-table";
 import { protectedPostConfig } from "@/config/protected";
-import { Draft } from "@/types/collection";
+import { Draft, Post } from "@/types/collection";
 import type { Database } from "@/types/supabase";
 import { createClient } from "@/utils/supabase/server";
 import { Metadata } from "next";
@@ -23,7 +23,7 @@ interface PostsPageProps {
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
-const PostsPage: FC<PostsPageProps> = async ({ searchParams }) => {
+const PostsPage = async ({ searchParams }: PostsPageProps) => {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
   // Fetch user data
@@ -33,15 +33,17 @@ const PostsPage: FC<PostsPageProps> = async ({ searchParams }) => {
 
   // Fetch posts
   const { data, error } = await supabase
-    .from("drafts")
+    .from("posts")
     .select(`*, categories(*)`)
     .order("created_at", { ascending: false })
     .match({ author_id: user?.id })
-    .returns<Draft[]>();
+    .returns<(Draft & Post)[]>();
 
-  if (!data || error || !data.length) {
-    notFound;
+  if (error) {
+    console.error("Error fetching data:", error);
+    return notFound;
   }
+
   return (
     <>
       <div className="mx-auto max-w-5xl p-4 sm:p-6 lg:p-8">

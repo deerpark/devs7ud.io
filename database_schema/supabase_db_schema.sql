@@ -19,7 +19,7 @@ create table
     created_at timestamp with time zone null default now(),
     slug text null,
     constraint category_pkey primary key (id),
-    constraint category_id_key unique (id)
+    constraint categories_id_key unique (id)
   ) tablespace pg_default;
 
   create table
@@ -60,16 +60,15 @@ create table
     id uuid not null default gen_random_uuid (),
     category_id uuid null,
     title text null,
+    slug text null default ''::text,
     image text null,
     description text null,
     content text null,
     created_at timestamp with time zone null default now(),
     updated_at timestamp with time zone null,
-    slug text null default ''::text,
     author_id uuid null,
     published boolean null default false,
     constraint post_pkey primary key (id),
-    constraint post_id_key unique (id),
     constraint post_slug_key unique (slug),
     constraint posts_author_id_fkey foreign key (author_id) references profiles (id),
     constraint posts_category_id_fkey foreign key (category_id) references categories (id)
@@ -78,6 +77,10 @@ create table
 create trigger handle_updated_at before
 update on posts for each row
 execute function moddatetime ('updated_at');
+
+-- create trigger on_post_published_update before
+-- update on posts for each row
+-- execute function move_to_drafts ();
 
 create table
   public.drafts (
@@ -92,11 +95,15 @@ create table
     updated_at timestamp without time zone null,
     author_id uuid null,
     published boolean null default false,
-    status text null default 'draft'::text
     constraint drafts_pkey primary key (id),
+    constraint drafts_slug_key unique (slug),
     constraint drafts_author_id_fkey foreign key (author_id) references profiles (id),
     constraint drafts_category_id_fkey foreign key (category_id) references categories (id) on delete cascade
   ) tablespace pg_default;
+
+create trigger on_draft_published_update before
+update on drafts for each row
+execute function move_to_posts ();
 
 create trigger handle_updated_at before
 update on drafts for each row

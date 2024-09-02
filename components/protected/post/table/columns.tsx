@@ -1,6 +1,6 @@
 "use client";
 
-import { Draft } from "@/types/collection";
+import { Draft, Post } from "@/types/collection";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { DataTableColumnHeader } from "./data-table-column-header";
@@ -55,13 +55,15 @@ export const columns: ColumnDef<Draft>[] = [
     },
   },
   {
-    accessorKey: "status",
+    accessorKey: "published",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Status" />
+      <DataTableColumnHeader column={column} title="Published" />
     ),
     cell: ({ row }) => {
+      console.log('row.getValue("published")', row.getValue("published"));
       const status = statuses.find(
-        (status) => status.value === row.getValue("status"),
+        (status) =>
+          status.value === (row.getValue("published") ? "published" : "draft"),
       );
 
       if (!status) {
@@ -78,7 +80,7 @@ export const columns: ColumnDef<Draft>[] = [
       );
     },
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
+      return value === row.getValue(id);
     },
   },
   {
