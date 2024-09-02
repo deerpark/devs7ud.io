@@ -118,6 +118,7 @@ export async function generateMetadata({
 async function getComments(postId: string) {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
+  if (!postId) return [];
   const { data: comments, error } = await supabase
     .from("comments")
     .select("*, profiles(*)")
@@ -169,17 +170,17 @@ export default async function PostPage({ params }: PostPageProps) {
   const readTime = readingTime(post.content ? post.content : "");
 
   return (
-    <div className="min-h-full bg-gray-100 py-3">
+    <div className="min-h-full grow bg-gray-100 py-3">
       <div className="mx-auto max-w-7xl px-0 sm:px-8">
-        <div className="mx-auto max-w-4xl">
-          <div className="mx-auto max-w-4xl rounded-lg bg-white px-6 py-4 shadow-sm shadow-gray-300 ring-1 ring-black/5 sm:px-14 sm:py-10">
-            <div className="relative mx-auto max-w-4xl py-2">
+        <div className="mx-auto max-w-5xl">
+          <div className="mx-auto max-w-5xl rounded-lg bg-white px-6 py-4 shadow-sm shadow-gray-300 ring-1 ring-black/5 sm:px-14 sm:py-10">
+            <div className="relative mx-auto max-w-5xl py-2">
               {/* Heading */}
               <DetailPostHeading
                 id={post.id}
                 title={post.title as string}
                 image={post.image as string | null}
-                authorName={post.profiles.full_name as string}
+                authorName={post.profiles.username as string}
                 authorImage={post.profiles.avatar_url as string}
                 date={format(parseISO(post.updated_at!), "MMMM dd, yyyy")}
                 category={post.categories?.title as string}

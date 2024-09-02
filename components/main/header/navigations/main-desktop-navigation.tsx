@@ -1,5 +1,6 @@
 import { LoginMenu } from "@/components/login";
-import { IconWrapperRounded, LogoIcon } from "@/icons";
+import Logo from "@/public/images/logo.png";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { MainDesktopNavigationMenu } from "./menu";
@@ -11,9 +12,7 @@ const MainDesktopNavigation = () => {
         {/* Logo */}
         <div className="flex flex-1 justify-start pl-2">
           <Link href="/">
-            <IconWrapperRounded>
-              <LogoIcon className="h-10 w-10" />
-            </IconWrapperRounded>
+            <Image src={Logo} height={24} alt="" />
           </Link>
         </div>
 

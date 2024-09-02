@@ -129,7 +129,7 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <body className={fontSans.variable}>
-        <div className="bg-white font-sans">
+        <div className="flex min-h-screen flex-col bg-background text-foreground">
           {children}
           <VercelAnalytics />
           <Toaster position="top-center" />

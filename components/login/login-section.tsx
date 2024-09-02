@@ -3,9 +3,11 @@
 import { sharedLoginConfig } from "@/config/shared";
 import { GithubIcon, GoogleIcon, LoadingDots } from "@/icons";
 import { getUrl } from "@/lib/utils";
+import Emblem from "@/public/images/emblem-240w.png";
 import { createClient } from "@/utils/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -75,18 +77,11 @@ const LoginSection: React.FC<LoginSectionProps> = ({ setOpen }) => {
 
   return (
     <>
-      <div className="mx-auto w-full justify-center rounded-md border border-black/5 bg-gray-50 align-middle shadow-md">
+      <div className="mx-auto w-full justify-center align-middle">
         <div className="flex flex-col items-center justify-center space-y-3 border-b px-4 py-6 pt-8 text-center">
-          <a href="https://ub.cafe">
-            <Image
-              src="/images/logo.png"
-              alt="Logo"
-              className="h-16 w-16 rounded-full"
-              width={64}
-              height={64}
-              priority
-            />
-          </a>
+          <Link href="/">
+            <Image src={Emblem} alt="Logo" height={64} priority />
+          </Link>
           <h3 className="font-display text-2xl font-bold">
             {sharedLoginConfig.title}
           </h3>

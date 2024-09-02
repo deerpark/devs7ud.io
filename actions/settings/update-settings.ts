@@ -11,6 +11,9 @@ export async function UpdateSettings(context: z.infer<typeof profileSchema>) {
   const supabase = createClient(cookieStore);
   try {
     const profile = profileSchema.parse(context);
+    
+    if(!profile.id) throw new Error("no exist id");
+    
     const { data, error } = await supabase
       .from("profiles")
       .update({

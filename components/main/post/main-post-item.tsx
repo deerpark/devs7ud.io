@@ -29,6 +29,7 @@ async function getPublicImageUrl(postId: string, fileName: string) {
 async function getComments(postId: string) {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
+  if (!postId) return [];
   const { data: comments, error } = await supabase
     .from("comments")
     .select()
@@ -49,6 +50,11 @@ interface MainPostItemProps {
 const MainPostItem: React.FC<MainPostItemProps> = async ({ post }) => {
   const readTime = readingTime(post.content ? post.content : "");
   const comments = await getComments(post.id ? post.id : "");
+  const image = post.image
+    ? await getPublicImageUrl(post.id, post.image || "")
+    : "";
+
+  console.log(image);
 
   return (
     <>
@@ -57,20 +63,22 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post }) => {
         <div className="relative max-w-full rounded-[0.62rem] shadow-sm shadow-black/5 ring-[0.8px] ring-black/5">
           <Link href={`/posts/${post.slug}`}>
             <article className="relative isolate flex max-w-3xl flex-col gap-2 rounded-lg bg-white px-5 py-5 shadow-md shadow-gray-300 ring-1 ring-black/5 sm:gap-8 sm:px-10 sm:py-6 lg:flex-row">
-              <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
-                <Image
-                  src={await getPublicImageUrl(post.id, post.image || "")}
-                  alt={post.title ?? "Cover"}
-                  height={256}
-                  width={256}
-                  priority
-                  placeholder={`data:image/svg+xml;base64,${toBase64(
-                    shimmer(256, 256),
-                  )}`}
-                  className="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover"
-                />
-                <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
-              </div>
+              {image ? (
+                <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
+                  <Image
+                    src={image}
+                    alt={post.title ?? "Cover"}
+                    height={256}
+                    width={256}
+                    priority
+                    placeholder={`data:image/svg+xml;base64,${toBase64(
+                      shimmer(256, 256),
+                    )}`}
+                    className="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover"
+                  />
+                  <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+                </div>
+              ) : null}
               <div>
                 {/* Desktop category view */}
                 <div className="hidden items-center gap-x-3 text-sm sm:flex">
@@ -130,17 +138,19 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post }) => {
 
                 <div className="mt-3 flex border-t border-gray-900/5 pt-2">
                   <div className="relative flex items-center gap-x-2">
-                    <Image
-                      src={post.profiles?.avatar_url ?? "/images/avatar.png"}
-                      alt={post.profiles?.full_name ?? "Avatar"}
-                      height={40}
-                      width={40}
-                      priority
-                      placeholder={`data:image/svg+xml;base64,${toBase64(
-                        shimmer(40, 40),
-                      )}`}
-                      className="h-[40px] w-[40px] rounded-full bg-gray-50 object-cover"
-                    />
+                    {post.profiles?.avatar_url ? (
+                      <Image
+                        src={post.profiles?.avatar_url}
+                        alt={post.profiles?.full_name ?? "Avatar"}
+                        height={40}
+                        width={40}
+                        priority
+                        placeholder={`data:image/svg+xml;base64,${toBase64(
+                          shimmer(40, 40),
+                        )}`}
+                        className="h-[40px] w-[40px] rounded-full bg-gray-50 object-cover"
+                      />
+                    ) : null}
                     <div className="text-sm">
                       <p className="font-semibold text-gray-900">
                         {post.profiles.full_name}

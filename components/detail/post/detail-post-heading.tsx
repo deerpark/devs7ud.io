@@ -66,8 +66,8 @@ const DetailPostHeading: FC<DetailPostHeadingProps> = async ({
         {/* Mobile view */}
         <div className="mb-5 grid grid-cols-2 gap-2 rounded-md border border-gray-100 px-3 py-2.5 text-gray-500 sm:hidden">
           {/* Author */}
-          {authorImage ? (
-            <div className="inline-flex items-start justify-start">
+          <div className="inline-flex items-start justify-start">
+            {authorImage ? (
               <Image
                 src={authorImage}
                 height={24}
@@ -78,13 +78,13 @@ const DetailPostHeading: FC<DetailPostHeadingProps> = async ({
                 placeholder="blur"
                 blurDataURL={shimmer(24, 24)}
               />
-              <div className="ml-2 flex flex-col">
-                <span className="text-md flex font-semibold text-gray-900">
-                  {authorName}
-                </span>
-              </div>
+            ) : null}
+            <div className="ml-2 flex flex-col">
+              <span className="text-md flex font-semibold text-gray-900">
+                {authorName}
+              </span>
             </div>
-          ) : null}
+          </div>
 
           {/* Date */}
           <div className="inline-flex space-x-2 border-gray-400 border-opacity-50">
@@ -122,8 +122,8 @@ const DetailPostHeading: FC<DetailPostHeadingProps> = async ({
         {/* Desktop view */}
         <div className="mb-7 hidden justify-start text-gray-500 sm:flex sm:flex-row">
           {/* Author */}
-          {authorImage ? (
-            <div className="mb-5 flex flex-row items-start justify-start pr-3.5 md:mb-0">
+          <div className="mb-5 flex flex-row items-start justify-start pr-3.5 md:mb-0">
+            {authorImage ? (
               <Image
                 src={authorImage}
                 height={24}
@@ -134,13 +134,13 @@ const DetailPostHeading: FC<DetailPostHeadingProps> = async ({
                 placeholder="blur"
                 blurDataURL={shimmer(24, 24)}
               />
-              <div className="ml-2 flex flex-col">
-                <span className="text-md flex font-semibold text-gray-900">
-                  {authorName}
-                </span>
-              </div>
+            ) : null}
+            <div className="ml-2 flex flex-col">
+              <span className="text-md flex font-semibold text-gray-900">
+                {authorName}
+              </span>
             </div>
-          ) : null}
+          </div>
           <div className="flex flex-row items-center">
             {/* Date */}
             <div className="flex space-x-2 border-gray-400 border-opacity-50 pl-0 pr-3.5 md:border-l md:pl-3.5">

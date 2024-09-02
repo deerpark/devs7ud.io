@@ -14,10 +14,12 @@ import {
 } from "@/config/shared/dashboard";
 import { shimmer, toBase64 } from "@/lib/utils";
 import { createClient } from "@/utils/supabase/client";
+import { Unplug } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
+import { Button } from "../ui/button";
 
 interface LoginProfileButtonProps {
   profileImageUrl?: string;
@@ -42,17 +44,13 @@ const LoginProfileButton: FC<LoginProfileButtonProps> = ({
     <div className="flex sm:ml-4 sm:mt-0">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Image
-            src={profileImageUrl || "/images/user-placeholder.png"}
-            alt="Avatar"
-            height={40}
-            width={40}
-            className="h-[40px] w-[40px] rounded-full"
-            priority
-            placeholder={`data:image/svg+xml;base64,${toBase64(
-              shimmer(40, 40),
-            )}`}
-          />
+          <Button
+            variant="ghost"
+            className="flex items-center gap-x-2 font-semibold"
+          >
+            <Unplug className="h-5 w-5" strokeWidth={2.5} />
+            <span>로그아웃</span>
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56 font-sans">
           <Link

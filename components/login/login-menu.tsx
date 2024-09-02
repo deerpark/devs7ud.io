@@ -31,6 +31,9 @@ const LoginMenu = () => {
 
   useEffect(() => {
     async function fetchAvatar() {
+      if (!session?.user.id) {
+        return Promise.resolve();
+      }
       const { data, error } = await supabase
         .from("profiles")
         .select("*")

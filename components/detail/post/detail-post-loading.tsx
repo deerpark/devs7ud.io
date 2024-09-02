@@ -2,11 +2,11 @@ import React from "react";
 
 const DetailPostLoading = () => {
   return (
-    <div className="min-h-full bg-gray-100 py-3">
+    <div className="min-h-full grow bg-gray-100 py-3">
       <div className="mx-auto max-w-7xl px-0 sm:px-8">
-        <div className="mx-auto max-w-4xl">
-          <div className="mx-auto max-w-4xl rounded-lg bg-white px-6 py-4 shadow-sm shadow-gray-300 ring-1 ring-black/5 sm:px-14 sm:py-10">
-            <div className="relative mx-auto max-w-4xl py-2">
+        <div className="mx-auto max-w-5xl">
+          <div className="mx-auto max-w-5xl rounded-lg bg-white px-6 py-4 shadow-sm shadow-gray-300 ring-1 ring-black/5 sm:px-14 sm:py-10">
+            <div className="relative mx-auto max-w-5xl py-2">
               <section className="isolate mb-5 overflow-hidden rounded-lg px-6 sm:mb-8 lg:px-8">
                 <div className="max-w-3xl animate-pulse rounded-lg bg-white p-5 text-center">
                   <div

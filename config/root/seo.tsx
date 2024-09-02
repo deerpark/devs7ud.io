@@ -1,20 +1,18 @@
 import { SeoType } from "types";
 
 export const seoData: SeoType = {
-  title: "Multi-user, full-stack blogging application",
-  subTitle:
-    "Multi-user, full-stack blogging app built with Next.js and Supabase",
-  absoluteTitle: "Next.js | Blog app",
-  ogTitle: "Next.js | Supabase | Blog app",
+  title: "devs7ud.io",
+  subTitle: "ui-ux lab",
+  absoluteTitle: "devs7ud.io",
+  ogTitle: "devs7ud.io",
   author: {
-    name: "Tim",
-    twitterUrl: "https://twitter.com/timtbdev",
-    twitterAddress: "@timtbdev",
+    name: "Yongman Kim",
+    twitterUrl: "https://twitter.com/devs7udio",
+    twitterAddress: "@devs7udio",
   },
-  description:
-    "Multi-user, Fullstack, Blogging, applicaiton, blog, app, Next.js, Supabase, Supabase Database, Supabase Auth, Supabase Storage, TailwindCSS, TypeScript, Shadcn-ui, Radix-ui, HeadlessUi, NodeMailer, ConvertKit, Vercel OG, React-Hook-Form, React-Drop-Zone, Zod, HeroIcons, Lucide, Novel, Vaul, Uppy",
+  description: "ui-ux lab",
   keywords: [
-    "Multi-user, Fullstack, Blogging, applicaiton, blog, app, Next.js, Supabase, Supabase Database, Supabase Auth, Supabase Storage, TailwindCSS, TypeScript, Shadcn-ui, Radix-ui, HeadlessUi, NodeMailer, ConvertKit, Vercel OG, React-Hook-Form, React-Drop-Zone, Zod, HeroIcons, Lucide, Novel, Vaul, Uppy",
+    "ui, ux, react, nextjs, typescript, javascript, html5, css, tailwindcss, front-end, developer, it, engineer, animation, motion, micro interaction",
   ],
-  tags: ["Next.js", "Supabase", "TailwindCSS"],
+  tags: ["Next.js", "React", "TailwindCSS"],
 };

@@ -6,7 +6,7 @@ import MainNewsletter from "./main-newsletter";
 const MainFooter = () => {
   return (
     <footer
-      className="border-t border-gray-900/10 bg-white shadow-sm"
+      className="border-t border-border/50 bg-white"
       aria-labelledby="footer-heading"
     >
       <h2 id="footer-heading" className="sr-only">
@@ -95,7 +95,7 @@ const MainFooter = () => {
           </div>
           <MainNewsletter />
         </div>
-        <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
+        <div className="mt-16 border-t border-border/30 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
           <div className="flex space-x-6 md:order-2">
             {mainFooterConfig.socials.map((item) => (
               <a

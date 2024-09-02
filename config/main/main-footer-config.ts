@@ -16,16 +16,8 @@ const mainFooterConfig: FooterType = {
       slug: "/",
     },
     {
-      title: "About",
-      slug: "/about",
-    },
-    {
-      title: "Docs",
-      slug: "/docs",
-    },
-    {
-      title: "Changelogs",
-      slug: "/changelogs",
+      title: "Me",
+      slug: "/me",
     },
     {
       title: "Contact",
@@ -36,27 +28,27 @@ const mainFooterConfig: FooterType = {
   socials: [
     {
       name: "Facebook",
-      url: "https://facebook.com",
+      url: "https://facebook.com/devs7udio",
       icon: FacebookIcon,
     },
     {
       name: "Github",
-      url: "https://github.com/timtbdev",
+      url: "https://github.com/deerpark",
       icon: GithubIcon,
     },
     {
       name: "Instagram",
-      url: "https://instagram.com",
+      url: "https://instagram.com/devs7udio",
       icon: InstagramIcon,
     },
     {
       name: "Twitter",
-      url: "https://twitter.com/timtbdev",
+      url: "https://twitter.com/devs7udio",
       icon: TwitterIcon,
     },
     {
       name: "Youtube",
-      url: "https://youtube.com",
+      url: "https://youtube.com/devs7udio",
       icon: YoutubeIcon,
     },
   ],
@@ -70,7 +62,7 @@ const mainFooterConfig: FooterType = {
       slug: "/policy",
     },
   ],
-  copyright: "© 2023 Fullstack Blogging App. All rights reserved.",
+  copyright: "© 2023 devs7ud.io. All rights reserved.",
 };
 
 export default mainFooterConfig;
