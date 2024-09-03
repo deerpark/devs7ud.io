@@ -1,14 +1,11 @@
-import MainPostItemDesktopLoading from "@/components/main/post/loading/main-post-item-desktop-loading";
-import MainPostItemMobileLoading from "@/components/main/post/loading/main-post-item-mobile-loading";
+import { Shell } from "lucide-react";
 import React from "react";
 
 const Loading = () => {
   return (
-    <>
-      {/* LoadingItems */}
-      <MainPostItemDesktopLoading />
-      <MainPostItemMobileLoading />
-    </>
+    <div className="flex h-full w-full flex-1 items-center justify-center">
+      <Shell size={32} className="animate-spin" />
+    </div>
   );
 };
 

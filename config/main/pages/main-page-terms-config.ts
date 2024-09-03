@@ -1,40 +1,36 @@
 import { TermsPageType } from "@/types";
 
 const mainPageTermsConfig: TermsPageType = {
-  title: "Terms of Service",
-  description: "By using ub.cafe, you agree to the following terms of service.",
+  title: "서비스 약관",
+  description: "devs7ud.io를 이용함으로써 귀하는 다음 서비스 약관에 동의하게 됩니다.",
   paragraphs: [
     {
       description:
-        "By visiting our site and/ or purchasing subscriptions from us, you engage in our “Service” and agree to be bound by the following terms and conditions (“Terms of Service”, “Terms”). These Terms of Service apply to all users of the site. Any new features or tools which are added to the current store shall also be subject to the Terms of Service.",
+        "당사 사이트를 방문하거나 당사로부터 구독을 구매함으로써 귀하는 당사의 '서비스'에 참여하게 되며 다음 이용약관('서비스 약관', '약관')을 준수하는 데 동의하게 됩니다. 본 서비스 약관은 사이트의 모든 사용자에게 적용됩니다. 현재 스토어에 추가되는 새로운 기능이나 도구도 본 서비스 약관의 적용을 받습니다.",
     },
     {
       description:
-        "You agree not to reproduce, duplicate, copy, sell, resell or exploit any portion of the Service, use of the Service, or access to the Service or any contact on the website through which the service is provided, without express written permission by us.",
+        "귀하는 당사의 명시적인 서면 허가 없이 서비스의 일부, 서비스 사용, 서비스 또는 서비스가 제공되는 웹사이트의 연락처에 대한 접근을 복제, 복제, 복사, 판매, 재판매 또는 악용하지 않을 것에 동의합니다.",
     },
     {
       description:
-        "We are not responsible if information made available on this site is not accurate, complete or current. The material on this site is provided for general information only and should not be relied upon or used as the sole basis for making decisions without consulting primary, more accurate, more complete or more timely sources of information. Any reliance on the material on this site is at your own risk.",
+        "당사는 이 사이트에서 제공되는 정보가 정확하지 않거나 완전하지 않거나 최신 정보가 아닌 경우 책임을 지지 않습니다. 이 사이트의 자료는 일반적인 정보 제공 목적으로만 제공되며, 보다 정확하고 완전하며 시기적절한 1차 정보 출처를 참조하지 않고 의사 결정의 유일한 근거로만 의존하거나 사용해서는 안 됩니다. 이 사이트의 자료에 대한 의존에 따른 위험은 전적으로 사용자의 책임입니다.",
     },
     {
       description:
-        "We reserve the right to terminate your use of the Service or any related website for violating any of the prohibited uses.",
+        "당사는 금지된 사용을 위반하는 경우 귀하의 서비스 또는 관련 웹사이트 이용을 종료할 수 있는 권리를 보유합니다.",
     },
     {
       description:
-        "Prices for our products are subject to change without notice.",
+        "당사는 언제든지 사전 통지 없이 서비스(또는 그 일부 또는 내용)를 수정하거나 중단할 수 있는 권리를 보유합니다.",
     },
     {
       description:
-        "We reserve the right at any time to modify or discontinue the Service (or any part or content thereof) without notice at any time.",
+        "당사는 단독 재량으로 웹사이트에 업데이트 및 변경 사항을 게시하여 본 서비스 약관의 일부를 업데이트, 변경 또는 대체할 권리를 보유합니다. 변경 사항이 있는지 당사 웹사이트를 주기적으로 확인하는 것은 귀하의 책임입니다. 본 서비스 약관에 대한 변경 사항이 게시된 후에도 당사 웹사이트 또는 서비스를 계속 사용하거나 액세스하면 해당 변경 사항을 수락하는 것으로 간주됩니다.",
     },
     {
       description:
-        "We reserve the right, at our sole discretion, to update, change or replace any part of these Terms of Service by posting updates and changes to our website. It is your responsibility to check our website periodically for changes. Your continued use of or access to our website or the Service following the posting of any changes to these Terms of Service constitutes acceptance of those changes.",
-    },
-    {
-      description:
-        "Questions about the Terms of Service should be sent to us at support@domain.com",
+        "서비스 약관에 대한 질문은 deerpark8210@gmail.com 으로 보내주시기 바랍니다.",
     },
   ],
 };

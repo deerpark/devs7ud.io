@@ -11,9 +11,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
     <>
       <div className="flex w-full max-w-5xl flex-1 flex-col justify-center sm:flex-row">
         <MainHeader />
-        <div className="flex flex-1 flex-col px-6 py-10 lg:px-8">
-          {children}
-        </div>
+        <div className="flex flex-1 flex-col px-6 py-9 lg:px-8">{children}</div>
       </div>
       <MainFooter />
     </>

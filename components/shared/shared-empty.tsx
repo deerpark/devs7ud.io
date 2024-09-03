@@ -1,14 +1,12 @@
 import { sharedEmptyConfig } from "@/config/shared";
-import { AlertTriangleIcon } from "lucide-react";
+import { AlertTriangleIcon, Annoyed } from "lucide-react";
 
 const SharedEmpty = () => {
   return (
-    <div className="mx-auto my-5 max-w-3xl rounded-lg border-2 border-dashed border-gray-300 bg-white p-12 text-center">
-      <AlertTriangleIcon className="mx-auto h-12 w-12 text-gray-400" />
-      <h3 className="text-md mt-2 font-semibold text-gray-900">
-        {sharedEmptyConfig.title}
-      </h3>
-      <p className="text-md mt-1 text-gray-500">
+    <div className="mx-auto my-5 max-w-3xl rounded-lg border-2 border-dashed bg-background p-12 text-center">
+      <Annoyed size={64} className="mx-auto block" strokeWidth={1.5} />
+      <h3 className="mt-2 text-lg font-semibold">{sharedEmptyConfig.title}</h3>
+      <p className="mt-1 text-sm text-foreground/80">
         {sharedEmptyConfig.description}
       </p>
     </div>

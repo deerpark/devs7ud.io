@@ -121,9 +121,12 @@ export default async function CategoryPage({
   }
 
   return (
-    <>
+    <div className="flex flex-col gap-y-2">
+      <div className="flex items-center gap-x-2">
+        <h2 className="px-3 text-xl font-black">{category?.title}</h2>
+      </div>
       {/* Posts */}
-      <div className="my-5 space-y-5">
+      <div className="space-y-5">
         {data?.length === 0 ? (
           <SharedEmpty />
         ) : (
@@ -139,6 +142,6 @@ export default async function CategoryPage({
           pageUrl="?page="
         />
       )}
-    </>
+    </div>
   );
 }

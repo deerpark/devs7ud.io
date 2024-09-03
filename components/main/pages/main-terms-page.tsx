@@ -3,23 +3,20 @@ import React from "react";
 
 const MainTermsPage = () => {
   return (
-    <div className="bg-white py-5">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl">
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            {mainPageTermsConfig.title}
-          </p>
-
-          {mainPageTermsConfig.paragraphs.map((item) => (
-            <>
-              <p className="text-md mt-8 leading-8 text-gray-600">
-                {item.description}
-              </p>
-            </>
-          ))}
-        </div>
+    <>
+      <div className="flex items-center gap-x-2">
+        <h2 className="px-3 text-xl font-black">{mainPageTermsConfig.title}</h2>
       </div>
-    </div>
+      <div className="mx-auto max-w-7xl px-2 lg:px-3">
+        {mainPageTermsConfig.paragraphs.map((item) => (
+          <>
+            <p className="text-md mt-5 leading-8 text-foreground/80">
+              {item.description}
+            </p>
+          </>
+        ))}
+      </div>
+    </>
   );
 };
 

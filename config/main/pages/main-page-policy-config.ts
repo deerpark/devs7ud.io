@@ -1,24 +1,24 @@
 import { PolicyPageType } from "@/types";
 
 const mainPagePolicyConfig: PolicyPageType = {
-  title: "Privacy Policy",
+  title: "개인정보보호정책",
   description:
-    "This Privacy Policy describes how your personal information is collected, used, and shared when you visit or make a purchase from ub.cafe (the “Site”).",
+    "본 개인정보 처리방침은 귀하가 ub.cafe(이하 '사이트')를 방문하거나 구매할 때 귀하의 개인정보가 수집, 사용 및 공유되는 방식을 설명합니다.",
   paragraphs: [
     {
-      title: "Personal Information we collect",
+      title: "당사가 수집하는 개인 정보",
       description:
-        "When you create an account on the site, we collect your name and email address. We use your name and email address for identification and authentication. You will also receive authentication emails at the email address provided. We DO NOT share any personal information to third parties.",
+        "사이트에서 계정을 만들 때 당사는 귀하의 이름과 이메일 주소를 수집합니다. 당사는 귀하의 이름과 이메일 주소를 식별 및 인증에 사용합니다. 또한 제공된 이메일 주소로 인증 이메일을 받게 됩니다. 당사는 어떠한 개인정보도 제3자와 공유하지 않습니다.",
     },
     {
-      title: "Changes",
+      title: "변경 사항",
       description:
-        "We may update this privacy policy from time to time in order to reflect, for example, changes to our practices or for other operational, legal or regulatory reasons.",
+        "당사는 관행의 변경 또는 기타 운영, 법률 또는 규제상의 이유 등을 반영하기 위해 본 개인정보 처리방침을 수시로 업데이트할 수 있습니다.",
     },
     {
-      title: "Contact Us",
+      title: "문의하기",
       description:
-        "For more information about our privacy practices, if you have questions, or if you would like to make a complaint, please contact us by e-mail at support@domain.com.",
+        "개인정보 처리방침에 대한 자세한 내용을 알아보거나 궁금한 점이 있거나 불만 사항을 제기하려면 이메일(deerpark8210@gmail.com)로 문의하시기 바랍니다.",
     },
   ],
 };

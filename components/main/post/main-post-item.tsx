@@ -50,7 +50,7 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post }) => {
           href={`/posts/${post.slug}`}
           className="group block rounded-2xl hover:bg-accent/50 active:bg-accent/100"
         >
-          <article className="relative isolate flex flex-none flex-col gap-2 px-2 py-2 sm:gap-5 sm:px-3 sm:py-3 lg:flex-row">
+          <article className="relative isolate flex flex-none flex-col justify-center gap-2 px-2 py-2 sm:gap-5 sm:px-3 sm:py-3 lg:flex-row">
             {image ? (
               <div className="relative aspect-[16/9] min-h-32 flex-none sm:aspect-[2/1] lg:aspect-square lg:min-w-32">
                 <CustomImage
@@ -64,11 +64,8 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post }) => {
               </div>
             ) : null}
 
-            <div className="flex-1">
+            <div className="flex flex-1 flex-col justify-center">
               {/* Desktop category view */}
-              <span className="text-xs font-semibold text-muted-foreground">
-                {post.categories?.title}
-              </span>
               <h3 className="text-lg font-bold">{post.title}</h3>
               {/* Mobile category and toolbar view*/}
               <div className="flex items-center gap-x-3 text-sm sm:hidden">
@@ -86,9 +83,9 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post }) => {
                   </span>
                 </div>
               </div>
-              <p className="line-clamp-2 text-sm">{post.description}</p>
+              <p className="my-1 line-clamp-2 text-sm">{post.description}</p>
               {/* Desktop toolbar view */}
-              <div className="hidden items-center gap-x-3 py-3 text-sm sm:flex">
+              <div className="hidden items-center gap-x-3 py-2 text-sm text-foreground/70 sm:flex">
                 <div className="flex items-center gap-x-1">
                   {post.profiles?.avatar_url ? (
                     <CustomImage

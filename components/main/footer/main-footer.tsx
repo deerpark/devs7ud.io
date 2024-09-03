@@ -6,7 +6,7 @@ import MainNewsletter from "./main-newsletter";
 const MainFooter = () => {
   return (
     <footer
-      className="flex-none border-t border-border/50 bg-white"
+      className="flex-none border-t border-border/50"
       aria-labelledby="footer-heading"
     >
       <h2 id="footer-heading" className="sr-only">
@@ -17,9 +17,7 @@ const MainFooter = () => {
           <div className="grid grid-cols-2 gap-8 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Categories
-                </h3>
+                <h3 className="text-sm font-semibold leading-6">카테고리</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {mainFooterConfig.categories.map((category) => (
                     <li key={v4()}>
@@ -29,7 +27,7 @@ const MainFooter = () => {
                             ? category.slug
                             : `/category/${category.slug}`
                         }
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900 hover:underline"
+                        className="text-sm leading-6 text-foreground/80 hover:underline"
                       >
                         {category.title}
                       </Link>
@@ -38,15 +36,13 @@ const MainFooter = () => {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Pages
-                </h3>
+                <h3 className="text-sm font-semibold leading-6">페이지</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {mainFooterConfig.pages.map((page) => (
                     <li key={v4()}>
                       <Link
                         href={page.slug}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900 hover:underline"
+                        className="text-sm leading-6 text-foreground/80 hover:underline"
                       >
                         {page.title}
                       </Link>
@@ -57,16 +53,14 @@ const MainFooter = () => {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Socials
-                </h3>
+                <h3 className="text-sm font-semibold leading-6">소셜미디어</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {mainFooterConfig.socials.map((social) => (
                     <li key={v4()}>
                       <Link
                         href={social.url}
                         target="_blank"
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900 hover:underline"
+                        className="text-sm leading-6 text-foreground/80 hover:underline"
                       >
                         {social.name}
                       </Link>
@@ -75,15 +69,13 @@ const MainFooter = () => {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Legal
-                </h3>
+                <h3 className="text-sm font-semibold leading-6">정책</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {mainFooterConfig.legals.map((legal) => (
                     <li key={v4()}>
                       <Link
                         href={legal.slug}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900 hover:underline"
+                        className="text-sm leading-6 text-foreground/80 hover:underline"
                       >
                         {legal.title}
                       </Link>
@@ -101,14 +93,14 @@ const MainFooter = () => {
               <a
                 key={item.name}
                 href={item.url}
-                className="text-gray-400 hover:text-gray-500"
+                className="text-muted-foreground/50 hover:text-muted-foreground/100"
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="h-6 w-6" aria-hidden="true" />
               </a>
             ))}
           </div>
-          <p className="mt-8 text-sm leading-5 text-gray-500 md:order-1 md:mt-0">
+          <p className="mt-8 text-sm leading-5 text-muted-foreground/50 hover:text-muted-foreground/100 md:order-1 md:mt-0">
             {mainFooterConfig.copyright}
           </p>
         </div>
