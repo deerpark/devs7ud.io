@@ -31,13 +31,13 @@ const MainMobileNavigationMenu: FC<MainMobileNavigationMenuProps> = ({
         leaveFrom="opacity-100 translate-y-0"
         leaveTo="opacity-0 translate-y-1"
       >
-        <Disclosure.Panel className="w-full border-t bg-background pt-5 lg:hidden">
+        <Disclosure.Panel className="w-full border-t bg-background pt-5 sm:hidden">
           {mainCategoryConfig.map((category) => (
             <Link
               key={v4()}
               className={cn(
                 buttonVariants({ variant: "ghost" }),
-                "flex w-full items-center gap-x-6 rounded-none px-10 font-semibold",
+                "flex h-auto w-full items-center gap-x-2 rounded-none px-9 py-3 font-semibold",
               )}
               href={
                 category.slug === "/"
@@ -45,7 +45,7 @@ const MainMobileNavigationMenu: FC<MainMobileNavigationMenuProps> = ({
                   : `/category/${category.slug}`
               }
             >
-              <category.icon className="h-5 w-5" />
+              <category.icon className="h-5 w-5" strokeWidth={2.5} />
               <span className="flex-1 text-left">{category.title}</span>
             </Link>
           ))}

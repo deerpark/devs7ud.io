@@ -16,8 +16,9 @@ const SharedBackButton: React.FC<BackButtonProps> = ({
 }) => {
   const router = useRouter();
   return (
-    <button
-      type="button"
+    <Button
+      variant="ghost"
+      size="icon"
       className="group relative z-10 inline-flex items-center justify-center space-x-3"
       onClick={() => {
         if (window.history.state && window.history.state.idx > 0) {
@@ -27,10 +28,8 @@ const SharedBackButton: React.FC<BackButtonProps> = ({
         }
       }}
     >
-      <Button variant="ghost" size="icon">
-        <ArrowLeftToLine strokeWidth={2.5} className="h-5 w-5" />
-      </Button>
-    </button>
+      <ArrowLeftToLine strokeWidth={2.5} className="h-5 w-5" />
+    </Button>
   );
 };
 

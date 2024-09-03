@@ -1,5 +1,6 @@
 "use client";
 
+import { CustomImage } from "@/components/shared/shared-image";
 import { dashBoardMenu } from "@/config/shared/dashboard";
 import { cn, getUrl } from "@/lib/utils";
 import { Dialog, Transition } from "@headlessui/react";
@@ -82,7 +83,7 @@ const ProtectedMobileSideBar: FC<ProtectedMobileSideBarProps> = ({
                     href={getUrl()}
                     className="flex h-16 shrink-0 items-center"
                   >
-                    <Image
+                    <CustomImage
                       className="h-[40px] w-[40px]"
                       src="/images/logo.png"
                       alt="Logo"

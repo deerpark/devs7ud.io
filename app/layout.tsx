@@ -75,7 +75,11 @@ export const metadata: Metadata = {
     shortcut: ["/favicons/favicon-32x32.png"],
     apple: [
       { url: "/favicons/apple-icon.png" },
-      { url: "/apple-icon-180x180.png", sizes: "180x180", type: "image/png" },
+      {
+        url: "/favicons/apple-icon-180x180.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
     ],
     other: [
       {
@@ -85,7 +89,7 @@ export const metadata: Metadata = {
     ],
   },
 
-  manifest: `${getUrl()}/favicons/manifest.json`,
+  manifest: `/favicons/manifest.json`,
 
   openGraph: {
     type: "website",
@@ -97,7 +101,7 @@ export const metadata: Metadata = {
     images: [
       {
         // url: getOgImageUrl(metaData.title, metaData.subTitle, metaData.tags, '/'),
-        url: `${getUrl()}/images/opengraph-image.png`,
+        url: `/images/opengraph-image.png`,
         width: 1200,
         height: 630,
         alt: seoData.title,
@@ -109,7 +113,7 @@ export const metadata: Metadata = {
     title: seoData.ogTitle,
     description: seoData.description,
     // images: [getOgImageUrl(metaData.title, metaData.subTitle, metaData.tags, '/')],
-    images: `${getUrl()}/images/twitter-image.png`,
+    images: `/images/twitter-image.png`,
     creator: seoData.author.twitterAddress,
   },
   appleWebApp: {

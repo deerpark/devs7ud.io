@@ -10,7 +10,7 @@ const MainMobileNavigation = () => {
     <Disclosure>
       {({ open }) => (
         <>
-          <nav className="flex max-w-full items-center justify-between bg-background/50 px-6 py-4 shadow-2xl shadow-foreground/10 backdrop-blur-sm md:hidden">
+          <nav className="flex max-w-full items-center justify-between bg-background/50 px-6 py-4 shadow-2xl shadow-foreground/10 backdrop-blur-sm sm:hidden">
             {/* Mobile Menu Button */}
             <div className="flex flex-none justify-end">
               <MainMobileMenuButton open={open} />

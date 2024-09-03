@@ -1,3 +1,4 @@
+import { CustomImage } from "@/components/shared/shared-image";
 import { mainPostConfig } from "@/config/main";
 import { getMinutes, shimmer, toBase64 } from "@/lib/utils";
 import { Comment, PostWithCategoryWithProfile } from "@/types/collection";
@@ -39,7 +40,7 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post }) => {
   const readTime = readingTime(post.content ? post.content : "");
   const comments = await getComments(post.id ? post.id : "");
   const image = post.image
-    ? await getPublicImageUrl(post.id, "cover-image", post.image || "")
+    ? await getPublicImageUrl("cover-image", post.image || "")
     : "";
 
   return (
@@ -47,26 +48,23 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post }) => {
       <div className="max-w-full">
         <Link
           href={`/posts/${post.slug}`}
-          className="block rounded-2xl hover:bg-accent/50 active:bg-accent/100"
+          className="group block rounded-2xl hover:bg-accent/50 active:bg-accent/100"
         >
           <article className="relative isolate flex flex-none flex-col gap-2 px-2 py-2 sm:gap-5 sm:px-3 sm:py-3 lg:flex-row">
             {image ? (
               <div className="relative aspect-[16/9] min-h-32 flex-none sm:aspect-[2/1] lg:aspect-square lg:min-w-32">
-                <Image
+                <CustomImage
                   src={image}
                   alt={post.title ?? "Cover"}
                   height={128}
                   width={128}
                   priority
-                  placeholder={`data:image/svg+xml;base64,${toBase64(
-                    shimmer(128, 128),
-                  )}`}
-                  className="absolute inset-0 h-full w-full rounded-2xl object-cover"
+                  className="absolute inset-0 h-full w-full rounded-2xl bg-accent object-cover group-hover:ring-1 group-hover:ring-border"
                 />
               </div>
             ) : null}
 
-            <div className="group flex-1">
+            <div className="flex-1">
               {/* Desktop category view */}
               <span className="text-xs font-semibold text-muted-foreground">
                 {post.categories?.title}
@@ -93,15 +91,12 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post }) => {
               <div className="hidden items-center gap-x-3 py-3 text-sm sm:flex">
                 <div className="flex items-center gap-x-1">
                   {post.profiles?.avatar_url ? (
-                    <Image
+                    <CustomImage
                       src={post.profiles?.avatar_url}
                       alt={post.profiles?.full_name ?? "Avatar"}
                       height={24}
                       width={24}
                       priority
-                      placeholder={`data:image/svg+xml;base64,${toBase64(
-                        shimmer(24, 24),
-                      )}`}
                       className="h-6 w-6 rounded-full object-cover"
                     />
                   ) : null}

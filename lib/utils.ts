@@ -43,21 +43,21 @@ export function getUrl() {
   if (process.env.NODE_ENV === "development") {
     return process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
   } else {
-    return process.env.NEXT_PUBLIC_WEB_URL || "https://ub.cafe";
+    return process.env.NEXT_PUBLIC_WEB_URL || "https://devs7ud.io";
   }
 }
 
 // BlurData for loading images with blur effect
 export const shimmer = (w: number, h: number) => `
-<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="color:#e5e5e5'">
   <defs>
     <linearGradient id="g">
-      <stop stop-color="#d1d5db" offset="20%" />
-      <stop stop-color="#d7dade" offset="50%" />
-      <stop stop-color="#d1d5db" offset="70%" />
+      <stop stop-color="transparent" offset="20%" />
+      <stop stop-color="currentColor" offset="50%" />
+      <stop stop-color="transparent" offset="70%" />
     </linearGradient>
   </defs>
-  <rect width="${w}" height="${h}" fill="#d1d5db" />
+  <rect width="${w}" height="${h}" fill="transparent" />
   <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
   <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
 </svg>`;
@@ -67,7 +67,7 @@ export const toBase64 = (str: string) =>
     ? Buffer.from(str).toString("base64")
     : window.btoa(str);
 
-export const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+export const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export function isValidUrl(url: string) {
   try {

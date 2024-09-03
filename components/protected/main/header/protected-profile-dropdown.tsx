@@ -1,5 +1,6 @@
 "use client";
 
+import { CustomImage } from "@/components/shared/shared-image";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -66,7 +67,7 @@ const ProtectedProfileDropDown = () => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Image
+          <CustomImage
             src={avatarUrl || "/images/user-placeholder.png"}
             alt="Avatar"
             height={40}

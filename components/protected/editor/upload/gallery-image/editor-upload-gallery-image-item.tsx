@@ -1,6 +1,7 @@
 "use client";
 
 import { DeleteGalleryImage } from "@/actions/images/delete-gallery-image";
+import { CustomImage } from "@/components/shared/shared-image";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -59,7 +60,7 @@ const EditorUploadGalleryImageItem: FC<EditorUploadGalleryImageItemProps> = ({
     <>
       <div className="flex items-center gap-x-3 border-b border-gray-200 pb-3">
         <div className="h-11 w-11 flex-none items-center">
-          <Image
+          <CustomImage
             className="h-11 w-11 rounded-md bg-cover"
             src={imageUrl}
             alt="Gallery Photo"
@@ -83,7 +84,7 @@ const EditorUploadGalleryImageItem: FC<EditorUploadGalleryImageItemProps> = ({
             </DialogTrigger>
             <DialogContent className="sm:max-w-3xl">
               <div className="mx-auto items-center">
-                <Image
+                <CustomImage
                   src={imageUrl}
                   alt="Fullscreen gallery image"
                   className="h-[500px] w-[700px] rounded-md bg-cover shadow-sm ring-1 ring-gray-400"

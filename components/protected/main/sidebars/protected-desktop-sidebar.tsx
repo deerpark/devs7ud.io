@@ -1,3 +1,4 @@
+import { CustomImage } from "@/components/shared/shared-image";
 import { dashBoardMenu } from "@/config/shared/dashboard";
 import { cn, getUrl } from "@/lib/utils";
 import Image from "next/image";
@@ -16,7 +17,7 @@ const ProtectedDesktopSideBar = () => {
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
           <Link href={getUrl()} className="flex h-16 shrink-0 items-center">
-            <Image
+            <CustomImage
               className="h-[40px]w-[40px]w-auto"
               src="/images/logo.png"
               alt="Logo"

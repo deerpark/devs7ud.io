@@ -1,6 +1,7 @@
 "use client";
 
 import { UpdateSettings } from "@/actions/settings/update-settings";
+import { CustomImage } from "@/components/shared/shared-image";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -186,7 +187,7 @@ const ProtectedSettingsProfile: FC<ProtectedSettingsProfileProps> = ({
             <CardContent className="space-y-4">
               <div className="mx-auto flex max-w-3xl flex-col justify-center">
                 <div className="col-span-full flex items-center gap-x-8">
-                  <Image
+                  <CustomImage
                     src={avatarUrl || "/images/not-found.jpg"}
                     alt="Avatar"
                     height={96}

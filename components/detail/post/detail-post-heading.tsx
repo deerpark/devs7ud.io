@@ -1,8 +1,7 @@
+import { CustomImage } from "@/components/shared/shared-image";
 import { getMinutes, shimmer, toBase64 } from "@/lib/utils";
 import { getPublicImageUrl } from "@/utils/image-url";
-import { createClient } from "@/utils/supabase/server";
 import { ArchiveIcon, CalendarIcon, ClockIcon } from "lucide-react";
-import { cookies } from "next/headers";
 import Image from "next/image";
 import { FC } from "react";
 import { ReadTimeResults } from "reading-time";
@@ -32,8 +31,8 @@ const DetailPostHeading: FC<DetailPostHeadingProps> = async ({
     <section className="flex flex-col items-start justify-between">
       {image ? (
         <div className="relative w-full">
-          <Image
-            src={await getPublicImageUrl(id, "cover-image", image)}
+          <CustomImage
+            src={await getPublicImageUrl("cover-image", image)}
             alt={title}
             width={512}
             height={288}
@@ -55,7 +54,7 @@ const DetailPostHeading: FC<DetailPostHeadingProps> = async ({
           {/* Author */}
           <div className="inline-flex items-start justify-start">
             {authorImage ? (
-              <Image
+              <CustomImage
                 src={authorImage}
                 height={24}
                 width={24}
@@ -111,7 +110,7 @@ const DetailPostHeading: FC<DetailPostHeadingProps> = async ({
           {/* Author */}
           <div className="mb-5 flex flex-row items-start justify-start pr-3.5 md:mb-0">
             {authorImage ? (
-              <Image
+              <CustomImage
                 src={authorImage}
                 height={24}
                 width={24}

@@ -19,7 +19,7 @@ const DetailPostHeader: React.FC<DetailPostHeaderProps> = ({ title }) => {
         <div className="flex flex-none items-center justify-start">
           <SharedBackButton />
         </div>
-        <h1 className="max-w-3xl flex-1 truncate px-4 font-bold tracking-tight sm:flex-none sm:px-0 sm:text-xl">
+        <h1 className="max-w-3xl flex-1 truncate px-4 font-bold tracking-tight sm:px-0 sm:text-xl">
           {title}
         </h1>
         <span className="hidden sm:flex-1" />

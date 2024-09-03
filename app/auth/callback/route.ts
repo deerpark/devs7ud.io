@@ -17,6 +17,7 @@ export async function GET(request: Request) {
     const supabase = createClient(cookieStore);
 
     console.log('cookieStore', cookieStore)
+    console.log('redirect', redirect)
 
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {

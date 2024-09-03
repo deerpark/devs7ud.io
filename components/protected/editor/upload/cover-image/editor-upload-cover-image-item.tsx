@@ -1,4 +1,5 @@
 import { DeleteCoverImage } from "@/actions/images/delete-cover-image";
+import { CustomImage } from "@/components/shared/shared-image";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { protectedEditorConfig } from "@/config/protected";
 import { shimmer, toBase64 } from "@/lib/utils";
 import { Loader2 as SpinnerIcon, TrashIcon } from "lucide-react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import { toast } from "sonner";
@@ -56,7 +56,7 @@ const EditorUploadCoverImageItem: FC<EditorUploadCoverImageItemProps> = ({
   }
   return (
     <div className="col-span-full max-w-2xl">
-      <Image
+      <CustomImage
         src={imageUrl || imageUrl !== "" ? imageUrl : "/images/not-found.jpg"}
         className="mb-5 rounded-lg shadow-sm"
         alt="Cover image"
