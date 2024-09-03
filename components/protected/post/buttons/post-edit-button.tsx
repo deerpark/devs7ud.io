@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { FC, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

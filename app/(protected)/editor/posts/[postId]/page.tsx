@@ -3,6 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import { protectedEditorConfig } from "@/config/protected";
 import { Draft } from "@/types/collection";
 import { createClient } from "@/utils/supabase/server";
+import { getUserId } from "@/utils/user-id";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
@@ -10,23 +11,6 @@ export const revalidate = 0;
 
 interface PostEditorPageProps {
   params: { postId: string };
-}
-
-async function getUserId() {
-  const cookeStore = cookies();
-  const supabase = createClient(cookeStore);
-  const {
-    data: { session },
-    error,
-  } = await supabase.auth.getSession();
-
-  if (error) {
-    console.log("Error has occured while getting UserId!");
-    console.log("Error message : ", error.message);
-    return null;
-  }
-
-  return session ? session.user.id : null;
 }
 
 async function getPost(postId: string, userId: string) {

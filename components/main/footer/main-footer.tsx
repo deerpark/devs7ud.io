@@ -6,7 +6,7 @@ import MainNewsletter from "./main-newsletter";
 const MainFooter = () => {
   return (
     <footer
-      className="border-t border-border/50 bg-white"
+      className="flex-none border-t border-border/50 bg-white"
       aria-labelledby="footer-heading"
     >
       <h2 id="footer-heading" className="sr-only">

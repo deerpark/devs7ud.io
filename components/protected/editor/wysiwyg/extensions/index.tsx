@@ -14,7 +14,8 @@ import { Markdown } from "tiptap-markdown";
 import CustomKeymap from "./custom-keymap";
 import DragAndDrop from "./drag-and-drop";
 import SlashCommand from "./slash-command";
-import UpdatedImage from "./updated-image";
+
+/* import UpdatedImage from "./updated-image"; */
 
 export const defaultExtensions = [
   StarterKit.configure({
@@ -97,11 +98,11 @@ export const defaultExtensions = [
       class: "rounded-lg border border-stone-200",
     },
   }),
-  UpdatedImage.configure({
+  /* UpdatedImage.configure({
     HTMLAttributes: {
       class: "rounded-lg border border-stone-200",
     },
-  }),
+  }), */
   Placeholder.configure({
     placeholder: ({ node }) => {
       if (node.type.name === "heading") {

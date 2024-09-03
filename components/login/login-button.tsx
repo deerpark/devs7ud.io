@@ -11,16 +11,14 @@ const LoginButton = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <div className="flex sm:ml-4 sm:mt-0">
-          <Button
-            variant="ghost"
-            type="button"
-            className="flex items-center gap-x-2"
-          >
-            <Plug className="h-5 w-5" strokeWidth={2.5} />
-            <span className="font-semibold">로그인</span>
-          </Button>
-        </div>
+        <Button
+          variant="ghost"
+          type="button"
+          className="flex h-auto w-full items-center justify-start gap-x-2 rounded-3xl px-3 py-2 text-sm"
+        >
+          <Plug className="h-5 w-5" strokeWidth={2.5} />
+          <span className="font-bold">로그인</span>
+        </Button>
       </DialogTrigger>
       <DialogContent className="p-0 font-sans sm:max-w-[320px]">
         <LoginSection setOpen={setOpen} />

@@ -1,6 +1,5 @@
 import { LoginMenu } from "@/components/login";
-import Logo from "@/public/images/logo.png";
-import Image from "next/image";
+import { LogoIcon } from "@/icons";
 import Link from "next/link";
 import React from "react";
 import { MainDesktopNavigationMenu } from "./menu";
@@ -8,23 +7,24 @@ import { MainDesktopNavigationMenu } from "./menu";
 const MainDesktopNavigation = () => {
   return (
     <>
-      <nav className="mx-auto hidden max-w-5xl items-center justify-between px-2 py-4 md:flex">
+      <nav className="hidden min-w-52 flex-col gap-y-6 px-2 py-10 md:flex">
         {/* Logo */}
-        <div className="flex flex-1 justify-start pl-2">
-          <Link href="/">
-            <Image src={Logo} height={24} alt="" />
+        <div className="flex flex-none justify-start px-3">
+          <Link href="/" className="relative">
+            <span className="relative z-10">
+              <LogoIcon />
+            </span>
+            <span className="absolute left-1 top-1 h-5 w-5 rounded-full bg-accent" />
           </Link>
         </div>
 
         {/* Navigation */}
-        <div>
-          <div className="flex flex-1 gap-x-6">
-            <MainDesktopNavigationMenu />
-          </div>
+        <div className="flex flex-none flex-col gap-y-2">
+          <MainDesktopNavigationMenu />
         </div>
 
         {/* Login Menu */}
-        <div className="flex flex-1 justify-end">
+        <div className="flex flex-1 flex-col items-start justify-end">
           <LoginMenu />
         </div>
       </nav>

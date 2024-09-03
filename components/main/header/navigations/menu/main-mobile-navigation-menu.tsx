@@ -1,7 +1,10 @@
 "use client";
 
+import { Button, buttonVariants } from "@/components/ui/button";
 import { mainCategoryConfig } from "@/config/main";
+import { cn } from "@/lib/utils";
 import { Disclosure, Transition } from "@headlessui/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ExoticComponent, FC, ReactNode } from "react";
 import { v4 } from "uuid";
@@ -28,27 +31,23 @@ const MainMobileNavigationMenu: FC<MainMobileNavigationMenuProps> = ({
         leaveFrom="opacity-100 translate-y-0"
         leaveTo="opacity-0 translate-y-1"
       >
-        <Disclosure.Panel className="w-full border-t border-black/5 bg-gray-50 lg:hidden">
+        <Disclosure.Panel className="w-full border-t bg-background pt-5 lg:hidden">
           {mainCategoryConfig.map((category) => (
-            <Disclosure.Button
+            <Link
               key={v4()}
-              as="a"
-              onClick={() =>
-                router.push(
-                  category.slug === "/"
-                    ? category.slug
-                    : `/category/${category.slug}`,
-                )
+              className={cn(
+                buttonVariants({ variant: "ghost" }),
+                "flex w-full items-center gap-x-6 rounded-none px-10 font-semibold",
+              )}
+              href={
+                category.slug === "/"
+                  ? category.slug
+                  : `/category/${category.slug}`
               }
             >
-              <div className="group flex items-center gap-x-6 border-b border-black/5 px-8 py-3 text-base font-semibold leading-7 text-gray-600 transition-colors hover:bg-gray-200">
-                <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg border border-black/10 shadow-md shadow-black/5 transition duration-200 group-hover:bg-gray-50">
-                  <category.icon className="h-6 w-6" />
-                </div>
-
-                {category.title}
-              </div>
-            </Disclosure.Button>
+              <category.icon className="h-5 w-5" />
+              <span className="flex-1 text-left">{category.title}</span>
+            </Link>
           ))}
         </Disclosure.Panel>
       </Transition>

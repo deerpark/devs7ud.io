@@ -11,26 +11,25 @@ interface DetailPostHeaderProps {
 const DetailPostHeader: React.FC<DetailPostHeaderProps> = ({ title }) => {
   const completion = useReadingProgress();
   return (
-    <header className="border-y-1 sticky top-0 z-40 border-black/5 bg-gray-50/60 shadow-sm shadow-gray-300 backdrop-blur-lg">
+    <header className="sticky top-0 z-40 bg-background/50 shadow-2xl shadow-foreground/10 backdrop-blur-lg">
       <nav
-        className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4"
+        className="mx-auto flex max-w-5xl items-center justify-between gap-x-3 px-6 py-4"
         aria-label="Global"
       >
         <div className="flex flex-none items-center justify-start">
           <SharedBackButton />
         </div>
-        <div className="flex w-full max-w-3xl">
-          <h1 className="text-md justify-start px-4 font-semibold tracking-tight text-slate-900 sm:px-0 sm:text-xl">
-            {title}
-          </h1>
-        </div>
+        <h1 className="max-w-3xl flex-1 truncate px-4 font-bold tracking-tight sm:flex-none sm:px-0 sm:text-xl">
+          {title}
+        </h1>
+        <span className="hidden sm:flex-1" />
         <div className="flex flex-none items-center justify-end">
           <LoginMenu />
         </div>
       </nav>
       <span
         style={{ transform: `translateX(${completion - 100}%)` }}
-        className="absolute bottom-0 h-1 w-full bg-gray-400"
+        className="absolute top-0 h-0.5 w-full bg-secondary/50"
       />
     </header>
   );

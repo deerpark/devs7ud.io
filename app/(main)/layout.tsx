@@ -9,14 +9,12 @@ import { ReactNode } from "react";
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <MainHeader />
-      <MainGrid>
-        <div className="min-h-full py-10">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mx-auto max-w-3xl">{children}</div>
-          </div>
+      <div className="flex w-full max-w-5xl flex-1 flex-col justify-center sm:flex-row">
+        <MainHeader />
+        <div className="flex flex-1 flex-col px-6 py-10 lg:px-8">
+          {children}
         </div>
-      </MainGrid>
+      </div>
       <MainFooter />
     </>
   );

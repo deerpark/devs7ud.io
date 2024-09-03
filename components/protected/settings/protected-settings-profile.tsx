@@ -42,7 +42,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { z } from "zod";
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;

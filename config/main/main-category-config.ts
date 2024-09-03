@@ -15,7 +15,7 @@ const categoryIcons = {
 const mainCategoryConfig: CategoryType[] = categories.map(category => ({
     id: category.id,
     title: category.title,
-    slug: `/${category.slug}`,
+    slug: category.slug,
     icon: categoryIcons[category.slug],
   }));
 

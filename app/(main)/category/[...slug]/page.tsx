@@ -123,7 +123,7 @@ export default async function CategoryPage({
   return (
     <>
       {/* Posts */}
-      <div className="my-5 space-y-6">
+      <div className="my-5 space-y-5">
         {data?.length === 0 ? (
           <SharedEmpty />
         ) : (

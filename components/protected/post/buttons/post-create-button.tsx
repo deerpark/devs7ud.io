@@ -14,7 +14,7 @@ import { Session } from "@supabase/supabase-js";
 import { Loader2 as SpinnerIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { toast } from "react-hot-toast";
+import { toast } from "sonner";
 
 const PostCreateButton = () => {
   const supabase = createClient();

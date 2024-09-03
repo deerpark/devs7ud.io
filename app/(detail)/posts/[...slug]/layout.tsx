@@ -42,13 +42,13 @@ export default async function MainLayout({
     notFound();
   }
   return (
-    <>
+    <div className="flex w-full flex-1 flex-col">
       <DetailPostHeader title={post.title as string} />
-      <div className="min-h-full grow bg-gray-100 py-3">
+      <div className="min-h-full flex-1 bg-muted py-3">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-5xl">{children}</div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -10,15 +10,17 @@ const MainMobileNavigation = () => {
     <Disclosure>
       {({ open }) => (
         <>
-          <nav className="mx-auto flex max-w-5xl items-center justify-between bg-gray-50 px-6 py-4 md:hidden">
-            {/* Login */}
-            <div className="flex flex-1 justify-start pl-2">
-              <LoginMenu />
+          <nav className="flex max-w-full items-center justify-between bg-background/50 px-6 py-4 shadow-2xl shadow-foreground/10 backdrop-blur-sm md:hidden">
+            {/* Mobile Menu Button */}
+            <div className="flex flex-none justify-end">
+              <MainMobileMenuButton open={open} />
             </div>
 
-            {/* Mobile Menu Button */}
-            <div className="flex flex-1 justify-end pr-2">
-              <MainMobileMenuButton open={open} />
+            <span className="flex-1" />
+
+            {/* Login */}
+            <div className="flex-none">
+              <LoginMenu />
             </div>
           </nav>
 

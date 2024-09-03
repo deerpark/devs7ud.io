@@ -11,7 +11,7 @@ import { Session } from "@supabase/supabase-js";
 import { Loader2 as SpinnerIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { FC } from "react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

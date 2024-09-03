@@ -24,9 +24,9 @@ const ProtectedLayout: React.FC<ProtectedLayoutProps> = async ({
   }
 
   return (
-    <>
+    <div>
       <ProtectedMain>{children}</ProtectedMain>
-    </>
+    </div>
   );
 };
 

@@ -17,7 +17,7 @@ import { Loader2 as SpinnerIcon, TrashIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Dispatch, FC, SetStateAction, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 type Dispatcher<S> = Dispatch<SetStateAction<S>>;
 

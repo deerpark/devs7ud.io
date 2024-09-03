@@ -20,7 +20,7 @@ import { Loader2 as SpinnerIcon, TrashIcon, ZoomIn } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 interface EditorUploadGalleryImageItemProps {
   userId: string;

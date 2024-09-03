@@ -7,7 +7,7 @@ module.exports = {
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
+    "./icons/**/*.{ts,tsx}",
   ],
   theme: {
     container: {
@@ -22,6 +22,10 @@ module.exports = {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       colors: {
+        skeleton: {
+          1: "hsl(var(--skeleton-1))",
+          2: "hsl(var(--skeleton-2))",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -81,5 +85,6 @@ module.exports = {
     require("tailwindcss-animate"),
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
+    require("@xpd/tailwind-3dtransforms"),
   ],
 };

@@ -47,8 +47,8 @@ import { SparklesIcon, Loader2 as SpinnerIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "react-hot-toast";
 import slugify from "react-slugify";
+import { toast } from "sonner";
 import { v4 } from "uuid";
 import * as z from "zod";
 import {
@@ -114,7 +114,7 @@ const Editor: FC<EditorProps> = ({
 
   // Uppy instance for cover photo upload
 
-  var uppyCover = new Uppy({
+  const uppyCover = new Uppy({
     id: "cover-image",
     autoProceed: false,
     debug: false,
@@ -158,7 +158,7 @@ const Editor: FC<EditorProps> = ({
   });
 
   // Uppy instance for gallery uploads
-  var uppyGallery = new Uppy({
+  const uppyGallery = new Uppy({
     id: "gallery-image",
     autoProceed: false,
     debug: false,
@@ -223,11 +223,14 @@ const Editor: FC<EditorProps> = ({
     setShowLoadingAlert(true);
     setIsSaving(true);
 
+    console.log("data", data);
+    console.log("coverImageFileName", coverImageFileName);
+
     const response = await UpdatePost({
       id: post.id,
       title: data.title,
       slug: data.slug,
-      image: data.image,
+      image: coverImageFileName,
       description: data.description,
       content: content,
       categoryId: data.categoryId,

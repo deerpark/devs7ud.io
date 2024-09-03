@@ -2,7 +2,7 @@ import { MainDesktopNavigation, MainMobileNavigation } from "./navigations";
 
 export default function MainHeader() {
   return (
-    <div className="sticky top-0 z-50 shadow-sm backdrop-blur-lg">
+    <div className="sticky z-50 w-full max-w-full sm:w-auto sm:max-w-sm">
       <MainDesktopNavigation />
       <MainMobileNavigation />
     </div>

@@ -1,11 +1,11 @@
 import { TailwindIndicator } from "@/components/main";
+import { Toaster } from "@/components/ui/sonner";
 import { seoData } from "@/config/root/seo";
-import { getUrl } from "@/lib/utils";
+import { cn, getUrl } from "@/lib/utils";
 import "@/styles/tailwind.css";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
-import { Toaster } from "react-hot-toast";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -128,13 +128,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className={fontSans.variable}>
-        <div className="flex min-h-screen flex-col bg-background text-foreground">
-          {children}
-          <VercelAnalytics />
-          <Toaster position="top-center" />
-          <TailwindIndicator />
-        </div>
+      <body
+        className={cn(
+          "flex min-h-screen flex-col items-center bg-background text-foreground",
+          fontSans.variable,
+        )}
+      >
+        {children}
+        <VercelAnalytics />
+        <Toaster />
+        <TailwindIndicator />
       </body>
     </html>
   );
