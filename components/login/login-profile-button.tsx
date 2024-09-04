@@ -66,30 +66,28 @@ const LoginProfileButton: FC<LoginProfileButtonProps> = ({
 
         <Link
           href={dashBoardPost.slug || ""}
-          className="group inline-flex w-full items-center rounded-md bg-white px-3 py-1.5 hover:bg-gray-100"
+          className="group inline-flex w-full items-center gap-x-2 rounded-md bg-background px-2 py-2 text-foreground hover:bg-accent"
         >
-          <dashBoardPost.icon className="mr-2 h-4 w-4 text-gray-500 group-hover:text-gray-900" />
-          <span className="text-sm text-gray-500 group-hover:text-gray-900">
-            {dashBoardPost.title}
-          </span>
+          <dashBoardPost.icon strokeWidth={2.5} className="h-5 w-5" />
+          <span className="text-sm font-semibold">{dashBoardPost.title}</span>
         </Link>
 
         <Link
           href={dashBoardBookMark.slug || ""}
-          className="group inline-flex w-full items-center rounded-md bg-white px-3 py-1.5 hover:bg-gray-100"
+          className="group inline-flex w-full items-center gap-x-2 rounded-md bg-background px-2 py-2 text-foreground hover:bg-accent"
         >
-          <dashBoardBookMark.icon className="mr-2 h-4 w-4 text-gray-500 group-hover:text-gray-900" />
-          <span className="text-sm text-gray-500 group-hover:text-gray-900">
+          <dashBoardBookMark.icon strokeWidth={2.5} className="h-5 w-5" />
+          <span className="text-sm font-semibold">
             {dashBoardBookMark.title}
           </span>
         </Link>
 
         <Link
           href={dashBoardSettings.slug || ""}
-          className="group inline-flex w-full items-center rounded-md bg-white px-3 py-1.5 hover:bg-gray-100"
+          className="group inline-flex w-full items-center gap-x-2 rounded-md bg-background px-2 py-2 text-foreground hover:bg-accent"
         >
-          <dashBoardSettings.icon className="mr-2 h-4 w-4 text-gray-500 group-hover:text-gray-900" />
-          <span className="text-sm text-gray-500 group-hover:text-gray-900">
+          <dashBoardSettings.icon strokeWidth={2.5} className="h-5 w-5" />
+          <span className="text-sm font-semibold">
             {dashBoardSettings.title}
           </span>
         </Link>
@@ -98,12 +96,10 @@ const LoginProfileButton: FC<LoginProfileButtonProps> = ({
         <button
           onClick={signOut}
           type="button"
-          className="group inline-flex w-full items-center rounded-md bg-white px-3 py-1.5 hover:bg-gray-100"
+          className="group inline-flex w-full items-center gap-x-2 rounded-md bg-background px-2 py-2 text-foreground hover:bg-accent"
         >
-          <dashBoardLogout.icon className="mr-2 h-4 w-4 text-gray-500 group-hover:text-gray-900" />
-          <span className="group-hover:text-gray-90 text-sm text-gray-500">
-            {dashBoardLogout.title}
-          </span>
+          <dashBoardLogout.icon strokeWidth={2.5} className="h-5 w-5" />
+          <span className="text-sm font-semibold">{dashBoardLogout.title}</span>
         </button>
       </DropdownMenuContent>
     </DropdownMenu>

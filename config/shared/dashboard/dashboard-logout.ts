@@ -2,7 +2,7 @@ import { DashBoardType } from "@/types";
 import { LogOut } from "lucide-react";
 
 const dashBoardLogout: DashBoardType = {
-  title: "Sign Out",
+  title: "로그아웃",
   slug: "/logout",
   icon: LogOut,
 };

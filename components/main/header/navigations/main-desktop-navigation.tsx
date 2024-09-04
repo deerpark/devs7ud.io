@@ -19,9 +19,7 @@ const MainDesktopNavigation = () => {
         </div>
 
         {/* Navigation */}
-        <div className="flex flex-none flex-col gap-y-2">
-          <MainDesktopNavigationMenu />
-        </div>
+        <MainDesktopNavigationMenu />
 
         {/* Login Menu */}
         <div className="flex flex-1 flex-col items-start justify-end">

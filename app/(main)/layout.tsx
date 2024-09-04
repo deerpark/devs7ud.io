@@ -1,7 +1,5 @@
 import {
-  MainBanner,
   MainFooter,
-  MainGrid,
   MainHeader,
 } from "@/components/main";
 import { ReactNode } from "react";

@@ -2,7 +2,7 @@ import { DashBoardType } from "@/types";
 import { SettingsIcon } from "lucide-react";
 
 const dashBoardSettings: DashBoardType = {
-  title: "Settings",
+  title: "앱 설정",
   slug: "/settings",
   icon: SettingsIcon,
 };
