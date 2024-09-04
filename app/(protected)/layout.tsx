@@ -15,9 +15,9 @@ const ProtectedLayout: React.FC<ProtectedLayoutProps> = async ({
   const supabase = createClient(cookieStore);
 
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
-  if (!session?.user.id) {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user?.id) {
     // This route can only be accessed by authenticated users.
     // Unauthenticated users will be redirected to the `/login` route.
     redirect("/login");

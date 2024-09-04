@@ -49,6 +49,9 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
   return (
     <>
+      <div className="flex items-center gap-x-2">
+        <h2 className="px-3 text-xl font-black">업데이트</h2>
+      </div>
       <div className="space-y-6">
         {data?.map((post) => (
           <Suspense key={v4()} fallback={<MainPostItemLoading />}>

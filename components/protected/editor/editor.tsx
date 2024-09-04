@@ -223,12 +223,6 @@ const Editor: FC<EditorProps> = ({
     setShowLoadingAlert(true);
     setIsSaving(true);
 
-    console.log("data", data);
-    console.log(
-      "coverImageFileName",
-      `${userId}/${post.id}/${coverImageFileName}`,
-    );
-
     const response = await UpdatePost({
       id: post.id,
       title: data.title,

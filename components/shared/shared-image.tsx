@@ -21,9 +21,7 @@ export function CustomImage(props: ImageProps) {
   const handleError = React.useCallback(() => {
     setError(true);
     setLoading(false);
-    console.log("error");
-    console.log(isLoading);
-  }, [isLoading]);
+  }, []);
 
   return (
     <>

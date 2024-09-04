@@ -16,11 +16,9 @@ const MainDesktopNavigationMenu = () => {
   ) => {
     const categoryPathname =
       event.currentTarget.getAttribute("data-category-pathname") || "";
-    console.log("mouse enter", categoryPathname);
     setHoveredCategory(categoryPathname);
   };
   const handleMouseLeave = () => {
-    console.log("mouse leave");
     setHoveredCategory(currentPath);
   };
   return (

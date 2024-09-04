@@ -149,28 +149,24 @@ export default async function PostPage({ params }: PostPageProps) {
   let username = null;
   let profileImage = null;
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  if (session) {
-    username = session.user?.user_metadata.full_name;
+  if (user) {
+    username = user?.user_metadata.full_name;
     profileImage =
-      session?.user?.user_metadata.picture ||
-      session?.user?.user_metadata.avatar_url;
+      user?.user_metadata.picture || user?.user_metadata.avatar_url;
   }
 
   // Get bookmark status
-  const isBookmarked = await getBookmark(
-    post.id as string,
-    session?.user.id as string,
-  );
+  const isBookmarked = await getBookmark(post.id as string, user?.id as string);
 
   // Get comments
   const comments = await getComments(post.id as string);
   const readTime = readingTime(post.content ? post.content : "");
 
   return (
-    <div className="min-h-full grow bg-gray-100 py-3">
+    <>
       <div className="mx-auto max-w-7xl px-0 sm:px-8">
         <div className="mx-auto max-w-5xl">
           <div className="mx-auto max-w-5xl rounded-lg bg-white px-6 py-4 shadow-sm shadow-gray-300 ring-1 ring-black/5 sm:px-14 sm:py-10">
@@ -221,6 +217,6 @@ export default async function PostPage({ params }: PostPageProps) {
         />
       </div>
       <DetailPostScrollUpButton />
-    </div>
+    </>
   );
 }

@@ -2,7 +2,7 @@ import { CategoryType } from "@/types";
 import { categories } from "../shared/shared-categories";
 import { Film, LibraryBig, Lightbulb, Mailbox, Sparkles, BrickWall, Pickaxe } from "lucide-react";
 
-const categoryIcons = {
+export const categoryIcons = {
   news: Mailbox,
   components: BrickWall,
   mods: Sparkles,

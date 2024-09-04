@@ -60,7 +60,6 @@ export const columns: ColumnDef<Draft>[] = [
       <DataTableColumnHeader column={column} title="Published" />
     ),
     cell: ({ row }) => {
-      console.log('row.getValue("published")', row.getValue("published"));
       const status = statuses.find(
         (status) =>
           status.value === (row.getValue("published") ? "published" : "draft"),

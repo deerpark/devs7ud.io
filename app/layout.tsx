@@ -134,7 +134,7 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning>
       <body
         className={cn(
-          "flex min-h-screen flex-col items-center bg-background text-foreground",
+          "min-h-screen bg-background text-foreground",
           fontSans.variable,
         )}
       >

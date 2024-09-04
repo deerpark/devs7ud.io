@@ -48,7 +48,6 @@ const LoginSection: React.FC<LoginSectionProps> = ({ setOpen }) => {
   const redirectTo = getLoginRedirectPath(currentPathname);
 
   async function signInWithGoogle() {
-    console.log("redirectTo", redirectTo);
     setSignInGoogleClicked(true);
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
