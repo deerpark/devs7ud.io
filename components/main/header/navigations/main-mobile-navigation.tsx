@@ -5,7 +5,7 @@ import { Disclosure } from "@headlessui/react";
 import React, { Fragment } from "react";
 import { MainMobileMenuButton, MainMobileNavigationMenu } from "./menu";
 
-const MainMobileNavigation = () => {
+const MainMobileNavigation = ({ userId }: { userId: string | null }) => {
   return (
     <Disclosure>
       {({ open }) => (
@@ -20,7 +20,7 @@ const MainMobileNavigation = () => {
 
             {/* Login */}
             <div className="flex-none">
-              <LoginMenu />
+              <LoginMenu userId={userId} />
             </div>
           </nav>
 

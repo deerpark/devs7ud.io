@@ -5,20 +5,13 @@ import { PostWithCategoryWithProfile } from "@/types/collection";
 import { Shell } from "lucide-react";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
+import { cache, Suspense } from "react";
 import { v4 } from "uuid";
 
-export const revalidate = 0;
-
-export default async function HomePage() {
+const getData = cache(async () => {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
   const userId = await getUserId();
-
-  // Pagination
-  const limit = 10;
-  const from = 0;
-  const to = limit;
 
   // Fetch posts
   const { data, error } = await supabase
@@ -26,12 +19,18 @@ export default async function HomePage() {
     .select(`*, categories(*), profiles(*)`)
     .eq("published", true)
     .order("created_at", { ascending: false })
-    .range(from, to)
+    .range(0, 10)
     .returns<PostWithCategoryWithProfile[]>();
 
   if (error) {
-    notFound();
+    throw error;
   }
+
+  return { data, userId };
+});
+
+export default async function HomePage() {
+  const { data, userId } = await getData();
 
   return (
     <>

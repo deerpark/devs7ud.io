@@ -4,7 +4,7 @@ import Link from "next/link";
 import * as React from "react";
 import { MainDesktopNavigationMenu } from "./menu";
 
-const MainDesktopNavigation = () => {
+const MainDesktopNavigation = ({ userId }: { userId: string | null }) => {
   return (
     <>
       <nav className="hidden min-w-52 flex-col gap-y-6 py-10 pl-6 pr-2 sm:flex">
@@ -23,7 +23,7 @@ const MainDesktopNavigation = () => {
 
         {/* Login Menu */}
         <div className="flex flex-1 flex-col items-start justify-end">
-          <LoginMenu />
+          <LoginMenu userId={userId} />
         </div>
       </nav>
     </>

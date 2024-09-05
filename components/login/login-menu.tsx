@@ -11,20 +11,19 @@ import LoginProfileButton from "./login-profile-button";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-const LoginMenu = () => {
+const LoginMenu = ({ userId }: { userId: string | null }) => {
   const supabase = createClient();
-  const { user, loading } = useAuth();
   const [avatarUrl, setAvatarUrl] = React.useState<string>("");
 
   React.useEffect(() => {
     async function fetchAvatar() {
-      if (!user?.id) {
+      if (!userId) {
         return Promise.resolve();
       }
       const { data, error } = await supabase
         .from("profiles")
         .select("*")
-        .match({ id: user?.id })
+        .match({ id: userId })
         .single<Profile>();
       if (error) {
         console.error(error);
@@ -34,15 +33,11 @@ const LoginMenu = () => {
       }
     }
     fetchAvatar();
-  }, [user, supabase]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  }, [userId, supabase]);
 
   return (
     <>
-      {user ? (
+      {userId ? (
         <LoginProfileButton profileImageUrl={avatarUrl} />
       ) : (
         <LoginButton />

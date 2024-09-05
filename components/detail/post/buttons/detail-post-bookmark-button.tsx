@@ -36,8 +36,8 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
 
   // Add a bookmark
   async function addBookmark(e: React.MouseEvent<HTMLButtonElement>) {
+    e.nativeEvent.stopImmediatePropagation();
     e.preventDefault();
-    e.stopPropagation();
     setIsLoading(true);
 
     if (id && userId) {
@@ -63,8 +63,8 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
 
   // Delete a bookmark
   async function deleteBookmark(e: React.MouseEvent<HTMLButtonElement>) {
+    e.nativeEvent.stopImmediatePropagation();
     e.preventDefault();
-    e.stopPropagation();
     setIsLoading(true);
 
     if (id && userId) {
@@ -96,7 +96,7 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
             type="button"
             variant="ghost"
             size="icon"
-            className="rounded-full text-primary"
+            className="rounded-full text-primary hover:bg-primary/10 hover:text-primary"
             disabled={isLoading}
             onClick={deleteBookmark}
           >
@@ -111,7 +111,7 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
             type="button"
             variant="ghost"
             size="icon"
-            className="rounded-full text-muted-foreground"
+            className="rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary"
             disabled={isLoading}
             onClick={addBookmark}
           >
@@ -129,13 +129,13 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
               type="button"
               variant="ghost"
               size="icon"
-              className="rounded-full text-muted-foreground"
+              className="rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary"
               disabled={isLoading}
             >
               <Bookmark className="h-4 w-4" strokeWidth={2.5} />
             </Button>
           </DialogTrigger>
-          <DialogContent className="font-sans sm:max-w-sm">
+          <DialogContent className="sm:max-w-sm">
             <LoginSection />
           </DialogContent>
         </Dialog>

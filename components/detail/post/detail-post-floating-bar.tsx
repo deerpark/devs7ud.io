@@ -3,10 +3,10 @@
 import {
   DetailPostBookMarkButton,
   DetailPostCommentButton,
+  DetailPostLikeButton,
   DetailPostShareButton,
 } from "@/components/detail/post/buttons";
 import * as React from "react";
-import DetailPostLikeButton from "./buttons/detail-post-like-button";
 
 interface DetailPostFloatingBarProps {
   id: string;

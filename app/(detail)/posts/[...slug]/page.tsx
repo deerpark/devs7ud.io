@@ -136,7 +136,6 @@ export default async function PostPage({ params }: PostPageProps) {
   // Get post data
   const post = await getPost(params);
   if (!post) {
-    console.log("PostPage", "no post");
     notFound();
   }
   // Set post views

@@ -7,21 +7,21 @@ import { toast } from "sonner";
 
 const DetailPostLikeButton = () => {
   return (
-    <span className="flex items-center">
+    <span className="flex items-center text-sm font-semibold">
       <Button
         type="button"
         variant="ghost"
         size="icon"
-        className="rounded-full text-muted-foreground"
+        className="peer rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary"
         onClick={(e) => {
+          e.nativeEvent.stopImmediatePropagation();
           e.preventDefault();
-          e.stopPropagation();
           toast.error("준비중입니다.");
         }}
       >
         <Heart className="h-4 w-4" strokeWidth={2.5} />
       </Button>
-      <span className="text-sm">{0}</span>
+      <span className="text-muted-foreground peer-hover:text-primary">{0}</span>
     </span>
   );
 };

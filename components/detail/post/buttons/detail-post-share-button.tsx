@@ -40,8 +40,8 @@ const CopyButton = ({ url }: { url: string }) => {
   }, [copied]);
 
   const copy = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.nativeEvent.stopImmediatePropagation();
     e.preventDefault();
-    e.stopPropagation();
     setCopied(true);
     window.navigator.clipboard.writeText(url);
   };
@@ -71,10 +71,10 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
           type="button"
           variant="ghost"
           size="icon"
-          className="rounded-full text-muted-foreground"
+          className="rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary"
           onClick={(e) => {
+            e.nativeEvent.stopImmediatePropagation();
             e.preventDefault();
-            e.stopPropagation();
             setOpen(true);
           }}
         >
@@ -97,8 +97,8 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
               rel="noopener noreferrer"
               className={buttonVariants({ variant: "ghost" })}
               onClick={(e) => {
+                e.nativeEvent.stopImmediatePropagation();
                 e.preventDefault();
-                e.stopPropagation();
               }}
             >
               <Twitter className="h-8 w-8" />
@@ -112,8 +112,8 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
               rel="noopener noreferrer"
               className={buttonVariants({ variant: "ghost" })}
               onClick={(e) => {
+                e.nativeEvent.stopImmediatePropagation();
                 e.preventDefault();
-                e.stopPropagation();
               }}
             >
               <Facebook className="h-8 w-8" />
@@ -127,8 +127,8 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
               rel="noopener noreferrer"
               className={buttonVariants({ variant: "ghost" })}
               onClick={(e) => {
+                e.nativeEvent.stopImmediatePropagation();
                 e.preventDefault();
-                e.stopPropagation();
               }}
             >
               <Linkedin className="h-8 w-8" />
@@ -145,8 +145,8 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
               rel="noopener noreferrer"
               className={buttonVariants({ variant: "ghost" })}
               onClick={(e) => {
+                e.nativeEvent.stopImmediatePropagation();
                 e.preventDefault();
-                e.stopPropagation();
               }}
             >
               <Mail className="h-8 w-8" />
@@ -162,8 +162,8 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
             <Button
               variant="outline"
               onClick={(e) => {
+                e.nativeEvent.stopImmediatePropagation();
                 e.preventDefault();
-                e.stopPropagation();
                 setOpen(false);
               }}
             >

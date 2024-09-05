@@ -14,16 +14,18 @@ const CommentButton: React.FC<DetailPostCommentButtonProps> = ({
   totalComments = 0,
 }) => {
   return (
-    <span className="flex items-center">
+    <span className="flex items-center text-sm font-semibold">
       <Button
         type="button"
         variant="ghost"
         size="icon"
-        className="rounded-full text-muted-foreground"
+        className="peer rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary"
       >
         <MessageSquareText className="h-4 w-4" strokeWidth={2.5} />
       </Button>
-      <span className="text-sm">{totalComments}</span>
+      <span className="text-muted-foreground peer-hover:text-primary">
+        {totalComments}
+      </span>
     </span>
   );
 };
