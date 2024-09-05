@@ -1,9 +1,10 @@
 "use client";
 
+import { useAuth } from "@/hooks/use-auth";
+import { createClient } from "@/lib/supabase/client";
 import { Profile } from "@/types/collection";
-import { createClient } from "@/utils/supabase/client";
-import { Session } from "@supabase/supabase-js";
-import { useEffect, useState } from "react";
+import { User } from "@supabase/supabase-js";
+import * as React from "react";
 import LoginButton from "./login-button";
 import LoginProfileButton from "./login-profile-button";
 
@@ -12,43 +13,36 @@ export const revalidate = 0;
 
 const LoginMenu = () => {
   const supabase = createClient();
-  const [session, setSession] = useState<Session | null>(null);
-  const [avatarUrl, setAvatarUrl] = useState<string>("");
+  const { user, loading } = useAuth();
+  const [avatarUrl, setAvatarUrl] = React.useState<string>("");
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-
-    return () => subscription.unsubscribe();
-  }, [supabase.auth]);
-
-  useEffect(() => {
+  React.useEffect(() => {
     async function fetchAvatar() {
-      if (!session?.user.id) {
+      if (!user?.id) {
         return Promise.resolve();
       }
       const { data, error } = await supabase
         .from("profiles")
         .select("*")
-        .match({ id: session?.user.id })
+        .match({ id: user?.id })
         .single<Profile>();
+      if (error) {
+        console.error(error);
+      }
       if (data) {
         setAvatarUrl(data.avatar_url ? data.avatar_url : "");
       }
     }
     fetchAvatar();
-  }, [session, supabase]);
+  }, [user, supabase]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
-      {session ? (
+      {user ? (
         <LoginProfileButton profileImageUrl={avatarUrl} />
       ) : (
         <LoginButton />

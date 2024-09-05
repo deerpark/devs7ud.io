@@ -5,7 +5,8 @@ import {
   DetailPostCommentButton,
   DetailPostShareButton,
 } from "@/components/detail/post/buttons";
-import React from "react";
+import * as React from "react";
+import DetailPostLikeButton from "./buttons/detail-post-like-button";
 
 interface DetailPostFloatingBarProps {
   id: string;
@@ -14,6 +15,7 @@ interface DetailPostFloatingBarProps {
   url?: string;
   totalComments?: number;
   isBookmarked?: boolean;
+  userId?: string | null;
 }
 
 const DetailPostFloatingBar: React.FC<DetailPostFloatingBarProps> = ({
@@ -23,15 +25,20 @@ const DetailPostFloatingBar: React.FC<DetailPostFloatingBarProps> = ({
   url = window.location.href,
   totalComments = 0,
   isBookmarked = false,
+  userId,
 }) => {
   return (
-    <>
-      <div className="grid w-full grid-cols-3 justify-start gap-4 rounded-md">
-        <DetailPostCommentButton totalComments={totalComments} />
-        <DetailPostBookMarkButton id={id} isBookmarked={isBookmarked} />
-        <DetailPostShareButton title={title} text={text} url={url} />
-      </div>
-    </>
+    <div className="flex flex-1 items-center gap-5">
+      <DetailPostCommentButton totalComments={totalComments} />
+      <DetailPostBookMarkButton
+        id={id}
+        isBookmarked={isBookmarked}
+        userId={userId}
+      />
+      <DetailPostLikeButton />
+      <span className="flex-1" />
+      <DetailPostShareButton title={title} text={text} url={url} />
+    </div>
   );
 };
 

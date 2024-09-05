@@ -1,6 +1,6 @@
 import { CustomImage } from "@/components/shared/shared-image";
 import { getMinutes, shimmer, toBase64 } from "@/lib/utils";
-import { getPublicImageUrl } from "@/utils/image-url";
+import { getPublicImageUrl } from "@/lib/utils/image-url";
 import { ArchiveIcon, CalendarIcon, ClockIcon } from "lucide-react";
 import Image from "next/image";
 import { FC } from "react";

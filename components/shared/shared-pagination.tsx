@@ -7,7 +7,7 @@ import {
   ArrowLongRightIcon,
 } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
-import React from "react";
+import * as React from "react";
 import { v4 } from "uuid";
 import { default as SharedPager } from "./shared-pager";
 

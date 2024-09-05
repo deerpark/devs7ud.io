@@ -2,9 +2,10 @@
 
 import { commentDeleteSchema } from "@/lib/validation/comment";
 import { Database } from "@/types/supabase";
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
 import * as z from "zod";
+import { handleServerError } from "@/lib/utils/error";
 
 export async function DeleteComment(
   context: z.infer<typeof commentDeleteSchema>,
@@ -21,7 +22,7 @@ export async function DeleteComment(
       .select();
 
     if (error) {
-      console.log(error);
+      handleServerError(error.message);
       return false;
     }
     if (data && data.length > 0) {
@@ -30,7 +31,7 @@ export async function DeleteComment(
     return false;
   } catch (error) {
     if (error instanceof z.ZodError) {
-      console.log(error);
+      handleServerError(error.message);
       return false;
     }
     return false;

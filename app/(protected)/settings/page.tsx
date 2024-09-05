@@ -1,6 +1,6 @@
 import ProtectedSettingsProfile from "@/components/protected/settings/protected-settings-profile";
+import { createClient } from "@/lib/supabase/server";
 import { Profile } from "@/types/collection";
-import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
@@ -45,8 +45,8 @@ const SettingsPage = async () => {
   }
 
   if (!data) {
-    notFound();
     console.log("Cound't find User profile.");
+    notFound();
   }
 
   return (

@@ -1,8 +1,9 @@
 "use server";
 
+import { createClient } from "@/lib/supabase/server";
+import { handleServerError } from "@/lib/utils/error";
 import { imageDeleteSchema } from "@/lib/validation/image";
 import { Database } from "@/types/supabase";
-import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 import * as z from "zod";
 
@@ -22,7 +23,7 @@ export async function DeleteCoverImage(
       .remove([`${userId}/${postId}/${fileName}`]);
 
     if (error) {
-      console.log(error);
+      handleServerError(error.message);
     }
     if (data?.length && data?.length > 0) {
       return true;
@@ -31,7 +32,7 @@ export async function DeleteCoverImage(
     }
   } catch (error) {
     if (error instanceof z.ZodError) {
-      console.log(error);
+      handleServerError(error.message);
       return false;
     }
     return false;

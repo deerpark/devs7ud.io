@@ -1,8 +1,8 @@
 import { ProtectedMain } from "@/components/protected/main";
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import React from "react";
+import * as React from "react";
 
 interface ProtectedLayoutProps {
   children: React.ReactNode;

@@ -1,16 +1,16 @@
+import { DetailPostFloatingBar } from "@/components/detail/post";
 import { CustomImage } from "@/components/shared/shared-image";
-import { mainPostConfig } from "@/config/main";
-import { getMinutes, shimmer, toBase64 } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { createClient } from "@/lib/supabase/server";
+import { getMinutes, getUrl } from "@/lib/utils";
+import { getBookmark } from "@/lib/utils/bookmark";
+import { getPublicImageUrl } from "@/lib/utils/image-url";
 import { Comment, PostWithCategoryWithProfile } from "@/types/collection";
-import { getPublicImageUrl } from "@/utils/image-url";
-import { createClient } from "@/utils/supabase/server";
-import { getUserId } from "@/utils/user-id";
-import { format, parseISO } from "date-fns";
-import { CalendarIcon, Clock10Icon, MessageCircleIcon } from "lucide-react";
+import { Ellipsis } from "lucide-react";
 import { cookies } from "next/headers";
-import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import * as React from "react";
 import readingTime from "reading-time";
 
 export const dynamic = "force-dynamic";
@@ -34,9 +34,13 @@ async function getComments(postId: string) {
 
 interface MainPostItemProps {
   post: PostWithCategoryWithProfile;
+  userId?: string | null;
 }
 
-const MainPostItem: React.FC<MainPostItemProps> = async ({ post }) => {
+const MainPostItem: React.FC<MainPostItemProps> = async ({ post, userId }) => {
+  // Get bookmark status
+  const isBookmarked =
+    post.id && userId ? await getBookmark(post.id, userId) : false;
   const readTime = readingTime(post.content ? post.content : "");
   const comments = await getComments(post.id ? post.id : "");
   const image = post.image
@@ -44,83 +48,67 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post }) => {
     : "";
 
   return (
-    <>
-      <div className="max-w-full">
-        <Link
-          href={`/posts/${post.slug}`}
-          className="group block rounded-2xl hover:bg-accent/50 active:bg-accent/100"
-        >
-          <article className="relative isolate flex flex-none flex-col justify-center gap-2 px-2 py-2 sm:gap-5 sm:px-3 sm:py-3 lg:flex-row">
-            {image ? (
-              <div className="relative aspect-[16/9] min-h-32 flex-none sm:aspect-[2/1] lg:aspect-square lg:min-w-32">
-                <CustomImage
-                  src={image}
-                  alt={post.title ?? "Cover"}
-                  height={128}
-                  width={128}
-                  priority
-                  className="absolute inset-0 h-full w-full rounded-2xl bg-accent object-cover group-hover:ring-1 group-hover:ring-border"
-                />
+    <Link
+      href={`/posts/${post.slug}`}
+      className="group block max-w-full rounded-2xl hover:bg-accent/50 active:bg-accent/100"
+    >
+      <article className="relative isolate flex items-stretch gap-2 p-2 sm:p-3">
+        {post.profiles?.avatar_url ? (
+          <div className="flex flex-none flex-col">
+            <CustomImage
+              src={post.profiles?.avatar_url}
+              alt={post.profiles?.full_name ?? "Avatar"}
+              height={40}
+              width={40}
+              priority
+              className="h-10 w-10 rounded-full object-cover"
+            />
+          </div>
+        ) : null}
+        <div className="flex flex-1 flex-col gap-y-2">
+          <div className="flex flex-1">
+            <div className="flex flex-1 flex-col gap-y-2 pt-2.5">
+              <div className="flex items-center gap-x-1 text-sm font-semibold">
+                <p className="font-bold">{post.profiles.full_name}</p>
+                <Separator className="h-0.5 w-0.5" />
+                <span className="text-foreground/70">
+                  {getMinutes(readTime.minutes ? readTime.minutes : 0)}
+                </span>
               </div>
-            ) : null}
-
-            <div className="flex flex-1 flex-col justify-center">
-              {/* Desktop category view */}
-              <h3 className="text-lg font-bold">{post.title}</h3>
-              {/* Mobile category and toolbar view*/}
-              <div className="flex items-center gap-x-3 text-sm sm:hidden">
-                <div className="font-semibold">{post.categories?.title}</div>
-                <div className="flex items-center gap-x-1">
-                  <CalendarIcon className="h-4 w-4" />
-                  <span className="ml-1">
-                    {format(parseISO(post.updated_at!), "dd/MM/yyyy")}
-                  </span>
-                </div>
-                <div className="flex items-center gap-x-1">
-                  <Clock10Icon className="h-4 w-4" />
-                  <span className="ml-1">
-                    {getMinutes(readTime.minutes ? readTime.minutes : 0)}
-                  </span>
-                </div>
-              </div>
-              <p className="my-1 line-clamp-2 text-sm">{post.description}</p>
-              {/* Desktop toolbar view */}
-              <div className="hidden items-center gap-x-3 py-2 text-sm text-foreground/70 sm:flex">
-                <div className="flex items-center gap-x-1">
-                  {post.profiles?.avatar_url ? (
-                    <CustomImage
-                      src={post.profiles?.avatar_url}
-                      alt={post.profiles?.full_name ?? "Avatar"}
-                      height={24}
-                      width={24}
-                      priority
-                      className="h-6 w-6 rounded-full object-cover"
-                    />
-                  ) : null}
-                  <div className="text-sm">
-                    <p className="font-semibold">{post.profiles.full_name}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-x-1">
-                  <CalendarIcon className="h-4 w-4" />
-                  <span>
-                    {format(parseISO(post.updated_at!), "MMMM dd, yyyy")}
-                  </span>
-                </div>
-                <div className="flex items-center gap-x-1">
-                  <Clock10Icon className="h-4 w-4" />
-                  <span>{getMinutes(readTime.minutes)}</span>
-                </div>
-                <div className="flex items-center gap-x-1">
-                  <MessageCircleIcon className="h-4 w-4" />
-                  <span>{comments?.length}</span>
-                </div>
-              </div>
+              <p className="line-clamp-2">{post.description}</p>
             </div>
-          </article>
-        </Link>
-      </div>
-    </>
+            <div className="flex flex-none flex-col">
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <Ellipsis size={16} strokeWidth={3} />
+              </Button>
+            </div>
+          </div>
+          {image ? (
+            <div className="relative aspect-[1/2] max-h-32 flex-none">
+              <CustomImage
+                src={image}
+                alt={post.title ?? "Cover"}
+                height={128}
+                width={128}
+                priority
+                className="absolute inset-0 h-full w-full rounded-2xl bg-accent object-cover group-hover:ring-1 group-hover:ring-border"
+              />
+            </div>
+          ) : null}
+          <div className="flex flex-none items-center">
+            <DetailPostFloatingBar
+              id={post.id as string}
+              title={post.title as string}
+              text={post.description as string}
+              url={`${getUrl()}${encodeURIComponent(`/posts/${post.slug}`)}`}
+              totalComments={comments?.length}
+              isBookmarked={isBookmarked}
+              userId={userId}
+            />
+          </div>
+        </div>
+      </article>
+    </Link>
   );
 };
 

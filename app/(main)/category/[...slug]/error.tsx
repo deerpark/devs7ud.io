@@ -1,7 +1,7 @@
 "use client";
 
 import { SharedError } from "@/components/shared";
-import React from "react";
+import * as React from "react";
 
 const Error = () => {
   return <SharedError />;

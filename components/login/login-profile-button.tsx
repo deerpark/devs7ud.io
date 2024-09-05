@@ -12,8 +12,8 @@ import {
   dashBoardPost,
   dashBoardSettings,
 } from "@/config/shared/dashboard";
+import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
-import { createClient } from "@/utils/supabase/client";
 import { ChevronDown, Settings2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

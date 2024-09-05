@@ -1,7 +1,7 @@
 import { mainBannerConfig } from "@/config/main";
 import { GithubIcon } from "@/icons";
 import Link from "next/link";
-import React from "react";
+import * as React from "react";
 
 const MainBanner = () => {
   return (

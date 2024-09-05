@@ -6,12 +6,12 @@ import { DataTable } from "@/components/protected/post/table/data-table";
 import { SharedTableEmpty } from "@/components/shared";
 import { detailBookMarkConfig } from "@/config/detail";
 import { sharedEmptyConfig } from "@/config/shared";
+import { createClient } from "@/lib/supabase/server";
 import { BookMarkWithPost, Post } from "@/types/collection";
-import { createClient } from "@/utils/supabase/server";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
-import React from "react";
+import * as React from "react";
 
 export const metadata: Metadata = {
   title: detailBookMarkConfig.title,
@@ -59,7 +59,7 @@ const BookmarksPage: React.FC<BookmarksPageProps> = async ({
     .range(from, to)
     .returns<BookMarkWithPost[]>();
 
-  if (!data || error || !data.length) {
+  if (error) {
     notFound;
   }
 

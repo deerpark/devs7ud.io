@@ -3,7 +3,7 @@
 import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import React from "react";
+import * as React from "react";
 
 const ProtectedTopBar = () => {
   const router = useRouter();

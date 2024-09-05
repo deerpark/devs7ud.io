@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { getUserId } from "./user-id";
-import { createClient } from "./supabase/server";
+import { createClient } from "../supabase/server";
 
 export async function getPublicImageUrl(bucketName: string = "", fileName: string) {
   const userId = await getUserId();

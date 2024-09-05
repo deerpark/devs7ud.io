@@ -14,11 +14,11 @@ export function CustomImage(props: ImageProps) {
     Number(props.height) || 16,
   );
   const size = originSize <= 16 ? 12 : originSize <= 32 ? 16 : 24;
-  const handleLoad = React.useCallback(() => {
+  const handleLoadImage = React.useCallback(() => {
     setLoading(false);
   }, []);
 
-  const handleError = React.useCallback(() => {
+  const handleErrorImage = React.useCallback(() => {
     setError(true);
     setLoading(false);
   }, []);
@@ -59,8 +59,8 @@ export function CustomImage(props: ImageProps) {
             ? "absolute inset-0 opacity-0 blur-sm"
             : "relative inset-auto opacity-100 blur-0",
         )}
-        onError={handleError}
-        onLoad={handleLoad}
+        onError={handleErrorImage}
+        onLoad={handleLoadImage}
       />
     </>
   );

@@ -1,5 +1,5 @@
 import { mainPagePolicyConfig } from "@/config/main/pages";
-import React from "react";
+import * as React from "react";
 
 const MainPolicyPage = () => {
   return (

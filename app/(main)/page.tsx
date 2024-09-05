@@ -1,7 +1,8 @@
 import { MainPostItem, MainPostItemLoading } from "@/components/main";
-import { SharedPagination } from "@/components/shared";
+import { createClient } from "@/lib/supabase/server";
+import { getUserId } from "@/lib/utils/user-id";
 import { PostWithCategoryWithProfile } from "@/types/collection";
-import { createClient } from "@/utils/supabase/server";
+import { Shell } from "lucide-react";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -9,30 +10,15 @@ import { v4 } from "uuid";
 
 export const revalidate = 0;
 
-interface HomePageProps {
-  searchParams: { [key: string]: string | string[] | undefined };
-}
-
-export default async function HomePage({ searchParams }: HomePageProps) {
+export default async function HomePage() {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
-
-  // Fetch total pages
-  const { count } = await supabase
-    .from("posts")
-    .select("*", { count: "exact", head: true });
+  const userId = await getUserId();
 
   // Pagination
   const limit = 10;
-  const totalPages = count ? Math.ceil(count / limit) : 0;
-  const page =
-    typeof searchParams.page === "string" &&
-    +searchParams.page > 1 &&
-    +searchParams.page <= totalPages
-      ? +searchParams.page
-      : 1;
-  const from = (page - 1) * limit;
-  const to = page ? from + limit : limit;
+  const from = 0;
+  const to = limit;
 
   // Fetch posts
   const { data, error } = await supabase
@@ -43,8 +29,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
     .range(from, to)
     .returns<PostWithCategoryWithProfile[]>();
 
-  if (!data || error || !data.length) {
-    notFound;
+  if (error) {
+    notFound();
   }
 
   return (
@@ -54,20 +40,18 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       </div>
       <div className="space-y-6">
         {data?.map((post) => (
-          <Suspense key={v4()} fallback={<MainPostItemLoading />}>
-            <MainPostItem post={post} />
+          <Suspense
+            key={v4()}
+            fallback={
+              <div className="flex h-full w-full flex-1 items-center justify-center">
+                <Shell size={32} className="animate-spin" />
+              </div>
+            }
+          >
+            <MainPostItem post={post} userId={userId} />
           </Suspense>
         ))}
       </div>
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <SharedPagination
-          page={page}
-          totalPages={totalPages}
-          baseUrl="/"
-          pageUrl="?page="
-        />
-      )}
     </>
   );
 }

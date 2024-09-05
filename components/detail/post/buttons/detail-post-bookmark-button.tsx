@@ -3,12 +3,16 @@
 import { AddBookmark } from "@/actions/bookmark/add-bookmark";
 import { DeleteBookmark } from "@/actions/bookmark/delete-bookmark";
 import { LoginSection } from "@/components/login";
+import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { detailBookMarkConfig } from "@/config/detail";
-import { BookMarkOutlineIcon, BookMarkSolidIcon } from "@/icons";
-import { createClient } from "@/utils/supabase/client";
-import { Session } from "@supabase/supabase-js";
-import { Loader2 as SpinnerIcon } from "lucide-react";
+import {
+  Bookmark,
+  BookmarkMinus,
+  BookmarkPlus,
+  Shell,
+  Loader2 as SpinnerIcon,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { FC } from "react";
 import { toast } from "sonner";
@@ -19,43 +23,27 @@ export const revalidate = 0;
 interface DetailPostBookMarkButtonProps {
   id: string;
   isBookmarked?: boolean;
+  userId?: string | null;
 }
 
 const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
   id,
   isBookmarked,
+  userId,
 }) => {
-  const supabase = createClient();
-  const [isHovering, setIsHovered] = React.useState(false);
-  const onMouseEnter = () => setIsHovered(true);
-  const onMouseLeave = () => setIsHovered(false);
   const router = useRouter();
-  const [session, setSession] = React.useState<Session | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  // Check authentitication and bookmark states
-  React.useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-
-    return () => subscription.unsubscribe();
-  }, [id, session?.user.id, supabase.auth]);
-
   // Add a bookmark
-  async function addBookmark() {
+  async function addBookmark(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    e.stopPropagation();
     setIsLoading(true);
 
-    if (id && session?.user.id) {
+    if (id && userId) {
       const bookmark = {
         id: id,
-        user_id: session?.user.id,
+        user_id: userId,
       };
 
       const response = await AddBookmark(bookmark);
@@ -74,13 +62,15 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
   }
 
   // Delete a bookmark
-  async function deleteBookmark() {
+  async function deleteBookmark(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    e.stopPropagation();
     setIsLoading(true);
 
-    if (id && session?.user.id) {
+    if (id && userId) {
       const bookmark = {
         id: id,
-        user_id: session?.user.id,
+        user_id: userId,
       };
 
       const response = await DeleteBookmark(bookmark);
@@ -100,71 +90,52 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
 
   return (
     <>
-      {session &&
+      {userId &&
         (isBookmarked ? (
-          <button
+          <Button
             type="button"
+            variant="ghost"
+            size="icon"
+            className="rounded-full text-primary"
             disabled={isLoading}
             onClick={deleteBookmark}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-            className="group relative mx-auto inline-flex w-full items-center justify-center rounded-md border border-black/5 bg-white py-2 hover:bg-gray-50 hover:shadow-sm"
           >
             {isLoading ? (
-              <SpinnerIcon className="-ml-0.5 h-5 w-5 animate-spin" />
-            ) : isHovering ? (
-              <BookMarkOutlineIcon className="-ml-0.5 h-5 w-5 text-gray-400" />
+              <Shell className="h-4 w-4 animate-spin" strokeWidth={2.5} />
             ) : (
-              <BookMarkSolidIcon className="-ml-0.5 h-5 w-5 text-gray-900" />
+              <BookmarkMinus className="h-4 w-4" strokeWidth={2.5} />
             )}
-            <span className="ml-2 hidden text-sm text-gray-400 md:flex">
-              {isHovering
-                ? detailBookMarkConfig.unBookmark
-                : detailBookMarkConfig.bookmarked}
-            </span>
-          </button>
+          </Button>
         ) : (
-          <button
+          <Button
             type="button"
+            variant="ghost"
+            size="icon"
+            className="rounded-full text-muted-foreground"
             disabled={isLoading}
             onClick={addBookmark}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-            className="group relative mx-auto inline-flex w-full items-center justify-center rounded-md border border-black/5 bg-white py-2 hover:bg-gray-50 hover:shadow-sm"
           >
             {isLoading ? (
-              <SpinnerIcon className="-ml-0.5 h-5 w-5 animate-spin" />
-            ) : isHovering ? (
-              <BookMarkSolidIcon className="-ml-0.5 h-5 w-5 text-gray-900" />
+              <SpinnerIcon className="h-4 w-4 animate-spin" strokeWidth={2.5} />
             ) : (
-              <BookMarkOutlineIcon className="-ml-0.5 h-5 w-5 text-gray-400" />
+              <BookmarkPlus className="h-4 w-4" strokeWidth={2.5} />
             )}
-            <span className="ml-2 hidden text-sm text-gray-400 group-hover:text-gray-900 md:flex">
-              {detailBookMarkConfig.bookmark}
-            </span>
-          </button>
+          </Button>
         ))}
-      {!session && (
+      {!userId && (
         <Dialog>
           <DialogTrigger asChild>
-            <button
+            <Button
               type="button"
+              variant="ghost"
+              size="icon"
+              className="rounded-full text-muted-foreground"
               disabled={isLoading}
-              onMouseEnter={onMouseEnter}
-              onMouseLeave={onMouseLeave}
-              className="group relative mx-auto inline-flex w-full items-center justify-center rounded-md border border-black/5 bg-white py-2 hover:bg-gray-50 hover:shadow-sm"
             >
-              {isHovering ? (
-                <BookMarkSolidIcon className="-ml-0.5 h-5 w-5 text-gray-900" />
-              ) : (
-                <BookMarkOutlineIcon className="-ml-0.5 h-5 w-5 text-gray-400" />
-              )}
-              <span className="ml-2 hidden text-sm text-gray-400 group-hover:text-gray-900 md:flex">
-                {detailBookMarkConfig.bookmark}
-              </span>
-            </button>
+              <Bookmark className="h-4 w-4" strokeWidth={2.5} />
+            </Button>
           </DialogTrigger>
-          <DialogContent className="font-sans sm:max-w-[425px]">
+          <DialogContent className="font-sans sm:max-w-sm">
             <LoginSection />
           </DialogContent>
         </Dialog>

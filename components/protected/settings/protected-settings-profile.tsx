@@ -28,10 +28,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { protectedProfileConfig } from "@/config/protected";
+import { createClient } from "@/lib/supabase/client";
 import { shimmer, toBase64 } from "@/lib/utils";
 import { profileFormSchema } from "@/lib/validation/profile";
 import { Profile } from "@/types/collection";
-import { createClient } from "@/utils/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Uppy from "@uppy/core";
 import "@uppy/core/dist/style.min.css";
@@ -88,9 +88,9 @@ const ProtectedSettingsProfile: FC<ProtectedSettingsProfileProps> = ({
 
   // Uppy instance for cover photo upload
   var uppy = new Uppy({
-    id: "avatar",
+    id: "profile",
     autoProceed: false,
-    debug: true,
+    debug: false,
     allowMultipleUploadBatches: true,
     restrictions: {
       maxFileSize: 6000000,
@@ -100,6 +100,7 @@ const ProtectedSettingsProfile: FC<ProtectedSettingsProfileProps> = ({
     endpoint: supabaseUploadURL,
     headers: {
       authorization: `Bearer ${token}`,
+      "x-upsert": "true",
     },
     chunkSize: 6 * 1024 * 1024,
     allowedMetaFields: [
@@ -221,6 +222,13 @@ const ProtectedSettingsProfile: FC<ProtectedSettingsProfileProps> = ({
                     note={protectedProfileConfig.formImageNote}
                     proudlyDisplayPoweredByUppy={false}
                     showLinkToFileUploadResult
+                    locale={{
+                      strings: {
+                        browseFiles: "이미지 선택",
+                        upload: "업로드",
+                        cancel: "취소",
+                      },
+                    }}
                   />
                 </div>
               </div>

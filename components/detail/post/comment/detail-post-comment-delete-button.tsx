@@ -12,8 +12,8 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { detailCommentConfig } from "@/config/detail";
-import { createClient } from "@/utils/supabase/client";
-import { Session } from "@supabase/supabase-js";
+import { useAuth } from "@/hooks/use-auth";
+import { createClient } from "@/lib/supabase/client";
 import { Loader2 as SpinnerIcon, Trash as TrashIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { FC, useState } from "react";
@@ -33,32 +33,17 @@ const DetailPostCommentDeleteButton: FC<DetailPostCommentDeleteButtonProps> = ({
 }) => {
   const supabase = createClient();
   const router = useRouter();
+  const { user, loading } = useAuth();
   const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
-  const [session, setSession] = React.useState<Session | null>(null);
-
-  // Check authentitication and bookmark states
-  React.useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-
-    return () => subscription.unsubscribe();
-  }, [id, session?.user.id, supabase.auth]);
 
   // Delete bookmark
   async function deleteComment() {
     setIsDeleteLoading(true);
-    if (id && session?.user.id && userId === session?.user.id) {
+    if (id && user?.id && userId === user?.id) {
       const commentData = {
         id: id,
-        userId: session?.user.id,
+        userId: user?.id,
       };
       const response = await DeleteComment(commentData);
       if (response) {
@@ -75,9 +60,13 @@ const DetailPostCommentDeleteButton: FC<DetailPostCommentDeleteButtonProps> = ({
     }
   }
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
-      {session?.user.id === userId && (
+      {user?.id === userId && (
         <>
           <div className="flex flex-shrink-0 self-center">
             <div className="relative inline-block text-left">

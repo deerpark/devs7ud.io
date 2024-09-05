@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import * as React from "react";
 import ScrollToTop from "react-scroll-to-top";
 
 const DetailPostScrollUpButton = () => {

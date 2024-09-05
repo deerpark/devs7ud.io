@@ -8,13 +8,15 @@ import { DetailPostScrollUpButton } from "@/components/detail/post/buttons";
 import { WysiwygContents } from "@/components/protected/editor/contents";
 import { defaultExtensions } from "@/components/protected/editor/wysiwyg/extensions";
 import { seoData } from "@/config/root/seo";
+import { createClient } from "@/lib/supabase/server";
 import { getOgImageUrl, getUrl } from "@/lib/utils";
+import { getBookmark } from "@/lib/utils/bookmark";
+import { handleServerError } from "@/lib/utils/error";
 import {
   CommentWithProfile,
   PostWithCategoryWithProfile,
 } from "@/types/collection";
 import type { Database } from "@/types/supabase";
-import { createClient } from "@/utils/supabase/server";
 import { generateHTML } from "@tiptap/react";
 import { format, parseISO } from "date-fns";
 import { Metadata } from "next";
@@ -30,35 +32,26 @@ interface PostPageProps {
   };
 }
 
-async function getBookmark(postId: string, userId: string) {
-  if (postId && userId) {
-    const bookmark = {
-      id: postId,
-      user_id: userId,
-    };
-    const response = await GetBookmark(bookmark);
-
-    return response;
-  }
-}
-
 async function getPost(params: { slug: string[] }) {
   const slug = params?.slug?.join("/");
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
 
-  const response = await supabase
-    .from("posts")
-    .select(`*, categories(*), profiles(*)`)
-    .match({ slug: slug, published: true })
-    .single<PostWithCategoryWithProfile>();
+  try {
+    const response = await supabase
+      .from("posts")
+      .select(`*, categories(*), profiles(*)`)
+      .match({ slug: slug, published: true })
+      .single<PostWithCategoryWithProfile>();
 
-  if (!response.data) {
-    console.log("getPost", "no response data");
-    notFound();
+    if (!response.data) {
+      notFound();
+    }
+    return response.data;
+  } catch (error) {
+    handleServerError((error as Error)?.message);
+    return null;
   }
-
-  return response.data;
 }
 
 export async function generateMetadata({
@@ -119,18 +112,22 @@ async function getComments(postId: string) {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
   if (!postId) return [];
-  const { data: comments, error } = await supabase
-    .from("comments")
-    .select("*, profiles(*)")
-    .eq("post_id", postId)
-    .order("created_at", { ascending: true })
-    .returns<CommentWithProfile[]>();
+  try {
+    const { data: comments, error } = await supabase
+      .from("comments")
+      .select("*, profiles(*)")
+      .eq("post_id", postId)
+      .order("created_at", { ascending: true })
+      .returns<CommentWithProfile[]>();
 
-  if (error) {
-    console.log("getComments", error.message);
-    console.error(error.message);
+    if (error) {
+      throw new Error(error.message);
+    }
+    return comments;
+  } catch (error) {
+    handleServerError((error as Error)?.message);
+    return [];
   }
-  return comments;
 }
 
 export default async function PostPage({ params }: PostPageProps) {
@@ -148,22 +145,29 @@ export default async function PostPage({ params }: PostPageProps) {
   // Check user logged in or not
   let username = null;
   let profileImage = null;
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  let isBookmarked: boolean | undefined = undefined;
+  let comments: CommentWithProfile[] = [];
+  let readTime: ReadTimeResults | undefined = undefined;
+  try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-  if (user) {
-    username = user?.user_metadata.full_name;
-    profileImage =
-      user?.user_metadata.picture || user?.user_metadata.avatar_url;
+    if (user) {
+      username = user?.user_metadata.full_name;
+      profileImage =
+        user?.user_metadata.picture || user?.user_metadata.avatar_url;
+    }
+
+    // Get bookmark status
+    isBookmarked = await getBookmark(post.id as string, user?.id as string);
+
+    // Get comments
+    comments = await getComments(post.id as string);
+    readTime = readingTime(post.content ? post.content : "");
+  } catch (error) {
+    handleServerError((error as Error)?.message);
   }
-
-  // Get bookmark status
-  const isBookmarked = await getBookmark(post.id as string, user?.id as string);
-
-  // Get comments
-  const comments = await getComments(post.id as string);
-  const readTime = readingTime(post.content ? post.content : "");
 
   return (
     <>

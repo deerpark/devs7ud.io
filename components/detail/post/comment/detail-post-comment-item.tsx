@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import moment from "moment";
-import React from "react";
+import * as React from "react";
 import DetailPostCommentDeleteButton from "./detail-post-comment-delete-button";
 
 interface DetailPostCommentItemProps {

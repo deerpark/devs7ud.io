@@ -2,14 +2,14 @@
 
 import { sharedLoginConfig } from "@/config/shared";
 import { GithubIcon, GoogleIcon, LoadingDots } from "@/icons";
+import { createClient } from "@/lib/supabase/client";
 import { getUrl } from "@/lib/utils";
 import Emblem from "@/public/images/emblem-240w.png";
-import { createClient } from "@/utils/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import React from "react";
+import * as React from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 

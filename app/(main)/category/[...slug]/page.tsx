@@ -2,14 +2,13 @@ import { MainPostItem } from "@/components/main";
 import { SharedEmpty, SharedPagination } from "@/components/shared";
 import { mainCategoryConfig } from "@/config/main";
 import { seoData } from "@/config/root/seo";
+import { createClient } from "@/lib/supabase/server";
 import { getOgImageUrl, getUrl } from "@/lib/utils";
 import { PostWithCategoryWithProfile } from "@/types/collection";
-import type { Database } from "@/types/supabase";
-import { createClient } from "@/utils/supabase/server";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
-import React from "react";
+import * as React from "react";
 import { v4 } from "uuid";
 
 interface CategoryPageProps {
@@ -116,7 +115,7 @@ export default async function CategoryPage({
     .range(from, to)
     .returns<PostWithCategoryWithProfile[]>();
 
-  if (!data || error || !data.length) {
+  if (error) {
     notFound();
   }
 

@@ -2,9 +2,10 @@
 
 import { commentSchema } from "@/lib/validation/comment";
 import { Database } from "@/types/supabase";
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
 import * as z from "zod";
+import { handleServerError } from "@/lib/utils/error";
 
 export async function PostComment(context: z.infer<typeof commentSchema>) {
   const cookieStore = cookies();
@@ -21,13 +22,13 @@ export async function PostComment(context: z.infer<typeof commentSchema>) {
       .single();
 
     if (error) {
-      console.log(error);
+      handleServerError(error.message);
       return false;
     }
     return true;
   } catch (error) {
     if (error instanceof z.ZodError) {
-      console.log(error);
+      handleServerError(error.message);
       return false;
     }
     return false;

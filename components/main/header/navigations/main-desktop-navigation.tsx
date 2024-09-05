@@ -1,7 +1,7 @@
 import { LoginMenu } from "@/components/login";
 import { LogoIcon } from "@/icons";
 import Link from "next/link";
-import React from "react";
+import * as React from "react";
 import { MainDesktopNavigationMenu } from "./menu";
 
 const MainDesktopNavigation = () => {

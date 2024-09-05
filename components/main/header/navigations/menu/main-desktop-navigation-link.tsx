@@ -6,25 +6,38 @@ import Link from "next/link";
 import * as React from "react";
 
 interface MainDesktopNavigationLinkProps {
-  category: CategoryType
-  isActive: boolean
-  hoveredCategory: string
-  setHoveredCategory: (categoryPathname: string) => void
+  category: CategoryType;
+  isActive: boolean;
+  hoveredCategory: string;
+  setHoveredCategory: (categoryPathname: string) => void;
 }
 
-export default function MainDesktopNavigationLink({ category, isActive, hoveredCategory, setHoveredCategory }: MainDesktopNavigationLinkProps) {
+export default function MainDesktopNavigationLink({
+  category,
+  isActive,
+  hoveredCategory,
+  setHoveredCategory,
+}: MainDesktopNavigationLinkProps) {
   const handleMouseEnter: React.MouseEventHandler<HTMLDivElement> = (event) => {
-    const categoryPathname = event.currentTarget.getAttribute("data-category-pathname") || '';
+    const categoryPathname =
+      event.currentTarget.getAttribute("data-category-pathname") || "";
     setHoveredCategory(categoryPathname);
   };
-  const href = category.slug === "/" ? category.slug : `/category/${category.slug}`
+  const href =
+    category.slug === "/" ? category.slug : `/category/${category.slug}`;
   return (
-    <div className="relative" data-category-pathname={category.slug === "/" ? category.slug : `/category/${category.slug}`} onMouseEnter={handleMouseEnter}>
+    <div
+      className="relative"
+      data-category-pathname={
+        category.slug === "/" ? category.slug : `/category/${category.slug}`
+      }
+      onMouseEnter={handleMouseEnter}
+    >
       <Link
         href={href}
         className={cn(
           buttonVariants({ variant: "ghost" }),
-          "inline-flex relative z-10 h-auto items-center justify-start gap-x-2 rounded-3xl px-3 py-2 text-sm uppercase tracking-tight antialiased [word-spacing:-5px] hover:bg-transparent",
+          "relative z-10 inline-flex h-auto items-center justify-start gap-x-2 rounded-3xl px-3 py-2 text-sm uppercase tracking-tight antialiased [word-spacing:-5px] hover:bg-transparent",
           isActive ? "font-black text-primary" : "font-bold",
         )}
       >
@@ -39,7 +52,12 @@ export default function MainDesktopNavigationLink({ category, isActive, hoveredC
         />
         <span>{category.title}</span>
       </Link>
-      {hoveredCategory === href && <motion.span className="absolute z-0 inset-0 h-full w-full bg-accent rounded-2xl" layoutId="main-desktop-navigation-menu-background" />}
+      {hoveredCategory === href && (
+        <motion.span
+          className="absolute inset-0 z-0 h-full w-full rounded-2xl bg-accent"
+          layoutId="main-desktop-navigation-menu-background"
+        />
+      )}
     </div>
   );
 }

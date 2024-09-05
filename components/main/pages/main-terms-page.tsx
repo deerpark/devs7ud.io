@@ -1,5 +1,5 @@
 import { mainPageTermsConfig } from "@/config/main/pages";
-import React from "react";
+import * as React from "react";
 
 const MainTermsPage = () => {
   return (

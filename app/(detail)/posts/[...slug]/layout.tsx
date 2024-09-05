@@ -1,7 +1,8 @@
 import { DetailPostHeader } from "@/components/detail/post";
+import { createClient } from "@/lib/supabase/server";
+import { handleServerError } from "@/lib/utils/error";
 import { PostWithCategoryWithProfile } from "@/types/collection";
 import type { Database } from "@/types/supabase";
-import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
@@ -11,20 +12,25 @@ async function getPost(params: { slug: string[] }) {
   const slug = params?.slug?.join("/");
 
   if (!slug) {
-    notFound;
+    notFound();
   }
 
-  const response = await supabase
-    .from("posts")
-    .select(`*, categories(*), profiles(*)`)
-    .match({ slug: slug, published: true })
-    .single<PostWithCategoryWithProfile>();
+  try {
+    const response = await supabase
+      .from("posts")
+      .select(`*, categories(*), profiles(*)`)
+      .match({ slug: slug, published: true })
+      .single<PostWithCategoryWithProfile>();
 
-  if (!response.data) {
-    notFound;
+    if (!response.data) {
+      notFound();
+    }
+
+    return response.data;
+  } catch (error) {
+    handleServerError((error as Error)?.message);
+    return null;
   }
-
-  return response.data;
 }
 
 export default async function MainLayout({

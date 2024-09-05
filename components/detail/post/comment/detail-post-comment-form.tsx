@@ -16,7 +16,7 @@ import { commentFormSchema } from "@/lib/validation/comment";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SendIcon, Loader2 as SpinnerIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import * as React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";

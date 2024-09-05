@@ -2,9 +2,10 @@
 
 import { bookmarkSchema } from "@/lib/validation/bookmark";
 import { Database } from "@/types/supabase";
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
 import * as z from "zod";
+import { handleServerError } from "@/lib/utils/error";
 
 export async function AddBookmark(context: z.infer<typeof bookmarkSchema>) {
   const cookieStore = cookies();
@@ -20,13 +21,13 @@ export async function AddBookmark(context: z.infer<typeof bookmarkSchema>) {
       .single();
 
     if (error) {
-      console.log(error);
+      handleServerError(error.message);
       return false;
     }
     return true;
   } catch (error) {
     if (error instanceof z.ZodError) {
-      console.log(error);
+      handleServerError(error.message);
       return false;
     }
     return false;

@@ -8,60 +8,41 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { dashBoardLogout, dashBoardProfile } from "@/config/shared/dashboard";
+import { useAuth } from "@/hooks/use-auth";
+import { createClient } from "@/lib/supabase/client";
 import { shimmer, toBase64 } from "@/lib/utils";
 import { Profile } from "@/types/collection";
-import { createClient } from "@/utils/supabase/client";
-import { Session } from "@supabase/supabase-js";
-import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import * as React from "react";
 
 const ProtectedProfileDropDown = () => {
   const supabase = createClient();
-  const router = useRouter();
-  const [session, setSession] = useState<Session | null>(null);
-  const [avatarUrl, setAvatarUrl] = useState<string>("");
+  const { user, loading, signOut } = useAuth();
+  const [avatarUrl, setAvatarUrl] = React.useState<string>("");
 
-  const signOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.error(error);
-    }
-
-    router.refresh();
-  };
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-
-    return () => subscription.unsubscribe();
-  }, [supabase.auth]);
-
-  useEffect(() => {
+  React.useEffect(() => {
     async function fetchAvatar() {
-      if (!session?.user.id) {
+      if (!user?.id) {
         return Promise.resolve();
       }
       const { data, error } = await supabase
         .from("profiles")
         .select("*")
-        .match({ id: session?.user.id })
+        .match({ id: user?.id })
         .single<Profile>();
+      if (error) {
+        console.error(error);
+      }
       if (data) {
         setAvatarUrl(data.avatar_url ? data.avatar_url : "");
       }
     }
     fetchAvatar();
-  }, [session, supabase]);
+  }, [user, supabase]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

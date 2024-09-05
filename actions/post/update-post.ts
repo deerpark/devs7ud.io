@@ -2,9 +2,10 @@
 
 import { postUpdateSchema } from "@/lib/validation/post";
 import type { Database } from "@/types/supabase";
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
 import * as z from "zod";
+import { handleServerError } from "@/lib/utils/error";
 
 export async function UpdatePost(context: z.infer<typeof postUpdateSchema>) {
   const cookieStore = cookies();
@@ -29,12 +30,12 @@ export async function UpdatePost(context: z.infer<typeof postUpdateSchema>) {
       .single();
 
     if (error) {
-      console.log(error);
+      handleServerError(error.message);
       return null;
     }
     return data;
   } catch (error) {
-    console.log(error);
+    handleServerError((error as Error)?.message);
     return null;
   }
 }

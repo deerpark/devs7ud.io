@@ -9,7 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 // Reading Time
 export function getMinutes(minutes: number) {
   const roundedMinutes = Math.round(minutes);
-  return `${roundedMinutes} min`;
+  return `${roundedMinutes} 분`;
 }
 
 // Open Graph Images for Twitter and Facebook
@@ -49,7 +49,7 @@ export function getUrl() {
 
 // BlurData for loading images with blur effect
 export const shimmer = (w: number, h: number) => `
-<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="color:#e5e5e5'">
+<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="color:'#e5e5e5'">
   <defs>
     <linearGradient id="g">
       <stop stop-color="transparent" offset="20%" />

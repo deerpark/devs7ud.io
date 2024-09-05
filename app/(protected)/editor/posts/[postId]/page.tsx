@@ -1,9 +1,9 @@
 import Editor from "@/components/protected/editor/editor";
 import { Separator } from "@/components/ui/separator";
 import { protectedEditorConfig } from "@/config/protected";
+import { createClient } from "@/lib/supabase/server";
+import { getUserId } from "@/lib/utils/user-id";
 import { Draft } from "@/types/collection";
-import { createClient } from "@/utils/supabase/server";
-import { getUserId } from "@/utils/user-id";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 

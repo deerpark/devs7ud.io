@@ -1,5 +1,5 @@
 import { Shell } from "lucide-react";
-import React from "react";
+import * as React from "react";
 
 const Loading = () => {
   return (

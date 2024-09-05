@@ -2,7 +2,7 @@
 
 import { ArrowLeftToLine } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import * as React from "react";
 import { Button } from "../ui/button";
 
 interface BackButtonProps {

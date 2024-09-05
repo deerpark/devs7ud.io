@@ -17,8 +17,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { protectedPostConfig } from "@/config/protected";
-import { createClient } from "@/utils/supabase/client";
-import { Session } from "@supabase/supabase-js";
+import { useAuth } from "@/hooks/use-auth";
+import { createClient } from "@/lib/supabase/client";
 import {
   MoreVertical as ElipsisIcon,
   Loader2 as SpinnerIcon,
@@ -38,33 +38,18 @@ interface PostEditButtonProps {
 const PostEditButton: FC<PostEditButtonProps> = ({ id }) => {
   const supabase = createClient();
   const router = useRouter();
+  const { user, loading } = useAuth();
   const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
-  const [session, setSession] = React.useState<Session | null>(null);
   const [showLoadingAlert, setShowLoadingAlert] = useState<boolean>(false);
-
-  // Check authentitication and bookmark states
-  React.useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-
-    return () => subscription.unsubscribe();
-  }, [id, session?.user.id, supabase.auth]);
 
   // Delete post
   async function deleteMyPost() {
     setIsDeleteLoading(true);
-    if (id && session?.user.id) {
+    if (id && user?.id) {
       const myPostData = {
         id: id,
-        user_id: session?.user.id,
+        user_id: user?.id,
       };
       const response = await DeletePost(myPostData);
       if (response) {
@@ -79,6 +64,10 @@ const PostEditButton: FC<PostEditButtonProps> = ({ id }) => {
       setIsDeleteLoading(false);
       toast.error(protectedPostConfig.errorDelete);
     }
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
   return (

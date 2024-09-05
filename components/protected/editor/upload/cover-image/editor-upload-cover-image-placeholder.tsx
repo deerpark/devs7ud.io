@@ -1,6 +1,6 @@
 import { protectedEditorConfig } from "@/config/protected";
 import { PhotoIcon } from "@heroicons/react/20/solid";
-import React from "react";
+import * as React from "react";
 
 const EditorUploadCoverImagePlaceHolder = () => {
   return (
