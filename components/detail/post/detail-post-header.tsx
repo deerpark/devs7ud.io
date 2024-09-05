@@ -1,37 +1,61 @@
 "use client";
 
-import { LoginMenu } from "@/components/login";
-import { SharedBackButton } from "@/components/shared";
 import { useReadingProgress } from "@/hooks/use-reading-progress";
+import { cn, getUrl } from "@/lib/utils";
+import { PostWithCategoryWithProfile } from "@/types/collection";
+import { useWindowScroll } from "@uidotdev/usehooks";
+import DetailPostFloatingBar from "./detail-post-floating-bar";
 
 interface DetailPostHeaderProps {
-  title: string;
+  post: PostWithCategoryWithProfile;
+  totalComments: number;
+  isBookmarked: boolean | undefined;
+  userId: string | null;
 }
 
-const DetailPostHeader: React.FC<DetailPostHeaderProps> = ({ title }) => {
+const DetailPostHeader: React.FC<DetailPostHeaderProps> = ({
+  post,
+  totalComments,
+  isBookmarked,
+  userId,
+}) => {
   const completion = useReadingProgress();
+  const [{ y }] = useWindowScroll();
   return (
-    <header className="sticky top-0 z-40 bg-background/50 shadow-2xl shadow-foreground/10 backdrop-blur-lg">
-      <nav
-        className="mx-auto flex max-w-5xl items-center justify-between gap-x-3 px-6 py-4"
-        aria-label="Global"
+    <>
+      <header
+        className={cn(
+          "sticky top-5 z-40 flex h-14 items-center rounded-2xl bg-background px-3 backdrop-blur-lg transition-all md:px-6",
+          y && y > 20 ? "mx-5 shadow-2xl md:mx-0" : "",
+        )}
       >
-        <div className="flex flex-none items-center justify-start">
-          <SharedBackButton />
-        </div>
-        <h1 className="max-w-3xl flex-1 truncate px-4 font-bold tracking-tight sm:px-0 sm:text-xl">
-          {title}
-        </h1>
-        <span className="hidden sm:flex-1" />
-        <div className="flex flex-none items-center justify-end">
-          <LoginMenu />
-        </div>
-      </nav>
+        <nav
+          className="flex w-full items-center gap-x-3 px-3 md:px-0"
+          aria-label="Global"
+        >
+          <h1 className="line-clamp-1 flex-1 text-xl font-black tracking-tight">
+            {post.categories.title}
+          </h1>
+
+          <DetailPostFloatingBar
+            className="flex-none gap-x-3"
+            userId={userId}
+            id={post.id as string}
+            title={post.title as string}
+            text={post.description as string}
+            url={`${getUrl()}${encodeURIComponent(`/posts/${post.slug}`)}`}
+            totalComments={totalComments}
+            isBookmarked={isBookmarked}
+            scrollIntoView
+            separator
+          />
+        </nav>
+      </header>
       <span
         style={{ transform: `translateX(${completion - 100}%)` }}
-        className="absolute top-0 h-0.5 w-full bg-secondary/50"
+        className="fixed left-0 top-0 z-50 h-0.5 w-full bg-secondary/50"
       />
-    </header>
+    </>
   );
 };
 

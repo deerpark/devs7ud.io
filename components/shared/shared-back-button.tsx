@@ -19,7 +19,7 @@ const SharedBackButton: React.FC<BackButtonProps> = ({
     <Button
       variant="ghost"
       size="icon"
-      className="group relative z-10 inline-flex items-center justify-center space-x-3"
+      className="group relative z-10 inline-flex items-center justify-center space-x-3 rounded-full"
       onClick={() => {
         if (window.history.state && window.history.state.idx > 0) {
           router.back();

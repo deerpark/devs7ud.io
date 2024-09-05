@@ -19,9 +19,11 @@ const DetailPostLikeButton = () => {
           toast.error("준비중입니다.");
         }}
       >
-        <Heart className="h-4 w-4" strokeWidth={2.5} />
+        <Heart className="h-5 w-5" strokeWidth={2.5} />
       </Button>
-      <span className="text-muted-foreground peer-hover:text-primary">{0}</span>
+      <span className="pr-3 text-muted-foreground peer-hover:text-primary">
+        {0}
+      </span>
     </span>
   );
 };

@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronUp } from "lucide-react";
 import * as React from "react";
 import ScrollToTop from "react-scroll-to-top";
 
@@ -12,25 +13,9 @@ const DetailPostScrollUpButton = () => {
           width: "40px",
           borderRadius: "50%",
         }}
-        className="rounded-full bg-slate-50 p-2.5 !shadow-sm !ring-1 !ring-slate-300"
+        className="rounded-full bg-background p-2.5 shadow-2xl"
         smooth
-        component={
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            aria-hidden="true"
-            className="h-5 w-5 rotate-90 text-slate-500 group-hover:text-slate-700"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15 19l-7-7 7-7"
-            ></path>
-          </svg>
-        }
+        component={<ChevronUp className="h-5 w-5" strokeWidth={3} />}
       />
     </>
   );

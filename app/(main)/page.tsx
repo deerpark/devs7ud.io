@@ -4,7 +4,6 @@ import { getUserId } from "@/lib/utils/user-id";
 import { PostWithCategoryWithProfile } from "@/types/collection";
 import { Shell } from "lucide-react";
 import { cookies } from "next/headers";
-import { notFound } from "next/navigation";
 import { cache, Suspense } from "react";
 import { v4 } from "uuid";
 
@@ -35,15 +34,15 @@ export default async function HomePage() {
   return (
     <>
       <div className="flex items-center gap-x-2">
-        <h2 className="px-3 text-xl font-black">업데이트</h2>
+        <h2 className="px-3 text-xl font-black tracking-tight">업데이트</h2>
       </div>
       <div className="space-y-6">
         {data?.map((post) => (
           <Suspense
             key={v4()}
             fallback={
-              <div className="flex h-full w-full flex-1 items-center justify-center">
-                <Shell size={32} className="animate-spin" />
+              <div className="flex h-auto min-h-52 w-full flex-1 items-center justify-center">
+                <Shell size={32} className="animate-spin text-foreground/30" />
               </div>
             }
           >

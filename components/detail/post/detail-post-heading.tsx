@@ -1,39 +1,68 @@
 import { CustomImage } from "@/components/shared/shared-image";
 import { getMinutes, shimmer, toBase64 } from "@/lib/utils";
 import { getPublicImageUrl } from "@/lib/utils/image-url";
+import { PostWithCategoryWithProfile } from "@/types/collection";
+import { format, parseISO } from "date-fns";
 import { ArchiveIcon, CalendarIcon, ClockIcon } from "lucide-react";
 import Image from "next/image";
 import { FC } from "react";
-import { ReadTimeResults } from "reading-time";
+import readingTime, { ReadTimeResults } from "reading-time";
 
 interface DetailPostHeadingProps {
-  id: string;
-  title: string;
-  image: string | null;
-  authorImage: string;
-  authorName: string;
-  date: string;
-  category: string;
-  readTime: ReadTimeResults;
+  post: PostWithCategoryWithProfile;
 }
 
-const DetailPostHeading: FC<DetailPostHeadingProps> = async ({
-  id,
-  title,
-  image,
-  authorName,
-  authorImage,
-  date,
-  category,
-  readTime,
-}) => {
+const DetailPostHeading: FC<DetailPostHeadingProps> = async ({ post }) => {
+  const {
+    title,
+    description,
+    image,
+    profiles: { username: authorName, avatar_url: authorImage },
+    updated_at,
+    content,
+  } = post;
+  const date = format(parseISO(updated_at!), "MMMM dd, yyyy");
+  const readTime: ReadTimeResults = readingTime(content ? content : "");
   return (
-    <section className="flex flex-col items-start justify-between">
+    <section className="flex flex-col items-start justify-between gap-y-5">
+      <div className="flex items-center gap-x-2">
+        {/* Author */}
+        {authorImage ? (
+          <div className="h-12 w-12">
+            <CustomImage
+              src={authorImage}
+              height={48}
+              width={48}
+              alt={authorName || "Avatar"}
+              className="flex h-12 w-12 rounded-full border object-cover shadow-sm"
+              priority
+              placeholder="blur"
+              blurDataURL={shimmer(48, 48)}
+            />
+          </div>
+        ) : null}
+        <div className="flex flex-col">
+          <span className="flex text-sm font-bold">{authorName}</span>
+          <span className="flex items-center gap-x-2 text-sm text-foreground/70">
+            <span className="flex items-center gap-x-1">
+              <span>{date}</span>
+            </span>
+            <span className="flex items-center gap-x-1">
+              <ClockIcon
+                className="h-4 w-4 text-foreground/50"
+                aria-hidden="true"
+              />
+              <span className="text-sm">{getMinutes(readTime.minutes)}</span>
+            </span>
+          </span>
+        </div>
+      </div>
+      {description && <p className="text-foreground/70">{description}</p>}
       {image ? (
         <div className="relative w-full">
           <CustomImage
             src={await getPublicImageUrl("cover-image", image)}
-            alt={title}
+            alt={title || ""}
             width={512}
             height={288}
             className="h-[288px] w-full rounded-2xl bg-gray-100 object-cover"
@@ -44,126 +73,6 @@ const DetailPostHeading: FC<DetailPostHeadingProps> = async ({
           <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
         </div>
       ) : null}
-      <div className="w-full">
-        <p className="my-5 overflow-hidden text-xl font-semibold leading-6 text-gray-900">
-          {title}
-        </p>
-
-        {/* Mobile view */}
-        <div className="mb-5 grid grid-cols-2 gap-2 rounded-md border border-gray-100 px-3 py-2.5 text-gray-500 sm:hidden">
-          {/* Author */}
-          <div className="inline-flex items-start justify-start">
-            {authorImage ? (
-              <CustomImage
-                src={authorImage}
-                height={24}
-                width={24}
-                alt={authorName || "Avatar"}
-                className="flex h-[24px] w-[24px] rounded-full object-cover shadow-sm"
-                priority
-                placeholder="blur"
-                blurDataURL={shimmer(24, 24)}
-              />
-            ) : null}
-            <div className="ml-2 flex flex-col">
-              <span className="text-md flex font-semibold text-gray-900">
-                {authorName}
-              </span>
-            </div>
-          </div>
-
-          {/* Date */}
-          <div className="inline-flex space-x-2 border-gray-400 border-opacity-50">
-            <p className="mt-0.5">
-              <span className="sr-only">Date</span>
-              <CalendarIcon
-                className="h-4 w-4 text-gray-400"
-                aria-hidden="true"
-              />
-            </p>
-            <span className="text-sm">{date}</span>
-          </div>
-          {/* Category */}
-          <div className="inline-flex space-x-2 border-gray-400 border-opacity-50">
-            <p className="mt-0.5">
-              <span className="sr-only">Category</span>
-              <ArchiveIcon
-                className="h-4 w-4 text-gray-400"
-                aria-hidden="true"
-              />
-            </p>
-            <span className="text-sm">{category}</span>
-          </div>
-
-          {/* Reading time */}
-          <div className="inline-flex space-x-2 border-gray-400 border-opacity-50">
-            <p className="mt-0.5">
-              <span className="sr-only">Minutes to read</span>
-              <ClockIcon className="h-4 w-4 text-gray-400" aria-hidden="true" />
-            </p>
-            <span className="text-sm">{getMinutes(readTime.minutes)}</span>
-          </div>
-        </div>
-
-        {/* Desktop view */}
-        <div className="mb-7 hidden justify-start text-gray-500 sm:flex sm:flex-row">
-          {/* Author */}
-          <div className="mb-5 flex flex-row items-start justify-start pr-3.5 md:mb-0">
-            {authorImage ? (
-              <CustomImage
-                src={authorImage}
-                height={24}
-                width={24}
-                alt={authorName || "Avatar"}
-                className="flex h-[24px] w-[24px] rounded-full object-cover shadow-sm"
-                priority
-                placeholder="blur"
-                blurDataURL={shimmer(24, 24)}
-              />
-            ) : null}
-            <div className="ml-2 flex flex-col">
-              <span className="text-md flex font-semibold text-gray-900">
-                {authorName}
-              </span>
-            </div>
-          </div>
-          <div className="flex flex-row items-center">
-            {/* Date */}
-            <div className="flex space-x-2 border-gray-400 border-opacity-50 pl-0 pr-3.5 md:border-l md:pl-3.5">
-              <p className="mt-0.5">
-                <span className="sr-only">Date</span>
-                <CalendarIcon
-                  className="h-4 w-4 text-gray-400"
-                  aria-hidden="true"
-                />
-              </p>
-              <span className="text-sm">{date}</span>
-            </div>
-            {/* Category */}
-            <div className="flex space-x-2 border-l border-gray-400 border-opacity-50 pl-3.5 pr-3.5">
-              <p className="mt-0.5">
-                <span className="sr-only">Category</span>
-                <ArchiveIcon
-                  className="h-4 w-4 text-gray-400"
-                  aria-hidden="true"
-                />
-              </p>
-              <span className="text-sm">{category}</span>
-            </div>
-            {/* Reading time */}
-            <div className="flex space-x-2 border-l border-gray-400 border-opacity-50 pl-3.5">
-              <p className="mt-0.5">
-                <span className="sr-only">Minutes to read</span>
-                <ClockIcon
-                  className="h-4 w-4 text-gray-400"
-                  aria-hidden="true"
-                />
-              </p>
-              <span className="text-sm">{getMinutes(readTime.minutes)}</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
   );
 };

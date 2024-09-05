@@ -21,9 +21,9 @@ const CommentButton: React.FC<DetailPostCommentButtonProps> = ({
         size="icon"
         className="peer rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary"
       >
-        <MessageSquareText className="h-4 w-4" strokeWidth={2.5} />
+        <MessageSquareText className="h-5 w-5" strokeWidth={2.5} />
       </Button>
-      <span className="text-muted-foreground peer-hover:text-primary">
+      <span className="pr-3 text-muted-foreground peer-hover:text-primary">
         {totalComments}
       </span>
     </span>
@@ -34,7 +34,7 @@ const DetailPostCommentButton: React.FC<
   DetailPostCommentButtonProps & { scrollIntoView?: boolean }
 > = ({ totalComments = 0, scrollIntoView = false }) => {
   return scrollIntoView ? (
-    <ScrollIntoView selector="#comments" className="flex w-full">
+    <ScrollIntoView selector="#comments">
       <CommentButton totalComments={totalComments} />
     </ScrollIntoView>
   ) : (

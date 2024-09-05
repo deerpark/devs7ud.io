@@ -69,7 +69,7 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post, userId }) => {
           <div className="flex flex-1">
             <div className="flex flex-1 flex-col gap-y-2 pt-2.5">
               <div className="flex items-center gap-x-1 text-sm font-semibold">
-                <p className="font-bold">{post.profiles.full_name}</p>
+                <p className="font-bold">{post.profiles.username}</p>
                 <Separator className="h-0.5 w-0.5" />
                 <span className="text-foreground/70">
                   {getMinutes(readTime.minutes ? readTime.minutes : 0)}
@@ -104,6 +104,7 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post, userId }) => {
               totalComments={comments?.length}
               isBookmarked={isBookmarked}
               userId={userId}
+              grow
             />
           </div>
         </div>

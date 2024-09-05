@@ -6,6 +6,8 @@ import {
   DetailPostLikeButton,
   DetailPostShareButton,
 } from "@/components/detail/post/buttons";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 import * as React from "react";
 
 interface DetailPostFloatingBarProps {
@@ -16,6 +18,10 @@ interface DetailPostFloatingBarProps {
   totalComments?: number;
   isBookmarked?: boolean;
   userId?: string | null;
+  grow?: boolean;
+  separator?: boolean;
+  className?: string;
+  scrollIntoView?: boolean;
 }
 
 const DetailPostFloatingBar: React.FC<DetailPostFloatingBarProps> = ({
@@ -26,17 +32,25 @@ const DetailPostFloatingBar: React.FC<DetailPostFloatingBarProps> = ({
   totalComments = 0,
   isBookmarked = false,
   userId,
+  grow = false,
+  separator = false,
+  className,
+  scrollIntoView,
 }) => {
   return (
-    <div className="flex flex-1 items-center gap-5">
-      <DetailPostCommentButton totalComments={totalComments} />
+    <div className={cn("flex flex-1 items-center gap-3", className)}>
+      <DetailPostCommentButton
+        totalComments={totalComments}
+        scrollIntoView={scrollIntoView}
+      />
+      <DetailPostLikeButton />
       <DetailPostBookMarkButton
         id={id}
         isBookmarked={isBookmarked}
         userId={userId}
       />
-      <DetailPostLikeButton />
-      <span className="flex-1" />
+      {grow && <span className="flex-1" />}
+      {separator && <Separator className="h-5 w-px flex-none bg-border/50" />}
       <DetailPostShareButton title={title} text={text} url={url} />
     </div>
   );

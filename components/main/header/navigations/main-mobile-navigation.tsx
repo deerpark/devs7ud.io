@@ -8,9 +8,9 @@ import { MainMobileMenuButton, MainMobileNavigationMenu } from "./menu";
 const MainMobileNavigation = ({ userId }: { userId: string | null }) => {
   return (
     <Disclosure>
-      {({ open }) => (
+      {({ open, close }) => (
         <>
-          <nav className="flex max-w-full items-center justify-between bg-background/50 px-6 py-4 shadow-2xl shadow-foreground/10 backdrop-blur-sm sm:hidden">
+          <nav className="flex max-w-full items-center justify-between px-3 py-4 md:hidden">
             {/* Mobile Menu Button */}
             <div className="flex flex-none justify-end">
               <MainMobileMenuButton open={open} />
@@ -25,7 +25,7 @@ const MainMobileNavigation = ({ userId }: { userId: string | null }) => {
           </nav>
 
           {/* Mobile Navigation */}
-          <MainMobileNavigationMenu fragment={Fragment} />
+          <MainMobileNavigationMenu fragment={Fragment} close={close} />
         </>
       )}
     </Disclosure>

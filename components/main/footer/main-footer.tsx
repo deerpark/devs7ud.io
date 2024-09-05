@@ -6,13 +6,13 @@ import MainNewsletter from "./main-newsletter";
 const MainFooter = () => {
   return (
     <footer
-      className="flex-none border-t border-border/50"
+      className="w-full flex-none border-t border-border/50 lg:w-auto"
       aria-labelledby="footer-heading"
     >
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-5xl px-6 pb-8 pt-20 sm:pt-24 lg:px-8 lg:pt-32">
+      <div className="max-w-5xl px-6 pb-8 pt-20 sm:pt-24 md:px-10 lg:mx-auto lg:px-8 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="grid grid-cols-2 gap-8 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">

@@ -101,9 +101,9 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
             onClick={deleteBookmark}
           >
             {isLoading ? (
-              <Shell className="h-4 w-4 animate-spin" strokeWidth={2.5} />
+              <Shell className="h-5 w-5 animate-spin" strokeWidth={2.5} />
             ) : (
-              <BookmarkMinus className="h-4 w-4" strokeWidth={2.5} />
+              <BookmarkMinus className="h-5 w-5" strokeWidth={2.5} />
             )}
           </Button>
         ) : (
@@ -116,9 +116,9 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
             onClick={addBookmark}
           >
             {isLoading ? (
-              <SpinnerIcon className="h-4 w-4 animate-spin" strokeWidth={2.5} />
+              <SpinnerIcon className="h-5 w-5 animate-spin" strokeWidth={2.5} />
             ) : (
-              <BookmarkPlus className="h-4 w-4" strokeWidth={2.5} />
+              <BookmarkPlus className="h-5 w-5" strokeWidth={2.5} />
             )}
           </Button>
         ))}
@@ -132,7 +132,7 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
               className="rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary"
               disabled={isLoading}
             >
-              <Bookmark className="h-4 w-4" strokeWidth={2.5} />
+              <Bookmark className="h-5 w-5" strokeWidth={2.5} />
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-sm">

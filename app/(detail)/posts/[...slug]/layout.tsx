@@ -1,37 +1,13 @@
 import { DetailPostHeader } from "@/components/detail/post";
-import { createClient } from "@/lib/supabase/server";
+import { MainFooter, MainHeader } from "@/components/main";
+import MainAside from "@/components/main/aside/main-aside";
+import { getBookmark } from "@/lib/utils/bookmark";
+import { getComments } from "@/lib/utils/comments";
 import { handleServerError } from "@/lib/utils/error";
-import { PostWithCategoryWithProfile } from "@/types/collection";
-import type { Database } from "@/types/supabase";
-import { cookies } from "next/headers";
+import { getPost } from "@/lib/utils/post";
+import { getUserId } from "@/lib/utils/user-id";
+import { CommentWithProfile } from "@/types/collection";
 import { notFound } from "next/navigation";
-
-async function getPost(params: { slug: string[] }) {
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
-  const slug = params?.slug?.join("/");
-
-  if (!slug) {
-    notFound();
-  }
-
-  try {
-    const response = await supabase
-      .from("posts")
-      .select(`*, categories(*), profiles(*)`)
-      .match({ slug: slug, published: true })
-      .single<PostWithCategoryWithProfile>();
-
-    if (!response.data) {
-      notFound();
-    }
-
-    return response.data;
-  } catch (error) {
-    handleServerError((error as Error)?.message);
-    return null;
-  }
-}
 
 export default async function MainLayout({
   children,
@@ -43,18 +19,46 @@ export default async function MainLayout({
   };
 }) {
   const post = await getPost(params);
+  const userId = await getUserId();
 
   if (!post) {
     notFound();
   }
+  // Set post views
+  // const slug = params?.slug?.join("/");
+
+  // Check user logged in or not
+  let isBookmarked: boolean | undefined = false;
+  let comments: CommentWithProfile[] = [];
+  try {
+    // Get bookmark status
+    isBookmarked = await getBookmark(post.id as string, userId as string);
+
+    // Get comments
+    comments = await getComments(post.id as string);
+  } catch (error) {
+    handleServerError((error as Error)?.message);
+  }
   return (
-    <div className="flex min-h-screen flex-col">
-      <DetailPostHeader title={post.title as string} />
-      <div className="min-h-full flex-1 bg-muted py-3">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-5xl">{children}</div>
+    <div
+      className="flex min-h-screen flex-col items-center bg-background"
+      vaul-drawer-wrapper="true"
+    >
+      <div className="flex w-full max-w-5xl flex-1 flex-col justify-center md:flex-row">
+        <MainHeader />
+
+        <div className="flex flex-1 flex-col gap-y-2 px-0 pb-9 md:px-5 md:pt-[22px]">
+          <DetailPostHeader
+            post={post}
+            userId={userId}
+            totalComments={comments.length}
+            isBookmarked={isBookmarked}
+          />
+          {children}
         </div>
+        <MainAside />
       </div>
+      <MainFooter />
     </div>
   );
 }

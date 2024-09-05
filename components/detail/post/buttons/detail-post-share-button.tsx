@@ -78,7 +78,7 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
             setOpen(true);
           }}
         >
-          <Share className="h-4 w-4" strokeWidth={2.5} />
+          <Share className="h-5 w-5" strokeWidth={2.5} />
         </Button>
       </DrawerTrigger>
       <DrawerContent>
@@ -99,6 +99,8 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
               onClick={(e) => {
                 e.nativeEvent.stopImmediatePropagation();
                 e.preventDefault();
+                window.open(e.currentTarget.href, "_blank");
+                setOpen(false);
               }}
             >
               <Twitter className="h-8 w-8" />
@@ -114,6 +116,8 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
               onClick={(e) => {
                 e.nativeEvent.stopImmediatePropagation();
                 e.preventDefault();
+                window.open(e.currentTarget.href, "_blank");
+                setOpen(false);
               }}
             >
               <Facebook className="h-8 w-8" />
@@ -129,6 +133,8 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
               onClick={(e) => {
                 e.nativeEvent.stopImmediatePropagation();
                 e.preventDefault();
+                window.open(e.currentTarget.href, "_blank");
+                setOpen(false);
               }}
             >
               <Linkedin className="h-8 w-8" />
@@ -147,6 +153,8 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
               onClick={(e) => {
                 e.nativeEvent.stopImmediatePropagation();
                 e.preventDefault();
+                window.open(e.currentTarget.href, "_blank");
+                setOpen(false);
               }}
             >
               <Mail className="h-8 w-8" />

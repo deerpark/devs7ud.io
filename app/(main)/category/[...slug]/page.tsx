@@ -4,7 +4,9 @@ import { mainCategoryConfig } from "@/config/main";
 import { seoData } from "@/config/root/seo";
 import { createClient } from "@/lib/supabase/server";
 import { getOgImageUrl, getUrl } from "@/lib/utils";
+import { getUserId } from "@/lib/utils/user-id";
 import { PostWithCategoryWithProfile } from "@/types/collection";
+import { Shell } from "lucide-react";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
@@ -78,6 +80,7 @@ export default async function CategoryPage({
 }: CategoryPageProps) {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
+  const userId = await getUserId();
   // Get category by slug
   const slug = params?.slug?.join("/");
   const category = mainCategoryConfig.find(
@@ -129,7 +132,21 @@ export default async function CategoryPage({
         {data?.length === 0 ? (
           <SharedEmpty />
         ) : (
-          data?.map((post) => <MainPostItem key={v4()} post={post} />)
+          data?.map((post) => (
+            <React.Suspense
+              key={v4()}
+              fallback={
+                <div className="flex h-auto min-h-52 w-full flex-1 items-center justify-center">
+                  <Shell
+                    size={32}
+                    className="animate-spin text-foreground/30"
+                  />
+                </div>
+              }
+            >
+              <MainPostItem post={post} userId={userId} />
+            </React.Suspense>
+          ))
         )}
       </div>
       {/* Pagination */}

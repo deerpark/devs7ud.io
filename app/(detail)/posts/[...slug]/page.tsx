@@ -1,4 +1,3 @@
-import { GetBookmark } from "@/actions/bookmark/get-bookmark";
 import {
   DetailPostComment,
   DetailPostFloatingBar,
@@ -6,52 +5,29 @@ import {
 } from "@/components/detail/post";
 import { DetailPostScrollUpButton } from "@/components/detail/post/buttons";
 import { WysiwygContents } from "@/components/protected/editor/contents";
-import { defaultExtensions } from "@/components/protected/editor/wysiwyg/extensions";
 import { seoData } from "@/config/root/seo";
 import { createClient } from "@/lib/supabase/server";
 import { getOgImageUrl, getUrl } from "@/lib/utils";
 import { getBookmark } from "@/lib/utils/bookmark";
+import { getComments } from "@/lib/utils/comments";
 import { handleServerError } from "@/lib/utils/error";
+import { getPost } from "@/lib/utils/post";
 import {
   CommentWithProfile,
   PostWithCategoryWithProfile,
 } from "@/types/collection";
-import type { Database } from "@/types/supabase";
-import { generateHTML } from "@tiptap/react";
 import { format, parseISO } from "date-fns";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import readingTime, { ReadTimeResults } from "reading-time";
 
-export const revalidate = 0;
+export const revalidate = 30;
 
 interface PostPageProps {
   params: {
     slug: string[];
   };
-}
-
-async function getPost(params: { slug: string[] }) {
-  const slug = params?.slug?.join("/");
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
-
-  try {
-    const response = await supabase
-      .from("posts")
-      .select(`*, categories(*), profiles(*)`)
-      .match({ slug: slug, published: true })
-      .single<PostWithCategoryWithProfile>();
-
-    if (!response.data) {
-      notFound();
-    }
-    return response.data;
-  } catch (error) {
-    handleServerError((error as Error)?.message);
-    return null;
-  }
 }
 
 export async function generateMetadata({
@@ -108,111 +84,31 @@ export async function generateMetadata({
   };
 }
 
-async function getComments(postId: string) {
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
-  if (!postId) return [];
-  try {
-    const { data: comments, error } = await supabase
-      .from("comments")
-      .select("*, profiles(*)")
-      .eq("post_id", postId)
-      .order("created_at", { ascending: true })
-      .returns<CommentWithProfile[]>();
-
-    if (error) {
-      throw new Error(error.message);
-    }
-    return comments;
-  } catch (error) {
-    handleServerError((error as Error)?.message);
-    return [];
-  }
-}
-
 export default async function PostPage({ params }: PostPageProps) {
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
   // Get post data
   const post = await getPost(params);
   if (!post) {
     notFound();
   }
-  // Set post views
-  const slug = params?.slug?.join("/");
 
-  // Check user logged in or not
-  let username = null;
-  let profileImage = null;
-  let isBookmarked: boolean | undefined = undefined;
   let comments: CommentWithProfile[] = [];
-  let readTime: ReadTimeResults | undefined = undefined;
   try {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (user) {
-      username = user?.user_metadata.full_name;
-      profileImage =
-        user?.user_metadata.picture || user?.user_metadata.avatar_url;
-    }
-
-    // Get bookmark status
-    isBookmarked = await getBookmark(post.id as string, user?.id as string);
-
     // Get comments
     comments = await getComments(post.id as string);
-    readTime = readingTime(post.content ? post.content : "");
   } catch (error) {
     handleServerError((error as Error)?.message);
   }
 
   return (
     <>
-      <div className="mx-auto max-w-7xl px-0 sm:px-8">
-        <div className="mx-auto max-w-5xl">
-          <div className="mx-auto max-w-5xl rounded-lg bg-white px-6 py-4 shadow-sm shadow-gray-300 ring-1 ring-black/5 sm:px-14 sm:py-10">
-            <div className="relative mx-auto max-w-5xl py-2">
-              {/* Heading */}
-              <DetailPostHeading
-                id={post.id}
-                title={post.title as string}
-                image={post.image as string | null}
-                authorName={post.profiles.username as string}
-                authorImage={post.profiles.avatar_url as string}
-                date={format(parseISO(post.updated_at!), "MMMM dd, yyyy")}
-                category={post.categories?.title as string}
-                readTime={readTime as ReadTimeResults}
-              />
-              {/* Top Floatingbar */}
-              <div className="mx-auto">
-                <DetailPostFloatingBar
-                  id={post.id as string}
-                  title={post.title as string}
-                  text={post.description as string}
-                  url={`${getUrl()}${encodeURIComponent(
-                    `/posts/${post.slug}`,
-                  )}`}
-                  totalComments={comments?.length}
-                  isBookmarked={isBookmarked}
-                />
-              </div>
-            </div>
-            {/* Content */}
-            <WysiwygContents content={post.content} />
-            <div className="mx-auto mt-10">
-              {/* Bottom Floatingbar */}
-              <DetailPostFloatingBar
-                id={post.id as string}
-                title={post.title as string}
-                text={post.description as string}
-                url={`${getUrl()}${encodeURIComponent(`/posts/${post.slug}`)}`}
-                totalComments={comments?.length}
-                isBookmarked={isBookmarked}
-              />
-            </div>
+      <div className="border-t px-5 pt-5 md:border-t-0 md:px-6 md:pt-0">
+        <div className="rounded-lg bg-background">
+          <div className="relative mx-auto max-w-5xl py-2">
+            {/* Heading */}
+            <DetailPostHeading post={post} />
           </div>
+          {/* Content */}
+          <WysiwygContents content={post.content} />
         </div>
         <DetailPostComment
           postId={post.id as string}
