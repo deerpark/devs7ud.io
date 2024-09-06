@@ -1,6 +1,8 @@
 import { Icon } from "lucide-react";
 import { string } from "zod";
 
+export type ThemeType = "light" | "dark" | "system";
+
 export type SeoType = {
   title: string;
   subTitle: string;
@@ -36,6 +38,7 @@ export type DashBoardType = {
   title: string;
   slug?: string;
   icon: Icon;
+  subMenu?: DashBoardType[];
 };
 
 export type DashBoardPageType = {

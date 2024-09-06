@@ -28,7 +28,7 @@ const DetailPostHeader: React.FC<DetailPostHeaderProps> = ({
           "sticky top-5 z-40 flex h-14 items-center px-3 backdrop-blur-lg transition-all md:px-6",
           y && y > 20
             ? "mx-5 rounded-full bg-background shadow-2xl md:mx-0"
-            : "bg-muted/50 md:bg-transparent",
+            : "md:bg-transparent",
         )}
       >
         <nav
@@ -58,6 +58,7 @@ const DetailPostHeader: React.FC<DetailPostHeaderProps> = ({
           />
         </nav>
       </header>
+      <span className="absolute h-14 w-full bg-muted/50 md:hidden" />
       <span
         style={{ transform: `translateX(${completion - 100}%)` }}
         className="fixed left-0 top-0 z-50 h-0.5 w-full bg-secondary/50"

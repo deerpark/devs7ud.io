@@ -4,3 +4,4 @@ export { default as dashBoardPost } from "./dashboard-post";
 export { default as dashBoardProfile } from "./dashboard-profile";
 export { default as dashBoardSettings } from "./dashboard-settings";
 export { default as dashBoardMenu } from "./dashboard-menu";
+export { default as dashBoardThemes } from "./dashboard-themes";

@@ -1,6 +1,6 @@
 const detailCommentConfig = {
-  title: "Comment",
-  comments: "Comments",
+  title: "댓글",
+  comments: "댓글",
   delete: "Delete",
   submit: "Submit",
   edit: "Edit",

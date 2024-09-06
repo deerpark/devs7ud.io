@@ -1,6 +1,7 @@
 import { TailwindIndicator } from "@/components/main";
 import GoogleAnalytics from "@/components/shared/google-analytics";
 import MicrosoftClarity from "@/components/shared/microsoft-clarity";
+import { ThemeProvider } from "@/components/shared/provider";
 import { Toaster } from "@/components/ui/sonner";
 import { seoData } from "@/config/root/seo";
 import { cn, getUrl } from "@/lib/utils";
@@ -140,7 +141,14 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
         <VercelAnalytics />
         <MicrosoftClarity />
         <GoogleAnalytics />

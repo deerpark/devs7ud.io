@@ -3,8 +3,7 @@ import { getMinutes, shimmer, toBase64 } from "@/lib/utils";
 import { getPublicImageUrl } from "@/lib/utils/image-url";
 import { PostWithCategoryWithProfile } from "@/types/collection";
 import { format, parseISO } from "date-fns";
-import { ArchiveIcon, CalendarIcon, ClockIcon } from "lucide-react";
-import Image from "next/image";
+import { ClockIcon } from "lucide-react";
 import { FC } from "react";
 import readingTime, { ReadTimeResults } from "reading-time";
 

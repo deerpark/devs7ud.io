@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { detailCommentConfig } from "@/config/detail";
 import { commentFormSchema } from "@/lib/validation/comment";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SendIcon, Loader2 as SpinnerIcon } from "lucide-react";
+import { SendIcon, Shell, Loader2 as SpinnerIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { useForm } from "react-hook-form";
@@ -77,7 +77,7 @@ const DetailPostCommentForm: React.FC<DetailPostCommentFormProps> = ({
             <FormItem>
               <FormLabel>{detailCommentConfig.title}</FormLabel>
               <FormControl>
-                <Textarea {...field} className="bg-white" />
+                <Textarea {...field} className="bg-background" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -86,15 +86,16 @@ const DetailPostCommentForm: React.FC<DetailPostCommentFormProps> = ({
 
         <Button
           type="submit"
+          variant="outline"
           disabled={isLoading}
-          className="group flex items-center justify-center rounded-lg bg-gradient-to-t from-gray-200 via-gray-100 to-gray-50 p-2 text-gray-400 shadow-md shadow-black/5 ring-1 ring-black/10 transition duration-200 hover:bg-gradient-to-tr hover:from-gray-200 hover:via-gray-100 hover:to-gray-50 active:scale-[96%] active:ring-black/20"
+          className="flex items-center justify-center gap-x-2"
         >
           {isLoading ? (
-            <SpinnerIcon className="mr-2 h-4 w-4 animate-spin text-gray-600" />
+            <Shell className="h-4 w-4 animate-spin" />
           ) : (
-            <SendIcon className="mr-2 h-4 w-4 text-gray-600" />
+            <SendIcon className="mr-2 h-4 w-4" />
           )}
-          <span className="text-gray-600">{detailCommentConfig.submit}</span>
+          <span>{detailCommentConfig.submit}</span>
         </Button>
       </form>
     </Form>
