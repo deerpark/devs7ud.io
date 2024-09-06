@@ -89,7 +89,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <>
-      <div className="border-t px-5 pt-5 md:border-t-0 md:px-6 md:pt-0">
+      <div className="border-t px-5 pt-5 md:border-t-0 md:px-6 md:pt-1">
         <div className="rounded-lg bg-background">
           <div className="relative mx-auto max-w-5xl py-2">
             {/* Heading */}

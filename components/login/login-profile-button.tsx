@@ -58,7 +58,10 @@ const LoginProfileButton: FC<LoginProfileButtonProps> = ({
           <span className="hidden flex-1 text-left font-semibold md:block">
             설정
           </span>
-          <ChevronDown className="h-3 w-3 flex-none" strokeWidth={3} />
+          <ChevronDown
+            className="h-3 w-3 flex-none opacity-50"
+            strokeWidth={3}
+          />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 p-0 pb-1" align="start">

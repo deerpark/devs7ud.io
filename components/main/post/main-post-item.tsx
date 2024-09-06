@@ -84,14 +84,15 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post, userId }) => {
             </div>
           </div>
           {image ? (
-            <div className="relative aspect-[1/2] max-h-32 flex-none">
+            <div className="relative max-h-32 flex-none">
               <CustomImage
                 src={image}
                 alt={post.title ?? "Cover"}
-                height={128}
+                sizes="(max-width: 768px) 100vw, 100vw"
                 width={128}
+                height={128}
                 priority
-                className="absolute inset-0 h-full w-full rounded-2xl bg-accent object-cover group-hover:ring-1 group-hover:ring-border"
+                className="aspect-[1/2] rounded-2xl bg-accent object-cover group-hover:ring-1 group-hover:ring-border"
               />
             </div>
           ) : null}

@@ -1,4 +1,6 @@
 import { TailwindIndicator } from "@/components/main";
+import GoogleAnalytics from "@/components/shared/google-analytics";
+import MicrosoftClarity from "@/components/shared/microsoft-clarity";
 import { Toaster } from "@/components/ui/sonner";
 import { seoData } from "@/config/root/seo";
 import { cn, getUrl } from "@/lib/utils";
@@ -140,6 +142,8 @@ export default function RootLayout({
       >
         {children}
         <VercelAnalytics />
+        <MicrosoftClarity />
+        <GoogleAnalytics />
         <Toaster />
         <TailwindIndicator />
       </body>

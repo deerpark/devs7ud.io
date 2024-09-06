@@ -18,7 +18,7 @@ const MainMobileNavigation = ({ userId }: { userId: string | null }) => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <nav className="flex max-w-full items-center justify-between bg-muted px-3 py-4 md:hidden">
+    <nav className="flex max-w-full items-center justify-between bg-muted/50 px-3 py-4 md:hidden">
       {/* Mobile Menu Button */}
       <div className="flex flex-none justify-end">
         <Drawer open={open} onOpenChange={setOpen}>
@@ -26,14 +26,14 @@ const MainMobileNavigation = ({ userId }: { userId: string | null }) => {
             <Button
               variant="ghost"
               type="button"
-              className="flex h-auto w-full items-center justify-start gap-x-2 rounded-3xl px-3 py-2 text-sm"
+              className="flex items-center justify-start gap-x-2 rounded-3xl px-3 py-2 text-sm"
             >
               <MainMobileMenuButton open={open} />
             </Button>
           </DrawerTrigger>
           <DrawerContent>
             <DrawerHeader>
-              <DrawerTitle className="flex items-center justify-center pb-0 pt-5">
+              <DrawerTitle className="hidden items-center justify-center pb-0 pt-5">
                 <span className="rounded-full bg-background/0 p-3">
                   <LogoIcon
                     className="h-8 w-8"
@@ -42,7 +42,7 @@ const MainMobileNavigation = ({ userId }: { userId: string | null }) => {
                   />
                 </span>
               </DrawerTitle>
-              <DrawerDescription className="pb-2">
+              <DrawerDescription className="sr-only">
                 메뉴를 탐색 하세요.
               </DrawerDescription>
             </DrawerHeader>

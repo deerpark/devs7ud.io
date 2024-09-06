@@ -25,8 +25,10 @@ const DetailPostHeader: React.FC<DetailPostHeaderProps> = ({
     <>
       <header
         className={cn(
-          "sticky top-5 z-40 flex h-14 items-center rounded-full bg-background px-3 backdrop-blur-lg transition-all md:px-6",
-          y && y > 20 ? "mx-5 shadow-2xl md:mx-0" : "",
+          "sticky top-5 z-40 flex h-14 items-center px-3 backdrop-blur-lg transition-all md:px-6",
+          y && y > 20
+            ? "mx-5 rounded-full bg-background shadow-2xl md:mx-0"
+            : "bg-muted/50 md:bg-transparent",
         )}
       >
         <nav

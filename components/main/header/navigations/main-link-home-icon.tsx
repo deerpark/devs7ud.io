@@ -11,14 +11,14 @@ export default function MainLinkHomeIcon() {
   return (
     <span
       className={cn(
-        "block rounded-full group-active:translate-y-px",
+        "ml-1.5 block rounded-full group-active:translate-y-px md:ml-0",
         slug && slug !== "/"
           ? ""
           : "bg-primary ring-4 ring-primary group-hover:bg-secondary group-hover:ring-secondary",
       )}
     >
       <LogoIcon
-        className="relative z-10"
+        className="relative z-10 h-[22px] w-[22px]"
         pathClassName={cn(
           slug && slug !== "/"
             ? ""

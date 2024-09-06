@@ -47,7 +47,7 @@ export default async function MainLayout({
       <div className="flex w-full max-w-5xl flex-1 flex-col justify-center md:flex-row">
         <MainHeader slug={post.categories.slug} />
 
-        <div className="flex flex-1 flex-col gap-y-2 px-0 pb-9 md:px-5 md:pt-[22px]">
+        <div className="flex flex-1 flex-col px-0 pb-9 md:px-5 md:pt-[22px]">
           <DetailPostHeader
             post={post}
             userId={userId}

@@ -15,9 +15,9 @@ const MainMobileMenuButton: FC<MainMobileMenuButtonProps> = ({ open }) => {
     <>
       <MainLinkHomeIcon />
       {!open ? (
-        <ChevronDown className="h-3 w-3" strokeWidth={3} />
+        <ChevronDown className="h-3 w-3 opacity-50" strokeWidth={3} />
       ) : (
-        <ChevronUp className="h-3 w-3" strokeWidth={3} />
+        <ChevronUp className="h-3 w-3 opacity-50" strokeWidth={3} />
       )}
     </>
   );

@@ -1,3 +1,4 @@
+import { DetailPostLoading } from "@/components/detail/post";
 import { Shell } from "lucide-react";
 import * as React from "react";
 

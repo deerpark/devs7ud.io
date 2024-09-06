@@ -18,7 +18,7 @@ const MainMobileNavigationMenu: React.FC<MainMobileNavigationMenuProps> = ({
   const router = useRouter();
 
   return (
-    <div className="mb-2 w-full flex-1 border-t border-border/50 bg-background py-5 md:hidden">
+    <div className="mb-2 w-full flex-1 pb-5 md:hidden">
       <Link
         key={v4()}
         className={cn(
