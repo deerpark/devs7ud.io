@@ -9,8 +9,8 @@ export default function MainLayout({ children }: { children: ReactNode }) {
       vaul-drawer-wrapper="true"
     >
       <div className="flex w-full max-w-5xl flex-1 flex-col justify-center md:flex-row">
-        <MainHeader />
-        <div className="flex flex-1 flex-col gap-y-5 px-3 py-3 md:gap-y-3 md:px-8 md:py-9">
+        <MainHeader slug="/" />
+        <div className="flex flex-1 flex-col gap-y-5 px-0 pb-3 md:gap-y-3 md:px-8 md:py-9">
           {children}
         </div>
         <MainAside />

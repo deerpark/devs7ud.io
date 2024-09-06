@@ -14,6 +14,7 @@ export const revalidate = 0;
 const LoginMenu = ({ userId }: { userId: string | null }) => {
   const supabase = createClient();
   const [avatarUrl, setAvatarUrl] = React.useState<string>("");
+  const [username, setUserName] = React.useState<string>("");
 
   React.useEffect(() => {
     async function fetchAvatar() {
@@ -30,6 +31,7 @@ const LoginMenu = ({ userId }: { userId: string | null }) => {
       }
       if (data) {
         setAvatarUrl(data.avatar_url ? data.avatar_url : "");
+        setUserName(data.username ? data.username : "");
       }
     }
     fetchAvatar();
@@ -38,7 +40,7 @@ const LoginMenu = ({ userId }: { userId: string | null }) => {
   return (
     <>
       {userId ? (
-        <LoginProfileButton profileImageUrl={avatarUrl} />
+        <LoginProfileButton profileImageUrl={avatarUrl} username={username} />
       ) : (
         <LoginButton />
       )}

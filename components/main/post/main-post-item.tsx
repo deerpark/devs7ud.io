@@ -50,9 +50,9 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post, userId }) => {
   return (
     <Link
       href={`/posts/${post.slug}`}
-      className="group block max-w-full rounded-2xl hover:bg-accent/50 active:bg-accent/100"
+      className="group block max-w-full hover:bg-accent/50 active:bg-accent/100 md:rounded-2xl"
     >
-      <article className="relative isolate flex items-stretch gap-2 p-2 sm:p-3">
+      <article className="relative isolate flex items-stretch gap-2 px-5 py-4 md:px-3 md:py-5">
         {post.profiles?.avatar_url ? (
           <div className="flex flex-none flex-col">
             <CustomImage

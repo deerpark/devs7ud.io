@@ -8,7 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import * as React from "react";
 
-const MainDesktopNavigationMenu = () => {
+const MainDesktopNavigationMenu = ({ slug }: { slug?: string | null }) => {
   const currentPath = usePathname();
   const [hoveredCategory, setHoveredCategory] = React.useState(currentPath);
   const handleMouseEnter = (
@@ -26,9 +26,9 @@ const MainDesktopNavigationMenu = () => {
       {mainCategoryConfig.map((category) => {
         const isActive =
           currentPath ===
-          (category.slug === "/"
-            ? category.slug
-            : `/category/${category.slug}`);
+            (category.slug === "/"
+              ? category.slug
+              : `/category/${category.slug}`) || category.slug === slug;
         const pathname =
           category.slug === "/" ? category.slug : `/category/${category.slug}`;
         return (

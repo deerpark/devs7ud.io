@@ -123,12 +123,12 @@ export default async function CategoryPage({
   }
 
   return (
-    <div className="flex flex-col gap-y-2">
-      <div className="flex items-center gap-x-2">
-        <h2 className="px-3 text-xl font-black">{category?.title}</h2>
+    <div className="flex flex-col md:gap-y-2">
+      <div className="flex items-center gap-x-2 bg-muted pb-4 md:bg-transparent md:pb-0">
+        <h2 className="px-6 text-xl font-black md:px-5">{category?.title}</h2>
       </div>
       {/* Posts */}
-      <div className="space-y-5">
+      <div className="divide-y divide-border/50 border-t border-border/50 md:border-t-0">
         {data?.length === 0 ? (
           <SharedEmpty />
         ) : (

@@ -6,13 +6,13 @@ import MainNewsletter from "./main-newsletter";
 const MainFooter = () => {
   return (
     <footer
-      className="w-full flex-none border-t border-border/50 lg:w-auto"
+      className="flex w-full flex-none flex-col items-center justify-center border-t border-border/50"
       aria-labelledby="footer-heading"
     >
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="max-w-5xl px-6 pb-8 pt-20 sm:pt-24 md:px-10 lg:mx-auto lg:px-8 lg:pt-32">
+      <div className="max-w-5xl pt-20 sm:pt-24 md:px-10 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="grid grid-cols-2 gap-8 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
@@ -87,23 +87,23 @@ const MainFooter = () => {
           </div>
           <MainNewsletter />
         </div>
-        <div className="mt-16 border-t border-border/30 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
-          <div className="flex space-x-6 md:order-2">
-            {mainFooterConfig.socials.map((item) => (
-              <a
-                key={item.name}
-                href={item.url}
-                className="text-muted-foreground/50 hover:text-muted-foreground/100"
-              >
-                <span className="sr-only">{item.name}</span>
-                <item.icon className="h-6 w-6" aria-hidden="true" />
-              </a>
-            ))}
-          </div>
-          <p className="mt-8 text-sm leading-5 text-muted-foreground/50 hover:text-muted-foreground/100 md:order-1 md:mt-0">
-            {mainFooterConfig.copyright}
-          </p>
+      </div>
+      <div className="mt-16 flex w-full flex-col items-center justify-center gap-x-10 border-t border-border/30 px-6 py-8 sm:mt-20 md:flex-row md:px-10 lg:mt-24">
+        <div className="flex space-x-6 md:order-2">
+          {mainFooterConfig.socials.map((item) => (
+            <a
+              key={item.name}
+              href={item.url}
+              className="text-muted-foreground/50 hover:text-muted-foreground/100"
+            >
+              <span className="sr-only">{item.name}</span>
+              <item.icon className="h-6 w-6" aria-hidden="true" />
+            </a>
+          ))}
         </div>
+        <p className="mt-8 text-sm leading-5 text-muted-foreground/50 hover:text-muted-foreground/100 md:order-1 md:mt-0">
+          {mainFooterConfig.copyright}
+        </p>
       </div>
     </footer>
   );

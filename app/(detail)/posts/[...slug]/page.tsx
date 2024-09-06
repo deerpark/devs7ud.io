@@ -1,26 +1,14 @@
-import {
-  DetailPostComment,
-  DetailPostFloatingBar,
-  DetailPostHeading,
-} from "@/components/detail/post";
+import { DetailPostComment, DetailPostHeading } from "@/components/detail/post";
 import { DetailPostScrollUpButton } from "@/components/detail/post/buttons";
 import { WysiwygContents } from "@/components/protected/editor/contents";
 import { seoData } from "@/config/root/seo";
-import { createClient } from "@/lib/supabase/server";
 import { getOgImageUrl, getUrl } from "@/lib/utils";
-import { getBookmark } from "@/lib/utils/bookmark";
 import { getComments } from "@/lib/utils/comments";
 import { handleServerError } from "@/lib/utils/error";
 import { getPost } from "@/lib/utils/post";
-import {
-  CommentWithProfile,
-  PostWithCategoryWithProfile,
-} from "@/types/collection";
-import { format, parseISO } from "date-fns";
+import { CommentWithProfile } from "@/types/collection";
 import { Metadata } from "next";
-import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
-import readingTime, { ReadTimeResults } from "reading-time";
 
 export const revalidate = 30;
 

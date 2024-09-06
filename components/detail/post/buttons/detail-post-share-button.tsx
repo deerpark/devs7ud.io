@@ -22,6 +22,7 @@ import {
   Twitter,
 } from "lucide-react";
 import * as React from "react";
+import { toast } from "sonner";
 
 interface DetailPostShareButtonProps {
   title?: string;
@@ -29,7 +30,13 @@ interface DetailPostShareButtonProps {
   url?: string;
 }
 
-const CopyButton = ({ url }: { url: string }) => {
+const CopyButton = ({
+  url,
+  setOpen,
+}: {
+  url: string;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [copied, setCopied] = React.useState(false);
 
   React.useEffect(() => {
@@ -43,7 +50,9 @@ const CopyButton = ({ url }: { url: string }) => {
     e.nativeEvent.stopImmediatePropagation();
     e.preventDefault();
     setCopied(true);
+    setOpen(false);
     window.navigator.clipboard.writeText(url);
+    toast("링크가 복사되었습니다.");
   };
 
   return (
@@ -162,7 +171,7 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
           </div>
 
           <div className="mx-auto flex ">
-            <CopyButton url={url} />
+            <CopyButton url={url} setOpen={setOpen} />
           </div>
         </div>
         <DrawerFooter>

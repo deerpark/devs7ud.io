@@ -14,7 +14,7 @@ import {
 } from "@/config/shared/dashboard";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
-import { ChevronDown, Settings2 } from "lucide-react";
+import { ChevronDown, IdCard, Settings2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
@@ -23,11 +23,13 @@ import { Button } from "../ui/button";
 
 interface LoginProfileButtonProps {
   profileImageUrl?: string;
+  username?: string;
   className?: string;
 }
 
 const LoginProfileButton: FC<LoginProfileButtonProps> = ({
   profileImageUrl,
+  username,
   className,
 }) => {
   const supabase = createClient();
@@ -62,23 +64,30 @@ const LoginProfileButton: FC<LoginProfileButtonProps> = ({
       <DropdownMenuContent className="w-56 p-0 pb-1" align="start">
         {profileImageUrl ? (
           <>
-            <div className="relative h-48 overflow-hidden">
-              <CustomImage
-                src={profileImageUrl}
-                alt="Avatar"
-                height={224}
-                width={224}
-                priority
-                className="absolute inset-0 h-full w-full bg-accent object-cover group-hover:ring-1 group-hover:ring-border"
-              />
+            <div className="inline-flex w-full items-center gap-x-2 rounded-md bg-background px-3 py-2 text-foreground hover:bg-accent">
+              <div className="relative mx-auto h-32 overflow-hidden rounded-full ring-border group-hover:ring">
+                <CustomImage
+                  src={profileImageUrl}
+                  alt="Avatar"
+                  height={128}
+                  width={128}
+                  priority
+                  className="absolute inset-0 h-full w-full bg-accent object-cover"
+                />
+              </div>
             </div>
             <DropdownMenuSeparator className="mt-0" />
+            <div className="inline-flex w-full items-center gap-x-2 rounded-md bg-background px-3 py-2 text-foreground hover:bg-accent">
+              <IdCard strokeWidth={2.5} className="h-5 w-5" />
+              <span className="flex-1 text-sm font-semibold">{username}</span>
+            </div>
+            <DropdownMenuSeparator />
           </>
         ) : null}
 
         <Link
           href={dashBoardPost.slug || ""}
-          className="group inline-flex w-full items-center gap-x-2 rounded-md bg-background px-3 py-2 text-foreground hover:bg-accent"
+          className="inline-flex w-full items-center gap-x-2 rounded-md bg-background px-3 py-2 text-foreground hover:bg-accent"
         >
           <dashBoardPost.icon strokeWidth={2.5} className="h-5 w-5" />
           <span className="text-sm font-semibold">{dashBoardPost.title}</span>
@@ -86,7 +95,7 @@ const LoginProfileButton: FC<LoginProfileButtonProps> = ({
 
         <Link
           href={dashBoardBookMark.slug || ""}
-          className="group inline-flex w-full items-center gap-x-2 rounded-md bg-background px-3 py-2 text-foreground hover:bg-accent"
+          className="inline-flex w-full items-center gap-x-2 rounded-md bg-background px-3 py-2 text-foreground hover:bg-accent"
         >
           <dashBoardBookMark.icon strokeWidth={2.5} className="h-5 w-5" />
           <span className="text-sm font-semibold">
@@ -96,7 +105,7 @@ const LoginProfileButton: FC<LoginProfileButtonProps> = ({
 
         <Link
           href={dashBoardSettings.slug || ""}
-          className="group inline-flex w-full items-center gap-x-2 rounded-md bg-background px-3 py-2 text-foreground hover:bg-accent"
+          className="inline-flex w-full items-center gap-x-2 rounded-md bg-background px-3 py-2 text-foreground hover:bg-accent"
         >
           <dashBoardSettings.icon strokeWidth={2.5} className="h-5 w-5" />
           <span className="text-sm font-semibold">
@@ -108,7 +117,7 @@ const LoginProfileButton: FC<LoginProfileButtonProps> = ({
         <button
           onClick={signOut}
           type="button"
-          className="group inline-flex w-full items-center gap-x-2 rounded-md bg-background px-3 py-2 text-foreground hover:bg-accent"
+          className="inline-flex w-full items-center gap-x-2 rounded-md bg-background px-3 py-2 text-foreground hover:bg-accent"
         >
           <dashBoardLogout.icon strokeWidth={2.5} className="h-5 w-5" />
           <span className="text-sm font-semibold">{dashBoardLogout.title}</span>

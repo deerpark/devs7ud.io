@@ -25,7 +25,7 @@ const DetailPostHeader: React.FC<DetailPostHeaderProps> = ({
     <>
       <header
         className={cn(
-          "sticky top-5 z-40 flex h-14 items-center rounded-2xl bg-background px-3 backdrop-blur-lg transition-all md:px-6",
+          "sticky top-5 z-40 flex h-14 items-center rounded-full bg-background px-3 backdrop-blur-lg transition-all md:px-6",
           y && y > 20 ? "mx-5 shadow-2xl md:mx-0" : "",
         )}
       >
@@ -33,7 +33,12 @@ const DetailPostHeader: React.FC<DetailPostHeaderProps> = ({
           className="flex w-full items-center gap-x-3 px-3 md:px-0"
           aria-label="Global"
         >
-          <h1 className="line-clamp-1 flex-1 text-xl font-black tracking-tight">
+          <h1
+            className={cn(
+              "line-clamp-1 flex-1 font-black tracking-tight",
+              y && y > 20 ? "text-base md:text-xl" : "text-xl",
+            )}
+          >
             {post.categories.title}
           </h1>
 

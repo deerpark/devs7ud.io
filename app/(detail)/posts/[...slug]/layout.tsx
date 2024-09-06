@@ -45,7 +45,7 @@ export default async function MainLayout({
       vaul-drawer-wrapper="true"
     >
       <div className="flex w-full max-w-5xl flex-1 flex-col justify-center md:flex-row">
-        <MainHeader />
+        <MainHeader slug={post.categories.slug} />
 
         <div className="flex flex-1 flex-col gap-y-2 px-0 pb-9 md:px-5 md:pt-[22px]">
           <DetailPostHeader
