@@ -9,7 +9,6 @@ import { detailBookMarkConfig } from "@/config/detail";
 import {
   Bookmark,
   BookmarkMinus,
-  BookmarkPlus,
   Shell,
   Loader2 as SpinnerIcon,
 } from "lucide-react";
@@ -118,7 +117,7 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
             {isLoading ? (
               <SpinnerIcon className="h-5 w-5 animate-spin" strokeWidth={2.5} />
             ) : (
-              <BookmarkPlus className="h-5 w-5" strokeWidth={2.5} />
+              <Bookmark className="h-5 w-5" strokeWidth={2.5} />
             )}
           </Button>
         ))}
@@ -135,7 +134,7 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
               <Bookmark className="h-5 w-5" strokeWidth={2.5} />
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-sm">
+          <DialogContent className="max-w-[calc(100vw-40px)] gap-y-0 rounded-3xl p-0 font-sans sm:max-w-[320px]">
             <LoginSection />
           </DialogContent>
         </Dialog>

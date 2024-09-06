@@ -60,9 +60,9 @@ const LoginSection: React.FC<LoginSectionProps> = ({ setOpen }) => {
     if (error) {
       toast.error(error.message);
     } else {
-      // toast.success(`${data.provider}`);
-      // toast.success(data.url);
-      router.refresh();
+      toast.success(`${data.provider}`);
+      toast.success(data.url);
+      // router.refresh();
     }
   }
 
@@ -80,14 +80,14 @@ const LoginSection: React.FC<LoginSectionProps> = ({ setOpen }) => {
     if (error) {
       toast.error(error.message);
     } else {
-      // toast.success(`${data.provider}`);
-      // toast.success(data.url);
-      router.refresh();
+      toast.success(`${data.provider}`);
+      toast.success(data.url);
+      // router.refresh();
     }
   }
 
   return (
-    <div className="flex flex-col space-y-4 px-4 py-8 md:bg-muted/50 md:px-16">
+    <div className="flex flex-col space-y-4 bg-muted/50 p-4">
       <Button
         variant="outline"
         disabled={signInGoogleClicked}

@@ -3,7 +3,7 @@ import { Eraser } from "lucide-react";
 
 const SharedEmpty = () => {
   return (
-    <div className="mx-auto my-5 max-w-3xl rounded-lg border-2 border-dashed bg-background p-12 text-center">
+    <div className="mx-5 my-5 rounded-lg border-2 border-dashed bg-background p-12 text-center">
       <Eraser
         size={64}
         className="mx-auto block text-foreground/50"

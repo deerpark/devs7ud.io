@@ -10,16 +10,7 @@ import {
 import { sharedLoginConfig } from "@/config/shared";
 import { Plug } from "lucide-react";
 import { useState } from "react";
-import { useMedia } from "react-use";
 import { Button } from "../ui/button";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "../ui/drawer";
 import { default as LoginSection } from "./login-section";
 
 const ButtonSignin = (
@@ -35,33 +26,19 @@ const ButtonSignin = (
 
 const LoginButton = () => {
   const [open, setOpen] = useState(false);
-  const isDesktop = useMedia("(min-width: 768px)") || true;
-  if (isDesktop)
-    return (
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>{ButtonSignin}</DialogTrigger>
-        <DialogContent className="gap-y-0 p-0 font-sans sm:max-w-[320px]">
-          <DialogHeader className="sr-only">
-            <DialogTitle>{sharedLoginConfig.title}</DialogTitle>
-          </DialogHeader>
-          <div className="flex flex-col items-center justify-center space-y-3 border-b px-4 py-10 text-center">
-            <Plug className="h-10 w-10" strokeWidth={1} />
-          </div>
-          <LoginSection setOpen={setOpen} />
-        </DialogContent>
-      </Dialog>
-    );
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>{ButtonSignin}</DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>{sharedLoginConfig.title}</DrawerTitle>
-          <DrawerDescription>{sharedLoginConfig.description}</DrawerDescription>
-        </DrawerHeader>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>{ButtonSignin}</DialogTrigger>
+      <DialogContent className="max-w-[calc(100vw-40px)] gap-y-0 rounded-3xl p-0 font-sans sm:max-w-[320px]">
+        <DialogHeader className="sr-only">
+          <DialogTitle>{sharedLoginConfig.title}</DialogTitle>
+        </DialogHeader>
+        <div className="flex flex-col items-center justify-center space-y-3 border-b px-4 py-10 text-center">
+          <Plug className="h-10 w-10" strokeWidth={1} />
+        </div>
         <LoginSection setOpen={setOpen} />
-      </DrawerContent>
-    </Drawer>
+      </DialogContent>
+    </Dialog>
   );
 };
 
