@@ -1,15 +1,12 @@
 "use client";
 
-import { useAuth } from "@/hooks/use-auth";
 import { createClient } from "@/lib/supabase/client";
 import { Profile } from "@/types/collection";
-import { User } from "@supabase/supabase-js";
 import * as React from "react";
 import LoginButton from "./login-button";
 import LoginProfileButton from "./login-profile-button";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 30;
 
 const LoginMenu = ({ userId }: { userId: string | null }) => {
   const supabase = createClient();

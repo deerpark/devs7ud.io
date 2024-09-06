@@ -28,8 +28,8 @@ export function CustomImage(props: ImageProps) {
       {isLoading && !isError ? (
         <p
           className={cn(
-            props.className,
             "flex items-center justify-center text-muted-foreground/50",
+            props.className,
           )}
         >
           <Shell size={size} className="animate-spin" />
@@ -37,8 +37,8 @@ export function CustomImage(props: ImageProps) {
       ) : !isLoading && isError ? (
         <p
           className={cn(
-            props.className,
             "flex items-center justify-center gap-y-2 p-2 text-muted-foreground/50",
+            props.className,
             props.alt ? "flex-col" : "",
           )}
         >
@@ -53,8 +53,8 @@ export function CustomImage(props: ImageProps) {
       <Image
         {...props}
         className={cn(
-          props.className,
           "transition-all",
+          props.className,
           isLoading || isError
             ? "absolute inset-0 opacity-0 blur-sm"
             : "relative inset-auto opacity-100 blur-0",

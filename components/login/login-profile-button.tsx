@@ -103,7 +103,9 @@ const LoginProfileButton: FC<LoginProfileButtonProps> = ({
               }}
             >
               <IdCard className="h-4 w-4" />
-              <span className="flex-1 truncate">{username}</span>
+              <span className="flex-1 truncate">
+                {username || dashBoardSettings.title}
+              </span>
             </MenubarItem>
           </MenubarGroup>
           <MenubarSeparator />

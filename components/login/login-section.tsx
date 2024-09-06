@@ -3,15 +3,14 @@
 import { sharedLoginConfig } from "@/config/shared";
 import { GithubIcon, GoogleIcon, LoadingDots } from "@/icons";
 import { createClient } from "@/lib/supabase/client";
-import { getUrl } from "@/lib/utils";
-import Emblem from "@/public/images/emblem-240w.png";
+import { cn, getUrl } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import * as React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import z from "zod";
+import { Button } from "../ui/button";
 
 const getLoginRedirectPath = (pathname?: string | null): string => {
   return (
@@ -58,7 +57,13 @@ const LoginSection: React.FC<LoginSectionProps> = ({ setOpen }) => {
         },
       },
     });
-    router.refresh();
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success(data.provider);
+      toast.success(data.url);
+      // router.refresh();
+    }
   }
 
   async function signInWithGitHub() {
@@ -72,63 +77,56 @@ const LoginSection: React.FC<LoginSectionProps> = ({ setOpen }) => {
         },
       },
     });
-    router.refresh();
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success(data.provider);
+      toast.success(data.url);
+      // router.refresh();
+    }
   }
 
   return (
-    <>
-      <div className="mx-auto w-full justify-center align-middle">
-        <div className="flex flex-col items-center justify-center space-y-3 border-b px-4 py-6 pt-8 text-center">
-          <Link href="/">
-            <Image src={Emblem} alt="Logo" height={64} priority />
-          </Link>
-          <h3 className="font-display text-2xl font-bold">
-            {sharedLoginConfig.title}
-          </h3>
-        </div>
+    <div className="flex flex-col space-y-4 px-4 py-8 md:bg-muted/50 md:px-16">
+      <Button
+        variant="outline"
+        disabled={signInGoogleClicked}
+        className={cn(
+          "flex h-10 w-full items-center justify-start space-x-3 rounded-md",
+          signInGoogleClicked ? "cursor-not-allowed" : "bg-background",
+        )}
+        onClick={() => signInWithGoogle()}
+      >
+        {signInGoogleClicked ? (
+          <LoadingDots />
+        ) : (
+          <>
+            <GoogleIcon className="h-5 w-5" />
 
-        {/* Sign in buttons with Social accounts */}
-        <div className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 md:px-16">
-          <button
-            disabled={signInGoogleClicked}
-            className={`${
-              signInGoogleClicked
-                ? "cursor-not-allowed border-gray-200 bg-gray-100"
-                : "border border-gray-200 bg-white text-black hover:bg-gray-50"
-            } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
-            onClick={() => signInWithGoogle()}
-          >
-            {signInGoogleClicked ? (
-              <LoadingDots color="#808080" />
-            ) : (
-              <>
-                <GoogleIcon className="h-5 w-5" />
-                <p>{sharedLoginConfig.google}</p>
-              </>
-            )}
-          </button>
+            <p>{sharedLoginConfig.google}</p>
+          </>
+        )}
+      </Button>
 
-          <button
-            disabled={signInGithubClicked}
-            className={`${
-              signInGithubClicked
-                ? "cursor-not-allowed border-gray-200 bg-gray-100"
-                : "border border-gray-200 bg-white text-black hover:bg-gray-50"
-            } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
-            onClick={() => signInWithGitHub()}
-          >
-            {signInGithubClicked ? (
-              <LoadingDots color="#808080" />
-            ) : (
-              <>
-                <GithubIcon className="h-5 w-5" />
-                <p>{sharedLoginConfig.github}</p>
-              </>
-            )}
-          </button>
-        </div>
-      </div>
-    </>
+      <Button
+        variant="outline"
+        disabled={signInGithubClicked}
+        className={cn(
+          "flex h-10 w-full items-center justify-start space-x-3 rounded-md",
+          signInGithubClicked ? "cursor-not-allowed" : "bg-background",
+        )}
+        onClick={() => signInWithGitHub()}
+      >
+        {signInGithubClicked ? (
+          <LoadingDots />
+        ) : (
+          <>
+            <GithubIcon className="h-5 w-5" />
+            <p>{sharedLoginConfig.github}</p>
+          </>
+        )}
+      </Button>
+    </div>
   );
 };
 

@@ -91,7 +91,7 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post, userId }) => {
                 width={512}
                 height={512}
                 priority
-                className="!h-auto max-h-52 !w-auto max-w-full rounded-2xl bg-accent group-hover:ring-1 group-hover:ring-border"
+                className="h-52 !w-auto max-w-full rounded-2xl bg-accent group-hover:ring-1 group-hover:ring-border"
               />
             </div>
           ) : null}
