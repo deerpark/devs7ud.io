@@ -60,9 +60,9 @@ const LoginSection: React.FC<LoginSectionProps> = ({ setOpen }) => {
     if (error) {
       toast.error(error.message);
     } else {
-      toast.success(data.provider);
-      toast.success(data.url);
-      // router.refresh();
+      // toast.success(`${data.provider}`);
+      // toast.success(data.url);
+      router.refresh();
     }
   }
 
@@ -80,9 +80,9 @@ const LoginSection: React.FC<LoginSectionProps> = ({ setOpen }) => {
     if (error) {
       toast.error(error.message);
     } else {
-      toast.success(data.provider);
-      toast.success(data.url);
-      // router.refresh();
+      // toast.success(`${data.provider}`);
+      // toast.success(data.url);
+      router.refresh();
     }
   }
 
