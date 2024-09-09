@@ -3,7 +3,6 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: [
       "icons",
-      "icons/categories",
       "icons/socials",
       "components/main",
       "components/main/error",

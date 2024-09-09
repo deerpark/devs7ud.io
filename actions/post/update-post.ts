@@ -24,6 +24,7 @@ export async function UpdatePost(context: z.infer<typeof postUpdateSchema>) {
         image: post.image,
         content: post.content,
         published: post.published,
+        focus: post.focus,
       })
       .match({ id: post.id })
       .select()

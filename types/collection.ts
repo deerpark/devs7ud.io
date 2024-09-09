@@ -26,6 +26,15 @@ export interface PostWithCategoryWithProfile
   profiles: Profile;
 }
 
+export interface FocusPostWithCategory {
+  post_id: string;
+  post_title: string;
+  post_description: string;
+  post_image: string;
+  category_id: string | null;
+  category_title: string | null;
+}
+
 export interface CategoryWithPost extends Omit<Category, "posts"> {
   posts: Post;
 }

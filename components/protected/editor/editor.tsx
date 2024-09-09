@@ -98,6 +98,7 @@ const Editor: FC<EditorProps> = ({
   const [content, setContent] = useState<string | null>(post?.content || null);
 
   const [published, setPublished] = useState<boolean>(Boolean(post?.published));
+  const [focus, setFocus] = useState<boolean>(Boolean(post?.focus));
 
   // Setup Uppy with Supabase
   const bucketNamePosts =
@@ -211,6 +212,7 @@ const Editor: FC<EditorProps> = ({
     description: post.description ?? "Post description",
     content: content ?? protectedEditorConfig.placeholderContent,
     published,
+    focus,
   };
 
   const form = useForm<EditorFormValues>({
@@ -232,6 +234,7 @@ const Editor: FC<EditorProps> = ({
       content: content,
       categoryId: data.categoryId,
       published,
+      focus,
     });
 
     if (response) {
@@ -253,13 +256,21 @@ const Editor: FC<EditorProps> = ({
           {/* General information */}
           <Card className="max-w-2xl">
             <CardHeader>
-              <CardTitle className="flex items-center">
+              <CardTitle className="flex items-center gap-x-2">
                 <span className="grow">
                   {protectedEditorConfig.generalTitle}
                 </span>
                 <div className="flex items-center space-x-2">
                   <Switch
-                    id="airplane-mode"
+                    id="focus"
+                    checked={focus}
+                    onCheckedChange={setFocus}
+                  />
+                  <Label htmlFor="airplane-mode">Focus</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    id="published"
                     checked={published}
                     onCheckedChange={setPublished}
                   />

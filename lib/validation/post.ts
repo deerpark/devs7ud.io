@@ -54,6 +54,7 @@ export const postEditFormSchema = z.object({
     }),
   content: z.any().optional(),
   published: z.boolean(),
+  focus: z.boolean(),
 });
 
 export const postUpdateSchema = z.object({
@@ -65,4 +66,5 @@ export const postUpdateSchema = z.object({
   description: z.string().optional(),
   content: z.any().optional(),
   published: z.boolean(),
+  focus: z.boolean(),
 });

@@ -7,7 +7,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
-import { statuses } from "./data/data";
+import { focusOptions, statuses } from "./data/data";
 
 export const columns: ColumnDef<Draft>[] = [
   {
@@ -65,6 +65,33 @@ export const columns: ColumnDef<Draft>[] = [
       const status = statuses.find(
         (status) =>
           status.value === (row.getValue("published") ? "published" : "draft"),
+      );
+
+      if (!status) {
+        return null;
+      }
+
+      return (
+        <div className="flex w-[100px] items-center">
+          {status.icon && (
+            <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+          )}
+          <span>{status.label}</span>
+        </div>
+      );
+    },
+    filterFn: (row, id, value) => {
+      return value === row.getValue(id);
+    },
+  },
+  {
+    accessorKey: "focus",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Focused" />
+    ),
+    cell: ({ row }) => {
+      const status = focusOptions.find(
+        (status) => status.value === (row.getValue("focus") ? "focus" : ""),
       );
 
       if (!status) {

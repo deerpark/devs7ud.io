@@ -1,33 +1,63 @@
-import Link from "next/link";
+import { CustomImage } from "@/components/shared/shared-image";
+import { createClient } from "@/lib/supabase/server";
+import { getPublicImageUrl } from "@/lib/utils/image-url";
+import { FocusPostWithCategory } from "@/types/collection";
+import { Eraser, Shell } from "lucide-react";
+import { cookies } from "next/headers";
+import * as React from "react";
+import { v4 } from "uuid";
+import AsidePostItem from "../post/aside-post-item";
 
-export default function MainAside() {
+const getData = React.cache(async () => {
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+
+  // Fetch posts
+  const { data, error } = await supabase
+    .rpc("get_random_posts", { limit_count: 1 })
+    .returns<FocusPostWithCategory[]>();
+
+  if (error) {
+    throw error;
+  }
+
+  return { data };
+});
+
+export default async function MainAside() {
+  const { data } = await getData();
   return (
     <div className="w-auto flex-none md:hidden lg:block lg:max-w-sm">
-      <div className="flex flex-col gap-y-4 py-9 pl-2 pr-6 md:w-72 lg:sticky lg:top-0 lg:z-50">
+      <div className="flex flex-col gap-y-3 py-9 pl-2 pr-6 md:w-72 lg:sticky lg:top-0 lg:z-50">
         <div className="flex items-center gap-x-2">
           <h2 className="px-3 text-xl font-black">포커스</h2>
         </div>
         <ul className="flex flex-col gap-y-2">
-          <li>
-            <Link
-              href="/"
-              className="flex items-center gap-x-3 rounded-xl p-3 hover:bg-accent/30 active:bg-accent/50"
-            >
-              <div className="relative aspect-[1/1.25] w-full rounded-xl bg-accent">
-                <span className="absolute inset-x-0 bottom-0 flex flex-1 flex-col p-3">
-                  <span className="relative z-10 flex items-center gap-x-3">
-                    <span className="line-clamp-1 flex-1 text-sm font-semibold">
-                      일주일 방송을 한곳에서 다 보고 싶다고요?
-                    </span>
-                  </span>
-                  <span className="relative z-10 line-clamp-1 text-sm text-foreground/80">
-                    그 많은 방송을 어떻게 화면에 다 넣을수 있을까?
-                  </span>
-                  <span className="absolute inset-0 z-0 bg-background/50 p-3 blur-sm" />
-                </span>
-              </div>
-            </Link>
-          </li>
+          {data?.length ? (
+            data.map((post) => (
+              <React.Suspense
+                key={v4()}
+                fallback={
+                  <li className="flex h-auto min-h-52 w-full flex-1 items-center justify-center">
+                    <Shell
+                      size={32}
+                      className="animate-spin text-foreground/30"
+                    />
+                  </li>
+                }
+              >
+                <AsidePostItem post={post} />
+              </React.Suspense>
+            ))
+          ) : (
+            <div className="mx-5 my-5 rounded-lg border-2 border-dashed bg-background p-3 text-center">
+              <Eraser
+                size={64}
+                className="mx-auto block text-foreground/50"
+                strokeWidth={1.5}
+              />
+            </div>
+          )}
         </ul>
       </div>
     </div>

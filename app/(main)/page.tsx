@@ -4,10 +4,10 @@ import { getUserId } from "@/lib/utils/user-id";
 import { PostWithCategoryWithProfile } from "@/types/collection";
 import { Shell } from "lucide-react";
 import { cookies } from "next/headers";
-import { cache, Suspense } from "react";
+import * as React from "react";
 import { v4 } from "uuid";
 
-const getData = cache(async () => {
+const getData = React.cache(async () => {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
   const userId = await getUserId();
@@ -40,7 +40,7 @@ export default async function HomePage() {
       </div>
       <div className="divide-y divide-border/50 border-t border-border/50 md:border-t-0">
         {data?.map((post) => (
-          <Suspense
+          <React.Suspense
             key={v4()}
             fallback={
               <div className="flex h-auto min-h-52 w-full flex-1 items-center justify-center">
@@ -49,7 +49,7 @@ export default async function HomePage() {
             }
           >
             <MainPostItem post={post} userId={userId} />
-          </Suspense>
+          </React.Suspense>
         ))}
       </div>
     </>

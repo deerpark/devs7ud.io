@@ -1,8 +1,8 @@
 "use client";
 
 import { ProtectedBookMarkTableRowActions } from "@/components/protected/bookmark";
-import { categories } from "@/components/protected/post/table//data/data";
 import { DataTableColumnHeader } from "@/components/protected/post/table/data-table-column-header";
+import { categoryOptions } from "@/config/main/main-category-config";
 import { Post } from "@/types/collection";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
@@ -30,7 +30,7 @@ const ProtectedBookMarkTableColumns: ColumnDef<Post>[] = [
       <DataTableColumnHeader column={column} title="Category" />
     ),
     cell: ({ row }) => {
-      const label = categories.find(
+      const label = categoryOptions.find(
         (category) => category.value === row.getValue("category_id"),
       );
 
