@@ -17,11 +17,11 @@ export default function MainAside() {
                 <span className="absolute inset-x-0 bottom-0 flex flex-1 flex-col p-3">
                   <span className="relative z-10 flex items-center gap-x-3">
                     <span className="line-clamp-1 flex-1 text-sm font-semibold">
-                      종합 편성표 대시보드
+                      일주일 방송을 한곳에서 다 보고 싶다고요?
                     </span>
                   </span>
                   <span className="relative z-10 line-clamp-1 text-sm text-foreground/80">
-                    채널별 편성표를 한번에 모아볼수 있도록 제작 하였습니다.
+                    그 많은 방송을 어떻게 화면에 다 넣을수 있을까?
                   </span>
                   <span className="absolute inset-0 z-0 bg-background/50 p-3 blur-sm" />
                 </span>
