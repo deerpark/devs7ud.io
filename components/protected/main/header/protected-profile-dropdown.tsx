@@ -63,10 +63,10 @@ const ProtectedProfileDropDown = () => {
         <DropdownMenuContent className="w-56 font-sans">
           <Link
             href={dashBoardProfile.slug || ""}
-            className="group inline-flex w-full items-center rounded-md bg-white px-3 py-2.5 hover:bg-gray-100"
+            className="group inline-flex w-full items-center rounded-md bg-background px-3 py-2.5 hover:bg-accent"
           >
-            <dashBoardProfile.icon className="mr-2 h-4 w-4 text-gray-500 group-hover:text-gray-900" />
-            <span className="text-sm text-gray-500 group-hover:text-gray-900">
+            <dashBoardProfile.icon className="mr-2 h-4 w-4 group-hover:text-primary" />
+            <span className="text-sm group-hover:text-primary">
               {dashBoardProfile.title}
             </span>
           </Link>
@@ -75,10 +75,10 @@ const ProtectedProfileDropDown = () => {
           <button
             onClick={signOut}
             type="button"
-            className="group inline-flex w-full items-center rounded-md bg-white px-3 py-2.5 hover:bg-gray-100"
+            className="group inline-flex w-full items-center rounded-md bg-background px-3 py-2.5 hover:bg-accent"
           >
-            <dashBoardLogout.icon className="mr-2 h-4 w-4 text-gray-500 group-hover:text-gray-900" />
-            <span className="group-hover:text-gray-90 text-sm text-gray-500 group-hover:text-gray-900">
+            <dashBoardLogout.icon className="mr-2 h-4 w-4 group-hover:text-primary" />
+            <span className="text-sm group-hover:text-primary group-hover:text-primary">
               {dashBoardLogout.title}
             </span>
           </button>

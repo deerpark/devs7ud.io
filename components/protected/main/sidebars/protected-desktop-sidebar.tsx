@@ -15,7 +15,7 @@ const ProtectedDesktopSideBar = () => {
       {/* Static sidebar for desktop */}
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
         {/* Sidebar component, swap this element with another sidebar if you like */}
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
+        <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r bg-background px-6 pb-4">
           <Link href={getUrl()} className="flex h-16 shrink-0 items-center">
             <CustomImage
               className="h-[40px]w-[40px]w-auto"
@@ -37,16 +37,16 @@ const ProtectedDesktopSideBar = () => {
                         className={cn(
                           currentPath === menu.slug ||
                             (path.length > 3 && pathSlug === menu.slug)
-                            ? "bg-gray-50 text-orange-600"
-                            : "text-gray-700 hover:bg-gray-50 hover:text-orange-600",
+                            ? "bg-accent text-primary"
+                            : "text-accent-foreground hover:bg-accent hover:text-primary",
                           "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
                         )}
                       >
                         <menu.icon
                           className={cn(
                             currentPath === menu.slug
-                              ? "text-orange-600"
-                              : "text-gray-400 group-hover:text-orange-600",
+                              ? "text-primary"
+                              : "group-hover:text-primary",
                             "h-6 w-6 shrink-0",
                           )}
                           aria-hidden="true"

@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -12,24 +14,25 @@ const ProtectedTopBar = () => {
   return (
     <>
       {path.length > 3 ? (
-        <button
+        <Button
+          variant="ghost"
           type="button"
           onClick={() => router.back()}
-          className="relative flex flex-1 items-center"
+          className="relative flex flex-none items-center"
         >
-          <ArrowLeftIcon
-            className="mr-2 h-5 w-5 text-gray-400"
-            aria-hidden="true"
-          />
-          <span className="text-sm text-gray-500">Go Back</span>
-        </button>
+          <ArrowLeftIcon className="mr-2 h-5 w-5" aria-hidden="true" />
+          <span className="text-sm font-semibold">뒤로가기</span>
+        </Button>
       ) : (
-        <Link href="/" className="relative flex flex-1 items-center">
-          <ArrowLeftIcon
-            className="mr-2 h-5 w-5 text-gray-400"
-            aria-hidden="true"
-          />
-          <span className="text-sm text-gray-500">Go Back to Homepage</span>
+        <Link
+          href="/"
+          className={cn(
+            "relative flex flex-none items-center",
+            buttonVariants({ variant: "ghost" }),
+          )}
+        >
+          <ArrowLeftIcon className="mr-2 h-5 w-5" aria-hidden="true" />
+          <span className="text-sm font-semibold">사이트로 돌아가기</span>
         </Link>
       )}
     </>

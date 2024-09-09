@@ -40,7 +40,7 @@ const ProtectedMobileSideBar: FC<ProtectedMobileSideBarProps> = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-gray-900/80" />
+            <div className="fixed inset-0 bg-foreground/80" />
           </Transition.Child>
 
           <div className="fixed inset-0 flex">
@@ -71,14 +71,14 @@ const ProtectedMobileSideBar: FC<ProtectedMobileSideBarProps> = ({
                     >
                       <span className="sr-only">Close sidebar</span>
                       <XMarkIcon
-                        className="h-6 w-6 text-white"
+                        className="h-6 w-6 text-background"
                         aria-hidden="true"
                       />
                     </button>
                   </div>
                 </Transition.Child>
                 {/* Sidebar component, swap this element with another sidebar if you like */}
-                <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
+                <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-background px-6 pb-4">
                   <Link
                     href={getUrl()}
                     className="flex h-16 shrink-0 items-center"
@@ -102,17 +102,17 @@ const ProtectedMobileSideBar: FC<ProtectedMobileSideBarProps> = ({
                                 href={menu.slug || ""}
                                 className={cn(
                                   currentPath === menu.slug
-                                    ? "bg-gray-50 text-orange-600"
-                                    : "text-gray-700 hover:bg-gray-50 hover:text-orange-600",
-                                  "group flex gap-x-3 rounded-md p-2 font-sans text-sm font-semibold leading-6",
+                                    ? "bg-accent text-primary"
+                                    : "hover:bg-accent hover:text-primary",
+                                  "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
                                 )}
                               >
                                 <menu.icon
                                   className={cn(
                                     currentPath === menu.slug
-                                      ? "text-orange-600"
-                                      : "text-gray-400 group-hover:text-orange-600",
-                                    "h-6 w-6 shrink-0 font-sans",
+                                      ? "text-primary"
+                                      : "group-hover:text-primary",
+                                    "h-6 w-6 shrink-0",
                                   )}
                                   aria-hidden="true"
                                 />

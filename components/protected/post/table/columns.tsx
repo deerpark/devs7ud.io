@@ -1,11 +1,13 @@
 "use client";
 
+import { mainCategoryConfig } from "@/config/main";
+import { categoryOptions } from "@/config/main/main-category-config";
 import { Draft, Post } from "@/types/collection";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
-import { categories, statuses } from "./data/data";
+import { statuses } from "./data/data";
 
 export const columns: ColumnDef<Draft>[] = [
   {
@@ -30,7 +32,7 @@ export const columns: ColumnDef<Draft>[] = [
       <DataTableColumnHeader column={column} title="Category" />
     ),
     cell: ({ row }) => {
-      const label = categories.find(
+      const label = categoryOptions.find(
         (category) => category.value === row.original.category_id,
       );
 

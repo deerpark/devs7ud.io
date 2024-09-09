@@ -19,4 +19,10 @@ const mainCategoryConfig: CategoryType[] = categories.map(category => ({
     icon: categoryIcons[category.slug],
   }));
 
+export const categoryOptions = mainCategoryConfig.map((category) => ({
+  ...category,
+  value: category.id,
+  label: category.title,
+}));
+
 export default mainCategoryConfig;

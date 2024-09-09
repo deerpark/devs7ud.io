@@ -73,8 +73,11 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
   url = window.location.href,
 }) => {
   const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
-    <Drawer shouldScaleBackground open={open} onClose={() => setOpen(false)}>
+    <Drawer shouldScaleBackground open={open} onClose={handleClose}>
       <DrawerTrigger asChild>
         <Button
           type="button"
@@ -82,7 +85,7 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
           size="icon"
           className="rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary"
           onClick={(e) => {
-            e.nativeEvent.stopImmediatePropagation();
+            e.stopPropagation();
             e.preventDefault();
             setOpen(true);
           }}
@@ -90,12 +93,20 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
           <Share className="h-5 w-5" strokeWidth={2.5} />
         </Button>
       </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
+      <DrawerContent
+        overlayOnClick={(e) => {
+          e.preventDefault();
+          handleClose();
+        }}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <DrawerHeader className="hidden">
           <DrawerTitle>{detailShareConfig.title}</DrawerTitle>
           <DrawerDescription>{detailShareConfig.description}</DrawerDescription>
         </DrawerHeader>
-        <div className="mx-auto my-6 grid grid-cols-3 justify-center gap-8">
+        <div className="mx-auto mb-6 mt-10 flex flex-wrap items-center justify-center gap-1 sm:gap-3 md:gap-5 lg:gap-8">
           <div className="mx-auto flex ">
             <a
               title={title}
@@ -178,6 +189,7 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
           <DrawerClose asChild>
             <Button
               variant="outline"
+              className="rounded-full font-bold"
               onClick={(e) => {
                 e.nativeEvent.stopImmediatePropagation();
                 e.preventDefault();
