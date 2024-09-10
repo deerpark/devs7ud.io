@@ -4,8 +4,15 @@ import { AddBookmark } from "@/actions/bookmark/add-bookmark";
 import { DeleteBookmark } from "@/actions/bookmark/delete-bookmark";
 import { LoginSection } from "@/components/login";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { detailBookMarkConfig } from "@/config/detail";
+import { sharedLoginConfig } from "@/config/shared";
 import {
   Bookmark,
   BookmarkMinus,
@@ -134,7 +141,10 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
               <Bookmark className="h-5 w-5" strokeWidth={2.5} />
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-[calc(100vw-40px)] gap-y-0 rounded-3xl p-0 font-sans sm:max-w-[320px]">
+          <DialogContent className="max-w-[calc(100vw-40px)] gap-y-0 rounded-b-3xl rounded-t-xl p-0 font-sans sm:max-w-xs">
+            <DialogHeader className="sr-only">
+              <DialogTitle>{sharedLoginConfig.title}</DialogTitle>
+            </DialogHeader>
             <LoginSection />
           </DialogContent>
         </Dialog>

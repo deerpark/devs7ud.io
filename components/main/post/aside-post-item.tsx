@@ -28,18 +28,23 @@ const AsidePostItem: React.FC<AsidePostItemProps> = async ({
     <li>
       <Link
         href={`/posts/${post.slug}`}
-        className="flex items-center gap-x-3 rounded-xl p-3 hover:bg-accent/50 active:bg-accent/70"
+        className="flex items-center gap-x-3 rounded-2xl p-3 hover:bg-accent/50 active:bg-accent/70"
       >
-        <article className="relative max-h-56 w-full overflow-hidden rounded-xl bg-accent shadow-2xl lg:aspect-[1.25/1] lg:max-h-none">
-          <CustomImage
-            src={image}
-            alt={post.title ?? ""}
-            height={256}
-            width={256}
-            priority
-            className="absolute inset-0 h-full w-full rounded-2xl object-cover"
-          />
-          <span className="absolute inset-x-0 bottom-0 z-10 flex items-center gap-x-3 p-3">
+        <article>
+          <div className="relative">
+            <CustomImage
+              src={image}
+              alt={post.title ?? ""}
+              height={256}
+              width={256}
+              priority
+              className="max-h-56 w-full rounded-2xl object-cover shadow-md shadow-muted lg:aspect-[1/0.5] lg:max-h-none"
+            />
+            <span className="absolute bottom-3 left-3 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary text-background ring ring-background">
+              <Icon size={16} strokeWidth={2.5} />
+            </span>
+          </div>
+          <span className="flex items-center gap-x-3 p-3">
             <span className="relative z-10 flex-1">
               <span className="flex items-center gap-x-3">
                 <span className="line-clamp-1 flex-1 text-sm font-semibold text-muted-foreground/90">
@@ -49,10 +54,6 @@ const AsidePostItem: React.FC<AsidePostItemProps> = async ({
               <span className="line-clamp-1 text-xs text-muted-foreground/70">
                 {post.description}
               </span>
-            </span>
-            <span className="absolute inset-0 z-0 bg-background p-3" />
-            <span className="relative z-10 flex h-9 w-9 flex-none items-center justify-center rounded-full bg-muted text-muted-foreground/80">
-              <Icon size={20} strokeWidth={1.5} />
             </span>
           </span>
         </article>

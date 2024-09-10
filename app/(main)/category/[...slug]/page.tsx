@@ -124,7 +124,7 @@ export default async function CategoryPage({
   }
 
   return (
-    <div className="flex flex-col">
+    <>
       <CategoryHeader title={category?.title} />
       {/* Posts */}
       <div className="divide-y divide-border/50 md:-mt-3">
@@ -157,6 +157,6 @@ export default async function CategoryPage({
           pageUrl="?page="
         />
       )}
-    </div>
+    </>
   );
 }

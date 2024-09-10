@@ -106,100 +106,73 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
           <DrawerTitle>{detailShareConfig.title}</DrawerTitle>
           <DrawerDescription>{detailShareConfig.description}</DrawerDescription>
         </DrawerHeader>
-        <div className="mx-auto mb-6 mt-10 flex flex-wrap items-center justify-center gap-5 lg:gap-8">
-          <div className="mx-auto flex ">
-            <a
-              title={title}
-              target="_blank"
-              href={`https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(
-                title,
-              )}`}
-              rel="noopener noreferrer"
-              className={buttonVariants({ variant: "ghost" })}
-              onClick={(e) => {
-                e.nativeEvent.stopImmediatePropagation();
-                e.preventDefault();
-                window.open(e.currentTarget.href, "_blank");
-                setOpen(false);
-              }}
-            >
-              <Twitter className="h-8 w-8" />
-            </a>
-          </div>
-          <div className="mx-auto flex ">
-            <a
-              title={title}
-              target="_blank"
-              href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
-              rel="noopener noreferrer"
-              className={buttonVariants({ variant: "ghost" })}
-              onClick={(e) => {
-                e.nativeEvent.stopImmediatePropagation();
-                e.preventDefault();
-                window.open(e.currentTarget.href, "_blank");
-                setOpen(false);
-              }}
-            >
-              <Facebook className="h-8 w-8" />
-            </a>
-          </div>
-          <div className="mx-auto flex ">
-            <a
-              title={title}
-              target="_blank"
-              href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
-              rel="noopener noreferrer"
-              className={buttonVariants({ variant: "ghost" })}
-              onClick={(e) => {
-                e.nativeEvent.stopImmediatePropagation();
-                e.preventDefault();
-                window.open(e.currentTarget.href, "_blank");
-                setOpen(false);
-              }}
-            >
-              <Linkedin className="h-8 w-8" />
-            </a>
-          </div>
-
-          <div className="mx-auto flex ">
-            <a
-              title={title}
-              target="_blank"
-              href={`mailto:?subject=${encodeURIComponent(
-                title,
-              )}&body=${encodeURIComponent(text + "\n\n")}${url}`}
-              rel="noopener noreferrer"
-              className={buttonVariants({ variant: "ghost" })}
-              onClick={(e) => {
-                e.nativeEvent.stopImmediatePropagation();
-                e.preventDefault();
-                window.open(e.currentTarget.href, "_blank");
-                setOpen(false);
-              }}
-            >
-              <Mail className="h-8 w-8" />
-            </a>
-          </div>
-
-          <div className="mx-auto flex ">
-            <CopyButton url={url} setOpen={setOpen} />
-          </div>
+        <div className="mx-auto mb-6 mt-10 flex flex-wrap items-center justify-center gap-5 px-5 md:gap-8 md:px-8">
+          <a
+            title={title}
+            target="_blank"
+            href={`https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(
+              title,
+            )}`}
+            rel="noopener noreferrer"
+            className={buttonVariants({ variant: "ghost" })}
+            onClick={(e) => {
+              e.nativeEvent.stopImmediatePropagation();
+              e.preventDefault();
+              window.open(e.currentTarget.href, "_blank");
+              setOpen(false);
+            }}
+          >
+            <Twitter className="h-8 w-8" />
+          </a>
+          <a
+            title={title}
+            target="_blank"
+            href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
+            rel="noopener noreferrer"
+            className={buttonVariants({ variant: "ghost" })}
+            onClick={(e) => {
+              e.nativeEvent.stopImmediatePropagation();
+              e.preventDefault();
+              window.open(e.currentTarget.href, "_blank");
+              setOpen(false);
+            }}
+          >
+            <Facebook className="h-8 w-8" />
+          </a>
+          <a
+            title={title}
+            target="_blank"
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
+            rel="noopener noreferrer"
+            className={buttonVariants({ variant: "ghost" })}
+            onClick={(e) => {
+              e.nativeEvent.stopImmediatePropagation();
+              e.preventDefault();
+              window.open(e.currentTarget.href, "_blank");
+              setOpen(false);
+            }}
+          >
+            <Linkedin className="h-8 w-8" />
+          </a>
+          <a
+            title={title}
+            target="_blank"
+            href={`mailto:?subject=${encodeURIComponent(
+              title,
+            )}&body=${encodeURIComponent(text + "\n\n")}${url}`}
+            rel="noopener noreferrer"
+            className={buttonVariants({ variant: "ghost" })}
+            onClick={(e) => {
+              e.nativeEvent.stopImmediatePropagation();
+              e.preventDefault();
+              window.open(e.currentTarget.href, "_blank");
+              setOpen(false);
+            }}
+          >
+            <Mail className="h-8 w-8" />
+          </a>
+          <CopyButton url={url} setOpen={setOpen} />
         </div>
-        <DrawerFooter>
-          <DrawerClose asChild>
-            <Button
-              variant="outline"
-              className="rounded-full font-bold"
-              onClick={(e) => {
-                e.nativeEvent.stopImmediatePropagation();
-                e.preventDefault();
-                setOpen(false);
-              }}
-            >
-              닫기
-            </Button>
-          </DrawerClose>
-        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );

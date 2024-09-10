@@ -14,7 +14,7 @@ const getData = React.cache(async () => {
 
   // Fetch posts
   const { data, error } = await supabase
-    .rpc("get_random_posts", { limit_count: 1 })
+    .rpc("get_random_posts", { limit_count: 2 })
     .returns<{ result: FocusPostWithCategory }[]>();
 
   if (error) {

@@ -3,8 +3,7 @@
 import { useReadingProgress } from "@/hooks/use-reading-progress";
 import { cn, getUrl } from "@/lib/utils";
 import { PostWithCategoryWithProfile } from "@/types/collection";
-import { useWindowScroll } from "@uidotdev/usehooks";
-import { useMedia } from "react-use";
+import { useMedia, useWindowScroll } from "react-use";
 import DetailPostFloatingBar from "./detail-post-floating-bar";
 
 interface DetailPostHeaderProps {
@@ -21,7 +20,7 @@ const DetailPostHeader: React.FC<DetailPostHeaderProps> = ({
   userId,
 }) => {
   const completion = useReadingProgress();
-  const [{ y }] = useWindowScroll();
+  const { y } = useWindowScroll();
   const thresholds = useMedia("(min-width: 768px)") ? 20 : 72;
   return (
     <>

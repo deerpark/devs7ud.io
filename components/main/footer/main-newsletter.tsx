@@ -87,7 +87,7 @@ const MainNewsletter = () => {
             <Button
               disabled={isLoading}
               type="submit"
-              className="flex w-full items-center justify-center"
+              className="flex w-full items-center justify-center font-bold"
             >
               {isLoading && (
                 <SpinnerIcon className="mr-2 h-6 w-6 animate-spin" />

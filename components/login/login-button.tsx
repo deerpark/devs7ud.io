@@ -29,7 +29,7 @@ const LoginButton = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{ButtonSignin}</DialogTrigger>
-      <DialogContent className="max-w-[calc(100vw-40px)] gap-y-0 rounded-3xl p-0 font-sans sm:max-w-[320px]">
+      <DialogContent className="max-w-[calc(100vw-40px)] gap-y-0 rounded-b-3xl rounded-t-xl p-0 font-sans sm:max-w-xs">
         <DialogHeader className="sr-only">
           <DialogTitle>{sharedLoginConfig.title}</DialogTitle>
         </DialogHeader>

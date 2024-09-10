@@ -1,4 +1,5 @@
 import { MainPostItem, MainPostItemLoading } from "@/components/main";
+import CategoryHeader from "@/components/main/category/category-header";
 import { createClient } from "@/lib/supabase/server";
 import { getUserId } from "@/lib/utils/user-id";
 import { PostWithCategoryWithProfile } from "@/types/collection";
@@ -33,12 +34,8 @@ export default async function HomePage() {
 
   return (
     <>
-      <div className="hidden items-center md:flex md:gap-y-2">
-        <h2 className="sticky top-0 z-40 border-b border-border/50 bg-background px-3 pb-4 text-xl font-black tracking-tight md:border-b-0 md:bg-transparent md:px-5 md:pb-0">
-          업데이트
-        </h2>
-      </div>
-      <div className="divide-y divide-border/50">
+      <CategoryHeader title="업데이트" className="hidden md:flex" />
+      <div className="divide-y divide-border/50 border-t border-border/50 md:border-t-0">
         {data?.map((post) => (
           <React.Suspense
             key={v4()}

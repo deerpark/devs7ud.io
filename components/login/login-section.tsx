@@ -31,9 +31,10 @@ const FormSchema = z.object({
 
 interface LoginSectionProps {
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  className?: string;
 }
 
-const LoginSection: React.FC<LoginSectionProps> = ({ setOpen }) => {
+const LoginSection: React.FC<LoginSectionProps> = ({ className }) => {
   const supabase = createClient();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -87,7 +88,7 @@ const LoginSection: React.FC<LoginSectionProps> = ({ setOpen }) => {
   }
 
   return (
-    <div className="flex flex-col space-y-4 bg-muted/50 p-4">
+    <div className={cn("flex flex-col space-y-4 bg-muted/50 p-4", className)}>
       <Button
         variant="outline"
         disabled={signInGoogleClicked}
