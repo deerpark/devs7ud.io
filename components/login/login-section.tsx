@@ -61,8 +61,8 @@ const LoginSection: React.FC<LoginSectionProps> = ({ className }) => {
     if (error) {
       toast.error(error.message);
     } else {
-      toast.success(`${data.provider}`);
-      toast.success(data.url);
+      // toast.success(`${data.provider}`);
+      //toast.success(data.url);
       // router.refresh();
     }
   }
@@ -81,8 +81,8 @@ const LoginSection: React.FC<LoginSectionProps> = ({ className }) => {
     if (error) {
       toast.error(error.message);
     } else {
-      toast.success(`${data.provider}`);
-      toast.success(data.url);
+      // toast.success(`${data.provider}`);
+      // toast.success(data.url);
       // router.refresh();
     }
   }

@@ -12,7 +12,10 @@ export function WysiwygContents({ content }: WysiwygContentsProps) {
       <div
         className="lg:prose-md prose dark:prose-invert"
         dangerouslySetInnerHTML={{
-          __html: generateHTML(JSON.parse(content), defaultExtensions) || "",
+          __html:
+            (typeof window !== "undefined" &&
+              generateHTML(JSON.parse(content), defaultExtensions)) ||
+            "",
         }}
       />
     </div>
