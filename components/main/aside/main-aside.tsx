@@ -27,7 +27,7 @@ export default async function MainAside() {
   const { data } = await getData();
   return (
     <div className="w-auto flex-none md:hidden lg:block lg:max-w-sm">
-      <div className="flex flex-col gap-y-3 py-9 pl-2 pr-6 md:w-72 lg:sticky lg:top-0 lg:z-50">
+      <div className="flex flex-col gap-y-3 py-9 pl-3 pr-3 md:w-72 lg:sticky lg:top-0 lg:z-50 lg:pr-6">
         <div className="flex items-center gap-x-2">
           <h2 className="px-3 text-xl font-black">포커스</h2>
         </div>

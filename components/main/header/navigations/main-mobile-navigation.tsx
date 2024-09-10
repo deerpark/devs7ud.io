@@ -18,7 +18,7 @@ const MainMobileNavigation = ({ userId }: { userId: string | null }) => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <nav className="flex max-w-full items-center justify-between bg-muted/50 px-3 py-4 md:hidden">
+    <nav className="flex max-w-full items-center justify-between bg-background px-3 py-4 md:hidden">
       {/* Mobile Menu Button */}
       <div className="flex flex-none justify-end">
         <Drawer open={open} onOpenChange={setOpen}>

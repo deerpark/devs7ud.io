@@ -86,7 +86,7 @@ const DetailPostCommentDeleteButton: FC<DetailPostCommentDeleteButtonProps> = ({
             </div>
           </div>
           <AlertDialog open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>
-            <AlertDialogContent className="text-md font-sans">
+            <AlertDialogContent className="text-md max-w-64 font-sans md:mx-auto md:max-w-full">
               <AlertDialogHeader>
                 <AlertDialogTitle>
                   {detailCommentConfig.questionDelete}
@@ -102,10 +102,10 @@ const DetailPostCommentDeleteButton: FC<DetailPostCommentDeleteButtonProps> = ({
                 <AlertDialogAction onClick={deleteComment}>
                   {isDeleteLoading ? (
                     <SpinnerIcon className="mr-2 h-4 w-4 animate-spin" />
-                  ) : (
-                    <TrashIcon className="mr-2 h-4 w-4" />
-                  )}
-                  <span>{detailCommentConfig.confirm}</span>
+                  ) : null}
+                  <span className="font-bold">
+                    {detailCommentConfig.confirm}
+                  </span>
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>

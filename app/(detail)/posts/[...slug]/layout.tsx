@@ -41,7 +41,7 @@ export default async function MainLayout({
   }
   return (
     <div
-      className="flex min-h-screen flex-col items-center bg-background data-[aria-hidden]:rounded-[30px]"
+      className="flex min-h-screen flex-col items-center bg-background data-[aria-hidden]:!rounded-[30px]"
       vaul-drawer-wrapper="true"
     >
       <div className="flex w-full max-w-5xl flex-1 flex-col justify-center md:flex-row">

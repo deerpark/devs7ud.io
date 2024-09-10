@@ -30,7 +30,7 @@ const AsidePostItem: React.FC<AsidePostItemProps> = async ({
         href={`/posts/${post.slug}`}
         className="flex items-center gap-x-3 rounded-xl p-3 hover:bg-accent/50 active:bg-accent/70"
       >
-        <article className="relative aspect-[1.25/1] w-full overflow-hidden rounded-xl bg-accent shadow-2xl">
+        <article className="relative max-h-56 w-full overflow-hidden rounded-xl bg-accent shadow-2xl lg:aspect-[1.25/1] lg:max-h-none">
           <CustomImage
             src={image}
             alt={post.title ?? ""}

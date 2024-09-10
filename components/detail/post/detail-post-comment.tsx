@@ -35,19 +35,21 @@ const DetailPostComment: React.FC<DetailPostCommentProps> = ({
       ) : (
         <DetailPostSignInToComment />
       )}
-      <div className="flex flex-col gap-y-3">
-        {comments?.map((comment) => (
-          <DetailPostCommentItem
-            key={comment.id.toString()}
-            id={comment.id.toString()}
-            name={comment.profiles.full_name as string}
-            image={comment.profiles.avatar_url as string}
-            comment={comment.comment as string}
-            date={comment.created_at as string}
-            userId={comment.user_id as string}
-          />
-        ))}
-      </div>
+      {comments?.length ? (
+        <div className="flex flex-col gap-y-3">
+          {comments?.map((comment) => (
+            <DetailPostCommentItem
+              key={comment.id.toString()}
+              id={comment.id.toString()}
+              name={comment.profiles.full_name as string}
+              image={comment.profiles.avatar_url as string}
+              comment={comment.comment as string}
+              date={comment.created_at as string}
+              userId={comment.user_id as string}
+            />
+          ))}
+        </div>
+      ) : null}
     </DetailPostCommentWrapper>
   );
 };

@@ -4,6 +4,7 @@ import { useReadingProgress } from "@/hooks/use-reading-progress";
 import { cn, getUrl } from "@/lib/utils";
 import { PostWithCategoryWithProfile } from "@/types/collection";
 import { useWindowScroll } from "@uidotdev/usehooks";
+import { useMedia } from "react-use";
 import DetailPostFloatingBar from "./detail-post-floating-bar";
 
 interface DetailPostHeaderProps {
@@ -21,14 +22,14 @@ const DetailPostHeader: React.FC<DetailPostHeaderProps> = ({
 }) => {
   const completion = useReadingProgress();
   const [{ y }] = useWindowScroll();
+  const thresholds = useMedia("(min-width: 768px)") ? 20 : 72;
   return (
     <>
       <header
+        data-inview={y && y > thresholds ? "true" : "false"}
         className={cn(
-          "sticky top-5 z-40 flex h-14 items-center px-3 backdrop-blur-lg transition-all md:px-6",
-          y && y > 20
-            ? "mx-5 rounded-full bg-background shadow-2xl md:mx-0"
-            : "md:bg-transparent",
+          "sticky top-0 z-40 flex h-14 items-center bg-background px-3 transition-all md:top-5 md:px-6",
+          "data-[inview=true]:shadow-2xl data-[inview=true]:md:rounded-full",
         )}
       >
         <nav
@@ -37,8 +38,7 @@ const DetailPostHeader: React.FC<DetailPostHeaderProps> = ({
         >
           <h1
             className={cn(
-              "line-clamp-1 flex-1 font-black tracking-tight",
-              y && y > 20 ? "text-base md:text-xl" : "text-xl",
+              "line-clamp-1 flex-1 text-xl font-black tracking-tight",
             )}
           >
             {post.categories.title}
@@ -58,7 +58,6 @@ const DetailPostHeader: React.FC<DetailPostHeaderProps> = ({
           />
         </nav>
       </header>
-      <span className="absolute h-14 w-full bg-muted/50 md:hidden" />
       <span
         style={{ transform: `translateX(${completion - 100}%)` }}
         className="fixed left-0 top-0 z-50 h-0.5 w-full bg-secondary/50"

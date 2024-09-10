@@ -11,7 +11,7 @@ export default function MainLinkHomeIcon() {
   return (
     <span
       className={cn(
-        "ml-1.5 block rounded-full group-active:translate-y-px md:ml-0",
+        "relative ml-1.5 block rounded-full group-active:translate-y-px md:ml-0",
         slug && slug !== "/"
           ? ""
           : "bg-primary ring-4 ring-primary group-hover:bg-secondary group-hover:ring-secondary",
