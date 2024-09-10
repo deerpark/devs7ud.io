@@ -1,4 +1,5 @@
 import { MainPostItem } from "@/components/main";
+import CategoryHeader from "@/components/main/category/category-header";
 import { SharedEmpty, SharedPagination } from "@/components/shared";
 import { mainCategoryConfig } from "@/config/main";
 import { seoData } from "@/config/root/seo";
@@ -123,12 +124,10 @@ export default async function CategoryPage({
   }
 
   return (
-    <div className="flex flex-col md:gap-y-2">
-      <div className="sticky top-0 z-40 flex items-center gap-x-2 bg-background pb-4 pt-4 md:bg-transparent md:pb-0 md:pt-0">
-        <h2 className="px-6 text-xl font-black md:px-5">{category?.title}</h2>
-      </div>
+    <div className="flex flex-col">
+      <CategoryHeader title={category?.title} />
       {/* Posts */}
-      <div className="divide-y divide-border/50 border-t border-border/50 md:border-t-0">
+      <div className="divide-y divide-border/50 md:-mt-3">
         {data?.length === 0 ? (
           <SharedEmpty />
         ) : (

@@ -10,7 +10,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
     >
       <div className="flex w-full max-w-5xl flex-1 flex-col justify-center md:flex-row">
         <MainHeader slug="/" />
-        <div className="flex flex-1 flex-col gap-y-5 px-0 pb-3 md:gap-y-2 md:px-8 md:py-9">
+        <div className="flex flex-1 flex-col gap-y-5 px-0 pb-3 md:gap-y-2 md:px-8 md:pb-9 md:pt-0">
           {children}
         </div>
         <MainAside />

@@ -34,11 +34,11 @@ export default async function HomePage() {
   return (
     <>
       <div className="hidden items-center md:flex md:gap-y-2">
-        <h2 className="sticky top-0 z-40 bg-background px-3 pb-4 text-xl font-black tracking-tight md:bg-transparent md:px-5 md:pb-0">
+        <h2 className="sticky top-0 z-40 border-b border-border/50 bg-background px-3 pb-4 text-xl font-black tracking-tight md:border-b-0 md:bg-transparent md:px-5 md:pb-0">
           업데이트
         </h2>
       </div>
-      <div className="divide-y divide-border/50 border-t border-border/50 md:border-t-0">
+      <div className="divide-y divide-border/50">
         {data?.map((post) => (
           <React.Suspense
             key={v4()}
