@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import moment from "moment";
+import { formatDistanceToNow } from "date-fns";
+import { ko } from "date-fns/locale";
 import * as React from "react";
 import DetailPostCommentDeleteButton from "./detail-post-comment-delete-button";
 
@@ -22,15 +23,15 @@ const DetailPostCommentItem: React.FC<DetailPostCommentItemProps> = ({
   userId,
 }) => {
   return (
-    <div className="my-6 flex flex-col rounded-md bg-white p-4 text-sm text-gray-500 shadow-sm ring-1 ring-black/5">
-      <div className="flex space-x-3">
+    <div className="flex flex-col rounded-md border bg-background text-sm shadow-xl shadow-muted">
+      <div className="flex items-center space-x-3 bg-muted/30 p-3">
         <div className="flex-shrink-0">
-          <Avatar>
+          <Avatar className="overflow-hidden ring-1 ring-border/50">
             <AvatarImage src={image} alt="Avatar" />
             <AvatarFallback>
-              <span className="inline-block h-full w-full overflow-hidden rounded-full bg-gray-100">
+              <span className="inline-block h-full w-full overflow-hidden rounded-full bg-muted">
                 <svg
-                  className="h-full w-full text-gray-300"
+                  className="h-full w-full text-muted-foreground"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -41,14 +42,19 @@ const DetailPostCommentItem: React.FC<DetailPostCommentItemProps> = ({
           </Avatar>
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold text-gray-900">{name}</p>
-          <p className="text-sm text-gray-500">{moment(date).fromNow()}</p>
+          <p className="text-sm font-bold">{name}</p>
+          <p className="text-sm text-muted-foreground">
+            {formatDistanceToNow(new Date(date), {
+              addSuffix: true,
+              locale: ko,
+            })}
+          </p>
         </div>
         <DetailPostCommentDeleteButton id={id} userId={userId} />
       </div>
-      <Separator className="mb-4 mt-2" />
+      <Separator className="m-0 opacity-50" />
       <div
-        className="prose prose-sm max-w-none text-gray-500"
+        className="prose prose-sm max-w-none px-5 py-3 dark:prose-invert"
         dangerouslySetInnerHTML={{ __html: comment }}
       />
     </div>

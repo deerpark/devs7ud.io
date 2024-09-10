@@ -35,7 +35,7 @@ const DetailPostComment: React.FC<DetailPostCommentProps> = ({
       ) : (
         <DetailPostSignInToComment />
       )}
-      <div className="py-5">
+      <div className="flex flex-col gap-y-3">
         {comments?.map((comment) => (
           <DetailPostCommentItem
             key={comment.id.toString()}

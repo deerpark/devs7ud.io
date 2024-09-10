@@ -11,6 +11,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 import { detailCommentConfig } from "@/config/detail";
 import { useAuth } from "@/hooks/use-auth";
 import { createClient } from "@/lib/supabase/client";
@@ -70,14 +71,18 @@ const DetailPostCommentDeleteButton: FC<DetailPostCommentDeleteButtonProps> = ({
         <>
           <div className="flex flex-shrink-0 self-center">
             <div className="relative inline-block text-left">
-              <div className="-m-2 flex items-center rounded-full p-2 text-gray-400 hover:text-gray-600">
-                <span className="sr-only">Delete comment</span>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="flex items-center rounded-full p-2"
+              >
+                <span className="sr-only">댓글 삭제</span>
                 <TrashIcon
                   onClick={() => setShowDeleteAlert(true)}
                   className="h-4 w-4"
                   aria-hidden="true"
                 />
-              </div>
+              </Button>
             </div>
           </div>
           <AlertDialog open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>

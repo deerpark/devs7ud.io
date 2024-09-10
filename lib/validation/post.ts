@@ -27,30 +27,30 @@ export const postEditFormSchema = z.object({
   title: z
     .string()
     .min(2, {
-      message: "Title must be at least 2 characters.",
+      message: "제목은 2자 이상이어야 합니다.",
     })
     .max(120, {
-      message: "Title must not be longer than 120 characters.",
+      message: "제목은 120자를 넘지 않아야 합니다.",
     }),
   slug: z
     .string()
     .min(2, {
-      message: "Slug must be at least 2 characters.",
+      message: "슬러그는 2자 이상이어야 합니다.",
     })
     .max(100, {
-      message: "Slug must not be longer than 100 characters.",
+      message: "슬러그는 100자를 넘지 않아야 합니다.",
     }),
   categoryId: z.string({
-    required_error: "Please select a category.",
+    required_error: "카테고리를 선택하세요.",
   }),
   image: z.string().optional(),
   description: z
     .string()
     .min(2, {
-      message: "Description must be at least 2 characters.",
+      message: "설명은 2자 이상이어야 합니다.",
     })
     .max(300, {
-      message: "Description must not be longer than 300 characters.",
+      message: "설명은 300자를 넘지 않아야 합니다.",
     }),
   content: z.any().optional(),
   published: z.boolean(),

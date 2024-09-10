@@ -15,13 +15,12 @@ const getData = React.cache(async () => {
   // Fetch posts
   const { data, error } = await supabase
     .rpc("get_random_posts", { limit_count: 1 })
-    .returns<FocusPostWithCategory[]>();
+    .returns<{ result: FocusPostWithCategory }[]>();
 
   if (error) {
     throw error;
   }
-
-  return { data };
+  return { data: data.map((d) => d.result) };
 });
 
 export default async function MainAside() {

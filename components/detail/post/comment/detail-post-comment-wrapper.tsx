@@ -10,9 +10,9 @@ const DetailPostCommentWrapper: FC<DetailPostCommentWrapperProps> = ({
   return (
     <div
       id="comments"
-      className="mx-auto my-5 max-w-5xl rounded-2xl bg-muted/50 px-7 py-5"
+      className="mx-auto my-5 flex max-w-5xl flex-col gap-y-3 rounded-2xl bg-muted/50 p-3"
     >
-      <div>{children}</div>
+      {children}
     </div>
   );
 };

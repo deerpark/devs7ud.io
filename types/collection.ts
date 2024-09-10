@@ -26,13 +26,23 @@ export interface PostWithCategoryWithProfile
   profiles: Profile;
 }
 
+export interface FocusPost {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  image: string;
+}
+
+export interface FocusCategory {
+  id: string | null;
+  title: string | null;
+  slug: string;
+}
+
 export interface FocusPostWithCategory {
-  post_id: string;
-  post_title: string;
-  post_description: string;
-  post_image: string;
-  category_id: string | null;
-  category_title: string | null;
+  post: FocusPost;
+  category: FocusCategory;
 }
 
 export interface CategoryWithPost extends Omit<Category, "posts"> {

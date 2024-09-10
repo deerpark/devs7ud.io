@@ -8,9 +8,9 @@ interface WysiwygContentsProps {
 }
 export function WysiwygContents({ content }: WysiwygContentsProps) {
   return content ? (
-    <div className="relative mx-auto max-w-3xl border-slate-500/50 py-5">
+    <div className="relative mx-auto max-w-3xl py-5">
       <div
-        className="lg:prose-md prose"
+        className="lg:prose-md prose dark:prose-invert"
         dangerouslySetInnerHTML={{
           __html: generateHTML(JSON.parse(content), defaultExtensions) || "",
         }}

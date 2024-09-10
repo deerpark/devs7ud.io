@@ -106,7 +106,7 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
           <DrawerTitle>{detailShareConfig.title}</DrawerTitle>
           <DrawerDescription>{detailShareConfig.description}</DrawerDescription>
         </DrawerHeader>
-        <div className="mx-auto mb-6 mt-10 flex flex-wrap items-center justify-center gap-1 sm:gap-3 md:gap-5 lg:gap-8">
+        <div className="mx-auto mb-6 mt-10 flex flex-wrap items-center justify-center gap-5 lg:gap-8">
           <div className="mx-auto flex ">
             <a
               title={title}

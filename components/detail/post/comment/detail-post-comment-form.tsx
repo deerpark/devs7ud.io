@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { detailCommentConfig } from "@/config/detail";
 import { commentFormSchema } from "@/lib/validation/comment";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SendIcon, Shell, Loader2 as SpinnerIcon } from "lucide-react";
+import { SendIcon, Shell } from "lucide-react";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { useForm } from "react-hook-form";
@@ -69,34 +69,36 @@ const DetailPostCommentForm: React.FC<DetailPostCommentFormProps> = ({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         <FormField
           control={form.control}
           name="comment"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{detailCommentConfig.title}</FormLabel>
-              <FormControl>
-                <Textarea {...field} className="bg-background" />
-              </FormControl>
+              <div className="flex items-stretch">
+                <FormControl>
+                  <Textarea
+                    {...field}
+                    className="peer flex-1 rounded-r-none bg-background focus-visible:rounded-r-sm"
+                    placeholder={detailCommentConfig.placeholder}
+                  />
+                </FormControl>
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="flex h-auto flex-none items-center justify-center gap-x-2 rounded-l-none peer-focus-visible:ring-2 peer-focus-visible:ring-ring"
+                >
+                  {isLoading ? (
+                    <Shell className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <SendIcon className="h-4 w-4" strokeWidth={2.5} />
+                  )}
+                </Button>
+              </div>
               <FormMessage />
             </FormItem>
           )}
         />
-
-        <Button
-          type="submit"
-          variant="outline"
-          disabled={isLoading}
-          className="flex items-center justify-center gap-x-2"
-        >
-          {isLoading ? (
-            <Shell className="h-4 w-4 animate-spin" />
-          ) : (
-            <SendIcon className="mr-2 h-4 w-4" />
-          )}
-          <span>{detailCommentConfig.submit}</span>
-        </Button>
       </form>
     </Form>
   );
