@@ -18,9 +18,9 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { protectedEditorConfig } from "@/config/protected";
 import { shimmer, toBase64 } from "@/lib/utils";
 import { Loader2 as SpinnerIcon, TrashIcon, ZoomIn } from "lucide-react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
+import { PhotoView } from "react-photo-view";
 import { toast } from "sonner";
 
 interface EditorUploadGalleryImageItemProps {
@@ -75,29 +75,12 @@ const EditorUploadGalleryImageItem: FC<EditorUploadGalleryImageItemProps> = ({
         <div className="grow items-center justify-start text-sm">
           {imageUrl.split("/").at(-1)}
         </div>
-        <div className="flex-none">
-          <Dialog>
-            <DialogTrigger className="mr-2" asChild>
-              <Button variant="outline" size="icon">
-                <ZoomIn className="h-4 w-4 text-gray-500" />
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-3xl">
-              <div className="mx-auto items-center">
-                <CustomImage
-                  src={imageUrl}
-                  alt="Fullscreen gallery image"
-                  className="h-[500px] w-[700px] rounded-md bg-cover shadow-sm ring-1 ring-gray-400"
-                  height={500}
-                  width={700}
-                  priority
-                  placeholder={`data:image/svg+xml;base64,${toBase64(
-                    shimmer(500, 700),
-                  )}`}
-                />
-              </div>
-            </DialogContent>
-          </Dialog>
+        <div className="flex flex-none items-center gap-x-1">
+          <PhotoView src={imageUrl}>
+            <Button type="button" variant="outline" size="icon">
+              <ZoomIn className="h-4 w-4 text-gray-500" />
+            </Button>
+          </PhotoView>
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button variant="outline" size="icon">

@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { seoData } from "@/config/root/seo";
 import { cn, getUrl } from "@/lib/utils";
 import "@/styles/tailwind.css";
+import "react-photo-view/dist/react-photo-view.css";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";

@@ -1,6 +1,7 @@
 import { CustomImage } from "@/components/shared/shared-image";
 import { createClient } from "@/lib/supabase/server";
 import { getPublicImageUrl } from "@/lib/utils/image-url";
+import { getUserId } from "@/lib/utils/user-id";
 import { FocusPostWithCategory } from "@/types/collection";
 import { Eraser, Shell } from "lucide-react";
 import { cookies } from "next/headers";
@@ -25,6 +26,7 @@ const getData = React.cache(async () => {
 
 export default async function MainAside() {
   const { data } = await getData();
+  const userId = await getUserId();
   return (
     <div className="w-auto flex-none md:hidden lg:block lg:max-w-sm">
       <div className="flex flex-col gap-y-3 py-9 pl-3 pr-3 md:w-72 lg:sticky lg:top-0 lg:z-50 lg:pr-6">
@@ -45,7 +47,7 @@ export default async function MainAside() {
                   </li>
                 }
               >
-                <AsidePostItem post={post} />
+                <AsidePostItem post={post} userId={userId} />
               </React.Suspense>
             ))
           ) : (

@@ -1,5 +1,7 @@
 import { CustomImage } from "@/components/shared/shared-image";
 import { categoryIcons } from "@/config/main/main-category-config";
+import { getGalleryImageFileNames } from "@/lib/utils/gallery-image-filenames";
+import { getGalleryImageUrls } from "@/lib/utils/gallery-image-url";
 import { getPublicImageUrl } from "@/lib/utils/image-url";
 import { FocusPostWithCategory } from "@/types/collection";
 import { LucideProps } from "lucide-react";
@@ -10,10 +12,15 @@ export const dynamic = "force-dynamic";
 
 interface AsidePostItemProps {
   post: FocusPostWithCategory;
+  userId: string | null;
 }
+
+const bucketNameGalleryImage =
+  process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET_GALLERY_IMAGE!;
 
 const AsidePostItem: React.FC<AsidePostItemProps> = async ({
   post: { post, category },
+  userId,
 }) => {
   // Get bookmark status
   const image = post.image
@@ -23,6 +30,19 @@ const AsidePostItem: React.FC<AsidePostItemProps> = async ({
   const Icon = categoryIcons[category.slug] as React.ForwardRefExoticComponent<
     Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
   >;
+
+  // Gallery images setup
+  const galleryImageFileNames = await getGalleryImageFileNames(
+    bucketNameGalleryImage,
+    userId,
+    post.id,
+  );
+  const galleryImagePublicUrls = await getGalleryImageUrls(
+    bucketNameGalleryImage,
+    userId || "",
+    post.id,
+    galleryImageFileNames || [],
+  );
 
   return (
     <li>

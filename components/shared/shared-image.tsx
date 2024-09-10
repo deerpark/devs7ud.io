@@ -5,8 +5,15 @@ import { cn } from "@/lib/utils";
 import { ImageOff, Shell } from "lucide-react";
 import Image, { ImageProps } from "next/image";
 import * as React from "react";
+import { PhotoView } from "react-photo-view";
 
-export function CustomImage(props: ImageProps) {
+export const CustomImage = React.forwardRef<
+  HTMLImageElement,
+  ImageProps & { viewer?: boolean }
+>(function CustomImage(
+  props: ImageProps & { viewer?: boolean },
+  ref: React.Ref<HTMLImageElement>,
+) {
   const [isLoading, setLoading] = React.useState(true);
   const [isError, setError] = React.useState(false);
   const originSize = Math.min(
@@ -50,18 +57,41 @@ export function CustomImage(props: ImageProps) {
           ) : null}
         </p>
       ) : null}
-      <Image
-        {...props}
-        className={cn(
-          "transition-all",
-          props.className,
-          isLoading || isError
-            ? "absolute inset-0 opacity-0 blur-sm"
-            : "relative inset-auto opacity-100 blur-0",
-        )}
-        onError={handleErrorImage}
-        onLoad={handleLoadImage}
-      />
+      {typeof props.src === "string" && props.viewer ? (
+        <PhotoView src={props.src}>
+          <Image
+            ref={ref}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            {...props}
+            className={cn(
+              "transition-all",
+              props.className,
+              isLoading || isError
+                ? "absolute inset-0 opacity-0 blur-sm"
+                : "relative inset-auto opacity-100 blur-0",
+            )}
+            onError={handleErrorImage}
+            onLoad={handleLoadImage}
+          />
+        </PhotoView>
+      ) : (
+        <Image
+          ref={ref}
+          {...props}
+          className={cn(
+            "transition-all",
+            props.className,
+            isLoading || isError
+              ? "absolute inset-0 opacity-0 blur-sm"
+              : "relative inset-auto opacity-100 blur-0",
+          )}
+          onError={handleErrorImage}
+          onLoad={handleLoadImage}
+        />
+      )}
     </>
   );
-}
+});

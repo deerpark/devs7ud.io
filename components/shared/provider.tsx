@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import type { ThemeProviderProps } from "next-themes/dist/types";
 import * as React from "react";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 import { TooltipProvider } from "../ui/tooltip";
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
@@ -21,7 +22,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return (
     <NextThemesProvider {...props}>
       <TooltipProvider>
-        {children}
+        <PhotoProvider>{children}</PhotoProvider>
         <Toaster />
       </TooltipProvider>
     </NextThemesProvider>
