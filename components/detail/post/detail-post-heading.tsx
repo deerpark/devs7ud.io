@@ -68,8 +68,9 @@ const DetailPostHeading: FC<DetailPostHeadingProps> = async ({ post }) => {
             placeholder={`data:image/svg+xml;base64,${toBase64(
               shimmer(512, 288),
             )}`}
+            viewer
           />
-          <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+          <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-foreground/10" />
         </div>
       ) : null}
     </section>

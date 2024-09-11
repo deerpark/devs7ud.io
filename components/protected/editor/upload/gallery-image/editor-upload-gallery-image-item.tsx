@@ -14,7 +14,6 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { protectedEditorConfig } from "@/config/protected";
 import { shimmer, toBase64 } from "@/lib/utils";
 import { Loader2 as SpinnerIcon, TrashIcon, ZoomIn } from "lucide-react";

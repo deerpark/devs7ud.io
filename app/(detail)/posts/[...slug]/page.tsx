@@ -1,6 +1,7 @@
 import { DetailPostComment, DetailPostHeading } from "@/components/detail/post";
 import { DetailPostScrollUpButton } from "@/components/detail/post/buttons";
 import { WysiwygContents } from "@/components/protected/editor/contents";
+import { PhotoProvider } from "@/components/shared/photo-provider";
 import { seoData } from "@/config/root/seo";
 import { getOgImageUrl, getUrl } from "@/lib/utils";
 import { getComments } from "@/lib/utils/comments";
@@ -90,14 +91,16 @@ export default async function PostPage({ params }: PostPageProps) {
   return (
     <>
       <div className="border-t px-5 pt-5 md:border-t-0 md:px-6 md:pt-1">
-        <div className="rounded-lg bg-background">
-          <div className="relative mx-auto max-w-5xl py-2">
-            {/* Heading */}
-            <DetailPostHeading post={post} />
+        <PhotoProvider>
+          <div className="rounded-lg bg-background">
+            <div className="relative mx-auto max-w-5xl py-2">
+              {/* Heading */}
+              <DetailPostHeading post={post} />
+            </div>
+            {/* Content */}
+            <WysiwygContents content={post.content} />
           </div>
-          {/* Content */}
-          <WysiwygContents content={post.content} />
-        </div>
+        </PhotoProvider>
         <DetailPostComment
           postId={post.id as string}
           comments={comments as CommentWithProfile[]}
