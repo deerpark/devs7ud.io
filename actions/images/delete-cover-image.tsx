@@ -18,9 +18,13 @@ export async function DeleteCoverImage(
       process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET_COVER_IMAGE ||
       "cover-image";
 
-    const { data, error } = await supabase.storage
+    const response = await supabase.storage
       .from(bucketName)
       .remove([`${userId}/${postId}/${fileName}`]);
+
+    const { data, error } = response;
+
+    console.log(response);
 
     if (error) {
       handleServerError(error.message);

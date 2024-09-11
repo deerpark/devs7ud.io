@@ -97,3 +97,19 @@
     animation: loading 8s ease-in-out infinite;
   }
 }
+
+.PhotoView__Photo {
+  border-radius: 30px !important;
+}
+
+.PhotoView-Slider__Counter {
+  border-radius: 30px;
+  margin-left: 10px;
+  padding: 3px 8px 2px 8px !important;
+  line-height: 1;
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-weight: 700;
+  display: block;
+}

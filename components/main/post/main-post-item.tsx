@@ -1,4 +1,5 @@
 import { DetailPostFloatingBar } from "@/components/detail/post";
+import { PhotoProvider } from "@/components/shared/photo-provider";
 import { CustomImage } from "@/components/shared/shared-image";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -17,40 +18,69 @@ import readingTime from "reading-time";
 
 export const dynamic = "force-dynamic";
 
-const getGridTemplateStyle = (imageCount) => {
-  const threeColLayout = "33% 34% 33%";
-  const twoColLayout = "50% 50%";
-
-  let style = {
-    gridTemplateRows: "",
-    gridTemplateColumns: "",
-  };
-
-  if (imageCount === 1) {
-    style.gridTemplateColumns = "100%";
-    style.gridTemplateRows = "128px";
-  } else if (imageCount === 2) {
-    style.gridTemplateColumns = twoColLayout;
-    style.gridTemplateRows = "128px";
-  } else if (imageCount === 3) {
-    style.gridTemplateColumns = threeColLayout;
-    style.gridTemplateRows = "128px";
-  } else if (imageCount >= 4 && imageCount <= 6) {
-    style.gridTemplateColumns = threeColLayout;
-    style.gridTemplateRows = imageCount === 4 ? "128px 128px" : "128px 128px";
-  } else if (imageCount === 7) {
-    style.gridTemplateColumns = threeColLayout;
-    style.gridTemplateRows = "128px 128px 128px";
-  } else if (imageCount === 8) {
-    style.gridTemplateColumns = threeColLayout;
-    style.gridTemplateRows = "128px 128px 128px";
-  } else if (imageCount === 9) {
-    style.gridTemplateColumns = threeColLayout;
-    style.gridTemplateRows = "128px 128px 128px";
-  }
-
-  return style;
-};
+const cellClassName = [
+  ["row-start-1 row-end-1 col-start-1 col-end-1 h-64"],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-2 h-64",
+    "row-start-1 row-end-1 col-start-3 col-end-4 h-64",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-64",
+    "row-start-1 row-end-1 col-span-2 h-64",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-64",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-span-2 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-2 row-end-2 col-span-3 h-28",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-span-2 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-2 row-end-2 col-span-2 h-28",
+    "row-start-2 row-end-2 col-span-2 h-28",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-span-2 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-2 row-end-2 col-start-1 col-end-1 h-28",
+    "row-start-2 row-end-2 col-span-2 h-28",
+    "row-start-2 row-end-2 col-start-4 col-end-4 h-28",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-span-2 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-2 row-end-2 col-start-1 col-end-1 h-28",
+    "row-start-2 row-end-2 col-span-2 h-28",
+    "row-start-2 row-end-2 col-start-4 col-end-4 h-28",
+    "row-start-3 row-end-3 col-span-3 h-28",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-span-2 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-2 row-end-2 col-start-1 col-end-1 h-28",
+    "row-start-2 row-end-2 col-span-2 h-28",
+    "row-start-2 row-end-2 col-start-4 col-end-4 h-28",
+    "row-start-3 row-end-3 col-span-2 h-28",
+    "row-start-3 row-end-3 col-span-2 h-28",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-span-2 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-2 row-end-2 col-start-1 col-end-1 h-28",
+    "row-start-2 row-end-2 col-span-2 h-28",
+    "row-start-2 row-end-2 col-start-4 col-end-4 h-28",
+    "row-start-3 row-end-3 col-start-1 col-end-1 h-28",
+    "row-start-3 row-end-3 col-span-2 h-28",
+    "row-start-3 row-end-3 col-start-4 col-end-4 h-28",
+  ],
+];
 
 async function getComments(postId: string) {
   const cookieStore = cookies();
@@ -138,40 +168,44 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post, userId }) => {
             </div>
           </div>
           {galleryImagePublicUrls?.length ? (
-            <div
-              className={cn(
-                "relative grid flex-none gap-px overflow-hidden rounded-xl bg-foreground/30 ring-1 ring-border group-hover:ring-foreground/20",
-              )}
-              style={getGridTemplateStyle(galleryImagePublicUrls.length)}
-            >
-              {galleryImagePublicUrls.map((url, index) => (
-                <CustomImage
-                  className="h-full w-full bg-background object-cover"
-                  key={url}
-                  src={url}
-                  alt=""
-                  width={512}
-                  height={512}
-                  viewer
-                  priority
-                />
-              ))}
-            </div>
+            <PhotoProvider>
+              <div
+                className={cn(
+                  "relative grid flex-none grid-cols-[1fr_0.5fr_0.5fr_1fr] gap-1 overflow-hidden rounded-xl bg-background ring-1 ring-border group-hover:ring-foreground/20",
+                )}
+              >
+                {galleryImagePublicUrls.map((url, index) => (
+                  <CustomImage
+                    className={cn(
+                      "h-fulll static w-full bg-background object-cover shadow shadow-border",
+                      cellClassName[galleryImagePublicUrls.length - 1][index],
+                    )}
+                    key={url}
+                    src={url}
+                    alt=""
+                    width={512}
+                    height={512}
+                    viewer
+                    priority
+                  />
+                ))}
+              </div>
+            </PhotoProvider>
           ) : image ? (
             <div
               className={cn(
-                "relative grid flex-none gap-px overflow-hidden rounded-xl bg-foreground/30 ring-1 ring-border group-hover:ring-foreground/20",
+                "relative grid flex-none grid-cols-1 gap-1 overflow-hidden rounded-xl bg-background ring-1 ring-border group-hover:ring-foreground/20",
               )}
-              style={getGridTemplateStyle(1)}
             >
               <CustomImage
-                className="h-full w-full bg-background object-cover"
+                className="h-fulll static col-start-1 col-end-1 row-start-1 row-end-1 w-full bg-background object-cover shadow shadow-border"
                 src={image}
                 alt={post.title ?? "Cover"}
                 width={512}
                 height={512}
                 priority
                 viewer
+                single
               />
             </div>
           ) : null}

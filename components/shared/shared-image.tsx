@@ -5,13 +5,17 @@ import { cn } from "@/lib/utils";
 import { ImageOff, Shell } from "lucide-react";
 import Image, { ImageProps } from "next/image";
 import * as React from "react";
-import { PhotoView } from "react-photo-view";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 
 export const CustomImage = React.forwardRef<
   HTMLImageElement,
-  ImageProps & { viewer?: boolean }
+  ImageProps & { viewer?: boolean; single?: boolean }
 >(function CustomImage(
-  props: ImageProps & { viewer?: boolean },
+  {
+    viewer,
+    single,
+    ...props
+  }: ImageProps & { viewer?: boolean; single?: boolean },
   ref: React.Ref<HTMLImageElement>,
 ) {
   const [isLoading, setLoading] = React.useState(true);
@@ -29,6 +33,26 @@ export const CustomImage = React.forwardRef<
     setError(true);
     setLoading(false);
   }, []);
+
+  const image = (
+    <Image
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
+      {...props}
+      className={cn(
+        "transition-all",
+        props.className,
+        isLoading || isError
+          ? "absolute inset-0 opacity-0 blur-sm"
+          : "inset-auto opacity-100 blur-0",
+      )}
+      onError={handleErrorImage}
+      onLoad={handleLoadImage}
+    />
+  );
 
   return (
     <>
@@ -57,40 +81,14 @@ export const CustomImage = React.forwardRef<
           ) : null}
         </p>
       ) : null}
-      {typeof props.src === "string" && props.viewer ? (
-        <PhotoView src={props.src}>
-          <Image
-            ref={ref}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-            {...props}
-            className={cn(
-              "transition-all",
-              props.className,
-              isLoading || isError
-                ? "absolute inset-0 opacity-0 blur-sm"
-                : "relative inset-auto opacity-100 blur-0",
-            )}
-            onError={handleErrorImage}
-            onLoad={handleLoadImage}
-          />
-        </PhotoView>
+      {typeof props.src === "string" && viewer && single ? (
+        <PhotoProvider>
+          <PhotoView src={props.src}>{image}</PhotoView>
+        </PhotoProvider>
+      ) : typeof props.src === "string" && viewer ? (
+        <PhotoView src={props.src}>{image}</PhotoView>
       ) : (
-        <Image
-          ref={ref}
-          {...props}
-          className={cn(
-            "transition-all",
-            props.className,
-            isLoading || isError
-              ? "absolute inset-0 opacity-0 blur-sm"
-              : "relative inset-auto opacity-100 blur-0",
-          )}
-          onError={handleErrorImage}
-          onLoad={handleLoadImage}
-        />
+        image
       )}
     </>
   );
