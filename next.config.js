@@ -49,6 +49,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "devs7ud.io",
       },
+      {
+        protocol: "https",
+        hostname: "www.devs7ud.io",
+      },
     ],
   },
 };

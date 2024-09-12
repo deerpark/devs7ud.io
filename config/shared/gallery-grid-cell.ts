@@ -1,0 +1,65 @@
+const galleryGridCellClassName = [
+  ["row-start-1 row-end-1 col-start-1 col-end-1 h-64"],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-2 h-64",
+    "row-start-1 row-end-1 col-start-3 col-end-4 h-64",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-64",
+    "row-start-1 row-end-1 col-span-2 h-64",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-64",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-span-2 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-2 row-end-2 col-span-3 h-28",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-span-2 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-2 row-end-2 col-span-2 h-28",
+    "row-start-2 row-end-2 col-span-2 h-28",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-span-2 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-2 row-end-2 col-start-1 col-end-1 h-28",
+    "row-start-2 row-end-2 col-span-2 h-28",
+    "row-start-2 row-end-2 col-start-4 col-end-4 h-28",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-span-2 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-2 row-end-2 col-start-1 col-end-1 h-28",
+    "row-start-2 row-end-2 col-span-2 h-28",
+    "row-start-2 row-end-2 col-start-4 col-end-4 h-28",
+    "row-start-3 row-end-3 col-span-3 h-28",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-span-2 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-2 row-end-2 col-start-1 col-end-1 h-28",
+    "row-start-2 row-end-2 col-span-2 h-28",
+    "row-start-2 row-end-2 col-start-4 col-end-4 h-28",
+    "row-start-3 row-end-3 col-span-2 h-28",
+    "row-start-3 row-end-3 col-span-2 h-28",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-span-2 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-2 row-end-2 col-start-1 col-end-1 h-28",
+    "row-start-2 row-end-2 col-span-2 h-28",
+    "row-start-2 row-end-2 col-start-4 col-end-4 h-28",
+    "row-start-3 row-end-3 col-start-1 col-end-1 h-28",
+    "row-start-3 row-end-3 col-span-2 h-28",
+    "row-start-3 row-end-3 col-start-4 col-end-4 h-28",
+  ],
+];
+
+export default galleryGridCellClassName;

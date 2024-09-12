@@ -51,31 +51,26 @@ const AsidePostItem: React.FC<AsidePostItemProps> = async ({
         className="flex items-center gap-x-3 rounded-2xl p-3 hover:bg-accent/50 active:bg-accent/70"
       >
         <article>
-          <div className="relative">
-            <CustomImage
-              src={image}
-              alt={post.title ?? ""}
-              height={256}
-              width={256}
-              priority
-              className="max-h-56 w-full rounded-2xl object-cover shadow-md shadow-muted lg:aspect-[1/0.5] lg:max-h-none"
-            />
-            <span className="absolute bottom-3 left-3 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary text-background ring ring-background">
-              <Icon size={16} strokeWidth={2.5} />
+          <CustomImage
+            src={image}
+            alt={post.title ?? ""}
+            height={256}
+            width={256}
+            priority
+            className="pointer-events-none max-h-56 w-full rounded-2xl object-cover shadow-md shadow-muted ring-1 ring-border/50 lg:aspect-[1/0.5] lg:max-h-none"
+          />
+          <div className="py-3">
+            <span className="line-clamp-1 flex-1 font-semibold text-muted-foreground">
+              {post.title}
+            </span>
+            <span className="line-clamp-1 text-sm text-muted-foreground/50">
+              {post.description}
+            </span>
+            <span className="inline-flex items-center gap-x-1 rounded-md bg-primary px-1 py-0.5 text-primary-foreground">
+              <Icon size={12} strokeWidth={2} />
+              <span className="text-xs font-semibold">{category.title}</span>
             </span>
           </div>
-          <span className="flex items-center gap-x-3 p-3">
-            <span className="relative z-10 flex-1">
-              <span className="flex items-center gap-x-3">
-                <span className="line-clamp-1 flex-1 text-sm font-semibold text-muted-foreground/90">
-                  {post.title}
-                </span>
-              </span>
-              <span className="line-clamp-1 text-xs text-muted-foreground/70">
-                {post.description}
-              </span>
-            </span>
-          </span>
         </article>
       </Link>
     </li>

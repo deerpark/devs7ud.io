@@ -27,7 +27,6 @@ import StarterKit from "@tiptap/starter-kit";
 // import { common, createLowlight } from "lowlight";
 import Image from "next/image";
 import * as React from "react";
-import { PhotoView } from "react-photo-view";
 import { Markdown } from "tiptap-markdown";
 import CustomKeymap from "./custom-keymap";
 import DragAndDrop from "./drag-and-drop";
@@ -110,39 +109,39 @@ export const defaultExtensions = [
         "text-secondary underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer",
     },
   }),
-  // TiptapImage.configure({
-  //   inline: true,
-  //   allowBase64: true,
-  //   HTMLAttributes: {
-  //     class: "rounded-lg border",
-  //   },
-  // }),
-  TiptapImage.extend({
-    // React로 <PhotoView>로 감싸기
-    addNodeView() {
-      return ({ node, HTMLAttributes }) => {
-        console.log(node.attrs.src);
-        return (
-          <>
-            <PhotoView src={node.attrs.src}>
-              <Image
-                {...HTMLAttributes}
-                src={node.attrs.src}
-                alt={(node.attrs.alt || "image") as string}
-              />
-            </PhotoView>
-            <span>{node.attrs.src}</span>
-          </>
-        );
-      };
-    },
-  }).configure({
-    inline: true, // 이미지를 인라인으로 표시
-    allowBase64: true, // base64 이미지 허용
+  TiptapImage.configure({
+    inline: true,
+    allowBase64: true,
     HTMLAttributes: {
-      class: "rounded-lg border bg-background cursor-pointer", // 이미지에 스타일 추가
+      class: "rounded-lg border bg-background",
     },
   }),
+  // TiptapImage.extend({
+  //   // React로 <PhotoView>로 감싸기
+  //   addNodeView() {
+  //     return ({ node, HTMLAttributes }) => {
+  //       console.log(node.attrs.src);
+  //       return (
+  //         <>
+  //           <PhotoView src={node.attrs.src}>
+  //             <Image
+  //               {...HTMLAttributes}
+  //               src={node.attrs.src}
+  //               alt={(node.attrs.alt || "image") as string}
+  //             />
+  //           </PhotoView>
+  //           <span>{node.attrs.src}</span>
+  //         </>
+  //       );
+  //     };
+  //   },
+  // }).configure({
+  //   inline: true, // 이미지를 인라인으로 표시
+  //   allowBase64: true, // base64 이미지 허용
+  //   HTMLAttributes: {
+  //     class: "rounded-lg border bg-background cursor-pointer", // 이미지에 스타일 추가
+  //   },
+  // }),
   /* UpdatedImage.configure({
     HTMLAttributes: {
       class: "rounded-lg border border-stone-200",

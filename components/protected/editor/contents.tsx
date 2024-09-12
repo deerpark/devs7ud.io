@@ -1,23 +1,46 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 "use client";
 
+import { cn } from "@/lib/utils";
 import { generateHTML } from "@tiptap/react";
+import parse from "html-react-parser";
+import { PhotoView } from "react-photo-view";
 import { defaultExtensions } from "./wysiwyg/extensions";
 
 interface WysiwygContentsProps {
   content: string | null;
 }
 export function WysiwygContents({ content }: WysiwygContentsProps) {
+  const htmlContent =
+    typeof window !== "undefined" && content
+      ? generateHTML(JSON.parse(content), defaultExtensions)
+      : "";
+
+  const options = {
+    replace: (domNode: any) => {
+      if (domNode.name === "img") {
+        console.log(domNode.attribs.src);
+        return (
+          <PhotoView src={domNode.attribs.src}>
+            <img
+              src={domNode.attribs.src}
+              alt={domNode.attribs.alt || "image"}
+              className={cn(domNode.attribs.class, "!static !h-auto !w-auto")}
+            />
+          </PhotoView>
+        );
+      }
+    },
+  };
+
+  if (!htmlContent) return null;
+
   return content ? (
     <div className="relative mx-auto max-w-3xl py-5">
-      <div
-        className="lg:prose-md prose dark:prose-invert"
-        dangerouslySetInnerHTML={{
-          __html:
-            (typeof window !== "undefined" &&
-              generateHTML(JSON.parse(content), defaultExtensions)) ||
-            "",
-        }}
-      />
+      <div className="lg:prose-md prose dark:prose-invert">
+        {parse(htmlContent, options)}
+      </div>
     </div>
   ) : null;
 }
