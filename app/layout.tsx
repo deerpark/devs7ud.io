@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/shared/provider";
 import { Toaster } from "@/components/ui/sonner";
 import { seoData } from "@/config/root/seo";
 import { cn, getUrl } from "@/lib/utils";
+import NextTopLoader from "nextjs-toploader";
 import "@/styles/tailwind.css";
 import "react-photo-view/dist/react-photo-view.css";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
@@ -142,6 +143,7 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
+        <NextTopLoader color="#3964E2" height={4} showSpinner />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

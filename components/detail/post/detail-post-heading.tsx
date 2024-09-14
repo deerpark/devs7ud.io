@@ -58,20 +58,17 @@ const DetailPostHeading: FC<DetailPostHeadingProps> = async ({ post }) => {
       </div>
       {description && <p className="text-foreground/70">{description}</p>}
       {image ? (
-        <div className="relative w-full">
-          <CustomImage
-            src={await getPublicImageUrl("cover-image", image)}
-            alt={title || ""}
-            width={512}
-            height={288}
-            className="h-[288px] w-full rounded-2xl bg-gray-100 object-cover"
-            placeholder={`data:image/svg+xml;base64,${toBase64(
-              shimmer(512, 288),
-            )}`}
-            viewer
-          />
-          <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-foreground/10" />
-        </div>
+        <CustomImage
+          src={await getPublicImageUrl("cover-image", image)}
+          alt={title || ""}
+          width={512}
+          height={256}
+          className="aspect-[2/1] w-full rounded-[30px] bg-background object-cover ring-1 ring-foreground/10"
+          placeholder={`data:image/svg+xml;base64,${toBase64(
+            shimmer(512, 256),
+          )}`}
+          viewer
+        />
       ) : null}
     </section>
   );

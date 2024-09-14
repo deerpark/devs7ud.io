@@ -6,8 +6,11 @@ import {
   DetailPostLikeButton,
   DetailPostShareButton,
 } from "@/components/detail/post/buttons";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { Edit3 } from "lucide-react";
+import Link from "next/link";
 import * as React from "react";
 
 interface DetailPostFloatingBarProps {
@@ -50,6 +53,17 @@ const DetailPostFloatingBar: React.FC<DetailPostFloatingBarProps> = ({
         userId={userId}
       />
       {grow && <span className="flex-1" />}
+      {userId === "f62f3c03-a769-4bd9-aa15-b3fe68b86954" ? (
+        <Link
+          href={`/editor/posts/${id}`}
+          className={cn(
+            buttonVariants({ variant: "ghost", size: "icon" }),
+            "hidden flex-none items-center justify-center rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary md:flex",
+          )}
+        >
+          <Edit3 className="h-5 w-5" strokeWidth={2.5} />
+        </Link>
+      ) : null}
       {separator && <Separator className="h-5 w-px flex-none bg-border/50" />}
       <DetailPostShareButton title={title} text={text} url={url} />
     </div>
