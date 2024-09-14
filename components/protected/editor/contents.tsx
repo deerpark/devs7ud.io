@@ -20,7 +20,6 @@ export function WysiwygContents({ content }: WysiwygContentsProps) {
   const options = {
     replace: (domNode: any) => {
       if (domNode.name === "img") {
-        console.log(domNode.attribs.src);
         return (
           <PhotoView src={domNode.attribs.src}>
             <img
