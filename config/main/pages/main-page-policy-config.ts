@@ -3,7 +3,7 @@ import { PolicyPageType } from "@/types";
 const mainPagePolicyConfig: PolicyPageType = {
   title: "개인정보보호정책",
   description:
-    "본 개인정보 처리방침은 귀하가 ub.cafe(이하 '사이트')를 방문하거나 구매할 때 귀하의 개인정보가 수집, 사용 및 공유되는 방식을 설명합니다.",
+    "본 개인정보 처리방침은 귀하가 devs7ud.io(이하 '사이트')를 방문하거나 구매할 때 귀하의 개인정보가 수집, 사용 및 공유되는 방식을 설명합니다.",
   paragraphs: [
     {
       title: "당사가 수집하는 개인 정보",
