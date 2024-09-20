@@ -41,7 +41,7 @@ const SharedNotFound = () => {
           </ul>
           <div className="mt-10 flex justify-center">
             <Link
-              href="javascript:history.back();"
+              href="/"
               className="rounded-md px-10 py-2 text-sm font-semibold leading-6 hover:bg-accent"
             >
               {sharedNotFoundConfig.back}

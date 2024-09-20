@@ -69,7 +69,7 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
 
   // Delete a bookmark
   async function deleteBookmark(e: React.MouseEvent<HTMLButtonElement>) {
-    e.nativeEvent.stopImmediatePropagation();
+    e.nativeEvent.stopPropagation();
     e.preventDefault();
     setIsLoading(true);
 

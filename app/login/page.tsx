@@ -14,12 +14,12 @@ const LoginPage = async () => {
   user && redirect("/editor/posts");
 
   return (
-    <>
-      <LoginHeader />{" "}
-      <div className="mx-auto mt-5 max-w-md">
-        <LoginSection />
+    <div className="flex h-screen flex-col">
+      <LoginHeader />
+      <div className="mx-auto mt-5 flex max-w-md flex-1 items-center justify-center">
+        <LoginSection className="rounded-2xl" />
       </div>
-    </>
+    </div>
   );
 };
 

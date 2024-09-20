@@ -26,7 +26,10 @@ export function WysiwygContents({ content }: WysiwygContentsProps) {
             <img
               src={domNode.attribs.src}
               alt={domNode.attribs.alt || "image"}
-              className={cn(domNode.attribs.class, "!static !h-auto !w-auto")}
+              className={cn(
+                domNode.attribs.class,
+                "!static !h-auto !w-auto  transition-all hover:scale-105 hover:rounded-[30px] hover:ring hover:ring-primary",
+              )}
             />
           </PhotoView>
         );

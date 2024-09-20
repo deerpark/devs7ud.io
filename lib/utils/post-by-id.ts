@@ -17,4 +17,5 @@ export async function getPostById(postId: string, userId: string) {
       console.log("Error message : ", error.message);
       return null;
     }
+    return {data, error}
 }

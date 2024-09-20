@@ -63,7 +63,7 @@ const DetailPostHeading: FC<DetailPostHeadingProps> = async ({ post }) => {
           alt={title || ""}
           width={512}
           height={256}
-          className="aspect-[2/1] w-full rounded-[30px] bg-background object-cover ring-1 ring-foreground/10"
+          className="aspect-[2/1] w-full rounded-[30px] bg-background object-cover ring-1 ring-foreground/10 hover:rounded-[30px] hover:ring hover:ring-primary"
           placeholder={`data:image/svg+xml;base64,${toBase64(
             shimmer(512, 256),
           )}`}

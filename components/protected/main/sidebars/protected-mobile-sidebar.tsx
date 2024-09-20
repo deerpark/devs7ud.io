@@ -14,11 +14,13 @@ import { v4 } from "uuid";
 type Dispatcher<S> = Dispatch<SetStateAction<S>>;
 
 interface ProtectedMobileSideBarProps {
+  userId?: string;
   sidebarOpen: boolean;
   setSidebarOpen: Dispatcher<boolean>;
 }
 
 const ProtectedMobileSideBar: FC<ProtectedMobileSideBarProps> = ({
+  userId,
   sidebarOpen,
   setSidebarOpen,
 }) => {
@@ -97,7 +99,15 @@ const ProtectedMobileSideBar: FC<ProtectedMobileSideBarProps> = ({
                       <li>
                         <ul role="list" className="-mx-2 space-y-1">
                           {dashBoardMenu.map((menu) => (
-                            <li key={v4()}>
+                            <li
+                              key={v4()}
+                              className={
+                                userId !==
+                                "f62f3c03-a769-4bd9-aa15-b3fe68b86954"
+                                  ? "hidden"
+                                  : ""
+                              }
+                            >
                               <Link
                                 href={menu.slug || ""}
                                 className={cn(

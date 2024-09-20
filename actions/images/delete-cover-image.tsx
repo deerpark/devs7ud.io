@@ -24,8 +24,6 @@ export async function DeleteCoverImage(
 
     const { data, error } = response;
 
-    console.log(response);
-
     if (error) {
       handleServerError(error.message);
     }

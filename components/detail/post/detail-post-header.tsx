@@ -21,7 +21,7 @@ const DetailPostHeader: React.FC<DetailPostHeaderProps> = ({
 }) => {
   const completion = useReadingProgress();
   const { y } = useWindowScroll();
-  const thresholds = useMedia("(min-width: 768px)") ? 20 : 72;
+  const thresholds = useMedia("(min-width: 768px)", true) ? 20 : 72;
   return (
     <>
       <header

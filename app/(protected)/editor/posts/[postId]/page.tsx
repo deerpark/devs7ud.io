@@ -1,4 +1,5 @@
 import Editor from "@/components/protected/editor/editor";
+import { SharedForbidden } from "@/components/shared";
 import { Separator } from "@/components/ui/separator";
 import { protectedEditorConfig } from "@/config/protected";
 import { getCoverImageFileName } from "@/lib/utils/cover-image-filename";
@@ -49,8 +50,16 @@ export default async function PostEditorPage({ params }: PostEditorPageProps) {
     galleryImageFileNames || [],
   );
 
+  if (post?.error) {
+    return (
+      <div className="max-w-5xl px-10">
+        <SharedForbidden />
+      </div>
+    );
+  }
+
   if (!post) {
-    return notFound;
+    return notFound();
   }
 
   return (
@@ -63,7 +72,7 @@ export default async function PostEditorPage({ params }: PostEditorPageProps) {
       </div>
       <Separator className="mb-5 max-w-2xl" />
       <Editor
-        post={post}
+        post={post.data}
         userId={userId || ""}
         coverImageFileName={coverImageFileName || ""}
         coverImagePublicUrl={coverImagePublicUrl || ""}

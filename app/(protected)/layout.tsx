@@ -25,7 +25,7 @@ const ProtectedLayout: React.FC<ProtectedLayoutProps> = async ({
 
   return (
     <div>
-      <ProtectedMain>{children}</ProtectedMain>
+      <ProtectedMain userId={user.id}>{children}</ProtectedMain>
     </div>
   );
 };

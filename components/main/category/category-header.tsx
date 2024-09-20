@@ -11,7 +11,7 @@ export default function CategoryHeader({
   className?: string;
 }) {
   const { y } = useWindowScroll();
-  const thresholds = useMedia("(min-width: 768px)") ? 20 : 72;
+  const thresholds = useMedia("(min-width: 768px)", true) ? 20 : 72;
   return (
     <header
       data-inview={y && y > thresholds ? "true" : "false"}

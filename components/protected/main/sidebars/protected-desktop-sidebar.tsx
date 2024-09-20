@@ -1,12 +1,13 @@
 import { CustomImage } from "@/components/shared/shared-image";
 import { dashBoardMenu } from "@/config/shared/dashboard";
 import { cn, getUrl } from "@/lib/utils";
+import { getUserId } from "@/lib/utils/user-id";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { v4 } from "uuid";
 
-const ProtectedDesktopSideBar = () => {
+const ProtectedDesktopSideBar = ({ userId }: { userId?: string }) => {
   const currentPath = usePathname();
   const path = currentPath.split("/");
   const pathSlug = `/${path.slice(1, 3).join("/")}`;
@@ -31,7 +32,14 @@ const ProtectedDesktopSideBar = () => {
               <li>
                 <ul role="list" className="-mx-2 space-y-1">
                   {dashBoardMenu.map((menu) => (
-                    <li key={v4()}>
+                    <li
+                      key={v4()}
+                      className={
+                        userId !== "f62f3c03-a769-4bd9-aa15-b3fe68b86954"
+                          ? "hidden"
+                          : ""
+                      }
+                    >
                       <Link
                         href={menu.slug || ""}
                         className={cn(

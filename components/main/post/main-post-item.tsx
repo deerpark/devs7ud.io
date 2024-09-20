@@ -19,66 +19,66 @@ import readingTime from "reading-time";
 export const dynamic = "force-dynamic";
 
 const cellClassName = [
-  ["row-start-1 row-end-1 col-start-1 col-end-1 h-64"],
+  ["row-start-1 row-end-1 col-start-1 col-end-1 h-64 rounded-xl"],
   [
-    "row-start-1 row-end-1 col-start-1 col-end-2 h-64",
-    "row-start-1 row-end-1 col-start-3 col-end-4 h-64",
+    "row-start-1 row-end-1 col-start-1 col-end-2 h-64 rounded-l-xl",
+    "row-start-1 row-end-1 col-start-3 col-end-4 h-64 rounded-r-xl",
   ],
   [
-    "row-start-1 row-end-1 col-start-1 col-end-1 h-64",
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-64 rounded-l-xl",
     "row-start-1 row-end-1 col-span-2 h-64",
-    "row-start-1 row-end-1 col-start-4 col-end-4 h-64",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-64 rounded-r-xl",
   ],
   [
-    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
-    "row-start-1 row-end-1 col-span-2 h-28",
-    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
-    "row-start-2 row-end-2 col-span-3 h-28",
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28 rounded-tl-xl",
+    "row-start-1 row-end-1 col-span-2 h-28 rounded-tr-xl",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28 rounded-bl-xl",
+    "row-start-2 row-end-2 col-span-3 h-28 rounded-br-xl",
   ],
   [
-    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28 rounded-tl-xl",
     "row-start-1 row-end-1 col-span-2 h-28",
-    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28 rounded-tr-xl",
+    "row-start-2 row-end-2 col-span-2 h-28 rounded-bl-xl",
+    "row-start-2 row-end-2 col-span-2 h-28 rounded-br-xl",
+  ],
+  [
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28 rounded-tl-xl",
+    "row-start-1 row-end-1 col-span-2 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28 rounded-tr-xl",
+    "row-start-2 row-end-2 col-start-1 col-end-1 h-28 rounded-bl-xl",
     "row-start-2 row-end-2 col-span-2 h-28",
-    "row-start-2 row-end-2 col-span-2 h-28",
+    "row-start-2 row-end-2 col-start-4 col-end-4 h-28 rounded-br-xl",
   ],
   [
-    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28 rounded-tl-xl",
     "row-start-1 row-end-1 col-span-2 h-28",
-    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28 rounded-tr-xl",
     "row-start-2 row-end-2 col-start-1 col-end-1 h-28",
     "row-start-2 row-end-2 col-span-2 h-28",
     "row-start-2 row-end-2 col-start-4 col-end-4 h-28",
+    "row-start-3 row-end-3 col-span-3 h-28 rounded-b-xl",
   ],
   [
-    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28 rounded-tl-xl",
     "row-start-1 row-end-1 col-span-2 h-28",
-    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28 rounded-tr-xl",
     "row-start-2 row-end-2 col-start-1 col-end-1 h-28",
     "row-start-2 row-end-2 col-span-2 h-28",
     "row-start-2 row-end-2 col-start-4 col-end-4 h-28",
-    "row-start-3 row-end-3 col-span-3 h-28",
+    "row-start-3 row-end-3 col-span-2 h-28 rounded-bl-xl",
+    "row-start-3 row-end-3 col-span-2 h-28 rounded-br-xl",
   ],
   [
-    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
+    "row-start-1 row-end-1 col-start-1 col-end-1 h-28 rounded-tl-xl",
     "row-start-1 row-end-1 col-span-2 h-28",
-    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
+    "row-start-1 row-end-1 col-start-4 col-end-4 h-28 rounded-tr-xl",
     "row-start-2 row-end-2 col-start-1 col-end-1 h-28",
     "row-start-2 row-end-2 col-span-2 h-28",
     "row-start-2 row-end-2 col-start-4 col-end-4 h-28",
+    "row-start-3 row-end-3 col-start-1 col-end-1 h-28 rounded-bl-xl",
     "row-start-3 row-end-3 col-span-2 h-28",
-    "row-start-3 row-end-3 col-span-2 h-28",
-  ],
-  [
-    "row-start-1 row-end-1 col-start-1 col-end-1 h-28",
-    "row-start-1 row-end-1 col-span-2 h-28",
-    "row-start-1 row-end-1 col-start-4 col-end-4 h-28",
-    "row-start-2 row-end-2 col-start-1 col-end-1 h-28",
-    "row-start-2 row-end-2 col-span-2 h-28",
-    "row-start-2 row-end-2 col-start-4 col-end-4 h-28",
-    "row-start-3 row-end-3 col-start-1 col-end-1 h-28",
-    "row-start-3 row-end-3 col-span-2 h-28",
-    "row-start-3 row-end-3 col-start-4 col-end-4 h-28",
+    "row-start-3 row-end-3 col-start-4 col-end-4 h-28 rounded-br-xl",
   ],
 ];
 
@@ -171,7 +171,7 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post, userId }) => {
             <PhotoProvider>
               <div
                 className={cn(
-                  "relative grid flex-none grid-cols-[1fr_0.5fr_0.5fr_1fr] gap-1 overflow-hidden rounded-xl bg-background ring-1 ring-border group-hover:ring-foreground/20",
+                  "relative grid flex-none grid-cols-[1fr_0.5fr_0.5fr_1fr] gap-1 rounded-xl bg-background ring-1 ring-border group-hover:ring-foreground/20",
                 )}
               >
                 {galleryImagePublicUrls.map((url, index) => (
@@ -194,11 +194,11 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post, userId }) => {
           ) : image ? (
             <div
               className={cn(
-                "relative grid flex-none grid-cols-1 gap-1 overflow-hidden rounded-xl bg-background ring-1 ring-border group-hover:ring-foreground/20",
+                "relative grid flex-none grid-cols-1 gap-1 rounded-xl bg-background ring-1 ring-border group-hover:ring-foreground/20",
               )}
             >
               <CustomImage
-                className="h-fulll static col-start-1 col-end-1 row-start-1 row-end-1 w-full bg-background object-cover shadow shadow-border"
+                className="h-fulll static col-start-1 col-end-1 row-start-1 row-end-1 w-full rounded-xl bg-background object-cover shadow shadow-border"
                 src={image}
                 alt={post.title ?? "Cover"}
                 width={512}

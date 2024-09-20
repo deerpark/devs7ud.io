@@ -43,7 +43,7 @@ export const CustomImage = React.forwardRef<
       }}
       {...props}
       className={cn(
-        "transition-all",
+        "transition-all hover:relative hover:z-50 hover:scale-105 hover:rounded-xl hover:ring hover:ring-primary",
         props.className,
         isLoading || isError
           ? "absolute inset-0 opacity-0 blur-sm"

@@ -10,17 +10,19 @@ import { ProtectedDesktopSideBar, ProtectedMobileSideBar } from "./sidebars";
 
 interface ProtectedMainProps {
   children?: ReactNode;
+  userId?: string;
 }
 
-const ProtectedMain: FC<ProtectedMainProps> = ({ children }) => {
+const ProtectedMain: FC<ProtectedMainProps> = ({ children, userId }) => {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   return (
     <>
       <ProtectedMobileSideBar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
+        userId={userId}
       />
-      <ProtectedDesktopSideBar />
+      <ProtectedDesktopSideBar userId={userId} />
       <div className="lg:pl-72">
         <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b bg-background px-4 shadow-sm">
           <ProtectedMobileMenuButton setSidebarOpen={setSidebarOpen} />
