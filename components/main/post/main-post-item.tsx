@@ -192,13 +192,9 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post, userId }) => {
               </div>
             </PhotoProvider>
           ) : image ? (
-            <div
-              className={cn(
-                "relative grid flex-none grid-cols-1 gap-1 rounded-xl bg-background ring-1 ring-border group-hover:ring-foreground/20",
-              )}
-            >
+            <div className={cn("gap-1d relative grid flex-none grid-cols-1")}>
               <CustomImage
-                className="h-fulll static col-start-1 col-end-1 row-start-1 row-end-1 w-full rounded-xl bg-background object-cover shadow shadow-border"
+                className="h-fulll static col-start-1 col-end-1 row-start-1 row-end-1 w-full rounded-[32px] bg-background object-cover shadow shadow-border ring-1 ring-border hover:rounded-[32px]  group-hover:ring-foreground/20 lg:rounded-xl"
                 src={image}
                 alt={post.title ?? "Cover"}
                 width={512}
