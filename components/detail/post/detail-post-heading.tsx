@@ -3,6 +3,7 @@ import { getMinutes, shimmer, toBase64 } from "@/lib/utils";
 import { getPublicImageUrl } from "@/lib/utils/image-url";
 import { PostWithCategoryWithProfile } from "@/types/collection";
 import { format, parseISO } from "date-fns";
+import { ko } from "date-fns/locale";
 import { ClockIcon } from "lucide-react";
 import { FC } from "react";
 import readingTime, { ReadTimeResults } from "reading-time";
@@ -20,7 +21,9 @@ const DetailPostHeading: FC<DetailPostHeadingProps> = async ({ post }) => {
     updated_at,
     content,
   } = post;
-  const date = format(parseISO(updated_at!), "MMMM dd, yyyy");
+  const date = format(parseISO(updated_at!), "yyyy년 MM월 dd일", {
+    locale: ko,
+  });
   const readTime: ReadTimeResults = readingTime(content ? content : "");
   return (
     <section className="flex flex-col items-start justify-between gap-y-5">
@@ -46,12 +49,14 @@ const DetailPostHeading: FC<DetailPostHeadingProps> = async ({ post }) => {
             <span className="flex items-center gap-x-1">
               <span>{date}</span>
             </span>
+            <ClockIcon
+              className="h-4 w-4 text-foreground/50"
+              aria-hidden="true"
+            />
             <span className="flex items-center gap-x-1">
-              <ClockIcon
-                className="h-4 w-4 text-foreground/50"
-                aria-hidden="true"
-              />
-              <span className="text-sm">{getMinutes(readTime.minutes)}</span>
+              <span className="text-sm">
+                리딩타임 약 {getMinutes(readTime.minutes)}
+              </span>
             </span>
           </span>
         </div>

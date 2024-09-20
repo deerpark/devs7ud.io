@@ -11,6 +11,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { detailBookMarkConfig } from "@/config/detail";
 import { sharedLoginConfig } from "@/config/shared";
 import {
@@ -95,38 +100,45 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
   }
 
   return (
-    <>
+    <Tooltip>
       {userId &&
         (isBookmarked ? (
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            className="rounded-full text-primary hover:bg-primary/10 hover:text-primary"
-            disabled={isLoading}
-            onClick={deleteBookmark}
-          >
-            {isLoading ? (
-              <Shell className="h-5 w-5 animate-spin" strokeWidth={2.5} />
-            ) : (
-              <BookmarkMinus className="h-5 w-5" strokeWidth={2.5} />
-            )}
-          </Button>
+          <TooltipTrigger asChild>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="rounded-full text-primary hover:bg-primary/10 hover:text-primary"
+              disabled={isLoading}
+              onClick={deleteBookmark}
+            >
+              {isLoading ? (
+                <Shell className="h-5 w-5 animate-spin" strokeWidth={2.5} />
+              ) : (
+                <BookmarkMinus className="h-5 w-5" strokeWidth={2.5} />
+              )}
+            </Button>
+          </TooltipTrigger>
         ) : (
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            className="rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary"
-            disabled={isLoading}
-            onClick={addBookmark}
-          >
-            {isLoading ? (
-              <SpinnerIcon className="h-5 w-5 animate-spin" strokeWidth={2.5} />
-            ) : (
-              <Bookmark className="h-5 w-5" strokeWidth={2.5} />
-            )}
-          </Button>
+          <TooltipTrigger asChild>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary"
+              disabled={isLoading}
+              onClick={addBookmark}
+            >
+              {isLoading ? (
+                <SpinnerIcon
+                  className="h-5 w-5 animate-spin"
+                  strokeWidth={2.5}
+                />
+              ) : (
+                <Bookmark className="h-5 w-5" strokeWidth={2.5} />
+              )}
+            </Button>
+          </TooltipTrigger>
         ))}
       {!userId && (
         <Dialog>
@@ -149,7 +161,10 @@ const DetailPostBookMarkButton: FC<DetailPostBookMarkButtonProps> = ({
           </DialogContent>
         </Dialog>
       )}
-    </>
+      <TooltipContent className="px-1 py-0.5 text-xs font-semibold text-muted-foreground">
+        북마크 {isBookmarked ? "삭제" : "추가"}
+      </TooltipContent>
+    </Tooltip>
   );
 };
 

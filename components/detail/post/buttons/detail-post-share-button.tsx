@@ -11,6 +11,11 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { detailShareConfig } from "@/config/detail";
 import {
   Check,
@@ -79,19 +84,28 @@ const DetailPostShareButton: React.FC<DetailPostShareButtonProps> = ({
   return (
     <Drawer shouldScaleBackground open={open} onClose={handleClose}>
       <DrawerTrigger asChild>
-        <Button
-          type="button"
-          variant="ghost"
-          size="icon"
-          className="rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary"
-          onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-            setOpen(true);
-          }}
-        >
-          <Share className="h-5 w-5" strokeWidth={2.5} />
-        </Button>
+        <div>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  setOpen(true);
+                }}
+              >
+                <Share className="h-5 w-5" strokeWidth={2.5} />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent className="px-1 py-0.5 text-xs font-semibold text-muted-foreground">
+              공유하기
+            </TooltipContent>
+          </Tooltip>
+        </div>
       </DrawerTrigger>
       <DrawerContent
         overlayOnClick={(e) => {

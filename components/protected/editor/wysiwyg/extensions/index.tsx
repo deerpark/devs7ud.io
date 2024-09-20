@@ -182,7 +182,8 @@ export const defaultExtensions = [
   TipTapCodeBlockLowlight.configure({
     lowlight,
     HTMLAttributes: {
-      class: "rounded-sm bg-accent p-5 font-mono font-medium",
+      class:
+        "rounded-3xl shadow-inner bg-accent text-accent-foreground p-5 font-mono font-medium",
     },
   }),
   TipTapFocus,

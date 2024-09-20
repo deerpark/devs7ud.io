@@ -1,4 +1,5 @@
 import { DetailPostFloatingBar } from "@/components/detail/post";
+import { DetailPostMoreButton } from "@/components/detail/post/buttons";
 import { PhotoProvider } from "@/components/shared/photo-provider";
 import { CustomImage } from "@/components/shared/shared-image";
 import { Button } from "@/components/ui/button";
@@ -19,66 +20,68 @@ import readingTime from "reading-time";
 export const dynamic = "force-dynamic";
 
 const cellClassName = [
-  ["row-start-1 row-end-2 col-start-1 col-span-10 h-16 rounded-xl"],
   [
-    "row-start-1 row-end-2 col-start-1 col-span-5 h-16 rounded-l-xl",
-    "row-start-1 row-end-2 col-start-6 col-span-5 h-16 rounded-r-xl",
+    "row-start-1 row-end-2 col-start-1 col-span-10 -20-[30px] lg:-20 rounded-3xl",
   ],
   [
-    "row-start-1 row-end-2 col-start-1 col-span-3 h-16 rounded-l-xl",
-    "row-start-1 row-end-2 col-span-4 h-16",
-    "row-start-1 row-end-2 col-span-3 h-16 rounded-r-xl",
+    "row-start-1 row-end-2 col-start-1 col-span-5 h-24 rounded-l-[30px] lg:rounded-l-3xl",
+    "row-start-1 row-end-2 col-start-6 col-span-5 h-24 rounded-r-[30px] lg:rounded-r-3xl",
   ],
   [
-    "row-start-1 row-end-2 col-start-1 col-span-2 h-16 rounded-l-xl",
-    "row-start-1 row-end-2 col-span-3 h-16",
-    "row-start-1 row-end-2 col-span-3 h-16",
-    "row-start-1 row-end-2 col-span-2 h-16 rounded-r-xl",
+    "row-start-1 row-end-2 col-start-1 col-span-3 h-24 rounded-l-[30px] lg:rounded-l-3xl",
+    "row-start-1 row-end-2 col-span-4 h-24",
+    "row-start-1 row-end-2 col-span-3 h-24 rounded-r-[30px] lg:rounded-r-3xl",
   ],
   [
-    "row-start-1 row-end-2 col-start-1 col-span-2 h-16 rounded-l-xl",
-    "row-start-1 row-end-2 col-span-2 h-16",
-    "row-start-1 row-end-2 col-span-2 h-16",
-    "row-start-2 row-end-2 col-span-2 h-16",
-    "row-start-2 row-end-2 col-span-2 h-16 rounded-r-xl",
+    "row-start-1 row-end-2 col-start-1 col-span-2 h-24 rounded-l-[30px] lg:rounded-l-3xl",
+    "row-start-1 row-end-2 col-span-3 h-24",
+    "row-start-1 row-end-2 col-span-3 h-24",
+    "row-start-1 row-end-2 col-span-2 h-24 rounded-r-[30px] lg:rounded-r-3xl",
   ],
   [
-    "row-start-1 row-end-2 col-start-1 col-span-3 h-16 rounded-tl-xl",
-    "row-start-1 row-end-2 col-span-4 h-16",
-    "row-start-1 row-end-2 col-span-3 h-16 rounded-tr-xl",
-    "row-start-2 row-end-3 col-start-1 col-span-3 h-16 rounded-bl-xl",
-    "row-start-2 row-end-3 col-span-4 h-16",
-    "row-start-2 row-end-3 col-span-3 h-16 rounded-br-xl",
+    "row-start-1 row-end-2 col-start-1 col-span-2 h-24 rounded-l-[30px] lg:rounded-l-3xl",
+    "row-start-1 row-end-2 col-span-2 h-24",
+    "row-start-1 row-end-2 col-span-2 h-24",
+    "row-start-2 row-end-2 col-span-2 h-24",
+    "row-start-2 row-end-2 col-span-2 h-24 rounded-r-[30px] lg:rounded-r-3xl",
   ],
   [
-    "row-start-1 row-end-2 col-start-1 col-span-2 h-16 rounded-tl-xl",
-    "row-start-1 row-end-2 col-span-3 h-16",
-    "row-start-1 row-end-2 col-span-3 h-16",
-    "row-start-1 row-end-2 col-span-2 h-16 rounded-tr-xl",
-    "row-start-2 row-end-3 col-start-1 col-span-3 h-16 rounded-bl-xl",
-    "row-start-2 row-end-3 col-span-4 h-16",
-    "row-start-2 row-end-3 col-span-3 h-16 rounded-br-xl",
+    "row-start-1 row-end-2 col-start-1 col-span-3 h-24 rounded-tl-[30px] lg:rounded-tl-3xl",
+    "row-start-1 row-end-2 col-span-4 h-24",
+    "row-start-1 row-end-2 col-span-3 h-24 rounded-tr-[30px] lg:rounded-tr-3xl",
+    "row-start-2 row-end-3 col-start-1 col-span-3 h-24 rounded-bl-[30px] lg:rounded-bl-3xl",
+    "row-start-2 row-end-3 col-span-4 h-24",
+    "row-start-2 row-end-3 col-span-3 h-24 rounded-br-[30px] lg:rounded-br-3xl",
   ],
   [
-    "row-start-1 row-end-2 col-start-1 col-span-2 h-16 rounded-tl-xl",
-    "row-start-1 row-end-2 col-span-2 h-16",
-    "row-start-1 row-end-2 col-span-2 h-16",
-    "row-start-1 row-end-2 col-span-2 h-16",
-    "row-start-1 row-end-2 col-span-2 h-16 rounded-tr-xl",
-    "row-start-2 row-end-3 col-start-1 col-span-3 h-16 rounded-bl-xl",
-    "row-start-2 row-end-3 col-span-4 h-16",
-    "row-start-2 row-end-3 col-span-3 h-16 rounded-br-xl",
+    "row-start-1 row-end-2 col-start-1 col-span-2 h-24 rounded-tl-[30px] lg:rounded-tl-3xl",
+    "row-start-1 row-end-2 col-span-3 h-24",
+    "row-start-1 row-end-2 col-span-3 h-24",
+    "row-start-1 row-end-2 col-span-2 h-24 rounded-tr-[30px] lg:rounded-tr-3xl",
+    "row-start-2 row-end-3 col-start-1 col-span-3 h-24 rounded-bl-[30px] lg:rounded-bl-3xl",
+    "row-start-2 row-end-3 col-span-4 h-24",
+    "row-start-2 row-end-3 col-span-3 h-24 rounded-br-[30px] lg:rounded-br-3xl",
   ],
   [
-    "row-start-1 row-end-2 col-start-1 col-span-2 h-16 rounded-tl-xl",
-    "row-start-1 row-end-2 col-span-2 h-16",
-    "row-start-1 row-end-2 col-span-2 h-16",
-    "row-start-1 row-end-2 col-span-2 h-16",
-    "row-start-1 row-end-2 col-span-2 h-16 rounded-tr-xl",
-    "row-start-2 row-end-3 col-start-1 col-span-2 h-16 rounded-bl-xl",
-    "row-start-2 row-end-3 col-span-3 h-16",
-    "row-start-2 row-end-3 col-span-3 h-16",
-    "row-start-2 row-end-3 col-span-2 h-16 rounded-br-xl",
+    "row-start-1 row-end-2 col-start-1 col-span-2 h-24 rounded-tl-[30px] lg:rounded-tl-3xl",
+    "row-start-1 row-end-2 col-span-2 h-24",
+    "row-start-1 row-end-2 col-span-2 h-24",
+    "row-start-1 row-end-2 col-span-2 h-24",
+    "row-start-1 row-end-2 col-span-2 h-24 rounded-tr-[30px] lg:rounded-tr-3xl",
+    "row-start-2 row-end-3 col-start-1 col-span-3 h-24 rounded-bl-[30px] lg:rounded-bl-3xl",
+    "row-start-2 row-end-3 col-span-4 h-24",
+    "row-start-2 row-end-3 col-span-3 h-24 rounded-br-[30px] lg:rounded-br-3xl",
+  ],
+  [
+    "row-start-1 row-end-2 col-start-1 col-span-2 h-24 rounded-tl-[30px] lg:rounded-tl-3xl",
+    "row-start-1 row-end-2 col-span-2 h-24",
+    "row-start-1 row-end-2 col-span-2 h-24",
+    "row-start-1 row-end-2 col-span-2 h-24",
+    "row-start-1 row-end-2 col-span-2 h-24 rounded-tr-[30px] lg:rounded-tr-3xl",
+    "row-start-2 row-end-3 col-start-1 col-span-2 h-24 rounded-bl-[30px] lg:rounded-bl-3xl",
+    "row-start-2 row-end-3 col-span-3 h-24",
+    "row-start-2 row-end-3 col-span-3 h-24",
+    "row-start-2 row-end-3 col-span-2 h-24 rounded-br-[30px] lg:rounded-br-3xl",
   ],
 ];
 
@@ -129,7 +132,6 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post, userId }) => {
     post.id,
     galleryImageFileNames || [],
   );
-  const restNumber = galleryImagePublicUrls.length % 3;
 
   return (
     <Link
@@ -162,22 +164,20 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post, userId }) => {
               <p className="line-clamp-2">{post.description}</p>
             </div>
             <div className="flex flex-none flex-col">
-              <Button variant="ghost" size="icon" className="rounded-full">
-                <Ellipsis size={16} strokeWidth={3} />
-              </Button>
+              <DetailPostMoreButton post={post} />
             </div>
           </div>
           {galleryImagePublicUrls?.length ? (
             <PhotoProvider>
               <div
                 className={cn(
-                  "relative grid flex-none grid-cols-[0.1fr_0.1fr_0.1fr_0.1fr_0.1fr_0.1fr_0.1fr_0.1fr_0.1fr_0.1fr] gap-1 rounded-xl bg-background ring-1 ring-border group-hover:ring-foreground/20",
+                  "relative grid flex-none grid-cols-[0.1fr_0.1fr_0.1fr_0.1fr_0.1fr_0.1fr_0.1fr_0.1fr_0.1fr_0.1fr] gap-1 rounded-[32px] bg-background ring-1 ring-border group-hover:ring-foreground/20 lg:rounded-3xl",
                 )}
               >
                 {galleryImagePublicUrls.map((url, index) => (
                   <CustomImage
                     className={cn(
-                      "h-fulll static w-full bg-background object-cover shadow shadow-border",
+                      "h-fulll static w-full bg-background object-cover shadow shadow-border hover:shadow-2xl hover:shadow-foreground/50",
                       cellClassName[galleryImagePublicUrls.length - 1][index],
                     )}
                     key={url}
@@ -194,7 +194,7 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post, userId }) => {
           ) : image ? (
             <div className={cn("gap-1d relative grid flex-none grid-cols-1")}>
               <CustomImage
-                className="h-fulll static col-start-1 col-end-1 row-start-1 row-end-1 w-full rounded-[32px] bg-background object-cover shadow shadow-border ring-1 ring-border hover:rounded-[32px] hover:!ring-primary  group-hover:ring-foreground/20 lg:rounded-3xl"
+                className="h-fulll static col-start-1 col-end-1 row-start-1 row-end-1 w-full rounded-[32px] bg-background object-cover shadow shadow-border ring-1 ring-border hover:scale-[1.01] hover:rounded-[32px] hover:shadow-2xl hover:shadow-foreground/50 hover:!ring-primary group-hover:ring-foreground/20 lg:rounded-3xl"
                 src={image}
                 alt={post.title ?? "Cover"}
                 width={512}
