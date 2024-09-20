@@ -12,6 +12,12 @@ export const categories = [
     "slug": "components"
   },
   {
+    "id": "7ebb139a-6769-4cb0-9215-24eb39a5fe0d",
+    "title": "코드캠프",
+    "created_at": "2024-09-20 06:45:15.419237+00",
+    "slug": "camp"
+  },
+  {
     "id": "962f860d-ab0d-4650-ae93-8171c8b47169",
     "title": "모즈",
     "created_at": "2024-08-30 06:41:25.659983+00",

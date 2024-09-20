@@ -1,10 +1,11 @@
 import { CategoryType } from "@/types";
 import { categories } from "../shared/shared-categories";
-import { Film, LibraryBig, Lightbulb, Mailbox, Sparkles, BrickWall, Pickaxe } from "lucide-react";
+import { Film, LibraryBig, Lightbulb, Mailbox, Sparkles, BrickWall, Pickaxe, Tent } from "lucide-react";
 
 export const categoryIcons = {
   news: Mailbox,
   components: BrickWall,
+  camp: Tent,
   mods: Sparkles,
   inspire: Lightbulb,
   interaction: Film,
