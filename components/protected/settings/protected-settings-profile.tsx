@@ -204,11 +204,11 @@ const ProtectedSettingsProfile: FC<ProtectedSettingsProfileProps> = ({
                     <button
                       type="button"
                       onClick={() => setShowModal(true)}
-                      className="rounded-md bg-gray-50 px-3 py-2 text-sm font-semibold text-gray-500 shadow-sm ring-1 ring-gray-300 hover:bg-gray-100"
+                      className="text-shadow-sm rounded-md bg-accent/50 px-3 py-2 text-sm font-semibold ring-1 ring-border hover:bg-accent"
                     >
                       {protectedProfileConfig.changeAvatar}
                     </button>
-                    <p className="mt-2 text-xs leading-5 text-gray-500">
+                    <p className="mt-2 text-xs leading-5">
                       {protectedProfileConfig.uploadNote}
                     </p>
                   </div>

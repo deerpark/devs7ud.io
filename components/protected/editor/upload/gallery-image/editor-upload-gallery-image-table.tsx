@@ -17,9 +17,9 @@ const EditorUploadGalleryImageTable: FC<EditorUploadGalleryImageTableProps> = ({
   imageUrls,
 }) => {
   return (
-    <div className="inline-block max-w-2xl rounded-lg border border-gray-200 p-5 align-middle">
-      <div className="min-w-full divide-y divide-gray-300">
-        <div className="space-y-5 bg-white">
+    <div className="inline-block max-w-2xl rounded-lg border border-border p-5 align-middle">
+      <div className="min-w-full divide-y divide-border">
+        <div className="space-y-5 bg-background">
           {imageUrls.map((url, idx) => (
             <EditorUploadGalleryImageItem
               key={v4()}

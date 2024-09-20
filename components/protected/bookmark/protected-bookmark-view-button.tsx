@@ -13,7 +13,7 @@ const ProtectedBookMarkViewButton: FC<ProtectedBookMarkViewButtonProps> = ({
     <Link
       href={`/posts/${slug}`}
       target="_blank"
-      className="rounded-md border bg-gray-50 px-3 py-2 text-gray-900 hover:bg-gray-100"
+      className="rounded-md border bg-accent/50 px-3 py-2 hover:bg-accent"
     >
       <EyeIcon className="h-4 w-4" />
     </Link>

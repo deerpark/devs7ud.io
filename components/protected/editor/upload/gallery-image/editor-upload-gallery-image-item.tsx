@@ -58,7 +58,7 @@ const EditorUploadGalleryImageItem: FC<EditorUploadGalleryImageItemProps> = ({
   return (
     <>
       <PhotoProvider>
-        <div className="flex items-center gap-x-3 border-b border-gray-200 pb-3">
+        <div className="flex items-center gap-x-3 border-b border-border pb-3">
           <div className="h-11 w-11 flex-none items-center">
             <CustomImage
               className="h-11 w-11 rounded-md bg-cover"
@@ -78,13 +78,13 @@ const EditorUploadGalleryImageItem: FC<EditorUploadGalleryImageItemProps> = ({
           <div className="flex flex-none items-center gap-x-1">
             <PhotoView src={imageUrl}>
               <Button type="button" variant="outline" size="icon">
-                <ZoomIn className="h-4 w-4 text-gray-500" />
+                <ZoomIn className="h-4 w-4" />
               </Button>
             </PhotoView>
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button variant="outline" size="icon">
-                  <TrashIcon className="h-4 w-4 text-gray-500" />
+                  <TrashIcon className="h-4 w-4" />
                 </Button>
               </AlertDialogTrigger>
               <AlertDialogContent>

@@ -400,7 +400,7 @@ const Editor: FC<EditorProps> = ({
                         placeholder={protectedEditorConfig.placeholderImage}
                         {...field}
                         disabled={true}
-                        className="hidden bg-gray-50"
+                        className="hidden bg-accent/50"
                       />
                     </FormControl>
                   </FormItem>
@@ -425,7 +425,7 @@ const Editor: FC<EditorProps> = ({
                       <button
                         onClick={() => setShowCoverModal(!showCoverModal)}
                         type="button"
-                        className="inline-flex items-center rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                        className="inline-flex items-center rounded-md bg-background px-2.5 py-1.5 text-sm font-semibold shadow-sm ring-1 ring-inset ring-border hover:bg-accent/50"
                       >
                         <PaperClipIcon className="mr-1 h-4 w-4" />
                         <span className="">
@@ -479,7 +479,7 @@ const Editor: FC<EditorProps> = ({
                     <button
                       onClick={() => setShowGalleryModal(!showGalleryModal)}
                       type="button"
-                      className="inline-flex items-center rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      className="inline-flex items-center rounded-md bg-background px-2.5 py-1.5 text-sm font-semibold shadow-sm ring-1 ring-inset ring-border hover:bg-accent/50"
                     >
                       <PaperClipIcon className="mr-1 h-4 w-4" />
                       <span className="">
@@ -547,7 +547,7 @@ const Editor: FC<EditorProps> = ({
           <div className="infline-flex flex items-center justify-start space-x-3">
             <Button
               type="submit"
-              className="flex !bg-gray-900 px-10 !text-white hover:!bg-gray-800"
+              className="flex !bg-foreground px-10 !text-background hover:!bg-foreground"
               disabled={isSaving}
             >
               {protectedEditorConfig.submit}
@@ -555,7 +555,7 @@ const Editor: FC<EditorProps> = ({
             <Button
               type="button"
               onClick={() => router.back()}
-              className="flex !bg-gray-100 px-10 !text-gray-900 hover:!bg-gray-200"
+              className="flex !bg-accent px-10 !text-foreground hover:!bg-border"
               disabled={isSaving}
             >
               {protectedEditorConfig.cancel}

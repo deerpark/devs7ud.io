@@ -57,7 +57,7 @@ const PostCreateButton = () => {
       <button
         type="button"
         onClick={createPost}
-        className="flex items-center rounded-md bg-gray-900 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-600"
+        className="flex items-center rounded-md bg-foreground px-3.5 py-2.5 text-sm font-semibold text-background shadow-sm hover:bg-foreground/50"
       >
         {isLoading && <SpinnerIcon className="mr-2 h-4 w-4 animate-spin" />}
         {protectedPostConfig.newPost}

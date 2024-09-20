@@ -44,17 +44,17 @@ export const ImageSelector: FC<ImageSelectorProps> = ({
         <p className="text-base">
           <ImageIcon className="h4 w-4" />
         </p>
-        <p className="text-gray-900 underline decoration-stone-400 underline-offset-4">
+        <p className="text-foreground underline decoration-stone-400 underline-offset-4">
           Image
         </p>
       </button>
       {isOpen && (
-        <div className="fixed top-full z-[99999] mt-1 flex w-60 overflow-hidden rounded border border-stone-200 bg-white p-1 shadow-xl animate-in fade-in slide-in-from-top-1">
+        <div className="fixed top-full z-[99999] mt-1 flex w-60 overflow-hidden rounded border border-stone-200 bg-background p-1 shadow-xl animate-in fade-in slide-in-from-top-1">
           <input
             ref={inputRef}
             type="text"
             placeholder="Paste a image link"
-            className="flex-1 bg-white p-1 text-sm outline-none"
+            className="flex-1 bg-background p-1 text-sm outline-none"
             defaultValue=""
           />
           <button

@@ -1,6 +1,6 @@
 import { InputRule } from "@tiptap/core";
 import TipTapCharacterCount from "@tiptap/extension-character-count";
-// import TipTapCodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import TipTapCodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { Color } from "@tiptap/extension-color";
 import TipTapFocus from "@tiptap/extension-focus";
 import TipTapFontFamily from "@tiptap/extension-font-family";
@@ -22,17 +22,21 @@ import TextStyle from "@tiptap/extension-text-style";
 import TipTapTypography from "@tiptap/extension-typography";
 import TiptapUnderline from "@tiptap/extension-underline";
 import StarterKit from "@tiptap/starter-kit";
-// import javascript from "highlight.js/lib/languages/javascript";
-// import typescript from "highlight.js/lib/languages/typescript";
-// import { common, createLowlight } from "lowlight";
-import Image from "next/image";
-import * as React from "react";
+import css from "highlight.js/lib/languages/css";
+import js from "highlight.js/lib/languages/javascript";
+import ts from "highlight.js/lib/languages/typescript";
+import html from "highlight.js/lib/languages/xml";
+import { common, createLowlight } from "lowlight";
 import { Markdown } from "tiptap-markdown";
 import CustomKeymap from "./custom-keymap";
 import DragAndDrop from "./drag-and-drop";
 import SlashCommand from "./slash-command";
 
-// const lowlight = createLowlight({ ...common, javascript, typescript });
+const lowlight = createLowlight(common);
+lowlight.register("html", html);
+lowlight.register("css", css);
+lowlight.register("js", js);
+lowlight.register("ts", ts);
 
 /* import UpdatedImage from "./updated-image"; */
 
@@ -55,24 +59,18 @@ export const defaultExtensions = [
     },
     blockquote: {
       HTMLAttributes: {
-        class: "border-l-4 border-stone-700",
+        class: "border-l-4 border-border",
       },
     },
-    // codeBlock: {
-    //   HTMLAttributes: {
-    //     class:
-    //       "rounded-sm bg-stone-100 p-5 font-mono font-medium text-stone-800",
-    //   },
-    // },
     code: {
       HTMLAttributes: {
-        class: "rounded-md bg-stone-200 px-1.5 py-1 font-mono font-medium",
+        class:
+          "rounded-md bg-accent text-accent-foreground px-1.5 py-1 font-mono font-medium",
         spellcheck: "false",
       },
     },
     horizontalRule: false,
     dropcursor: {
-      color: "#DBEAFE",
       width: 4,
     },
     gapcursor: false,
@@ -181,12 +179,12 @@ export const defaultExtensions = [
   CustomKeymap,
   DragAndDrop,
   TipTapCharacterCount,
-  // TipTapCodeBlockLowlight.configure({
-  //   lowlight,
-  //   HTMLAttributes: {
-  //     class: "rounded-sm bg-stone-100 p-5 font-mono font-medium",
-  //   },
-  // }),
+  TipTapCodeBlockLowlight.configure({
+    lowlight,
+    HTMLAttributes: {
+      class: "rounded-sm bg-accent p-5 font-mono font-medium",
+    },
+  }),
   TipTapFocus,
   TipTapFontFamily,
   TipTapSubscript,

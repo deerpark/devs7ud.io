@@ -23,7 +23,7 @@ const SharedOgImage: FC<SharedOgImageProps> = ({
         <div tw="flex relative flex-col p-12 w-full h-full items-start">
           <div tw="flex flex-col flex-1 py-10">
             <div
-              tw="flex text-xl font-bold text-gray-900"
+              tw="flex text-xl font-bold"
               style={{
                 fontFamily: "Inter",
                 fontWeight: "bold",
@@ -34,7 +34,7 @@ const SharedOgImage: FC<SharedOgImageProps> = ({
               {title}
             </div>
             <div
-              tw="flex text-[40px] font-bold text-gray-500"
+              tw="flex text-[40px] font-bold"
               style={{
                 fontFamily: "Inter",
                 fontWeight: "bold",
@@ -47,7 +47,7 @@ const SharedOgImage: FC<SharedOgImageProps> = ({
             <div tw="flex">
               {tags.slice(0, 3).map((tag) => (
                 <div
-                  tw="flex bg-gray-200 text-[30px] text-gray-500"
+                  tw="flex bg-border text-[30px]"
                   style={{
                     fontFamily: "Inter",
                     fontWeight: "normal",

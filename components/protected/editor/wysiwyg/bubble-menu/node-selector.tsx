@@ -111,7 +111,7 @@ export const NodeSelector: FC<NodeSelectorProps> = ({
 
         <Popover.Content
           align="start"
-          className="z-[99999] my-1 flex max-h-80 w-48 flex-col overflow-hidden overflow-y-auto rounded border border-stone-200 bg-white p-1 shadow-xl animate-in fade-in slide-in-from-top-1"
+          className="z-[99999] my-1 flex max-h-80 w-48 flex-col overflow-hidden overflow-y-auto rounded border border-stone-200 bg-background p-1 shadow-xl animate-in fade-in slide-in-from-top-1"
         >
           {items.map((item, index) => (
             <button

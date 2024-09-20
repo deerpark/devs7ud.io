@@ -29,7 +29,7 @@ export default function WysiwygEditor({
 }: {
   /**
    * Additional classes to add to the editor container.
-   * Defaults to "relative min-h-[500px] w-full max-w-screen-lg border-stone-200 bg-white sm:mb-[calc(20vh)] sm:rounded-lg sm:border sm:shadow-lg".
+   * Defaults to "relative min-h-[500px] w-full max-w-screen-lg border-stone-200 bg-background sm:mb-[calc(20vh)] sm:rounded-lg sm:border sm:shadow-lg".
    */
   className?: string;
   /**

@@ -37,8 +37,8 @@ const SharedPager: React.FC<SharedPagerProps> = ({
         }}
         key={v4()}
         className={cn(
-          "inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700",
-          { "border-gray-300": i === currentPage },
+          "text-hover:border-border inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium hover:text-foreground",
+          { "border-border": i === currentPage },
         )}
       >
         {i}
@@ -48,7 +48,7 @@ const SharedPager: React.FC<SharedPagerProps> = ({
 
   return (
     //any other page should be represented by ...
-    <div className="inline-flex items-center border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:text-gray-700">
+    <div className="text-hover:text-foreground inline-flex items-center border-transparent px-4 pt-4 text-sm font-medium">
       ...
     </div>
   );
