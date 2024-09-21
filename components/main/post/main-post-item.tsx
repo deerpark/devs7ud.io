@@ -161,7 +161,7 @@ const MainPostItem: React.FC<MainPostItemProps> = async ({ post, userId }) => {
                   {getMinutes(readTime.minutes ? readTime.minutes : 0)}
                 </span>
               </div>
-              <p className="line-clamp-2">{post.description}</p>
+              <p className="line-clamp-5">{post.description}</p>
             </div>
             <div className="flex flex-none flex-col">
               <DetailPostMoreButton post={post} />

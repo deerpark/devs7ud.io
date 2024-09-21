@@ -61,7 +61,9 @@ const DetailPostHeading: FC<DetailPostHeadingProps> = async ({ post }) => {
           </span>
         </div>
       </div>
-      {description && <p className="text-foreground/70">{description}</p>}
+      {description && (
+        <p className="px-14 pb-5 text-sm text-foreground/80">{description}</p>
+      )}
       {image ? (
         <CustomImage
           src={await getPublicImageUrl("cover-image", image)}
